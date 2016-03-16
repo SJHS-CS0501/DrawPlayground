@@ -57,14 +57,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
 
-        System.out.println( "mousePressed" );
+        System.out.println( "mousePressed()" );
   
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       
-        System.out.println( "mouseDragged" );
+       int x = e.getX();
+       int y = e.getY();
+        System.out.println( "mouseDragged(" + x + "," + y + ")" );
     }
 
     @Override
