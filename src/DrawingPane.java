@@ -14,7 +14,8 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
-    
+	ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
+	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
@@ -57,7 +58,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
 
-        System.out.println( "mousePressed" );
+        
   
     }
 
