@@ -6,30 +6,40 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * 
- */
-
-/**
  * A JPanel for picking colors for DrawPlayground
- * @author ryan
+ * @author Ryan Luchs
  *
  */
 public class ColorPanel extends JPanel implements ActionListener {
 
+	/**
+	 * Private JPanel for displaying a small centered sample box
+	 * @author Ryan Luchs
+	 *
+	 */
 	private class ColorSample extends JPanel implements MouseListener {
 		
+		// the current color
 		public Color color;
 		
+		// color picker to leech off of
 		public ColorPicker picker;
 		
-		public ColorSample(Color c, ColorPicker p) {
-			color = c;
+		/**
+		 * ColorSample constructor
+		 * @param p ColorPicker to get colors from
+		 */
+		public ColorSample(ColorPicker p) {
+			color = p.getColor();
 			picker = p;
 			
 			addMouseListener(this);
 			repaint();
 		}
 		
+		/**
+		 * Paint the sample square
+		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			
@@ -37,6 +47,10 @@ public class ColorPanel extends JPanel implements ActionListener {
 			g.fillRect(getWidth()/2 - getWidth()/4, getHeight()/2 - getHeight()/4, getWidth()/2, getHeight()/2);
 		}
 		
+		/**
+		 * Sets the color of the sample square
+		 * @param c The color
+		 */
 		public void setColor(Color c) {
 			color = c;
 			repaint();
@@ -60,7 +74,9 @@ public class ColorPanel extends JPanel implements ActionListener {
 			
 		}
 
-		@Override
+		/**
+		 * Summons the ColorPicker upon a touch
+		 */
 		public void mousePressed(MouseEvent arg0) {
 			picker.setVisible(true);
 			
@@ -73,13 +89,17 @@ public class ColorPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-	ColorSample sample;
+	private ColorSample sample;
 	
+	/**
+	 * ColorPanel constructor
+	 * @param p ColorPicker used to get colors
+	 */
 	public ColorPanel(ColorPicker p) {
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createEtchedBorder());
 		
-		sample = new ColorSample(p.getColor(), p);
+		sample = new ColorSample(p);
 		add(sample, BorderLayout.CENTER);
 		
 		JButton button;
@@ -101,6 +121,10 @@ public class ColorPanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Returns the current color
+	 * @return The color
+	 */
 	public Color getColor() {
 		return sample.color;
 	}

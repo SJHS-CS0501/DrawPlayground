@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 /**
- *
+ *A rectangle DrawingObject
  * @author woytek
  * @author Ryan Luchs
  */
@@ -34,10 +34,10 @@ public class MyRectangle implements DrawingObject {
     /**
      * Create a new MyRectangle with params initialized for origin and size.
      * 
-     * @param oX
-     * @param oY
-     * @param sX
-     * @param sY 
+     * @param oX x-coordinate of the origin (left side)
+     * @param oY y-coordinate of the origin (top)
+     * @param sX length
+     * @param sY height
      */
     public MyRectangle( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
@@ -52,13 +52,13 @@ public class MyRectangle implements DrawingObject {
     /**
      * draw method actually draws the object. Requires Graphics object.
      * 
-     * @param g 
+     * @param g The graphics
      */
     public void draw( Graphics g ) {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor(color);
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -69,7 +69,7 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called to start drawing a new object when mouse is clicked.
      * 
-     * @param p 
+     * @param p The point
      */
     public void start( Point p ) {
         originX = p.x;
@@ -82,7 +82,7 @@ public class MyRectangle implements DrawingObject {
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
      * 
-     * @param p 
+     * @param p The point
      */
     public void drag( Point p ) {
         sizeX = p.x - originX;
@@ -94,7 +94,7 @@ public class MyRectangle implements DrawingObject {
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
      * 
-     * @param p 
+     * @param p The point
      */
     public void move( Point p ) {
         originX = p.x;
@@ -106,7 +106,7 @@ public class MyRectangle implements DrawingObject {
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
      * 
-     * @param b 
+     * @param b The bounding box
      */
     public void setBounds( Rectangle b ) {
         b.setBounds( originX, originY, sizeX, sizeY );
@@ -116,20 +116,20 @@ public class MyRectangle implements DrawingObject {
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
      * 
-     * @param p
-     * @return 
+     * @param p The point
+     * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
 
-	/**
-	 * Sets the color to draw the shape with
+    /**
+	 * Set the color used when drawing the shape
 	 * 
-	 * @param c
+	 * @param c The color
 	 */
 	public void setColor(Color c) {
-		color = c;
+		color = c;	
 	}
 
 }

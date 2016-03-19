@@ -21,6 +21,9 @@ public class ToolPanel extends JPanel implements ActionListener {
 	
 	private DrawingPane canvas;
     
+	/**
+	 * ToolPanel constructor
+	 */
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
@@ -59,6 +62,10 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
     
+    /**
+     * Sets the DrawingPane that this ToolPanel sends events to
+     * @param c The DrawingPane
+     */
     public void setDrawingPane(DrawingPane c) {
     	canvas = c;
     }

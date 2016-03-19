@@ -5,19 +5,19 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 /**
- * 
- */
-
-/**
- * @author ryan
- *
+ * A line DrawingObject
+ * @author Ryan Luchs
  */
 public class MyLine implements DrawingObject {
 	
-	private int sizeX, sizeY, originX, originY;
-	private int lastX, lastY;
-	private Rectangle bounds = new Rectangle();
-	private Color color = Color.BLACK;
+	// critical vars for a rectangle
+    int sizeX, sizeY, originX, originY;
+    // future use
+    int lastX, lastY;
+    // bounding box (needed for move)
+    Rectangle bounds = new Rectangle();
+    // color of shape
+    Color color = Color.BLACK;
 	
 	/**
      * Create a new MyRectangle, all params initialized to zero.
@@ -31,10 +31,10 @@ public class MyLine implements DrawingObject {
     /**
      * Create a new MyRectangle with params initialized for origin and size.
      * 
-     * @param oX
-     * @param oY
-     * @param sX
-     * @param sY 
+     * @param oX x-coordinate of the origin (left side)
+     * @param oY y-coordinate of the origin (top)
+     * @param sX length
+     * @param sY height
      */
     public MyLine( int oX, int oY, int eX, int eY ) {
         sizeX = eX;
@@ -46,7 +46,11 @@ public class MyLine implements DrawingObject {
         System.out.println( "Made line: @" + oX + ", " + oY + "; " + eX + ", " + eY );
     }
 
-	@Override
+    /**
+     * draw method actually draws the object. Requires Graphics object.
+     * 
+     * @param g The graphics
+     */
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
@@ -57,7 +61,7 @@ public class MyLine implements DrawingObject {
 	/**
      * Called to start drawing a new object when mouse is clicked.
      * 
-     * @param p 
+     * @param p The point
      */
     public void start( Point p ) {
         originX = p.x;
@@ -70,7 +74,7 @@ public class MyLine implements DrawingObject {
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
      * 
-     * @param p 
+     * @param p The point
      */
     public void drag( Point p ) {
         sizeX = p.x - originX;
@@ -82,7 +86,7 @@ public class MyLine implements DrawingObject {
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
      * 
-     * @param p 
+     * @param p The point
      */
     public void move( Point p ) {
         originX = p.x - sizeX/2;
@@ -94,7 +98,7 @@ public class MyLine implements DrawingObject {
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
      * 
-     * @param b 
+     * @param b The bounding box
      */
     public void setBounds( Rectangle b ) {
         b.setBounds( originX, originY, sizeX, sizeY );
@@ -104,17 +108,20 @@ public class MyLine implements DrawingObject {
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
      * 
-     * @param p
-     * @return 
+     * @param p The point
+     * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
 
-	@Override
+	/**
+	 * Set the color used when drawing the shape
+	 * 
+	 * @param c The color
+	 */
 	public void setColor(Color c) {
-		color = c;
-		
+		color = c;	
 	}
 
 }
