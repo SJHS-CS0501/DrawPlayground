@@ -16,10 +16,20 @@ import javax.swing.*;
  */
 public class JMenuFrame extends JFrame implements ActionListener {
     
+	DrawingPane dPane = new DrawingPane();
+	ColorPicker pFrame;
+	
     public JMenuFrame() {
-        super();
-        DrawingPane dPane = new DrawingPane();
+        super("Draw Playground");
+        
+        pFrame = new ColorPicker();
+        
         ToolPanel tPane = new ToolPanel();
+        tPane.setDrawingPane(dPane);
+        
+        ColorPanel pPane = new ColorPanel(pFrame);
+        
+        dPane.setColorPanel(pPane);
         
         JMenuBar menuBar;
         JMenu menu;
@@ -27,23 +37,38 @@ public class JMenuFrame extends JFrame implements ActionListener {
         JMenu subMenu;
                 
         this.setLayout( new BorderLayout() );
-        this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         
-        this.add( tPane, BorderLayout.WEST );
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 1));
+        
+        panel.add(tPane);
+        panel.add(pPane);
+        
+        this.add(panel, BorderLayout.WEST);
         this.add( dPane, BorderLayout.CENTER );
 
         menuBar = new JMenuBar();
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Do Something" );
+        menuItem = new JMenuItem( "Drag" );
         menuItem.setActionCommand( "MenuSomething" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
+        menuItem = new JMenuItem( "Move" );
         menuItem.setActionCommand( "MenuAnother" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Add" );
+        menuItem.setActionCommand( "add" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Color Picker" );
+        menuItem.setActionCommand( "picker" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -102,11 +127,17 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         switch( e.getActionCommand() ) {
             case "MenuSomething":
-                System.out.println( "Something Pressed" );
+                dPane.setMode("drag");
                 break;
             case "MenuAnother":
-                System.out.println( "Another Pressed" );
+                dPane.setMode("move");
                 break;
+            case "add":
+            	dPane.setMode("add");
+            	break;
+            case "picker":
+            	pFrame.setVisible(true);
+            	break;
             case "Quit":
                 System.out.println( "quit Pressed" );
                 System.exit(0);

@@ -8,9 +8,11 @@ import javax.swing.*;
 
 public class MyOval implements DrawingObject{
 	
-	int sizeX, sizeY, originX, originY;
-	int lastX, lastY;
-	Rectangle bounds = new Rectangle();
+	private int sizeX, sizeY, originX, originY;
+	private int lastX, lastY;
+	private Rectangle bounds = new Rectangle();
+	
+	private Color color = Color.BLACK;
 	
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -43,6 +45,7 @@ public class MyOval implements DrawingObject{
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
+		g2d.setColor(color);
 		g2d.drawOval(originX, originY, sizeX, sizeY);
 	}
 
@@ -77,8 +80,8 @@ public class MyOval implements DrawingObject{
      * @param p 
      */
     public void move( Point p ) {
-        originX = p.x;
-        originY = p.y;
+        originX = p.x - sizeX/2;
+        originY = p.y - sizeY/2;
         setBounds( bounds );
     }
     
@@ -102,5 +105,11 @@ public class MyOval implements DrawingObject{
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
+	@Override
+	public void setColor(Color c) {
+		color = c;
+		
+	}
 
 }

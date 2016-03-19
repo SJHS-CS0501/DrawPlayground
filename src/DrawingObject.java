@@ -10,6 +10,7 @@ import java.awt.*;
 /**
  * Interface class for any drawable object.
  * @author woytek
+ * @author Ryan Luchs
  */
 public interface DrawingObject {
     //private int originX, originY;
@@ -46,5 +47,10 @@ public interface DrawingObject {
      * @return 
      */
     public boolean contains( Point p );
+    /**
+     * Sets the color that the object is drawn with
+     * @param c
+     */
+    public void setColor(Color c);
     
 }

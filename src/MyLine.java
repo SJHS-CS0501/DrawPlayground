@@ -1,31 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- * @author Ryan Luchs
- */
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 
-public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
-    int sizeX, sizeY, originX, originY;
-    // future use
-    int lastX, lastY;
-    // bounding box (needed for move)
-    Rectangle bounds = new Rectangle();
-    // color of shape
-    Color color = Color.BLACK;
-    
-    /**
+/**
+ * 
+ */
+
+/**
+ * @author ryan
+ *
+ */
+public class MyLine implements DrawingObject {
+	
+	private int sizeX, sizeY, originX, originY;
+	private int lastX, lastY;
+	private Rectangle bounds = new Rectangle();
+	private Color color = Color.BLACK;
+	
+	/**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyLine() {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
@@ -39,34 +36,25 @@ public class MyRectangle implements DrawingObject {
      * @param sX
      * @param sY 
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
-        sizeX = sX;
-        sizeY = sY;
+    public MyLine( int oX, int oY, int eX, int eY ) {
+        sizeX = eX;
+        sizeY = eY;
         originX = oX;
         originY = oY;
         setBounds( bounds );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made line: @" + oX + ", " + oY + "; " + eX + ", " + eY );
     }
-    
-    /**
-     * draw method actually draws the object. Requires Graphics object.
-     * 
-     * @param g 
-     */
-    public void draw( Graphics g ) {
 
-        Graphics2D g2d = (Graphics2D)g;
-        
-        g2d.setColor( Color.BLACK );
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
-        
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-        //this.setSize( this.getPreferredSize() );
-    }
-    
-    /**
+	@Override
+	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		
+		g2d.setColor(color);
+		g2d.drawLine(originX, originY, originX + sizeX, originY + sizeY);
+	}
+
+	/**
      * Called to start drawing a new object when mouse is clicked.
      * 
      * @param p 
@@ -97,8 +85,8 @@ public class MyRectangle implements DrawingObject {
      * @param p 
      */
     public void move( Point p ) {
-        originX = p.x;
-        originY = p.y;
+        originX = p.x - sizeX/2;
+        originY = p.y - sizeY/2;
         setBounds( bounds );
     }
     
@@ -123,13 +111,10 @@ public class MyRectangle implements DrawingObject {
         return bounds.contains(p);
     }
 
-	/**
-	 * Sets the color to draw the shape with
-	 * 
-	 * @param c
-	 */
+	@Override
 	public void setColor(Color c) {
 		color = c;
+		
 	}
 
 }

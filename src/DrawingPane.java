@@ -14,7 +14,15 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
-	ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
+	private static final long serialVersionUID = 1L;
+	
+	private ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
+	private DrawingObject select;
+	private int mouseX, mouseY;
+	
+	private String mode = "default";
+	
+	private ColorPanel picker;
 	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -29,7 +37,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         addMouseListener( this );
         // ... and a mouse motion listener (for drags)!
         addMouseMotionListener( this );
-
         
     }
     
@@ -46,31 +53,90 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         }
     }
     
-
+    public void setMode(String mode) {
+    	this.mode = mode;
+    }
     
+    public void setColorPanel(ColorPanel p) {
+    	picker = p;
+    }
+    
+    public void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    	
+    	for(int i = 0; i < shapes.size(); i++) {
+    		shapes.get(i).draw(g);
+    	}
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+    	mouseX = e.getX();
+    	mouseY = e.getY();
+    	
+    	if(mode.contains("add")) {
+    		DrawingObject s;
+    		
+    		switch(mode) {
+    			case "add rectangle":
+    				s = new MyRectangle();
+    				break;
+    			case "add oval":
+    				s = new MyOval();
+    				break;
+    			case "add line":
+    				s = new MyLine();
+    				break;
+    			default:
+    				s = new MyRectangle();
+    				break;
+    		}
+    		
+    		s.start(new Point(mouseX, mouseY));
+    		s.setColor(picker.getColor());
+    		
+    		shapes.add(s);
+    		select = shapes.get(shapes.size() - 1);
+    		
+    		repaint();
+    	}
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-
-        
   
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       
-        System.out.println( "mouseDragged" );
+    	mouseX = e.getX();
+    	mouseY = e.getY();
+    	
+    	if(select != null) {
+    		if(mode.contains("add")) {
+    			select.drag(new Point(mouseX, mouseY));
+    		} else {
+    			switch(mode) {
+		    		case "drag":
+		    			select.drag(new Point(mouseX, mouseY));
+		    			break;
+		    		case "move":
+		    			select.move(new Point(mouseX, mouseY));
+		    			break;
+		    		default:
+		    			break;
+    			}
+    		}
+    	}
+    	
+    	this.repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println( "mouseReleased()" );
+    	
     }
 
     @Override
@@ -83,5 +149,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
     }
 }
