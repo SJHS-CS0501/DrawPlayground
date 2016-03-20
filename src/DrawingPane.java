@@ -118,6 +118,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     			case "add line":
     				s = new MyLine();
     				break;
+    			case "add star":
+    				s = new MyPentagram();
+    				break;
     			default:
     				s = new MyRectangle();
     				break;
