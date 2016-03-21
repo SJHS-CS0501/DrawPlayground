@@ -14,6 +14,8 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
+	int x;
+	int y;
     
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -63,11 +65,20 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       int x = e.getX();
-       int y = e.getY();
+       x = e.getX();
+       y = e.getY();
         System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
+        
     }
 
+    public Point getMouseLocation(){
+    	
+    	Point location = new Point(x,y);
+    	
+    	return location;
+    }
+    
+    
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println( "mouseReleased()" );

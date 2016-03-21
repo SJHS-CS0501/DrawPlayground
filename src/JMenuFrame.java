@@ -13,11 +13,14 @@ import javax.swing.*;
  * @author woytek
  */
 public class JMenuFrame extends JFrame implements ActionListener {
+	int x = 1;
+    int y = 2;
     
     public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
+        
         
         JMenuBar menuBar;
         JMenu menu;
@@ -40,7 +43,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
+        menuItem = new JMenuItem( "Draw Test Circle" );
         menuItem.setActionCommand( "MenuAnother" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
@@ -97,13 +100,17 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
     
     public void actionPerformed( ActionEvent e ) {
-
+    	
+    	 
+    	
         switch( e.getActionCommand() ) {
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
+                MyCircle it = new MyCircle(180,70,90,90);
+                it.draw(getGraphics());
                 break;
             case "Quit":
                 System.out.println( "quit Pressed" );
@@ -115,4 +122,5 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
         }
     }
+
 }

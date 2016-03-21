@@ -1,6 +1,8 @@
 
 import java.awt.*;
 
+import javafx.scene.shape.Circle;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,6 +42,11 @@ public interface DrawingObject {
      * @param b 
      */
     public void setBounds( Rectangle b );
+    /**
+     * Set the bounding rectangle.
+     * @param b 
+     */
+    public void setBounds( Circle b );
     /**
      * Determines if the point clicked is contained by the object.
      * @param p
