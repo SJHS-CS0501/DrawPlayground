@@ -67,7 +67,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        x = e.getX();
        y = e.getY();
-        System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
+      //  System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
         
     }
 
