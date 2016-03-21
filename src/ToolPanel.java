@@ -27,7 +27,7 @@ public class ToolPanel extends JPanel implements ActionListener {
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
-        this.setLayout( new GridLayout( 6, 1 ) );
+        this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         
         JButton button;
@@ -59,6 +59,11 @@ public class ToolPanel extends JPanel implements ActionListener {
         
         button = new JButton("Star");
         button.setActionCommand("add star");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Triangle");
+        button.setActionCommand("add triangle");
         button.addActionListener(this);
         add(button);
     

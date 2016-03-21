@@ -50,7 +50,16 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         
-        menu = new JMenu( "My Menu" );
+        menu = new JMenu( "File" );
+        
+        menuItem = new JMenuItem( "Exit" );
+        menuItem.setActionCommand( "Quit" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuBar.add( menu );
+        
+        menu = new JMenu( "Edit" );
         
         menuItem = new JMenuItem( "Drag" );
         menuItem.setActionCommand( "MenuSomething" );
@@ -62,47 +71,40 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Add" );
-        menuItem.setActionCommand( "add" );
+        menu.addSeparator();
+        
+        menuItem = new JMenuItem( "Rectangle" );
+        menuItem.setActionCommand( "add rectangle" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Oval" );
+        menuItem.setActionCommand( "add oval" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Line" );
+        menuItem.setActionCommand( "add line" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Star" );
+        menuItem.setActionCommand( "add star" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Triangle" );
+        menuItem.setActionCommand( "add triangle" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menu.addSeparator();
         
         menuItem = new JMenuItem( "Color Picker" );
         menuItem.setActionCommand( "picker" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Exit" );
-        menuItem.setActionCommand( "Quit" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menuBar.add( menu );
-        
-        menu = new JMenu( "FOO" );
-        
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
-        menuItem.addActionListener( this );
-        menu.add( menuItem );
-        
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
-        menuItem.addActionListener( this );
-        subMenu.add( menuItem );
-        
-        menu.add(subMenu);
-        
+
         menuBar.add( menu );
         
         menuBar.add( Box.createHorizontalGlue() );
@@ -126,15 +128,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
-                dPane.setMode("drag");
-                break;
-            case "MenuAnother":
-                dPane.setMode("move");
-                break;
-            case "add":
-            	dPane.setMode("add");
-            	break;
             case "picker":
             	pFrame.setVisible(true);
             	break;
@@ -143,8 +136,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.exit(0);
                 break;
             default:
-                System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
-                System.exit(-1);
+            	dPane.setMode(e.getActionCommand());
                 break;
         }
     }

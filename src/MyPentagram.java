@@ -5,10 +5,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 /**
- * 
- */
-
-/**
  * A five pointed star DrawingObject
  * @author Ryan Luchs
  */

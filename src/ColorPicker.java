@@ -120,7 +120,7 @@ public class ColorPicker extends JFrame {
 	        if (source.getValueIsAdjusting()) {
 	        	value = source.getValue();
 	        	valueText.setText(Integer.toString(value));
-	        	
+	        	valueText.setBorder(valid);
 	        	parent.setThisColor();
 	        }
 			
