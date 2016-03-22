@@ -29,7 +29,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	private DrawingObject select;
 	
 	// mouse position
-	private int mouseX, mouseY;
+	private Point mouse;
 	
 	// changes how the object reacts to mouse events
 	private String mode = "default";
@@ -101,8 +101,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
      * Reacts to mouse clicks
      */
     public void mouseClicked(MouseEvent e) {
-    	mouseX = e.getX();
-    	mouseY = e.getY();
+    	mouse = e.getPoint();
     	
     	// for adding new shapes
     	if(mode.contains("add")) {
@@ -129,7 +128,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     				break;
     		}
     		
-    		s.start(new Point(mouseX, mouseY));
+    		s.start(mouse);
     		s.setColor(picker.getColor());
     		
     		shapes.add(s);
@@ -151,23 +150,22 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
      */
     public void mouseDragged(MouseEvent e) {
     	// get mouse position
-    	mouseX = e.getX();
-    	mouseY = e.getY();
+    	mouse = e.getPoint();
     	
     	// change what operation is performed on the selected DrawingObjects
     	if(select != null) {
     		if(mode.contains("add")) {
     			// allow resizing of the most recently created DrawingObject
-    			select.drag(new Point(mouseX, mouseY));
+    			select.drag(mouse);
     		} else {
     			switch(mode) {
 		    		case "drag":
 		    			// resize selected DrawingObject
-		    			select.drag(new Point(mouseX, mouseY));
+		    			select.drag(mouse);
 		    			break;
 		    		case "move":
 		    			// move selected DrawingObject
-		    			select.move(new Point(mouseX, mouseY));
+		    			select.move(mouse);
 		    			break;
 		    		default:
 		    			break;
