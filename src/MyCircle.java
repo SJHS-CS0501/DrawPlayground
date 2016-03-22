@@ -21,7 +21,7 @@ public class MyCircle implements DrawingObject{
     // bounding box (needed for move)
     MyRectangle limit = new MyRectangle(5, 5, 4, 4);
     Circle bounds = new Circle();
-    Graphics g;
+    //Graphics g;
     
     /**
      * Construct circle
