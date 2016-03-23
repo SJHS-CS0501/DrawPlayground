@@ -1,19 +1,17 @@
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 
-public class MyString implements DrawingObject{
-	
-	String string;
-	int originX, originY, sizeX, sizeY;
-	int lastX, lastY;
+public class MyArc implements DrawingObject{
+
+	 // critical vars for a rectangle
+    int sizeX, sizeY, originX, originY, width, length;
+    // future use
+    int lastX, lastY;
+    // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
-    
-    public MyString(){
-    	sizeX = sizeY = originX = originY = 0;
-        setBounds( bounds );
-    }
-
+	
+	
 	@Override
 	public void draw(Graphics g) {
 		
@@ -21,7 +19,6 @@ public class MyString implements DrawingObject{
 
 	@Override
 	public void start(Point p) {
-
 		
 	}
 
@@ -48,4 +45,5 @@ public class MyString implements DrawingObject{
 
 		return false;
 	}
+
 }
