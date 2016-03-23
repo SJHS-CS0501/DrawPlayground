@@ -106,11 +106,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         switch( e.getActionCommand() ) {
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
+                MyRectangle rect = new MyRectangle(180, 70, 90, 90);
+                rect.draw(getGraphics());
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
-                MyCircle it = new MyCircle(180,70,90,90);
-                it.draw(getGraphics());
+                MyCircle cir = new MyCircle(180,70,90,90);
+                cir.draw(getGraphics());
                 break;
             case "Quit":
                 System.out.println( "quit Pressed" );
