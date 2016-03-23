@@ -9,7 +9,7 @@ import java.awt.*;
 
 /**
  * Interface class for any drawable object.
- * @author woytek
+ * @author Jack Protivnak
  */
 public interface DrawingObject {
     //private int originX, originY;

@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author Jack Protivnak
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -63,8 +63,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       
-        System.out.println( "mouseDragged" );
+    	 int x = e.getX();
+         int y = e.getY();
+         System.out.println( "mouseDragged (" + x + ", " +y + ")" );
     }
 
     @Override

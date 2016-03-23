@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author Jack Protivnak
  */
 public class JMenuTest {
 
@@ -15,7 +15,5 @@ public class JMenuTest {
     public static void main(String[] args) {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
-        
     }
-    
 }
