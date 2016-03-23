@@ -11,6 +11,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import com.sun.prism.Graphics;
 //import javax.swing.border.*;
 
 public class ToolPanel extends JPanel implements ActionListener {
@@ -24,9 +26,25 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
-        
-
-    
+        JButton button1;
+        JButton button2;
+        JButton button3;
+        button = new JButton("Draw Square");
+        button1 = new JButton("Draw Line");
+        button2 = new JButton("Draw Star");
+        button3 = new JButton("Draw Cirle");
+        button.setFont(new Font("TimesRoman", Font.ITALIC, 12));
+		button1.setFont(new Font("TimesRoman", Font.ITALIC, 12));
+		button2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
+		button3.setFont(new Font("TimesRoman", Font.ITALIC, 12));
+        add(button);
+        add(button1);
+        add(button2);
+        add(button3);
+        button.addActionListener(this);
+        button1.addActionListener(this);
+        button2.addActionListener(this);
+        button3.addActionListener(this);
         this.setVisible( true );
     }
     
@@ -34,7 +52,10 @@ public class ToolPanel extends JPanel implements ActionListener {
     
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
-
+        case("Draw Square"):
+        	Graphics g = ;
+        	MyRectangle.draw(g);
+        	
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);
