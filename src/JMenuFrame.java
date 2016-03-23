@@ -1,6 +1,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 
 /*
@@ -23,6 +25,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         JMenu menu;
         JMenuItem menuItem;
         JMenu subMenu;
+        File DrawFile = new File("DrawFile");
                 
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
@@ -33,15 +36,15 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         
-        menu = new JMenu( "My Menu" );
+        menu = new JMenu( "Menu" );
         
-        menuItem = new JMenuItem( "Do Something" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem( "Open" );
+        menuItem.setActionCommand( "Open" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -99,14 +102,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
-                System.out.println( "Something Pressed" );
+            case "Save":
+                System.out.println( "Your file has been saved." );
                 break;
-            case "MenuAnother":
-                System.out.println( "Another Pressed" );
+            case "Open":
+                System.out.println( "File opened" );
                 break;
             case "Quit":
-                System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
             default:

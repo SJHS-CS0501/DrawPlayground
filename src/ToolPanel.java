@@ -25,7 +25,39 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         
-
+        button = new JButton("Draw rectangle");
+        button.setActionCommand("Rectangle");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Draw circle");
+        button.setActionCommand("Circle");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Draw triangle");
+        button.setActionCommand("Triangle");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Draw line");
+        button.setActionCommand("Line");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Draw star");
+        button.setActionCommand("Star");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("NOP");
+        add(button);
+        
+        button = new JButton("NOP");
+        add(button);
+        
+        button = new JButton("NOP");
+        add(button);
     
         this.setVisible( true );
     }
@@ -34,7 +66,16 @@ public class ToolPanel extends JPanel implements ActionListener {
     
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
-
+        case "Rectangle":
+        	break;
+        case "Circle":
+        	break;
+        case "Triangle":
+        	break;
+        case "Line":
+        	break;
+        case "Star":
+        	break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);
