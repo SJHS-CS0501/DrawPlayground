@@ -78,8 +78,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Oval" );
-        menuItem.setActionCommand( "add oval" );
+        menuItem = new JMenuItem( "Circle" );
+        menuItem.setActionCommand( "add circle" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         

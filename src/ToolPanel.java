@@ -47,8 +47,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         button.addActionListener(this);
         add(button);
         
-        button = new JButton("Oval");
-        button.setActionCommand("add oval");
+        button = new JButton("Circle");
+        button.setActionCommand("add circle");
         button.addActionListener(this);
         add(button);
         

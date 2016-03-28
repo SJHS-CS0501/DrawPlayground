@@ -1,33 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+
 /**
- *A rectangle DrawingObject
- * @author woytek
+ * An oval DrawingObject
  * @author Ryan Luchs
  */
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
-
-public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
-    int sizeX, sizeY, originX, originY;
+public class MyCircle implements DrawingObject{
+	
+	// critical vars for a rectangle
+    int size, originX, originY;
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     // color of shape
     Color color = Color.BLACK;
-    
+	
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyCircle() {
         // NOP
-        sizeX = sizeY = originX = originY = 0;
+        size = originX = originY = 0;
         setBounds( bounds );
     }
     
@@ -36,37 +33,49 @@ public class MyRectangle implements DrawingObject {
      * 
      * @param oX x-coordinate of the origin (left side)
      * @param oY y-coordinate of the origin (top)
-     * @param sX length
-     * @param sY height
+     * @param s the radius
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
-        sizeX = sX;
-        sizeY = sY;
+    public MyCircle( int oX, int oY, int s) {
+        size = s;
         originX = oX;
         originY = oY;
         setBounds( bounds );
         
-        //System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made oval: @" + oX + ", " + oY + "; " + s);
     }
-    
+
     /**
      * draw method actually draws the object. Requires Graphics object.
      * 
      * @param g The graphics
      */
-    public void draw( Graphics g ) {
+	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		
+		g2d.setColor(color);
+		
+//		int nPoints = 120;
+//    	int[] xPoints = new int[nPoints];
+//    	int[] yPoints = new int[nPoints];
+//    	
+//    	for(double d = 0.0; d < nPoints; d++) {
+//	        int i = (int) d;
+//	        double x = Math.cos(d*((2*Math.PI)/nPoints))*(size/2);
+//	        double y = Math.sin(d*((2*Math.PI)/nPoints))*(size/2);
+//
+//	        xPoints[i] = (int)(x+bounds.getCenterX());
+//	        yPoints[i] = (int)(y+bounds.getCenterY());
+//	    }
+//    	
+//    	g2d.drawPolygon(xPoints, yPoints, nPoints);
+//		
+//    	g2d.setColor(Color.PINK);
+//    	g2d.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    	
+		g2d.drawOval(originX, originY, size, size);
+	}
 
-        Graphics2D g2d = (Graphics2D)g;
-        
-        g2d.setColor(color);
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
-        
-        //System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-        //this.setSize( this.getPreferredSize() );
-    }
-    
-    /**
+	/**
      * Called to start drawing a new object when mouse is clicked.
      * 
      * @param p The point
@@ -85,8 +94,7 @@ public class MyRectangle implements DrawingObject {
      * @param p The point
      */
     public void drag( Point p ) {
-        sizeX = p.x - originX;
-        sizeY = p.y - originY;
+        size = ((p.x - originX) + (p.y - originY))/2;
         setBounds( bounds );
     }
     
@@ -97,8 +105,8 @@ public class MyRectangle implements DrawingObject {
      * @param p The point
      */
     public void move( Point p ) {
-        originX = p.x - sizeX/2;
-        originY = p.y - sizeY/2;
+        originX = p.x - size/2;
+        originY = p.y - size/2;
         setBounds( bounds );
     }
     
@@ -109,7 +117,7 @@ public class MyRectangle implements DrawingObject {
      * @param b The bounding box
      */
     public void setBounds( Rectangle b ) {
-        b.setBounds( originX, originY, sizeX, sizeY );
+        b.setBounds( originX, originY, size, size );
     }
     
     /**
@@ -149,10 +157,19 @@ public class MyRectangle implements DrawingObject {
      * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
+    	
+    	int nPoints = 120;
+    	int[] xPoints = new int[nPoints];
+    	int[] yPoints = new int[nPoints];
+    	
+    	for(double d = 0.0; d < nPoints; d++) {
+	        int i = (int) d;
+	        double x = Math.cos(d*((2*Math.PI)/nPoints))*(size/2);
+	        double y = Math.sin(d*((2*Math.PI)/nPoints))*(size/2);
 
-    	int nPoints = 4;
-    	int[] xPoints = {originX, originX + sizeX, originX + sizeX, originX};
-    	int[] yPoints = {originY, originY, originY + sizeY, originY + sizeY};
+	        xPoints[i] = (int)(x+bounds.getCenterX());
+	        yPoints[i] = (int)(y+bounds.getCenterY());
+	    }
     	
     	for(int i = 1; i < nPoints; i++) {
     		if(within(xPoints[i - 1], yPoints[i - 1], xPoints[i], yPoints[i], p.x, p.y)) {

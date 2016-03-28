@@ -104,6 +104,14 @@ public class MyLine implements DrawingObject {
         b.setBounds( originX, originY, sizeX, sizeY );
     }
     
+    private double pow(double a, double b) {
+    	return java.lang.Math.pow(a, b);
+    }
+    
+    private int dist(int x1, int y1, int x2, int y2) {
+    	return (int) pow(pow((double)(x2 - x1), 2) + pow((double)(y2 - y1), 2), 0.5);
+    }
+    
     /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
@@ -112,7 +120,10 @@ public class MyLine implements DrawingObject {
      * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+    	int TOLERANCE = 10;
+    	int lineDist = dist(originX, originY, originX + sizeX, originY + sizeY);
+    	int mouseDist = dist(originX, originY, p.x, p.y) + dist(p.x, p.y, originX + sizeX, originY + sizeY);
+		return lineDist + TOLERANCE > mouseDist && lineDist - TOLERANCE < mouseDist;
     }
 
 	/**

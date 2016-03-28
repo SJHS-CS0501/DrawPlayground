@@ -158,7 +158,7 @@ public class ColorPicker extends JFrame {
 		
 		add(panel, BorderLayout.SOUTH);
 		
-		setVisible(true);
+		setVisible(false);
 		setResizable(false);
         pack();
 	}

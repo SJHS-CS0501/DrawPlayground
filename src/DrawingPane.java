@@ -111,8 +111,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     			case "add rectangle":
     				s = new MyRectangle();
     				break;
-    			case "add oval":
-    				s = new MyOval();
+    			case "add circle":
+    				s = new MyCircle();
     				break;
     			case "add line":
     				s = new MyLine();
@@ -126,7 +126,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     			default:
     				s = new MyRectangle();
     				break;
-    		}
+    		} 
     		
     		s.start(mouse);
     		s.setColor(picker.getColor());
@@ -135,6 +135,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		select = shapes.get(shapes.size() - 1);
     		
     		repaint();
+    		
+    	} else {
+    		for(int i = 0; i < shapes.size(); i++) {
+    			if(shapes.get(i).contains(mouse)) {
+    				select = shapes.get(i);
+    			}
+    		}
     	}
     }
 

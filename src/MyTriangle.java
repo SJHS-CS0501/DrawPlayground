@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 /**
@@ -19,8 +20,8 @@ public class MyTriangle implements DrawingObject{
     // color of shape
     Color color = Color.BLACK;
     // the coordinates (x, y) of each point on the star
-    int[] pointsX = new int[3];
-    int[] pointsY = new int[3];
+    int[] xPoints = new int[3];
+    int[] yPoints = new int[3];
 	
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -67,18 +68,18 @@ public class MyTriangle implements DrawingObject{
 		 */
 		
 		// point a
-		pointsX[0] = originX + sizeX/2;
-		pointsY[0] = originY;
+		xPoints[0] = originX + sizeX/2;
+		yPoints[0] = originY;
 		
 		// point b
-		pointsX[1] = originX;
-		pointsY[1] = originY + sizeY;
+		xPoints[1] = originX;
+		yPoints[1] = originY + sizeY;
 		
 		// point c
-		pointsX[2] = originX + sizeX;
-		pointsY[2] = originY + sizeY;
+		xPoints[2] = originX + sizeX;
+		yPoints[2] = originY + sizeY;
 		
-		g2d.drawPolygon(pointsX, pointsY, 3);
+		g2d.drawPolygon(xPoints, yPoints, 3);
 	}
 
 	/**
@@ -128,6 +129,35 @@ public class MyTriangle implements DrawingObject{
     }
     
     /**
+     * Finds the distance between two points
+     * @param x1 The x-coordinate of the first point
+     * @param y1 The y-coordinate of the first point
+     * @param x2 The x-coordinate of the second point
+     * @param y2 The y-coordinate of the second point
+     * @return The distance between the two points
+     */
+    private int dist(int x1, int y1, int x2, int y2) {
+    	return (int) java.lang.Math.pow(java.lang.Math.pow((double)(x2 - x1), 2) + java.lang.Math.pow((double)(y2 - y1), 2), 0.5);
+    }
+    
+    /**
+     * Returns whether the line between points 1 and 2 contains point 3
+     * @param x1 The x-coordinate of the first point
+     * @param y1 The y-coordinate of the first point
+     * @param x2 The x-coordinate of the second point
+     * @param y2 The y-coordinate of the second point
+     * @param x3 The x-coordinate of the third point
+     * @param y3 The y-coordinate of the third point
+     * @return true if the line contains the third point
+     */
+    private boolean within(int x1, int y1, int x2, int y2, int x3, int y3) {
+    	int TOLERANCE = 10;
+    	int lineDist = dist(x1, y1, x2, y2);
+    	int mouseDist = dist(x1, y1, x3, y3) + dist(x3, y3, x2, y2);
+		return lineDist + TOLERANCE > mouseDist && lineDist - TOLERANCE < mouseDist;
+    }
+    
+    /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
      * 
@@ -135,7 +165,19 @@ public class MyTriangle implements DrawingObject{
      * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+    	int nPoints = 3;
+    	
+    	for(int i = 1; i < nPoints; i++) {
+    		if(within(xPoints[i - 1], yPoints[i - 1], xPoints[i], yPoints[i], p.x, p.y)) {
+    			return true;
+    		}
+    	}
+    	
+    	if(within(xPoints[nPoints - 1], yPoints[nPoints - 1], xPoints[0], yPoints[0], p.x, p.y)) {
+    		return true;
+    	}
+    	
+    	return false;
     }
 
     /**
