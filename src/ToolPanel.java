@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 /**
- *
+ * The tool panel for DrawPlayground
  * @author woytek
+ * @author Ryan Luchs
  */
 
 import java.awt.*;
@@ -27,7 +28,7 @@ public class ToolPanel extends JPanel implements ActionListener {
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
-        this.setLayout( new GridLayout( 4, 2 ) );
+        this.setLayout( new GridLayout( 9, 1 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         
         JButton button;
@@ -39,6 +40,16 @@ public class ToolPanel extends JPanel implements ActionListener {
         
         button = new JButton("Move");
         button.setActionCommand("move");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Remove");
+        button.setActionCommand("remove");
+        button.addActionListener(this);
+        add(button);
+        
+        button = new JButton("Recolor");
+        button.setActionCommand("recolor");
         button.addActionListener(this);
         add(button);
         
@@ -66,7 +77,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         button.setActionCommand("add triangle");
         button.addActionListener(this);
         add(button);
-    
+        
         this.setVisible(true);
     }
     

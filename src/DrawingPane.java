@@ -22,7 +22,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	private static final long serialVersionUID = 1L;
 	
-	// list of shapes to draw to he screen
+	// list of shapes to draw to the screen
 	private ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
 	
 	// currently selected shape
@@ -34,7 +34,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	// changes how the object reacts to mouse events
 	private String mode = "default";
 	
-	// a colorpanel to get colors from
+	// a color panel to get colors from
 	private ColorPanel picker;
 	
 	/**
@@ -67,6 +67,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
                 System.exit(-1);
                 break;
         }
+    }
+    
+    /**
+     * Clears the drawing pane
+     */
+    public void clear() {
+    	shapes.clear();
+    	repaint();
     }
     
     /**
@@ -141,6 +149,16 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     			if(shapes.get(i).contains(mouse)) {
     				select = shapes.get(i);
     			}
+    		}
+    		
+    		if(mode.equals("remove")) {
+    			shapes.remove(select);
+    			repaint();
+    		}
+    		
+    		if(mode.equals("recolor")) {
+    			select.setColor(picker.getColor());
+    			repaint();
     		}
     	}
     }

@@ -11,8 +11,9 @@ import javax.swing.*;
  * and open the template in the editor.
  */
 /**
- *
+ * The main JFrame for DrawPlayground
  * @author woytek
+ * @author Ryan Luchs
  */
 public class JMenuFrame extends JFrame implements ActionListener {
     
@@ -52,6 +53,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "File" );
         
+        menuItem = new JMenuItem( "New" );
+        menuItem.setActionCommand( "clear" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menu.addSeparator();
+        
         menuItem = new JMenuItem( "Exit" );
         menuItem.setActionCommand( "Quit" );
         menuItem.addActionListener( this );
@@ -62,12 +70,22 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menu = new JMenu( "Edit" );
         
         menuItem = new JMenuItem( "Drag" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem.setActionCommand( "drag" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
         menuItem = new JMenuItem( "Move" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem.setActionCommand( "move" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Remove" );
+        menuItem.setActionCommand( "remove" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Recolor" );
+        menuItem.setActionCommand( "recolor" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -130,6 +148,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
         switch( e.getActionCommand() ) {
             case "picker":
             	pFrame.setVisible(true);
+            	break;
+            case "clear":
+            	dPane.clear();
             	break;
             case "Quit":
                 System.out.println( "quit Pressed" );
