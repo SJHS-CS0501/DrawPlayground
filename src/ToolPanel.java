@@ -11,14 +11,14 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import com.sun.prism.Graphics;
 //import javax.swing.border.*;
 
 public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
-
+	
+MyRectangle r = new MyRectangle( 40, 40, 50 , 50 );
+	
     
     public ToolPanel() {
         super();
@@ -45,7 +45,9 @@ public class ToolPanel extends JPanel implements ActionListener {
         button1.addActionListener(this);
         button2.addActionListener(this);
         button3.addActionListener(this);
+        button.setActionCommand("Draw Square");
         this.setVisible( true );
+        
     }
     
 
@@ -53,9 +55,11 @@ public class ToolPanel extends JPanel implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
         case("Draw Square"):
-        	Graphics g = ;
-        	MyRectangle.draw(g);
-        	
+        	rX = e.getX();
+        
+        	r.start();
+        	r.draw(getGraphics());
+        		break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);
