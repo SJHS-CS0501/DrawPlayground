@@ -25,6 +25,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         
+        ButtonGroup
+        
 
     
         this.setVisible( true );

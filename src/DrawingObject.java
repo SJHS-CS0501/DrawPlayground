@@ -42,11 +42,7 @@ public interface DrawingObject {
      * @param b 
      */
     public void setBounds( Rectangle b );
-    /**
-     * Set the bounding rectangle.
-     * @param b 
-     */
-    public void setBounds( Circle b );
+   
     /**
      * Determines if the point clicked is contained by the object.
      * @param p

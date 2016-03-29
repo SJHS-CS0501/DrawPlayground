@@ -19,8 +19,8 @@ public class MyCircle implements DrawingObject{
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
-    MyRectangle limit = new MyRectangle(5, 5, 4, 4);
-    Circle bounds = new Circle();
+    Rectangle bounds  = new Rectangle(5, 5, 4, 4);
+   
     //Graphics g;
     
     /**
@@ -100,10 +100,6 @@ public class MyCircle implements DrawingObject{
 		 return false;
 	}
 
-	@Override
-	public void setBounds(Circle b) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

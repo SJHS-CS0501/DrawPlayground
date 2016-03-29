@@ -122,10 +122,6 @@ public class MyRectangle implements DrawingObject {
         return bounds.contains(p);
     }
 
-	@Override
-	public void setBounds(Circle b) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

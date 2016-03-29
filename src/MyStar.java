@@ -48,11 +48,7 @@ public class MyStar implements DrawingObject {
 		
 	}
 
-	@Override
-	public void setBounds(Circle b) {
-		// TODO Auto-generated method stub
 		
-	}
 
 	@Override
 	public boolean contains(Point p) {
