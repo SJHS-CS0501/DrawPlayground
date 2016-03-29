@@ -18,12 +18,14 @@ public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 	
+	private static final long serialVersionUID = 1;
 	private JButton button;
 	private JPanel shapes;
 
     
     public ToolPanel() {
-        super();
+        super("ToolPanel");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout(2,2) );
         this.setBorder(BorderFactory.createEmptyBorder());
@@ -51,9 +53,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         shapes.add(button);
         
         add(shapes);
-        
-        pack();
     
+        this.getPreferredSize();
         this.setVisible( true );
     }
     
