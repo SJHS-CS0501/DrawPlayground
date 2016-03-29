@@ -4,13 +4,14 @@ import java.awt.Rectangle;
 
 public class MyLine implements DrawingObject{
 
-	 // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
-    // future use
     int lastX, lastY;
-    // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
 	
+    MyLine(){
+    	sizeX = sizeY = originX = originY = 0;
+    	setBounds( bounds );
+    }
 	
 	@Override
 	public void draw(Graphics g) {

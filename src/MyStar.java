@@ -1,17 +1,18 @@
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class MyStar implements DrawingObject{
 
-	 // critical vars for a rectangle
-    int sizeX, sizeY, originX, originY;
-    // future use
+    ArrayList<Dimension> xValues = new ArrayList<Dimension>();
+    ArrayList<Dimension> yValues = new ArrayList<Dimension>();
+	int lines;
     int lastX, lastY;
-    // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
 	
-	
+	MyStar(){
+		lines = 0;
+		setBounds( bounds );
+	}
 	@Override
 	public void draw(Graphics g) {
 	

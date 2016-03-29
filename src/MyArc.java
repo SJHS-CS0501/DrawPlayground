@@ -11,6 +11,10 @@ public class MyArc implements DrawingObject{
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
 	
+    MyArc(){
+    	sizeX = sizeY = originX = originY = width = length = 0;
+    	setBounds( bounds );
+    }
 	
 	@Override
 	public void draw(Graphics g) {
