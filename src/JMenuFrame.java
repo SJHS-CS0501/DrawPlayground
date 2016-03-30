@@ -19,11 +19,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
     
 	DrawingPane dPane = new DrawingPane();
 	ColorPicker pFrame;
+	DrawPlaygroundHelpFrame hFrame;
 	
     public JMenuFrame() {
         super("Draw Playground");
         
         pFrame = new ColorPicker();
+        hFrame = new DrawPlaygroundHelpFrame();
+        hFrame.setMode(DrawPlaygroundHelpFrame.MODE_ABOUT);
         
         ToolPanel tPane = new ToolPanel();
         tPane.setDrawingPane(dPane);
@@ -128,10 +131,15 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuBar.add( Box.createHorizontalGlue() );
         
         menu = new JMenu( "Help" );
+        
         menuItem = new JMenuItem( "About" );
         menuItem.setActionCommand( "MenuAbout" );
         menuItem.addActionListener( this );
+        menu.add( menuItem );
         
+        menuItem = new JMenuItem( "Help" );
+        menuItem.setActionCommand( "MenuHelp" );
+        menuItem.addActionListener( this );
         menu.add( menuItem );
         
         menuBar.add( menu );
@@ -151,6 +159,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	break;
             case "clear":
             	dPane.clear();
+            	break;
+            case "MenuAbout":
+            	hFrame.setMode(DrawPlaygroundHelpFrame.MODE_ABOUT);
+            	hFrame.setVisible(true);
+            	break;
+            case "MenuHelp":
+            	hFrame.setMode(DrawPlaygroundHelpFrame.MODE_HELP);
+            	hFrame.setVisible(true);
             	break;
             case "Quit":
                 System.out.println( "quit Pressed" );
