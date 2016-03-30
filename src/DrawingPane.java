@@ -58,7 +58,21 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // the mode the user has selected in the tool panel.
 
         System.out.println( "mousePressed()" );
-  
+        switch( buttonSelected ){
+        
+        case("Rectangle"):
+        	
+        	break;
+        case("Line"):
+        	
+        	break;
+        case("Circle"):
+        	
+        	break;
+        case("Star"):
+        	
+        	break;
+        }
     }
 
     @Override

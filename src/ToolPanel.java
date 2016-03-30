@@ -17,35 +17,45 @@ public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 	
-MyRectangle r = new MyRectangle( 40, 40, 50 , 50 );
-	
     
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
-        JButton button;
-        JButton button1;
-        JButton button2;
-        JButton button3;
-        button = new JButton("Draw Square");
-        button1 = new JButton("Draw Line");
-        button2 = new JButton("Draw Star");
-        button3 = new JButton("Draw Cirle");
-        button.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-		button1.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-		button2.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-		button3.setFont(new Font("TimesRoman", Font.ITALIC, 12));
-        add(button);
-        add(button1);
-        add(button2);
-        add(button3);
-        button.addActionListener(this);
-        button1.addActionListener(this);
-        button2.addActionListener(this);
-        button3.addActionListener(this);
-        button.setActionCommand("Draw Square");
+        JRadioButton square = new JRadioButton("Draw Square");
+        square.setMnemonic(KeyEvent.VK_B);
+        square.setActionCommand("Draw Square");
+        
+        
+        JRadioButton line = new JRadioButton("Draw Line");
+        line.setMnemonic(KeyEvent.VK_B);
+        line.setActionCommand("Draw Line");
+        
+        JRadioButton circle = new JRadioButton("Draw Circle");
+        circle.setMnemonic(KeyEvent.VK_B);
+        circle.setActionCommand("Draw Circle");
+        
+        JRadioButton star = new JRadioButton("Draw Star");
+        star.setMnemonic(KeyEvent.VK_B);
+        star.setActionCommand("Draw Star");
+      
+        ButtonGroup shapes = new ButtonGroup();
+        shapes.add(square);
+        shapes.add(line);
+        shapes.add(circle);
+        shapes.add(star);
+        
+        add(square);
+        add(line);
+        add(circle);
+        add(star);
+        
+        square.addActionListener(this);
+        line.addActionListener(this);
+        circle.addActionListener(this);
+        star.addActionListener(this);
+        
         this.setVisible( true );
         
     }
@@ -55,10 +65,7 @@ MyRectangle r = new MyRectangle( 40, 40, 50 , 50 );
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
         case("Draw Square"):
-        	rX = e.getX();
-        
-        	r.start();
-        	r.draw(getGraphics());
+        	
         		break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
