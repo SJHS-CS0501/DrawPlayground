@@ -44,12 +44,7 @@ public class MyLine implements DrawingObject {
 		
 	}
 
-	@Override
-	public void setBounds(Circle b) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub

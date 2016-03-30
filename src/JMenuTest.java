@@ -15,7 +15,9 @@ public class JMenuTest {
     public static void main(String[] args) {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
+        ToolPanel panel = new ToolPanel();
         
+        myFrame.add(panel);
     }
     
 }
