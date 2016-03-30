@@ -16,7 +16,11 @@ import javax.swing.*;
 public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
-
+	MyRectangle r = new MyRectangle();
+	MyCircle c = new MyCircle();
+	MyTriangle t = new MyTriangle();
+	MyLine l = new MyLine();
+	MyStar s = new MyStar();
     
     public ToolPanel() {
         super();
@@ -67,14 +71,19 @@ public class ToolPanel extends JPanel implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
         case "Rectangle":
+        	r.draw(getGraphics());
         	break;
         case "Circle":
+        	c.draw(getGraphics());
         	break;
         case "Triangle":
+        	t.draw(getGraphics());
         	break;
         case "Line":
+        	l.draw(getGraphics());
         	break;
         case "Star":
+        	s.draw(getGraphics());
         	break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
