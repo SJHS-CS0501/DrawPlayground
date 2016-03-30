@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 
 import java.awt.*;
@@ -27,41 +27,51 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
-        JButton button;
+        JRadioButton button;
+        ButtonGroup group = new ButtonGroup();
         
-        button = new JButton("Draw rectangle");
+        
+        button = new JRadioButton("Draw rectangle");
         button.setActionCommand("Rectangle");
         button.addActionListener(this);
         add(button);
+        group.add(button);
         
-        button = new JButton("Draw circle");
+        button = new JRadioButton("Draw circle");
         button.setActionCommand("Circle");
         button.addActionListener(this);
         add(button);
+        group.add(button);
         
-        button = new JButton("Draw triangle");
+        button = new JRadioButton("Draw triangle");
         button.setActionCommand("Triangle");
         button.addActionListener(this);
         add(button);
+        group.add(button);
         
-        button = new JButton("Draw line");
+        button = new JRadioButton("Draw line");
         button.setActionCommand("Line");
         button.addActionListener(this);
         add(button);
+        group.add(button);
         
-        button = new JButton("Draw star");
+        button = new JRadioButton("Draw star");
         button.setActionCommand("Star");
         button.addActionListener(this);
         add(button);
+        group.add(button);
         
-        button = new JButton("NOP");
+        button = new JRadioButton("Programming is FUN!");
         add(button);
+        group.add(button);
         
-        button = new JButton("NOP");
+        button = new JRadioButton("Yay Java!");
         add(button);
+        group.add(button);
         
-        button = new JButton("NOP");
+        button = new JRadioButton("Nothing");
         add(button);
+        group.add(button);
     
         this.setVisible( true );
     }

@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
-
+	MyRectangle r = new MyRectangle();
     
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -56,7 +56,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-
+    	r.start(getMousePosition());
+    	r.draw(getGraphics());
+    	r.drag(getLocationOnScreen());
         System.out.println( "mousePressed()" );
   
     }
@@ -65,6 +67,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
+       r.drag(getMousePosition());
         System.out.println( "mouseDragged(" + x  +", " + y + ")");
     }
 
