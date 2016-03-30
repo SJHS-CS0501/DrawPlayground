@@ -10,9 +10,11 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.sound.sampled.*;
 import javax.swing.*;
-//import javax.swing.border.*;
 import javax.swing.border.EtchedBorder;
+import java.io.*;
+import java.util.*;
 
 public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
@@ -20,17 +22,25 @@ public class ToolPanel extends JPanel implements ActionListener {
 	
 	private static final long serialVersionUID = 1;
 	private JButton button;
-	private JPanel shapes;
+	private JPanel shapes; JPanel movements;
+	private MyRectangle rectangle = new MyRectangle();
+	private Graphics2D gShape;
+	public String command;
 
     
     public ToolPanel() {
-        super("ToolPanel");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super();
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout(2,2) );
         this.setBorder(BorderFactory.createEmptyBorder());
         
+        shapes = new JPanel();
+        shapes.setLayout( new GridLayout(2, 2));
         shapes.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Shapes"));
+        
+        movements = new JPanel();
+        movements.setLayout(new GridLayout(2,2));
+        movements.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Movement Options"));
         
         button = new JButton("Square");
         button.setActionCommand("square");
@@ -53,6 +63,18 @@ public class ToolPanel extends JPanel implements ActionListener {
         shapes.add(button);
         
         add(shapes);
+        
+        button = new JButton("Move");
+        button.setActionCommand("move");
+        button.addActionListener(this);
+        movements.add(button);
+        
+        button = new JButton("Delete");
+        button.setActionCommand("delete");
+        button.addActionListener(this);
+        movements.add(button);
+        
+        add(movements);
     
         this.getPreferredSize();
         this.setVisible( true );
