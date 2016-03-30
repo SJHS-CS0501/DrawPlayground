@@ -6,6 +6,7 @@
 /**
  *
  * @author woytek
+ * @author Isabelle Schroeder
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -15,13 +16,23 @@ import javax.swing.*;
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
     
-    public DrawingPane() {
-        super(); // always call super() in an extended/derived class!
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DrawingPane() {
+    	
+    	super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
         //setSize( getPreferredSize() );
         // size is handled by parent pane placement in JFrame
         // make a border
         setBorder( BorderFactory.createLineBorder(Color.RED) );
+        
+        
+        
+        
         setVisible( true );
         
         // we need both a mouse listener (for clicks)...

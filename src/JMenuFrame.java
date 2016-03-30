@@ -23,6 +23,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         JMenu menu;
         JMenuItem menuItem;
         JMenu subMenu;
+        JButton button;
+        JPanel againForButtons = new JPanel();
                 
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
@@ -93,6 +95,57 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         //this.setSize( new Dimension(this.getPreferredSize() ) ); 
         this.setSize( 600, 600 );
+     
+        
+        
+        
+        
+        
+        //drawing pane conversation with tool panel?
+        
+        
+        againForButtons.setLayout( new GridLayout(3,2));
+        
+        button = new JButton( "Rectangle" );
+        button.setActionCommand( "rectangle" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        button = new JButton( "Circle" );
+        button.setActionCommand( "circle" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        button = new JButton( "Line" );
+        button.setActionCommand( "line" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        button = new JButton( "Word Box" );
+        button.setActionCommand( "string" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        button = new JButton( "Star" );
+        button.setActionCommand( "star" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        button = new JButton( "Arc" );
+        button.setActionCommand( "arc" );
+        button.addActionListener( this );
+        againForButtons.add( this );
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         this.setVisible( true );
     }
     
@@ -109,6 +162,24 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+            case "rectangle":
+            	
+            	break;
+            case "circle":
+            	
+            	break;
+            case "line":
+            	
+            	break;
+            case "string":
+            	
+            	break;
+            case "star":
+            	
+            	break;
+            case "arc":
+            	
+            	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);
