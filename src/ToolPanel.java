@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- */
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -17,26 +7,45 @@ public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 
-    
+	JPanel shapePanel;
+	JRadioButton radioButton;
+	
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
-        JButton button;
         
-
-    
+        radioButton = new JRadioButton("Line");
+		radioButton.setActionCommand("Line");
+		radioButton.addActionListener(this);
+		shapePanel.add(radioButton);
+		
+		radioButton = new JRadioButton("Rectangle");
+		radioButton.setActionCommand("Rectangle");
+		radioButton.addActionListener(this);
+		shapePanel.add(radioButton);
+		
+		radioButton = new JRadioButton("Circle");
+		radioButton.setActionCommand("Circle");
+		radioButton.addActionListener(this);
+		shapePanel.add(radioButton);
+		
+		radioButton = new JRadioButton("Star");
+		radioButton.setActionCommand("Star");
+		radioButton.addActionListener(this);
+		shapePanel.add(radioButton);
+		
+		add(shapePanel, BorderLayout.WEST);
+        
         this.setVisible( true );
     }
-    
-
     
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
 
             default:
-                System.out.println( "EVIL EVIL BAD PLACE" );
+                System.out.println( "Bad Stuff" );
                 System.exit(-1);
                 break;
         }

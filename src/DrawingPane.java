@@ -1,8 +1,3 @@
-/**
- *
- * @author Woytek
- * @author Julianna Nichols
- */
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -10,7 +5,6 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
-    
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
@@ -25,7 +19,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // ... and a mouse motion listener (for drags)!
         addMouseMotionListener( this );
 
-        
     }
     
     /**
@@ -41,9 +34,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         }
     }
     
-
-    
-
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -52,7 +42,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-
         System.out.println( "mousePressed()" );
   
     }
