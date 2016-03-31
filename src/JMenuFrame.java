@@ -57,17 +57,17 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
+        menu = new JMenu( "Color Select" );
         
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
+        menuItem = new JMenuItem( "Red" );
+        menuItem.setActionCommand( "Red" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
         menu.addSeparator();
         
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
+        menuItem = new JMenuItem( "Blue" );
+        menuItem.setActionCommand( "Blue" );
         menuItem.addActionListener( this );
         menu.add( menuItem );
         

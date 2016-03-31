@@ -13,8 +13,13 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
-	MyRectangle r = new MyRectangle();
-    
+	public DrawingObject object;
+	//MyRectangle r;
+	//MyCircle c;
+	//MyTriangle t;
+	//MyLine l;
+	//MyStar s;
+	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
@@ -56,10 +61,30 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-    	r.start(getMousePosition());
-    	r.draw(getGraphics());
-    	r.drag(getLocationOnScreen());
-        System.out.println( "mousePressed()" );
+    	switch(ToolPanel.selection) {
+    	case(0):
+    		object = new MyRectangle();
+			object.start(e.getPoint());
+    		break;
+    	case(1):
+    		object = new MyCircle();
+			object.start(e.getPoint());
+    		break;
+    	case(2):
+    		object = new MyTriangle();
+			object.start(e.getPoint());
+    		break;
+    	case(3):
+    		object = new MyLine();
+			object.start(e.getPoint());
+    		break;
+    	case(4):
+    		object = new MyStar();
+    		object.start(e.getPoint());
+    		break;
+    	default:
+    		break;
+    	}
   
     }
 
@@ -67,13 +92,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
-       r.drag(getMousePosition());
-        System.out.println( "mouseDragged(" + x  +", " + y + ")");
+       object.drag(e.getPoint());
+       repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println( "mouseReleased()" );
+        repaint();
     }
 
     @Override
@@ -86,5 +111,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+    
+    public void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    	if(object != null) {
+    		object.draw(g);
+    	}
     }
 }

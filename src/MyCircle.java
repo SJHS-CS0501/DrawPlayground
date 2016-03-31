@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -14,7 +16,10 @@ public class MyCircle implements DrawingObject{
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+
+        Graphics2D g2d = (Graphics2D)g;
+        
+        g2d.setColor( Color.BLACK );
 		
 	}
 

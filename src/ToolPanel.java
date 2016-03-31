@@ -21,6 +21,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	MyTriangle t = new MyTriangle();
 	MyLine l = new MyLine();
 	MyStar s = new MyStar();
+	static int selection;
     
     public ToolPanel() {
         super();
@@ -81,22 +82,22 @@ public class ToolPanel extends JPanel implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
         case "Rectangle":
-        	r.draw(getGraphics());
+        	selection = 0;
         	break;
         case "Circle":
-        	c.draw(getGraphics());
+        	selection = 1;
         	break;
         case "Triangle":
-        	t.draw(getGraphics());
+        	selection = 2;
         	break;
         case "Line":
-        	l.draw(getGraphics());
+        	selection = 3;
         	break;
         case "Star":
-        	s.draw(getGraphics());
+        	selection = 4;
         	break;
             default:
-                System.out.println( "EVIL EVIL BAD PLACE" );
+                System.out.println( "You just did absolutely NOTHING!! Congratulations!" );
                 System.exit(-1);
                 break;
         }
