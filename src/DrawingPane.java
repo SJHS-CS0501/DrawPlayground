@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+	private DrawingObject obj;
+	private ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
 
     
     public DrawingPane() {
@@ -30,6 +32,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         addMouseMotionListener( this );
 
         
+    }
+    
+    public void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    	if(obj != null) {
+    		obj.draw(g);
+    	}
     }
     
     /**
@@ -58,6 +67,31 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // the mode the user has selected in the tool panel.
 
         System.out.println( "mousePressed" );
+        switch(ToolPanel.choice) {
+        	case 1:
+        		System.out.println("rectangle");
+        		obj = new MyRectangle();
+        		obj.start(e.getPoint());
+        		break;
+        		
+        	case 2:
+        		System.out.println("star");
+        		break;
+        		
+        	case 3:
+        		System.out.println("circle");
+        		break;
+        		
+        	case 4:
+        		System.out.println("line");
+        		break;
+        		
+        	default:
+        		System.out.println("ERROR");
+        		break;
+        		
+        }
+        	
   
     }
 
@@ -65,12 +99,16 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
     	 int x = e.getX();
          int y = e.getY();
+         obj.drag(e.getPoint());
+         repaint();
          System.out.println( "mouseDragged (" + x + ", " +y + ")" );
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println( "mouseReleased()" );
+        objectList.add(obj);
+        repaint();
     }
 
     @Override
