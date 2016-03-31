@@ -10,6 +10,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 //import javax.swing.border.*;
 
@@ -17,6 +19,9 @@ public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 
+	
+	
+	
 	public static final int l = 1;
 	public static final int r = 2;
 	public static final int s = 3;
@@ -50,13 +55,13 @@ public class ToolPanel extends JPanel implements ActionListener {
         bg.add(Star);
         
         JPanel unitSelectionPanel = new JPanel();
-        unitSelectionPanel.setLayout( new GridLayout( 0, 3 ) );
+        unitSelectionPanel.setLayout( new GridLayout( 1,0 ) );
         unitSelectionPanel.add( Rectangle );
         unitSelectionPanel.add( Circle);
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
         
-        add(unitSelectionPanel, BorderLayout.NORTH);
+        add(unitSelectionPanel);
 
        this.setSize(20,20);
         this.setVisible( true );

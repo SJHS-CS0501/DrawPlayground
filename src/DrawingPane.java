@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
-
+	
 	int x;
 	int y;
+	DrawingObject obj;
+	private ArrayList<DrawingObject> drob;
     
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -30,7 +32,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         addMouseListener( this );
         // ... and a mouse motion listener (for drags)!
         addMouseMotionListener( this );
-
         
     }
     
@@ -52,6 +53,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
+    	
+    	drob.add(obj);
+    	
     }
 
     @Override
@@ -60,6 +64,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // the mode the user has selected in the tool panel.
 
         System.out.println( "mousePressed" );
+        
+        
   
     }
 
@@ -71,13 +77,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         
     }
 
+    /*
     public Point getMouseLocation(){
     	
     	Point location = new Point(x,y);
     	
     	return location;
     }
-    
+    */
     
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -94,5 +101,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+    
+    public void paintComponent(Graphics g){
+    
+    	super.paintComponent(g);
+    	
+    	for(int i = 0; i<drob.size(); i++){
+    		
+    		drob.get(i).draw(g);
+    	}
     }
 }

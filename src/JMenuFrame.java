@@ -31,7 +31,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         
-        this.add( tPane, BorderLayout.WEST );
+        this.add( tPane, BorderLayout.NORTH);
         this.add( dPane, BorderLayout.CENTER );
 
         menuBar = new JMenuBar();
@@ -111,7 +111,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
-                MyCircle cir = new MyCircle(180,70,90,90);
+                MyCircle cir = new MyCircle();
                 cir.draw(getGraphics());
                 break;
             case "Quit":
