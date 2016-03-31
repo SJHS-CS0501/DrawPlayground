@@ -33,7 +33,7 @@ public class MyTriangle implements DrawingObject{
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
+     * Create a new MyTriangle with params initialized for origin and size.
      * 
      * @param oX x-coordinate of the origin (left side)
      * @param oY y-coordinate of the origin (top)

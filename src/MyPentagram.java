@@ -37,7 +37,7 @@ public class MyPentagram implements DrawingObject {
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
+     * Create a new MyPentagram with params initialized for origin and size.
      * 
      * @param oX x-coordinate of the origin (left side)
      * @param oY y-coordinate of the origin (top)

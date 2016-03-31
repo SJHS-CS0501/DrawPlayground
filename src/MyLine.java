@@ -29,12 +29,12 @@ public class MyLine implements DrawingObject {
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
+     * Create a new MyLine with params initialized for origin and size.
      * 
-     * @param oX x-coordinate of the origin (left side)
-     * @param oY y-coordinate of the origin (top)
-     * @param sX length
-     * @param sY height
+     * @param oX x-coordinate of the origin
+     * @param oY y-coordinate of the origin
+     * @param eX x-coordinate of the endpoint
+     * @param eY y coordinate of the endpoint
      */
     public MyLine( int oX, int oY, int eX, int eY ) {
         sizeX = eX;
