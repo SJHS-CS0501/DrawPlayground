@@ -14,7 +14,7 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	public DrawingObject obj = null;
-    
+    public ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>(); 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
@@ -63,6 +63,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         case(0):
         	
         	obj = new MyRectangle();
+        	objList.add(obj);
             obj.start(e.getPoint());
 			
         	break;
@@ -107,9 +108,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
-    	
-    	if(obj != null){
-    		obj.draw(g);
+    	for(int ctr= 0; objList.size() <= ctr; ctr++){
+    	objList.get(ctr).draw(g);
     	}
     }
 }
