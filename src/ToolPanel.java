@@ -17,7 +17,8 @@ public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 	
-    
+	public static int buttonSelected = 0;
+	
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
@@ -62,10 +63,11 @@ public class ToolPanel extends JPanel implements ActionListener {
     
 
     
-    public void actionPerformed( ActionEvent e ) {
+    public void actionPerformed( ActionEvent e) {
+    	
         switch( e.getActionCommand() ) {
         case("Draw Square"):
-        	
+        	buttonSelected = 0;
         		break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
@@ -74,3 +76,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         }
     }
 }
+
+
+

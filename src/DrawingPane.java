@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
-
+	public DrawingObject obj = null;
     
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -58,33 +58,40 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // the mode the user has selected in the tool panel.
 
         System.out.println( "mousePressed()" );
-        switch( buttonSelected ){
+        switch( ToolPanel.buttonSelected ){
         
-        case("Rectangle"):
+        case(0):
+        	
+        	obj = new MyRectangle();
+            obj.start(e.getPoint());
+			
+        	break;
+        case(1):
         	
         	break;
-        case("Line"):
+        case(2):
         	
         	break;
-        case("Circle"):
-        	
-        	break;
-        case("Star"):
+        case(3):
         	
         	break;
         }
+       
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
+       obj.drag(e.getPoint());
         System.out.println( "mouseDragged( " + x + ", " + y + " )" );
+        repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println( "mouseReleased()" );
+        repaint();
     }
 
     @Override
@@ -97,5 +104,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+    public void paintComponent(Graphics g){
+    	super.paintComponent(g);
+    	
+    	if(obj != null){
+    		obj.draw(g);
+    	}
     }
 }
