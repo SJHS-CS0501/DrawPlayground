@@ -25,7 +25,11 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public final short two = 2;
 	public final short three = 3;
 	public final short four = 4;
+	public final short five = 5;
+	public final short six = 6;
 	public static short choice;
+	public static boolean move = false;
+	public static boolean delete = false;
 	private JButton button;
 	private JPanel shapes;
 	JPanel movements;
@@ -107,6 +111,16 @@ public class ToolPanel extends JPanel implements ActionListener {
 			case "line":
 				choice = 0;
 				choice = four;
+				break;
+				
+			case "move":
+				choice = 0;
+				choice = five;
+				break;
+				
+			case "delete":
+				choice = 0;
+				choice = six;
 				break;
 
 			default:
