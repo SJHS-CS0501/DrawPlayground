@@ -27,6 +27,8 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public final short four = 4;
 	public final short five = 5;
 	public final short six = 6;
+	public final short seven = 7;
+	public final short eight = 8;
 	public static short choice;
 	public static boolean move = false;
 	public static boolean delete = false;
@@ -72,6 +74,16 @@ public class ToolPanel extends JPanel implements ActionListener {
 		button.setActionCommand("line");
 		button.addActionListener(this);
 		shapes.add(button);
+		
+		button = new JButton("Oval");
+		button.setActionCommand("oval");
+		button.addActionListener(this);
+		shapes.add(button);
+		
+		button = new JButton("Square");
+		button.setActionCommand("square");
+		button.addActionListener(this);
+		shapes.add(button);
 
 		add(shapes);
 
@@ -113,14 +125,24 @@ public class ToolPanel extends JPanel implements ActionListener {
 				choice = four;
 				break;
 				
-			case "move":
+			case "oval":
 				choice = 0;
 				choice = five;
 				break;
 				
-			case "delete":
+			case "square":
 				choice = 0;
 				choice = six;
+				break;
+				
+			case "move":
+				choice = 0;
+				choice = seven;
+				break;
+				
+			case "delete":
+				choice = 0;
+				choice = eight;
 				break;
 
 			default:

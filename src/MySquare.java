@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import javafx.scene.shape.Line;
 
-public class MyLine implements DrawingObject {
+public class MySquare implements DrawingObject {
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
@@ -17,7 +17,7 @@ public class MyLine implements DrawingObject {
 	/**
 	 * Create a new MyRectangle, all params initialized to zero.
 	 */
-	public MyLine() {
+	public MySquare() {
 		// NOP
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
@@ -31,7 +31,7 @@ public class MyLine implements DrawingObject {
 	 * @param sX
 	 * @param sY
 	 */
-	public MyLine(int oX, int oY, int sX, int sY) {
+	public MySquare(int oX, int oY, int sX, int sY) {
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class MyLine implements DrawingObject {
 		g2d.setColor(Color.BLACK);
 		// g2d.clearRect( originX, originY, sizeX, sizeY ); // this is cool to
 		// make a background-filled rectangle!
-		g2d.drawLine(originX, originY, sizeX, sizeY);
+		g2d.drawRect(originX, originY, sizeX, sizeY);
 
 		System.out.println("Redrawing Line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
@@ -72,7 +72,7 @@ public class MyLine implements DrawingObject {
 	 */
 	public void drag(Point p) {
 		sizeX = p.x;
-		sizeY = p.y;
+		sizeY = sizeX;
 		setBounds(bounds);
 	}
 

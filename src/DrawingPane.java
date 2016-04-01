@@ -79,6 +79,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 		case 3:
 			System.out.println("circle");
+			obj = new MyCircle();
+			obj.start(e.getPoint());
+			objectList.add(obj);
 			break;
 
 		case 4:
@@ -89,11 +92,24 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			break;
 
 		case 5:
-			System.out.println("move");
-
+			System.out.println("oval");
+			obj = new MyOval();
+			obj.start(e.getPoint());
+			objectList.add(obj);
 			break;
 
 		case 6:
+			System.out.println("square");
+			obj = new MySquare();
+			obj.start(e.getPoint());
+			objectList.add(obj);
+			break;
+			
+		case 7:
+			System.out.println("move");
+			break;
+			
+		case 8:
 			System.out.println("delete");
 			break;
 
