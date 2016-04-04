@@ -11,6 +11,8 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+import javafx.scene.shape.Circle;
+
 public class MyRectangle implements DrawingObject {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
@@ -57,7 +59,7 @@ public class MyRectangle implements DrawingObject {
         
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        g2d.drawOval( originX, originY, sizeX, sizeY );
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -119,5 +121,6 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
 
 }

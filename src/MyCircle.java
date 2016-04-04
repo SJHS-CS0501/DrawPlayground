@@ -1,0 +1,100 @@
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+import javafx.scene.shape.Circle;
+
+/**
+ * 
+ */
+
+/**
+ * @author SJHSStudent
+ *
+ */
+public class MyCircle implements DrawingObject{
+
+	// critical vars for a rectangle
+	int sizeX, sizeY, originX, originY;
+	// future use
+	int lastX, lastY;
+	// bounding box (needed for move)
+	Circle bounds = new Circle();
+
+	 /**
+     * Create a new MyRectangle, all params initialized to zero.
+     */
+    public MyCircle() {
+        // NOP
+        sizeX = sizeY = originX = originY = 0;
+        setBounds( bounds );
+    }
+    
+    public MyCircle( int oX, int oY, int sX, int sY ) {
+        sizeX = sX;
+        sizeY = sY;
+        originX = oX;
+        originY = oY;
+        setBounds( bounds );
+        
+        System.out.println( "Made Circle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+    }
+	@Override
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		 Graphics2D g2d = (Graphics2D)g;
+	        
+	        g2d.setColor( Color.BLACK );
+	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
+	        g2d.drawOval(originX, originY, sizeX, sizeY);
+	        
+	        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	        //this.setSize( this.getPreferredSize() );
+
+	}
+
+	@Override
+	public void start(Point p) {
+		// TODO Auto-generated method stub
+		 originX = p.x;
+	     originY = p.y;
+	     lastX = p.x;
+	     lastY = p.y;
+	}
+
+	@Override
+	public void drag(Point p) {
+		// TODO Auto-generated method stub
+		sizeX = p.x - originX;
+        sizeY = p.y - originY;
+        setBounds( bounds );
+	}
+
+	@Override
+	public void move(Point p) {
+		// TODO Auto-generated method stub
+		originX = p.x;
+        originY = p.y;
+        setBounds( bounds );
+	}
+	
+	@Override
+	public boolean contains( Point p ) {
+		// TODO Auto-generated method stub
+		return bounds.contains(p);
+	}
+
+	@Override
+	/**
+	 * **NOTE THIS DOES NOTHING, PROBABLY WRONG, BUT IT WORKS SO WHATEVER (i guess?)
+	 */
+	public void setBounds(Rectangle b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @param args
+	 */
+
+
+}
