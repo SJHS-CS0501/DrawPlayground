@@ -20,12 +20,9 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 
 	
+	public static int check;
 	
 	
-	public static final int l = 1;
-	public static final int r = 2;
-	public static final int s = 3;
-	public static final int c = 4;
     
     public ToolPanel() {
         super();
@@ -40,10 +37,13 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
         JRadioButton Star = new JRadioButton( "Star" );
-        Rectangle.setActionCommand( " ect" );
+        JRadioButton NoOperation = new JRadioButton( "Edit" );
+        NoOperation.setActionCommand("nop");
+        Rectangle.setActionCommand( "rect" );
         Circle.setActionCommand( "cir" );
         Line.setActionCommand( "line" );
         Star.setActionCommand("star");
+        NoOperation.addActionListener(this);
         Rectangle.addActionListener( this );
         Circle.addActionListener( this);
         Line.addActionListener( this );
@@ -53,6 +53,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         bg.add( Circle );
         bg.add( Line );
         bg.add(Star);
+        bg.add(NoOperation);
         
         JPanel unitSelectionPanel = new JPanel();
         unitSelectionPanel.setLayout( new GridLayout( 1,0 ) );
@@ -60,6 +61,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Circle);
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
+        unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
 
@@ -73,15 +75,23 @@ public class ToolPanel extends JPanel implements ActionListener {
         switch( e.getActionCommand() ) {
         
         case("rect"):
-        	
-        	
-        	
+        	check = DrawingPane.rec;
         	break;
+        	
         case("cir"):
+        	check = DrawingPane.c;
         	break;
+        	
         case("line"):
+        	check = DrawingPane.l;
         	break;
+        
         case("star"):
+        	check = DrawingPane.s;
+        	break;
+        	
+        case("nop"):
+        	check = 0;
         	break;
 
             default:

@@ -85,7 +85,8 @@ public class MyRectangle implements DrawingObject {
      */
     public void drag( Point p ) {
         sizeX = p.x - originX;
-        sizeY = p.y - originY;
+        sizeY = p.y  - originY;
+    	
         setBounds( bounds );
     }
     
