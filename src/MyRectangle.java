@@ -4,13 +4,12 @@ import javax.swing.*;
 
 public class MyRectangle implements DrawingObject {
     // critical variables for a rectangle
-    int sizeX, sizeY, originX, originY;
-    
+    static int sizeX, sizeY, originX, originY;
     // future use
-    int lastX, lastY;
+    static int lastX, lastY;
     
     // bounding box (needed for move)
-    Rectangle bounds = new Rectangle();
+    Rectangle boundingBox = new Rectangle();
     
     /**
      * Create a new MyRectangle, all parameters initialized to zero.
@@ -18,7 +17,7 @@ public class MyRectangle implements DrawingObject {
     public MyRectangle() {
         // NOP
         sizeX = sizeY = originX = originY = 0;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     /**
@@ -34,7 +33,7 @@ public class MyRectangle implements DrawingObject {
         sizeY = sY;
         originX = oX;
         originY = oY;
-        setBounds( bounds );
+        setBounds( boundingBox );
         
         System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
@@ -77,7 +76,7 @@ public class MyRectangle implements DrawingObject {
     public void drag( Point p ) {
         sizeX = p.x - originX;
         sizeY = p.y - originY;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     /**
@@ -89,7 +88,7 @@ public class MyRectangle implements DrawingObject {
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     /**
@@ -110,7 +109,7 @@ public class MyRectangle implements DrawingObject {
      * @return 
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+        return boundingBox.contains(p);
     }
 
 }
