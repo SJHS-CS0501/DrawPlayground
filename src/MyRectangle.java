@@ -1,22 +1,19 @@
-/**
- *
- * @author Woytek
- * @author Julianna Nichols
- */
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
 public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
+    // critical variables for a rectangle
     int sizeX, sizeY, originX, originY;
+    
     // future use
     int lastX, lastY;
+    
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
     /**
-     * Create a new MyRectangle, all params initialized to zero.
+     * Create a new MyRectangle, all parameters initialized to zero.
      */
     public MyRectangle() {
         // NOP
@@ -25,14 +22,14 @@ public class MyRectangle implements DrawingObject {
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
+     * Create a new MyRectangle with parameters initialized for origin and size
      * 
      * @param oX
      * @param oY
      * @param sX
      * @param sY 
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
+    public MyRectangle( int sX, int sY, int oX, int oY ) {
         sizeX = sX;
         sizeY = sY;
         originX = oX;
@@ -43,17 +40,17 @@ public class MyRectangle implements DrawingObject {
     }
     
     /**
-     * draw method actually draws the object. Requires Graphics object.
+     * Draw method actually draws the object. Requires Graphics object.
      * 
      * @param g 
      */
     public void draw( Graphics g ) {
 
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D graphics = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        graphics.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        graphics.drawRect( originX, originY, sizeX, sizeY );
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );

@@ -30,43 +30,42 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         
-        menu = new JMenu( "Shapes" );
-        menuItem = new JMenuItem( "Circle" );
+        menu = new JMenu( "Shapes" ); //title
+        menuItem = new JMenuItem( "Circle" ); //menu item
         menuItem.setActionCommand( "Circle" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Rectangle" );
+        menuItem = new JMenuItem( "Rectangle" ); //item
         menuItem.setActionCommand( "Rectangle" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
         menu.addSeparator();
         
-        menuItem = new JMenuItem( "Exit" );
+        menuItem = new JMenuItem( "Exit" ); //item
         menuItem.setActionCommand( "Quit" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
         menuBar.add( menu );
         
-        menu = new JMenu( "Color" );
-        
-        menuItem = new JMenuItem( "Red" );
+        menu = new JMenu( "Color" ); //title
+        menuItem = new JMenuItem( "Red" ); //item
         menuItem.setActionCommand( "Red" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
         //menu.addSeparator();
         
-        menuItem = new JMenuItem( "Orange" );
+        menuItem = new JMenuItem( "Orange" ); //item
         menuItem.setActionCommand( "Orange" );
         menuItem.addActionListener( this );
         menu.add( menuItem );
         
         /*
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
+        subMenu = new JMenu( "SubMenu" ); //title of submenu
+        menuItem = new JMenuItem( "SubFoo" ); //item in submenu
         menuItem.setActionCommand( "MenuSubFoo" );
         menuItem.addActionListener( this );
         subMenu.add( menuItem );

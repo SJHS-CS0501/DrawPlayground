@@ -10,8 +10,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         //this.setSize( 500, 500 );
         //setSize( getPreferredSize() );
         // size is handled by parent pane placement in JFrame
+        
         // make a border
-        setBorder( BorderFactory.createLineBorder(Color.RED) );
+        setBorder( BorderFactory.createLineBorder(Color.BLACK) );
         setVisible( true );
         
         // we need both a mouse listener (for clicks)...
@@ -28,7 +29,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
             default:
-                System.out.println( "EVIL BAD PLACE TWO" );
+                System.out.println( "You messed up if you're here" );
                 System.exit(-1);
                 break;
         }
@@ -43,7 +44,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
         System.out.println( "mousePressed()" );
-  
     }
 
     @Override
