@@ -15,6 +15,7 @@ import javafx.scene.shape.Circle;
  *
  */
 public class MyLine implements DrawingObject {
+
 	
 	 // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
@@ -62,12 +63,18 @@ public class MyLine implements DrawingObject {
 	public void start(Point p) {
 		// TODO Auto-generated method stub
 		
+		 originX = sizeX = p.x;
+	     originY = sizeY = p.y;
+	     lastX = p.x;
+	     lastY = p.y;
+		
 	}
 
 	@Override
 	public void drag(Point p) {
 		// TODO Auto-generated method stub
-		
+		 sizeX = p.x ;
+	     sizeY = p.y ;
 	}
 
 	@Override

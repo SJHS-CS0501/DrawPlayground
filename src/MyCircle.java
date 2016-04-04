@@ -75,8 +75,8 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public void drag(Point p) {
 		// TODO Auto-generated method stub
-		 originX = p.x;
-	     originY = p.y;
+		 widthX = p.x - originX;
+	     heightY = p.y  - originY;
 	    // setBounds( bounds );
 	}
 
