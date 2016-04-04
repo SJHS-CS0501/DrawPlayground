@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import javafx.scene.shape.Line;
 
-public class MyOval implements DrawingObject {
+public class MyStar implements DrawingObject {
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
@@ -17,7 +17,7 @@ public class MyOval implements DrawingObject {
 	/**
 	 * Create a new MyRectangle, all params initialized to zero.
 	 */
-	public MyOval() {
+	public MyStar() {
 		// NOP
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
@@ -31,7 +31,7 @@ public class MyOval implements DrawingObject {
 	 * @param sX
 	 * @param sY
 	 */
-	public MyOval(int oX, int oY, int sX, int sY) {
+	public MyStar(int oX, int oY, int sX, int sY) {
 		sizeX = sX;
         sizeY = sY;
         originX = oX;
@@ -51,7 +51,7 @@ public class MyOval implements DrawingObject {
 		g2d.setColor(Color.BLACK);
 		// g2d.clearRect( originX, originY, sizeX, sizeY ); // this is cool to
 		// make a background-filled rectangle!
-		g2d.drawOval(originX, originY, sizeX, sizeY);
+		drawStar(g, originX, originY, sizeX, sizeY);
 
 		System.out.println("Redrawing Line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
@@ -65,8 +65,8 @@ public class MyOval implements DrawingObject {
 	public void start(Point p) {
 		originX = p.x;
 		originY = p.y;
-		sizeX = p.x;
-		sizeY = p.y;
+		sizeX = originX - p.x;
+		sizeY = originY - p.y;
 	}
 
 	/**
@@ -115,6 +115,13 @@ public class MyOval implements DrawingObject {
 	 */
 	public boolean contains(Point p) {
 		return bounds.contains(p);
+	}
+	
+	public void drawStar(Graphics g, int ox, int oy, int sx, int sy) {
+		int x[] = {ox, (ox+120), ox+150, (ox+185), ox};
+		int y[] = {oy, (oy+50), oy, (oy-120), oy};
+		int five = 5;
+		g.drawPolygon(x, y, five);
 	}
 
 }

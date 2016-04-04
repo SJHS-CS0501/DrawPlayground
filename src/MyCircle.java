@@ -32,6 +32,11 @@ public class MyCircle implements DrawingObject {
 	 * @param sY
 	 */
 	public MyCircle(int oX, int oY, int sX, int sY) {
+		sizeX = sX;
+        sizeY = sY;
+        originX = oX;
+        originY = oY;
+        setBounds( bounds );
 	}
 
 	/**

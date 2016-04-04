@@ -32,6 +32,11 @@ public class MyLine implements DrawingObject {
 	 * @param sY
 	 */
 	public MyLine(int oX, int oY, int sX, int sY) {
+		sizeX = sX;
+        sizeY = sY;
+        originX = oX;
+        originY = oY;
+        setBounds( bounds );
 	}
 
 	/**

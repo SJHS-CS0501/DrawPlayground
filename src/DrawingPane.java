@@ -75,6 +75,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 		case 2:
 			System.out.println("star");
+			obj = new MyStar();
+			obj.start(e.getPoint());
+			objectList.add(obj);
 			break;
 
 		case 3:
