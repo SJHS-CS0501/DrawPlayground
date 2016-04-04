@@ -16,8 +16,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	
 	int x;
 	int y;
+	int a;
+	int b;
 	DrawingObject obj;
 	private ArrayList<DrawingObject> drob;
+	
+	public static final int l = 1;
+	public static final int rec = 2;
+	public static final int s = 3;
+	public static final int c = 4;
     
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -54,7 +61,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mouseClicked(MouseEvent e) {
     	
-    	drob.add(obj);
+    	if(obj != null){
+    		//obj.draw(getGraphics());
+    		//drob.add(obj);
+    	}
     	
     }
 
@@ -63,6 +73,27 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
 
+    	x = e.getX();
+    	y = e.getY();
+    	//a
+    	//b
+    	
+    	if(ToolPanel.check == rec){
+    		obj = new MyRectangle(x,y, 90, 90);
+    	}else if(ToolPanel.check == c){
+    		obj = new MyCircle(x,y, 90, 90);
+    	}else if(ToolPanel.check == l) {
+    		obj = new MyLine(x,y,e.getXOnScreen(), e.getYOnScreen());
+    	}else if(ToolPanel.check == s) {
+    		obj = null;
+    	}
+    	
+    	if(obj != null){
+    		obj.draw(getGraphics());
+    		//drob.add(obj);
+    	}
+    	
+    	
         System.out.println( "mousePressed" );
         
         
@@ -74,7 +105,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        x = e.getX();
        y = e.getY();
        System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
-        
+        //paintComponent(getGraphics());
     }
 
     /*
@@ -102,7 +133,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mouseMoved(MouseEvent e) {
     }
-    
+   
+    /*
     public void paintComponent(Graphics g){
     
     	super.paintComponent(g);
@@ -112,4 +144,5 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		drob.get(i).draw(g);
     	}
     }
+    */
 }

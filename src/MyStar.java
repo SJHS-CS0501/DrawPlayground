@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -15,13 +16,32 @@ import javafx.scene.shape.Circle;
  */
 public class MyStar implements DrawingObject {
 
+	 // critical vars for a rectangle
+    int sizeX, sizeY, originX, originY;
+    // future use
+    int lastX, lastY;
+    // bounding box (needed for move)
+    Rectangle bounds = new Rectangle();
+    
+    public MyStar(){
+    	
+    	 // NOP
+        sizeX = sizeY = originX = originY = 0;
+        setBounds( bounds );
+    }
+	
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
-		Graphics2D g2 = (Graphics2D)g;
-		
-		//g2.
+		 Graphics2D g2d = (Graphics2D)g;
+	        
+	        g2d.setColor( Color.BLACK );
+	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
+	        g2d.drawRect( originX, originY, sizeX, sizeY );
+	        
+	        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	        //this.setSize( this.getPreferredSize() );
 	}
 
 	@Override

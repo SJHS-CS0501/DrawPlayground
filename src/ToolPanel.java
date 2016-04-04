@@ -20,12 +20,9 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 
 	
+	public static int check;
 	
 	
-	public static final int l = 1;
-	public static final int r = 2;
-	public static final int s = 3;
-	public static final int c = 4;
     
     public ToolPanel() {
         super();
@@ -73,15 +70,19 @@ public class ToolPanel extends JPanel implements ActionListener {
         switch( e.getActionCommand() ) {
         
         case("rect"):
-        	
-        	
-        	
+        	check = DrawingPane.rec;
         	break;
+        	
         case("cir"):
+        	check = DrawingPane.c;
         	break;
+        	
         case("line"):
+        	check = DrawingPane.l;
         	break;
+        
         case("star"):
+        	check = DrawingPane.s;
         	break;
 
             default:
