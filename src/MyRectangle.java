@@ -13,9 +13,9 @@ import javax.swing.*;
 
 public class MyRectangle implements DrawingObject {
     // critical vars for a rectangle
-    int sizeX, sizeY, originX, originY;
+    static int sizeX, sizeY, originX, originY;
     // future use
-    int lastX, lastY;
+    static int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
@@ -58,6 +58,11 @@ public class MyRectangle implements DrawingObject {
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
+        
+        
+        // clipRect method? 
+        //need to change points so that they are not all set to 0
+        
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );

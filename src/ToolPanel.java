@@ -14,14 +14,24 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 
     
-    public ToolPanel() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	public ToolPanel() {
         super();
         this.setSize( 50, 100 );
         this.setLayout( new GridLayout( 3, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         JPanel againForButtons = new JPanel();
-
+        MyRectangle rectangle = new MyRectangle();
+        
+        
+ 
+        
     
       //drawing pane conversation with tool panel?
         againForButtons.setLayout( new GridLayout(3,2));
