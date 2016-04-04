@@ -9,7 +9,12 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -33,6 +38,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	
 	// changes how the object reacts to mouse events
 	private String mode = "default";
+	
+	// the filename to save as
+	private String filename;
 	
 	// a color panel to get colors from
 	private ColorPanel picker;
@@ -58,7 +66,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     
     /**
      * actionPerformed is here in case we need it later. Not currently used.
-     * @param e 
+     * @param e the event
      */
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
@@ -102,6 +110,61 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	
     	for(int i = 0; i < shapes.size(); i++) {
     		shapes.get(i).draw(g);
+    	}
+    }
+    
+    
+    
+    /**
+     * Exports the contents of the DrawingPane to a .png file
+     */
+    public void save() {
+    	if(filename == null) {
+    		saveAs();
+    	} else {
+			BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+	    	Graphics2D g = image.createGraphics();
+	    	printAll(g);
+	    	g.dispose();
+	    	try { 
+	    	    ImageIO.write(image, "png", new File("pictures/" + filename)); 
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
+    	}
+    }
+    
+    /**
+     * Exports the contents of the DrawingPane to a .png file named by the user
+     */
+    public void saveAs() {
+    	
+    	filename = JOptionPane.showInputDialog(this, "Filename:");
+    	
+    	File file = new File("pictures/" + filename);
+    	
+    	if(file.exists())  {
+    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    			BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+    	    	Graphics2D g = image.createGraphics();
+    	    	printAll(g);
+    	    	g.dispose();
+    	    	try { 
+    	    	    ImageIO.write(image, "png", file); 
+    	    	} catch (IOException e) {
+    	    	    e.printStackTrace();
+    	    	}
+    		}
+    	} else {
+    		BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+	    	Graphics g = image.createGraphics();
+	    	paintComponent(g);
+	    	g.dispose();
+	    	try { 
+	    	    ImageIO.write(image, "png", file); 
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
     	}
     }
 

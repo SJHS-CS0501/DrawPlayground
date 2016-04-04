@@ -61,6 +61,16 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "save" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Save As..." );
+        menuItem.setActionCommand( "saveas" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
         menu.addSeparator();
         
         menuItem = new JMenuItem( "Exit" );
@@ -159,6 +169,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	break;
             case "clear":
             	dPane.clear();
+            	break;
+            case "save":
+            	dPane.save();
+            	break;
+            case "saveas":
+            	dPane.saveAs();
             	break;
             case "MenuAbout":
             	hFrame.setMode(DrawPlaygroundHelpFrame.MODE_ABOUT);
