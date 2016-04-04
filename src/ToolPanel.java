@@ -40,7 +40,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
         JRadioButton Star = new JRadioButton( "Star" );
-        Rectangle.setActionCommand( "rect" );
+        Rectangle.setActionCommand( " ect" );
         Circle.setActionCommand( "cir" );
         Line.setActionCommand( "line" );
         Star.setActionCommand("star");
