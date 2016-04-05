@@ -20,6 +20,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public String button; // make a setter for this
+	ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
+	DrawingObject object;
 
 	public DrawingPane() {
     	
@@ -61,10 +64,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    	
-    	//switch( e ){
-    	
-    	//}
+    
+    	//had a switch here at some point
     	
     		
     	
@@ -77,16 +78,52 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     	//use switch with drawing object
     	
+    	Point mouse = e.getPoint();
+    	
+    	switch( button ){
+    	case "rectangle":
+    		object = new MyRectangle();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	case "circle":
+    		object = new MyCircle();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	case "line":
+    		object = new MyLine();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	case "arc":
+    		object = new MyArc();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	case "star":
+    		object = new MyStar();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	case "string":
+    		// joptionpane
+    		object = new MyString();
+    		object.start( mouse );
+    		objectList.add(object);
+    		break;
+    	}
+    	
+    	
         System.out.println( "mousePressed" );
   
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       
-    	int x = e.getX();
-    	int y = e.getY();
-        System.out.println( "mouseDragged (" + x + ", " + y + ") ") ;
+    	Point p = e.getPoint();
+    	// drag to make object real
+        System.out.println( "mouseDragged" + p.toString() );
     }
 
     @Override

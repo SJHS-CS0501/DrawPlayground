@@ -19,7 +19,6 @@ public class ToolPanel extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
 	public ToolPanel() {
         super();
         this.setSize( 50, 100 );

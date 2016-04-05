@@ -13,6 +13,15 @@ public class MyStar implements DrawingObject{
 		lines = 0;
 		setBounds( bounds );
 	}
+	
+	
+	
+	
+	// use draw polygon
+	// use circle as bound, points on inner and outer circle for points on star
+	// math and stuff :'(
+	
+	
 	@Override
 	public void draw(Graphics g) {
 	
