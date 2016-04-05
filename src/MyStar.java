@@ -45,24 +45,38 @@ public class MyStar implements DrawingObject {
 		
 		 Graphics2D g2d = (Graphics2D)g;
 	        
+		 
 	        g2d.setColor( Color.BLACK );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawPolygon(xPoints, yPoints, 10);
 	        
-	        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	        //this.setSize( this.getPreferredSize() );
 	}
 
 	@Override
 	public void start(Point p) {
 		// TODO Auto-generated method stub
+		int x = p.x;
+		int y = p.y;
 		
+		xPoints =new int[] {x, x, x,x,x,x, x, x, x, x};
+		yPoints =new int[] {y, y, y, y, y, y, y, y, y, y };
 	}
 
 	@Override
 	public void drag(Point p) {
 		// TODO Auto-generated method stub
+		int x = p.x;
+		int y = p.y;
 		
+		for(int i = 0; i< xPoints.length; i++){
+		
+			xPoints[i] = 
+			
+		xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
+		yPoints = new int[] {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
+		}
 	}
 
 	@Override
