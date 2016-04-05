@@ -5,8 +5,9 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	
-	static int sizeX, sizeY, originX, originY;
-	static int lastX, lastY;
+	String shape;
+	
+	MyRectangle rec = new MyRectangle();
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -45,11 +46,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
-        // the mode the user has selected in the tool panel.
+        // the mode the user has selected in the tool panel
+    	
     	int x = e.getX();
     	int y = e.getY();
-    	originX = e.getX();
-    	originY = e.getY();
         System.out.println( "mousePressed(" + x + "," + y + ")" );
     }
 
@@ -57,8 +57,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
-       sizeX = e.getX();
-       sizeY = e.getY();
        System.out.println( "mouseDragged(" + x + "," + y + ")" );
     }
 
@@ -66,8 +64,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseReleased(MouseEvent e) {
     	int x = e.getX();
         int y = e.getY();
-    	lastX = e.getX();
-        lastY = e.getY();
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }
 

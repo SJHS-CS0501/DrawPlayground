@@ -58,7 +58,7 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called to start drawing a new object when mouse is clicked.
      * 
-     * @param p 
+     * @param p
      */
     public void start( Point p ) {
         originX = p.x;
@@ -71,7 +71,7 @@ public class MyRectangle implements DrawingObject {
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
      * 
-     * @param p 
+     * @param p
      */
     public void drag( Point p ) {
         sizeX = p.x - originX;
@@ -83,7 +83,7 @@ public class MyRectangle implements DrawingObject {
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
      * 
-     * @param p 
+     * @param p
      */
     public void move( Point p ) {
         originX = p.x;

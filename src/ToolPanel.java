@@ -14,6 +14,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	JPanel colorPanel;
 	JRadioButton radioButton;
 	MyRectangle rec = new MyRectangle();
+	DrawingPane drawingPane = new DrawingPane();
 	
     public ToolPanel() {
         super();
@@ -114,7 +115,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         case "Line":
         	break;
         case "Rectangle":
-        	rec.start();
         	break;
         case "Circle":
         	break;
