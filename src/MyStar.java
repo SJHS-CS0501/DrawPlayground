@@ -24,6 +24,7 @@ public class MyStar implements DrawingObject {
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+   
     
     public MyStar(){
     	
@@ -51,6 +52,7 @@ public class MyStar implements DrawingObject {
 	        g2d.drawPolygon(xPoints, yPoints, 10);
 	        
 	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+
 	        //this.setSize( this.getPreferredSize() );
 	}
 
@@ -60,8 +62,10 @@ public class MyStar implements DrawingObject {
 		int x = p.x;
 		int y = p.y;
 		
-		xPoints =new int[] {x, x, x,x,x,x, x, x, x, x};
-		yPoints =new int[] {y, y, y, y, y, y, y, y, y, y };
+		
+		 xPoints = new int[] {x, x, x,x,x,x, x, x, x, x};
+		 yPoints = new int[] {y, y, y, y, y, y, y, y, y, y };
+
 	}
 
 	@Override
@@ -70,19 +74,44 @@ public class MyStar implements DrawingObject {
 		int x = p.x;
 		int y = p.y;
 		
+
 		for(int i = 0; i< xPoints.length; i++){
 		
-			xPoints[i] = 
+			xPoints[i]  ;
+		
+		}
+		
 			
 		xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
 		yPoints = new int[] {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
-		}
+		//}
+
+		/*
+		int x =p.x;
+		int y =p.y;
+		
+		xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
+		yPoints = new int[]{y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
+		*/
+		
+		
+		
+			
+			//xPoints = new int[] {x,(x+12),(x+54),(x+18),(x+28),(x),(x-28),(x-18),(x-54),(x-12)};
+			//yPoints = new int[]{(y),(y+36),(y+36),(y+54),(y+96),(y+72),(y+96),(y+54),(y+36),(y+36) };
+		
+		
 	}
 
 	@Override
 	public void move(Point p) {
 		// TODO Auto-generated method stub
 		
+		int x = p.x;
+		int y = p.y;
+		
+		xPoints = new int[] {x,(x+12),(x+54),(x+18),(x+28),(x),(x-28),(x-18),(x-54),(x-12)};
+		yPoints = new int[]{(y),(y+36),(y+36),(y+54),(y+96),(y+72),(y+96),(y+54),(y+36),(y+36) };
 		
 	}
 
