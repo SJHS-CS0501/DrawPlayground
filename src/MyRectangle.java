@@ -14,7 +14,8 @@ import javax.swing.*;
 import javafx.scene.shape.Circle;
 
 public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
+	
+	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
@@ -59,7 +60,7 @@ public class MyRectangle implements DrawingObject {
         
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawOval( originX, originY, sizeX, sizeY );
+        g2d.drawRect( originX, originY, sizeX, sizeY );
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );

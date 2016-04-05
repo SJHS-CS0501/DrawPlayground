@@ -12,13 +12,13 @@ import javafx.scene.shape.Circle;
  *
  */
 public class MyCircle implements DrawingObject{
-
+	
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;
 	// bounding box (needed for move)
-	Circle bounds = new Circle();
+	Rectangle bounds = new Rectangle();
 
 	 /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -41,7 +41,17 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		 Graphics2D g2d = (Graphics2D)g;
+		/*
+		public void drawCenteredCircle(Graphics2D g, int x, int y, int r) {
+			  x = x-(r/2);
+			  y = y-(r/2);
+			  g.fillOval(x,y,r,r);
+			}
+			*/
+		int r = sizeX / 2;
+		originX = sizeX - (r/2);
+		originY = sizeX - (r/2);
+		Graphics2D g2d = (Graphics2D)g;
 	        
 	        g2d.setColor( Color.BLACK );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
@@ -85,11 +95,11 @@ public class MyCircle implements DrawingObject{
 
 	@Override
 	/**
-	 * **NOTE THIS DOES NOTHING, PROBABLY WRONG, BUT IT WORKS SO WHATEVER (i guess?)
+	 * 
 	 */
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
-		
+		  b.setBounds( originX, originY, sizeX, sizeY );
 	}
 
 	/**

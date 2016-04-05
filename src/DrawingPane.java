@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+
 	public DrawingObject obj = null;
     public ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>(); 
     public DrawingPane() {
@@ -69,6 +70,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	break;
         case(1):
         	
+        	obj = new MyCircle();
+        	objList.add(obj);
+        	obj.start(e.getPoint());
+        	
         	break;
         case(2):
         	
@@ -108,7 +113,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
-    	for(int ctr= 0; objList.size() <= ctr; ctr++){
+    	for(int ctr= 0; objList.size() < ctr; ctr++){
     	objList.get(ctr).draw(g);
     	}
     }
