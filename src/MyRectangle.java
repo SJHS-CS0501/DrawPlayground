@@ -61,7 +61,7 @@ public class MyRectangle implements DrawingObject {
         
         
         // clipRect method? 
-        //need to change points so that they are not all set to 0
+        //need to change points so that they are not all set to 0 **Probably fixed! (for now anyway)
         
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);

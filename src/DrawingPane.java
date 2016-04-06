@@ -20,7 +20,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public String button; // make a setter for this
+	public String coolShape; // make a setter for this
 	ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
 	DrawingObject object;
 
@@ -78,38 +78,49 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     	//use switch with drawing object
     	
-    	Point mouse = e.getPoint();
+    	Point mousePoint = e.getPoint();
     	
-    	switch( button ){
+    	switch( coolShape ){
     	case "rectangle":
     		object = new MyRectangle();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		object.drag( mousePoint );
+    		//object.draw();
     		objectList.add(object);
     		break;
     	case "circle":
     		object = new MyCircle();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		object.drag( mousePoint );
+    		
     		objectList.add(object);
     		break;
     	case "line":
     		object = new MyLine();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		
     		objectList.add(object);
     		break;
     	case "arc":
     		object = new MyArc();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		object.drag( mousePoint );
+    		
     		objectList.add(object);
     		break;
     	case "star":
     		object = new MyStar();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		object.drag( mousePoint );
+    		
     		objectList.add(object);
     		break;
     	case "string":
     		// joptionpane
     		object = new MyString();
-    		object.start( mouse );
+    		object.start( mousePoint );
+    		object.drag( mousePoint );
+    		
     		objectList.add(object);
     		break;
     	}
@@ -123,6 +134,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
     	Point p = e.getPoint();
     	// drag to make object real
+    	
         System.out.println( "mouseDragged" + p.toString() );
     }
 
