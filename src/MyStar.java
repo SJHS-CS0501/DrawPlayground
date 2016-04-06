@@ -62,6 +62,8 @@ public class MyStar implements DrawingObject {
 		int x = p.x;
 		int y = p.y;
 		
+		originX = x;
+		originY = y;
 		
 		 xPoints = new int[] {x, x, x,x,x,x, x, x, x, x};
 		 yPoints = new int[] {y, y, y, y, y, y, y, y, y, y };
@@ -74,16 +76,28 @@ public class MyStar implements DrawingObject {
 		int x = p.x;
 		int y = p.y;
 		
-
-		for(int i = 0; i< xPoints.length; i++){
+/*
+		for(int i = 0; i< xPoints.length; i+= 2){
 		
-			xPoints[i]  ;
+			double l = (360/5) * (Math.PI/180);
+			xPoints[i] = (int)(originX  * Math.cos(l)) ;
+			yPoints[i] = (int)(originY * Math.sin(l));
 		
 		}
-		
+	*/	
+		for(int i = 0, j = 0; j<xPoints.length; i++, j+=2){
 			
-		xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
-		yPoints = new int[] {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
+			double angle = 2*Math.PI/10;
+			
+			double l = (360/5) * (Math.PI/180);
+			xPoints[j] = (int)(originX + sizeX * Math.cos(angle*(i)));// * //Math.cos(l)) ;
+			yPoints[j] = (int)(originY + sizeY * Math.sin(angle *(i)));//* Math.sin(l));
+			xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos(angle*(i)));//(Math.cos(Math.PI/points)+angle;
+			yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin(angle*(i)));
+		}
+			
+		//xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
+		//yPoints = new int[] {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 		//}
 
 		/*
