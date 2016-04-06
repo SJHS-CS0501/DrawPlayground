@@ -64,9 +64,12 @@ public class MyStar implements DrawingObject {
 		
 		originX = x;
 		originY = y;
+
+               //xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
+	       //yPoints = new int[]{y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 		
-		 xPoints = new int[] {x, x, x,x,x,x, x, x, x, x};
-		 yPoints = new int[] {y, y, y, y, y, y, y, y, y, y };
+		// xPoints = new int[] {x, x, x,x,x,x, x, x, x, x};
+		// yPoints = new int[] {y, y, y, y, y, y, y, y, y, y };
 
 	}
 
