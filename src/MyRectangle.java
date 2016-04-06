@@ -11,6 +11,9 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
 public class MyRectangle implements DrawingObject {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
@@ -119,5 +122,9 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
+
+
+	
 
 }

@@ -1,8 +1,10 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import javax.swing.*;
+
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+import java.awt.event.*;
 
 /**
  * 
@@ -13,6 +15,16 @@ import java.awt.Rectangle;
  *
  */
 public class MyLine implements DrawingObject{
+	
+	int sizeX, sizeY, originX, originY;
+	int lastX, lastY;
+	Rectangle bounds = new Rectangle();
+	public MyLine() {
+		sizeX = sizeY = originX = originY = 0;
+		setBounds(bounds);
+		
+		System.out.println("Made line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	}
 
 	@Override
 	public void draw(Graphics g) {
@@ -20,6 +32,7 @@ public class MyLine implements DrawingObject{
         Graphics2D g2d = (Graphics2D)g;
         
         g2d.setColor( Color.BLACK );
+        g2d.drawLine(originX, originY, sizeX, sizeY);
 		
 	}
 
@@ -52,5 +65,7 @@ public class MyLine implements DrawingObject{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }

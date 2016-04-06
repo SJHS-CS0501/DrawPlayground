@@ -1,18 +1,27 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import javax.swing.*;
+
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+import java.awt.event.*;
 
 /**
  * 
  */
 
 /**
- * @author SJHSStudent
+ * @author Ryan Smith
  *
  */
 public class MyStar implements DrawingObject{
+	/*
+	 * (non-Javadoc)
+	 * @see DrawingObject#draw(java.awt.Graphics)
+	 * x = cos(e.get(X))
+	 * y = sin(e.get(y))
+	 * pi in java = Math.PI
+	 */
 
 	@Override
 	public void draw(Graphics g) {
@@ -52,5 +61,7 @@ public class MyStar implements DrawingObject{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }

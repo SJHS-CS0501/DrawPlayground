@@ -1,6 +1,9 @@
 
 import java.awt.*;
 
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

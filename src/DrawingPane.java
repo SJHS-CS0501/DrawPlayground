@@ -14,6 +14,7 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	public DrawingObject object;
+	public ArrayList<DrawingObject> myList = new ArrayList<DrawingObject>(); 
 	//MyRectangle r;
 	//MyCircle c;
 	//MyTriangle t;
@@ -64,23 +65,27 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	switch(ToolPanel.selection) {
     	case(0):
     		object = new MyRectangle();
+    		myList.add(object);
 			object.start(e.getPoint());
+			
     		break;
     	case(1):
     		object = new MyCircle();
+    		myList.add(object);
 			object.start(e.getPoint());
-    		break;
-    	case(2):
-    		object = new MyTriangle();
-			object.start(e.getPoint());
+			
     		break;
     	case(3):
     		object = new MyLine();
+    		myList.add(object);
 			object.start(e.getPoint());
+			
     		break;
     	case(4):
     		object = new MyStar();
+    		myList.add(object);
     		object.start(e.getPoint());
+    		
     		break;
     	default:
     		break;
@@ -98,6 +103,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseReleased(MouseEvent e) {
+    	object = null;
         repaint();
     }
 
@@ -115,8 +121,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     
     public void paintComponent(Graphics g) {
     	super.paintComponent(g);
-    	if(object != null) {
-    		object.draw(g);
+    	for(int counter = 0; counter < myList.size(); counter++) {
+    		myList.get(counter).draw(g);
     	}
     }
 }

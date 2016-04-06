@@ -18,7 +18,6 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 	MyRectangle r = new MyRectangle();
 	MyCircle c = new MyCircle();
-	MyTriangle t = new MyTriangle();
 	MyLine l = new MyLine();
 	MyStar s = new MyStar();
 	static int selection;
@@ -44,12 +43,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         add(button);
         group.add(button);
         
-        button = new JRadioButton("Draw triangle");
-        button.setActionCommand("Triangle");
-        button.addActionListener(this);
-        add(button);
-        group.add(button);
-        
         button = new JRadioButton("Draw line");
         button.setActionCommand("Line");
         button.addActionListener(this);
@@ -62,17 +55,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         add(button);
         group.add(button);
         
-        button = new JRadioButton("Programming is FUN!");
-        add(button);
-        group.add(button);
-        
-        button = new JRadioButton("Yay Java!");
-        add(button);
-        group.add(button);
-        
-        button = new JRadioButton("Nothing");
-        add(button);
-        group.add(button);
     
         this.setVisible( true );
     }
@@ -86,9 +68,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         	break;
         case "Circle":
         	selection = 1;
-        	break;
-        case "Triangle":
-        	selection = 2;
         	break;
         case "Line":
         	selection = 3;
