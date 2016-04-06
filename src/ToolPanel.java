@@ -8,13 +8,13 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 	
 	private static final long serialVersionUID = 1L;
-	ButtonGroup shapes;
-	ButtonGroup colors;
+	ButtonGroup shapeButtons;
+	ButtonGroup colorButtons;
 	JPanel shapePanel;
 	JPanel colorPanel;
 	JRadioButton radioButton;
-	MyRectangle rec = new MyRectangle();
 	DrawingPane drawingPane = new DrawingPane();
+	static String color;
 	
     public ToolPanel() {
         super();
@@ -22,8 +22,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         
-        shapes = new ButtonGroup();
-        colors = new ButtonGroup();
+        shapeButtons = new ButtonGroup();
+        colorButtons = new ButtonGroup();
         shapePanel = new JPanel(new GridLayout(4,1));
         colorPanel = new JPanel(new GridLayout(8,1));
         
@@ -31,25 +31,25 @@ public class ToolPanel extends JPanel implements ActionListener {
         radioButton = new JRadioButton("Line");
 		radioButton.setActionCommand("Line");
 		radioButton.addActionListener(this);
-		shapes.add(radioButton);
+		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Rectangle");
 		radioButton.setActionCommand("Rectangle");
 		radioButton.addActionListener(this);
-		shapes.add(radioButton);
+		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Circle");
 		radioButton.setActionCommand("Circle");
 		radioButton.addActionListener(this);
-		shapes.add(radioButton);
+		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Star");
 		radioButton.setActionCommand("Star");
 		radioButton.addActionListener(this);
-		shapes.add(radioButton);
+		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
 		//shapePanel.add(new JSeparator());
@@ -58,49 +58,49 @@ public class ToolPanel extends JPanel implements ActionListener {
 		radioButton = new JRadioButton("Black");
 		radioButton.setActionCommand("Black");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Red");
 		radioButton.setActionCommand("Red");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Orange");
 		radioButton.setActionCommand("Orange");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Yellow");
 		radioButton.setActionCommand("Yellow");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Green");
 		radioButton.setActionCommand("Green");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Cyan");
 		radioButton.setActionCommand("Cyan");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Blue");
 		radioButton.setActionCommand("Blue");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 		
 		radioButton = new JRadioButton("Pink");
 		radioButton.setActionCommand("Pink");
 		radioButton.addActionListener(this);
-		colors.add(radioButton);
+		colorButtons.add(radioButton);
 		colorPanel.add(radioButton);
 	
 		add(shapePanel, BorderLayout.WEST);
@@ -110,38 +110,41 @@ public class ToolPanel extends JPanel implements ActionListener {
     }
     
     public void actionPerformed( ActionEvent e ) {
-        switch( e.getActionCommand() ) {
-        //shapes
-        case "Line":
-        	break;
-        case "Rectangle":
-        	break;
-        case "Circle":
-        	break;
-        case "Star":
-        	break;
-        //colors
-        case "Black":
-        	break;
-        case "Red":
-        	break;
-        case "Orange":
-        	break;
-        case "Yellow":
-        	break;
-        case "Green":
-        	break;
-        case "Cyan":
-        	break;
-        case "Blue":
-        	break;
-        case "Pink":
-        	break;
-        	
-        default:
-        	System.out.println( "Bad Stuff" );
-            System.exit(-1);
-            break;
-        }
+    	
+    	switch(e.getActionCommand()){
+    	case "Line":
+    		drawingPane.setShape(e.getActionCommand());
+    		break;
+    	case "Rectangle":
+    		drawingPane.setShape(e.getActionCommand());
+    		break;
+    	case "Circle":
+    		drawingPane.setShape(e.getActionCommand());
+    		break;
+    	case "Star":
+    		drawingPane.setShape(e.getActionCommand());
+    		break;
+    	case "Red":
+    		color = e.getActionCommand();
+    		break;
+    	case "Orange":
+    		color = e.getActionCommand();
+    		break;
+    	case "Yellow":
+    		color = e.getActionCommand();
+    		break;
+    	case "Green":
+    		color = e.getActionCommand();
+    		break;
+    	case "Cyan":
+    		color = e.getActionCommand();
+    		break;
+    	case "Blue":
+    		color = e.getActionCommand();
+    		break;
+    	case "Pink":
+    		color = e.getActionCommand();
+    		break;	
+    	}
     }
 }

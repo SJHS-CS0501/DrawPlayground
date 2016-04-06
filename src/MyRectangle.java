@@ -3,13 +3,14 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MyRectangle implements DrawingObject {
+	
     // critical variables for a rectangle
     static int sizeX, sizeY, originX, originY;
     // future use
     static int lastX, lastY;
-    
     // bounding box (needed for move)
     Rectangle boundingBox = new Rectangle();
+    static String color;
     
     /**
      * Create a new MyRectangle, all parameters initialized to zero.

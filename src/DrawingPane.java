@@ -5,9 +5,9 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	
-	String shape;
-	
-	MyRectangle rec = new MyRectangle();
+	static String shape;
+	DrawingObject drawingObject;
+	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -24,6 +24,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // ... and a mouse motion listener (for drags)!
         addMouseMotionListener( this );
 
+    }
+    
+    public void setShape(String s) {
+    	shape = s;
     }
     
     /**
@@ -47,10 +51,42 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel
-    	
     	int x = e.getX();
     	int y = e.getY();
         System.out.println( "mousePressed(" + x + "," + y + ")" );
+        
+        switch(shape) {
+        case "Line":
+        	drawingObject = new MyLine();
+        	drawingObject.start(e.getPoint());
+        	drawingObject.drag(e.getPoint());
+        	drawingObject.draw(getGraphics());
+        	shapeList.add(drawingObject);
+        	break;
+        case "Rectangle":
+        	drawingObject = new MyRectangle();
+        	drawingObject.start(e.getPoint());
+        	drawingObject.drag(e.getPoint());
+        	drawingObject.draw(getGraphics());
+        	shapeList.add(drawingObject);
+        	break;
+        case "Circle":
+        	drawingObject = new MyCircle();
+        	drawingObject.start(e.getPoint());
+        	drawingObject.drag(e.getPoint());
+        	drawingObject.draw(getGraphics());
+        	shapeList.add(drawingObject);
+        	break;
+        case "Star":
+        	drawingObject = new MyStar();
+        	drawingObject.start(e.getPoint());
+        	drawingObject.drag(e.getPoint());
+        	drawingObject.draw(getGraphics());
+        	shapeList.add(drawingObject);
+        	break;
+        default:
+        	break;
+        }
     }
 
     @Override
