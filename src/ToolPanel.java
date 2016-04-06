@@ -74,6 +74,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         	break;
         case("Draw Line"):
         	buttonSelected = 2;
+        	break;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);

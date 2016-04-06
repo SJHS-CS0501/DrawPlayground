@@ -48,17 +48,14 @@ public class MyCircle implements DrawingObject{
 			  g.fillOval(x,y,r,r);
 			}
 			*/
-		int r = sizeX / 2;
-		int rY = sizeY / 2;
-	    sizeX  = sizeX - (r/2);
-		sizeY = sizeY - (rY/2);
+		
 		Graphics2D g2d = (Graphics2D)g;
 	        
 	        g2d.setColor( Color.BLACK );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawOval(originX, originY, sizeX, sizeY);
 	        
-	        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	        System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	        //this.setSize( this.getPreferredSize() );
 
 	}
@@ -77,6 +74,10 @@ public class MyCircle implements DrawingObject{
 		// TODO Auto-generated method stub
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
+        //int r = (p.x - originX) / 2;
+		//int rY = (p.y - originY) / 2;
+	    //sizeX  = p.x - (r/2);
+		//sizeY = p.y - (rY/2);
         setBounds( bounds );
 	}
 

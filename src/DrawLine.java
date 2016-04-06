@@ -31,12 +31,11 @@ public class DrawLine implements DrawingObject {
     public DrawLine( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
         sizeY = sY;
-        sizeY = 10;
         originX = oX;
         originY = oY;
         setBounds( bounds );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made line: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
     public void draw( Graphics g ) {
@@ -45,9 +44,9 @@ public class DrawLine implements DrawingObject {
         
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        g2d.drawLine( originX, originY, sizeX, sizeY );
         
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        System.out.println( "Redrawing line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
@@ -59,8 +58,8 @@ public class DrawLine implements DrawingObject {
     }
     
     public void drag( Point p ) {
-        sizeX = p.x - originX;
-        sizeY = p.y - originY;
+        sizeX = p.x; 
+        sizeY = p.y;
         setBounds( bounds );
     }
     
