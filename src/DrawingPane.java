@@ -76,7 +76,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	
         	break;
         case(2):
-        	
+        	obj = new DrawLine();
+        	objList.add(obj);
+        	obj.start(e.getPoint());
         	break;
         case(3):
         	
@@ -98,6 +100,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseReleased(MouseEvent e) {
         System.out.println( "mouseReleased()" );
         repaint();
+        obj = null;
     }
 
     @Override
@@ -113,7 +116,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     public void paintComponent(Graphics g){
     	super.paintComponent(g);
-    	for(int ctr= 0; objList.size() < ctr; ctr++){
+    	for(int ctr= 0; ctr < objList.size(); ctr++){
     	objList.get(ctr).draw(g);
     	}
     }

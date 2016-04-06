@@ -49,8 +49,9 @@ public class MyCircle implements DrawingObject{
 			}
 			*/
 		int r = sizeX / 2;
-		originX = sizeX - (r/2);
-		originY = sizeX - (r/2);
+		int rY = sizeY / 2;
+	    sizeX  = sizeX - (r/2);
+		sizeY = sizeY - (rY/2);
 		Graphics2D g2d = (Graphics2D)g;
 	        
 	        g2d.setColor( Color.BLACK );

@@ -68,9 +68,12 @@ public class ToolPanel extends JPanel implements ActionListener {
         switch( e.getActionCommand() ) {
         case("Draw Square"):
         	buttonSelected = 0;
-        		break;
+        	break;
         case("Draw Circle"):
         	buttonSelected = 1;
+        	break;
+        case("Draw Line"):
+        	buttonSelected = 2;
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);
