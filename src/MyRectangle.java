@@ -36,7 +36,7 @@ public class MyRectangle implements DrawingObject {
         originY = oY;
         setBounds( boundingBox );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made rectangle: @ (" + oX + ", " + oY + "); " + sX + " x " + sY );
     }
     
     /**
@@ -52,7 +52,7 @@ public class MyRectangle implements DrawingObject {
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         graphics.drawRect( originX, originY, sizeX, sizeY );
         
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        System.out.println( "Redrawing rectangle @ (" + originX + ", " + originY + "); " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     

@@ -7,6 +7,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	
 	static String shape;
 	DrawingObject drawingObject;
+	static int sizeX, sizeY;
 	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 
     public DrawingPane() {
@@ -26,6 +27,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     }
     
+    /**
+     * Sets static variable shape to s (ActionCommand received from the
+     * radio buttons) so it can be used in switch statement later
+     * @param s
+     */
     public void setShape(String s) {
     	shape = s;
     }
@@ -67,21 +73,18 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	drawingObject = new MyRectangle();
         	drawingObject.start(e.getPoint());
         	drawingObject.drag(e.getPoint());
-        	drawingObject.draw(getGraphics());
         	shapeList.add(drawingObject);
         	break;
         case "Circle":
         	drawingObject = new MyCircle();
         	drawingObject.start(e.getPoint());
         	drawingObject.drag(e.getPoint());
-        	drawingObject.draw(getGraphics());
         	shapeList.add(drawingObject);
         	break;
         case "Star":
         	drawingObject = new MyStar();
         	drawingObject.start(e.getPoint());
         	drawingObject.drag(e.getPoint());
-        	drawingObject.draw(getGraphics());
         	shapeList.add(drawingObject);
         	break;
         default:
@@ -93,6 +96,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
+       sizeX = e.getX();
+       sizeY = e.getY();       
        System.out.println( "mouseDragged(" + x + "," + y + ")" );
     }
 

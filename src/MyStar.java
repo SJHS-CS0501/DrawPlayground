@@ -30,7 +30,7 @@ public class MyStar implements DrawingObject{
         originY = oY;
         setBounds( bounds );
         
-        System.out.println( "Made Circle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
     /**
@@ -44,7 +44,7 @@ public class MyStar implements DrawingObject{
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
-        System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
