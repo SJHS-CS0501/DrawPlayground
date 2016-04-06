@@ -115,6 +115,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 8:
 			System.out.println("delete");
 			break;
+			
+		case 9:
+			System.out.println("unknown shape");
+			obj = new MyShape();
+			obj.start(e.getPoint());
+			objectList.add(obj);
 
 		default:
 			System.out.println("ERROR");

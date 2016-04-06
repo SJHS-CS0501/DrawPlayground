@@ -29,31 +29,33 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public final short six = 6;
 	public final short seven = 7;
 	public final short eight = 8;
+	public final short nine = 9;
 	public static short choice;
 	public static boolean move = false;
 	public static boolean delete = false;
 	private JButton button;
 	private JPanel shapes;
+	private JPanel theUnknown;
 	JPanel movements;
-	private MyRectangle rectangle = new MyRectangle();
-	private Graphics2D gShape;
 	public String command;
 
 	public ToolPanel() {
 		super();
 		this.setSize(50, 200);
-		this.setLayout(new GridLayout(2, 2));
+		this.setLayout(new GridLayout(3, 1));
 		this.setBorder(BorderFactory.createEmptyBorder());
 
 		shapes = new JPanel();
 		shapes.setLayout(new GridLayout(2, 2));
-		shapes.setBorder(
-				BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Shapes"));
+		shapes.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Shapes"));
+		
+		theUnknown = new JPanel();
+		theUnknown.setLayout(new GridLayout(1, 1));
+		theUnknown.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Unknown Shape"));
 
 		movements = new JPanel();
 		movements.setLayout(new GridLayout(2, 2));
-		movements.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED),
-				"Movement Options"));
+		movements.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED),"Movement Options"));
 
 		button = new JButton("Rectangle");
 		button.setActionCommand("rectangle");
@@ -86,6 +88,13 @@ public class ToolPanel extends JPanel implements ActionListener {
 		shapes.add(button);
 
 		add(shapes);
+		
+		button = new JButton("The Polymorpher Button");
+		button.setActionCommand("unknownShape");
+		button.addActionListener(this);
+		theUnknown.add(button);
+		
+		add(theUnknown);
 
 		button = new JButton("Move");
 		button.setActionCommand("move");
@@ -143,6 +152,11 @@ public class ToolPanel extends JPanel implements ActionListener {
 			case "delete":
 				choice = 0;
 				choice = eight;
+				break;
+				
+			case "unknownShape":
+				choice = 0;
+				choice = nine;
 				break;
 
 			default:

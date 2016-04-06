@@ -11,21 +11,18 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyStar implements DrawingObject {
+public class MyShape implements DrawingObject {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
-    int points;
-    double angle;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
-    private int[] xPoints; private int[] yPoints;
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyStar() {
+    public MyShape() {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
@@ -39,7 +36,7 @@ public class MyStar implements DrawingObject {
      * @param sX
      * @param sY 
      */
-    public MyStar( int oX, int oY, int sX, int sY ) {
+    public MyShape( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
         sizeY = sY;
         originX = oX;
@@ -60,9 +57,7 @@ public class MyStar implements DrawingObject {
         
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        setPoints(5);
-        math();
-        g.drawPolygon(xPoints, yPoints, points);
+        drawStar(g, originX, originY, sizeX, sizeY );
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -76,6 +71,8 @@ public class MyStar implements DrawingObject {
     public void start( Point p ) {
         originX = p.x;
         originY = p.y;
+        lastX = p.x;
+        lastY = p.y;
     }
     
     /**
@@ -85,8 +82,8 @@ public class MyStar implements DrawingObject {
      * @param p 
      */
     public void drag( Point p ) {
-        sizeX = p.x;
-        sizeY = p.y;
+        sizeX = p.x - originX;
+        sizeY = p.y - originY;
         setBounds( bounds );
     }
     
@@ -123,20 +120,11 @@ public class MyStar implements DrawingObject {
         return bounds.contains(p);
     }
     
-    public void setPoints( int p ) {
-    	points  = p;
-    	angle = 2 * Math.PI / points;
-    	xPoints = new int[2*points];
-    	yPoints = new int[2*points];
-    }
-    
-    public void math() {
-    	for(int i = 0, j = 0; j < xPoints.length - 1; i++, j +=2 ) {
-    		xPoints[j] = (int)(originX + sizeX * Math.cos(angle * (i)));
-    		yPoints[j] = (int)(originY + sizeY * Math.sin(angle * (i)));
-    		xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos((Math.PI/points) + angle *(i)));
-    		yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin((Math.PI/points) + angle * (i)));
-    	}
+    public void drawStar(Graphics g, int ox, int oy, int hx, int hy) {
+		int x[] = {ox, (ox+hx), (ox+hy), (ox-hx), ox};
+		int y[] = {oy, (oy-hy), oy+hx, (oy-hy), oy};
+		int five = 5;
+		g.drawPolygon(x, y, five);
 	}
 
 }
