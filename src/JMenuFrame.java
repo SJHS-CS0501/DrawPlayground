@@ -131,6 +131,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu.addSeparator();
         
+        menuItem = new JMenuItem( "Set BG Color" );
+        menuItem.setActionCommand( "recolor bg" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
         menuItem = new JMenuItem( "Color Picker" );
         menuItem.setActionCommand( "picker" );
         menuItem.addActionListener( this );
@@ -175,6 +180,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	break;
             case "saveas":
             	dPane.saveAs();
+            	break;
+            case "recolor bg":
+            	dPane.setBackground(pFrame.getColor());
             	break;
             case "MenuAbout":
             	hFrame.setMode(DrawPlaygroundHelpFrame.MODE_ABOUT);
