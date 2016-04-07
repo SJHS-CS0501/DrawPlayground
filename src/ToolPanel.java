@@ -21,7 +21,8 @@ public class ToolPanel extends JPanel implements ActionListener {
 
 	
 	public static int check;
-	
+	public static String po;
+	public JTextField points;
 	
     
     public ToolPanel() {
@@ -36,8 +37,9 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Rectangle = new JRadioButton( "Rectangle" );
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
-        JRadioButton Star = new JRadioButton( "Star" );
+        JRadioButton Star = new JRadioButton( "Star   Sides =" );
         JRadioButton NoOperation = new JRadioButton( "Edit" );
+        points = new JTextField("5");
         NoOperation.setActionCommand("nop");
         Rectangle.setActionCommand( "rect" );
         Circle.setActionCommand( "cir" );
@@ -48,6 +50,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         Circle.addActionListener( this);
         Line.addActionListener( this );
         Star.addActionListener( this );
+       // points.a (Property change listener/ key listener
         
         bg.add( Rectangle );
         bg.add( Circle );
@@ -61,17 +64,24 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Circle);
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
+        unitSelectionPanel.add( points );
         unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
+        
+       // po = points.getText();
+        	
+        	
+        	//points.setText("Set to default of 5");
 
        this.setSize(20,20);
-        this.setVisible( true );
+       this.setVisible( true );
     }
     
 
     
     public void actionPerformed( ActionEvent e ) {
+    	
         switch( e.getActionCommand() ) {
         
         case("rect"):
@@ -88,6 +98,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         
         case("star"):
         	check = DrawingPane.s;
+        	po = getPoints(points);
         	break;
         	
         case("nop"):
@@ -100,4 +111,13 @@ public class ToolPanel extends JPanel implements ActionListener {
                 break;
         }
     }
+    
+    
+    public String getPoints(JTextField points){
+    
+    	String p = points.getText();
+    	
+    	return p;
+    }
+    
 }

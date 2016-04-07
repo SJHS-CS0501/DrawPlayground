@@ -49,7 +49,7 @@ public class MyStar implements DrawingObject {
 		 
 	        g2d.setColor( Color.BLACK );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-	        g2d.drawPolygon(xPoints, yPoints, 10);
+	        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
 	        
 	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 
@@ -72,8 +72,8 @@ public class MyStar implements DrawingObject {
 		//originX = x;
 		//originY = y;
 
-        xPoints = new int[] {x,x,x,x,x,x,x,x,x,x};
-	    yPoints = new int[]{y, y, y, y, y, y, y, y, y, y };
+        xPoints = new int[Integer.parseInt(ToolPanel.po)*2]; 
+	    yPoints = new int[Integer.parseInt(ToolPanel.po)*2];
 		
 		
 
@@ -86,21 +86,11 @@ public class MyStar implements DrawingObject {
 		sizeX = p.x - originX;
 	    sizeY = p.y - originY;
 	    
-		for(int i = 0, j = 0; j<xPoints.length; i++, j+=2){
-			
-			System.out.println(i +"redraw");
-			
-			double angle = 2*Math.PI/5;
-			
-			double l = (360/5) * (Math.PI/180);
-			
-			
-			xPoints[j] = (int)(originX + sizeX * (Math.cos((l)*(i))));// * //Math.cos(l)) ;
-			yPoints[j] = (int)(originY + sizeY * (Math.sin((l) *(i))));//* Math.sin(l));
-			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos((l)*(i))));//(Math.cos(Math.PI/points)+angle;
-			yPoints[j+1] = (int)(originY + (sizeY/2) * (Math.sin((l)*(i))));
-			
-		}
+	    //Integer.parseInt(ToolPanel.po);
+	    
+	    System.out.println(ToolPanel.po);
+		
+		genPoints(Integer.parseInt(ToolPanel.po));
 			
 		//xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
 		//yPoints = new int[] {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
@@ -121,6 +111,30 @@ public class MyStar implements DrawingObject {
 			//yPoints = new int[]{(y),(y+36),(y+36),(y+54),(y+96),(y+72),(y+96),(y+54),(y+36),(y+36) };
 		
 		
+	}
+	
+	
+	public void genPoints(int points){
+		
+	    
+
+		double angle = 2*Math.PI/points;
+		double offset = Math.PI/points;
+	    
+		for(int i = 0, j = 0; j<xPoints.length; i++, j+=2){
+			
+			System.out.println(i +"redraw");
+			
+			
+			//double l = (360/5) * (Math.PI/180);
+			
+			
+			xPoints[j] = (int)(originX + sizeX * (Math.cos((angle)*(i))));// * //Math.cos(l)) ;
+			yPoints[j] = (int)(originY + sizeY * (Math.sin((angle)*(i))));//* Math.sin(l));
+			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+(angle*i))));//(Math.cos(Math.PI/points)+angle;
+			yPoints[j+1] = (int)(originY + (sizeY/2) * (Math.sin(offset+(angle*i))));
+		}
+			
 	}
 
 	@Override
