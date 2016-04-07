@@ -119,5 +119,7 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+    
+    
 
 }

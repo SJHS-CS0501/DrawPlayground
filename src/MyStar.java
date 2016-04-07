@@ -62,7 +62,7 @@ public class MyStar implements DrawingObject {
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         setPoints(5);
         math();
-        g.drawPolygon(xPoints, yPoints, points);
+        g2d.drawPolygon(xPoints, yPoints, points);
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -76,6 +76,8 @@ public class MyStar implements DrawingObject {
     public void start( Point p ) {
         originX = p.x;
         originY = p.y;
+        lastX = p.x;
+        lastY = p.y;
     }
     
     /**
@@ -85,8 +87,8 @@ public class MyStar implements DrawingObject {
      * @param p 
      */
     public void drag( Point p ) {
-        sizeX = p.x;
-        sizeY = p.y;
+        sizeX = p.x - originX;
+        sizeY = p.y - originY;
         setBounds( bounds );
     }
     
@@ -125,7 +127,7 @@ public class MyStar implements DrawingObject {
     
     public void setPoints( int p ) {
     	points  = p;
-    	angle = 2 * Math.PI / points;
+    	angle = 2 * (Math.PI / points);
     	xPoints = new int[2*points];
     	yPoints = new int[2*points];
     }
@@ -134,7 +136,7 @@ public class MyStar implements DrawingObject {
     	for(int i = 0, j = 0; j < xPoints.length - 1; i++, j +=2 ) {
     		xPoints[j] = (int)(originX + sizeX * Math.cos(angle * (i)));
     		yPoints[j] = (int)(originY + sizeY * Math.sin(angle * (i)));
-    		xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos((Math.PI/points) + angle *(i)));
+    		xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos((Math.PI/points) + angle * (i)));
     		yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin((Math.PI/points) + angle * (i)));
     	}
 	}
