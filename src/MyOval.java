@@ -48,7 +48,7 @@ public class MyOval implements DrawingObject {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		g2d.setColor(Color.BLACK);
+		g2d.setColor( ToolPanel.chooser.getColor());
 		// g2d.clearRect( originX, originY, sizeX, sizeY ); // this is cool to
 		// make a background-filled rectangle!
 		g2d.drawOval(originX, originY, sizeX, sizeY);
@@ -65,8 +65,8 @@ public class MyOval implements DrawingObject {
 	public void start(Point p) {
 		originX = p.x;
 		originY = p.y;
-		sizeX = p.x;
-		sizeY = p.y;
+		lastX = p.x;
+		lastY = p.y;
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class MyOval implements DrawingObject {
 	 * @param p
 	 */
 	public void drag(Point p) {
-		sizeX = p.x;
-		sizeY = p.y;
+		sizeX = p.x - originX;
+		sizeY = p.y - originY;
 		setBounds(bounds);
 	}
 

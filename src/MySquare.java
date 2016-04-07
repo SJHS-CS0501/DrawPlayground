@@ -48,7 +48,7 @@ public class MySquare implements DrawingObject {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		g2d.setColor(Color.BLACK);
+		g2d.setColor( ToolPanel.chooser.getColor());
 		// g2d.clearRect( originX, originY, sizeX, sizeY ); // this is cool to
 		// make a background-filled rectangle!
 		g2d.drawRect(originX, originY, sizeX, sizeY);
@@ -65,8 +65,8 @@ public class MySquare implements DrawingObject {
 	public void start(Point p) {
 		originX = p.x;
 		originY = p.y;
-		sizeX = originX - p.x;
-		sizeY = originY - p.y;
+		lastX = p.x;
+		lastY = p.y;
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class MySquare implements DrawingObject {
 	 * @param p
 	 */
 	public void drag(Point p) {
-		sizeX = p.x;
-		sizeY = sizeX;
+		sizeX = p.x - originX;
+		sizeY = p.x - originX;
 		setBounds(bounds);
 	}
 

@@ -55,7 +55,7 @@ public class MyShape implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( ToolPanel.chooser.getColor());
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         drawStar(g, originX, originY, sizeX, sizeY );
         

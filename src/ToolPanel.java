@@ -13,6 +13,9 @@ import java.awt.event.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+
+import javafx.beans.value.ChangeListener;
+
 import java.io.*;
 import java.util.*;
 
@@ -36,13 +39,15 @@ public class ToolPanel extends JPanel implements ActionListener {
 	private JButton button;
 	private JPanel shapes;
 	private JPanel theUnknown;
-	JPanel movements;
+	private JPanel colorChooser;
+	private JPanel movements;
+	public static JColorChooser chooser;
 	public String command;
 
 	public ToolPanel() {
 		super();
 		this.setSize(50, 200);
-		this.setLayout(new GridLayout(3, 1));
+		this.setLayout(new GridLayout(4, 1));
 		this.setBorder(BorderFactory.createEmptyBorder());
 
 		shapes = new JPanel();
@@ -52,6 +57,10 @@ public class ToolPanel extends JPanel implements ActionListener {
 		theUnknown = new JPanel();
 		theUnknown.setLayout(new GridLayout(1, 1));
 		theUnknown.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Unknown Shape"));
+		
+		colorChooser = new JPanel();
+		colorChooser.setLayout(new GridLayout(1, 1));
+		colorChooser.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Color Changer"));
 
 		movements = new JPanel();
 		movements.setLayout(new GridLayout(2, 2));
@@ -95,6 +104,11 @@ public class ToolPanel extends JPanel implements ActionListener {
 		theUnknown.add(button);
 		
 		add(theUnknown);
+		
+		chooser = new JColorChooser();
+		colorChooser.add(chooser);
+		
+		add(colorChooser);
 
 		button = new JButton("Move");
 		button.setActionCommand("move");

@@ -19,6 +19,8 @@ public interface DrawingObject {
      * @param g 
      */
     public void draw( Graphics g );
+    
+    public void setColor(Color c);
     /**
      * Called to start drawing a new object.
      * @param p 

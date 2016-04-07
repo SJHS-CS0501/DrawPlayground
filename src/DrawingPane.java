@@ -70,6 +70,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			System.out.println("rectangle");
 			obj = new MyRectangle();
 			obj.start(e.getPoint());
+			obj.setColor(ToolPanel.chooser.getColor());
 			objectList.add(obj);
 			break;
 
