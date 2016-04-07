@@ -12,18 +12,17 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
-        //this.setSize( 500, 500 );
-        //setSize( getPreferredSize() );
-        // size is handled by parent pane placement in JFrame
+        /*
+        this.setSize( 500, 500 );
+        setSize( getPreferredSize() );
+        size is handled by parent pane placement in JFrame
+        */
         
-        // make a border
-        setBorder( BorderFactory.createLineBorder(Color.BLACK) );
+        setBorder( BorderFactory.createLineBorder(Color.BLACK) ); //border
         setVisible( true );
         
-        // we need both a mouse listener (for clicks)...
-        addMouseListener( this );
-        // ... and a mouse motion listener (for drags)!
-        addMouseMotionListener( this );
+        addMouseListener( this ); //mouse listener (clicks)
+        addMouseMotionListener( this ); //mouse motion listener (drags)
 
     }
     
@@ -47,14 +46,19 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	}
     }
     
+    /**
+     * Allows the user to change the color of the shape
+     */
+    public void changeColor() {
+    	
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // handle what happens when the mouse is clicked. This will hinge upon
-        // the mode the user has selected in the tool panel
     	int x = e.getX();
     	int y = e.getY();
         System.out.println( "mousePressed(" + x + "," + y + ")" );
@@ -104,7 +108,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	int x = e.getX();
         int y = e.getY();
         repaint();
-        drawingObject = null; //so it won't remodify the old rectangle
+        drawingObject = null; //so it won't re-modify the old rectangle
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }
 

@@ -39,8 +39,8 @@ public class MyCircle implements DrawingObject {
         Graphics2D g2d = (Graphics2D)g;
         
         g2d.setColor( Color.BLACK );
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        
+        g2d.drawOval( originX, originY, sizeX, sizeY );
         
         System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );

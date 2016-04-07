@@ -5,9 +5,14 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 public class MyStar implements DrawingObject{
-	int sizeX, sizeY, originX, originY;
-	int lastX, lastY;
 	
+	int points = 8;
+	int lastX, lastY;
+	double offset = Math.PI/points;
+	double angle = 2*Math.PI/points;
+	int[] xPoints = new int[2*points];
+	int[] yPoints = new int[2*points];
+	int sizeX, sizeY, originX, originY;
 	Rectangle bounds = new Rectangle();
 
     public MyStar() {
@@ -34,15 +39,22 @@ public class MyStar implements DrawingObject{
     }
     
     /**
+     * This will let the user choose how many points their star is
+     */
+    public void setNumPoints() {
+    	
+    }
+    
+    /**
      * Actually drawing the shape
      */
     public void draw( Graphics g ) {
-
+    	
         Graphics2D g2d = (Graphics2D)g;
         
         g2d.setColor( Color.BLACK );
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        
+        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
         
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -59,8 +71,21 @@ public class MyStar implements DrawingObject{
      * When user selects and moves circle
      */
     public void drag( Point p ) {
+    	
         sizeX = p.x - originX;
         sizeY = p.y - originY;
+        
+        for(int i = 0, j = 0; j < xPoints.length; i++, j += 2) {
+        
+        //Outer points
+        xPoints[j] = (int)(originX+sizeX*Math.cos(angle*i));
+        xPoints[j] = (int)(originY+sizeY*Math.sin(angle*i));
+        
+        //Inner points
+        xPoints[j+1] = (int)(originX+(sizeX/2)*Math.cos(offset+angle*i));
+        xPoints[j+1] = (int)(originY+(sizeY/2)*Math.sin(offset+angle*i));
+        }
+        
         setBounds( bounds );
     }
     
