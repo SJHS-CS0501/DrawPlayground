@@ -16,7 +16,7 @@ public class MyArc implements DrawingObject{
 	
 	@Override
 	public void draw(Graphics g) {
-		
+		g.drawArc( sizeX, sizeY, originX, originY, width, length );
 	}
 
 	@Override

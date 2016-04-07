@@ -18,21 +18,17 @@ public class ToolPanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	DrawingPane dPane = new DrawingPane();
 	
-	public ToolPanel() {
+	public ToolPanel( DrawingPane d ) {
         super();
+        dPane = d;
         this.setSize( 50, 100 );
         this.setLayout( new GridLayout( 3, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         JPanel againForButtons = new JPanel();
-        MyRectangle rectangle = new MyRectangle();
-        
-        
- 
-        
     
-      //drawing pane conversation with tool panel?
         againForButtons.setLayout( new GridLayout(3,2));
         
         button = new JButton( "Rectangle" );
@@ -76,31 +72,9 @@ public class ToolPanel extends JPanel implements ActionListener {
 
     
     public void actionPerformed( ActionEvent e ) {
-        switch( e.getActionCommand() ) {
-
-        case "rectangle":
-        	
-        	break;
-        case "circle":
-        	
-        	break;
-        case "line":
-        	
-        	break;
-        case "string":
-        	
-        	break;
-        case "star":
-        	
-        	break;
-        case "arc":
-        	
-        	break;
-        	
-            default:
-                System.out.println( "EVIL EVIL BAD PLACE" );
-                System.exit(-1);
-                break;
-        }
+    	
+    	dPane.coolShape = e.getActionCommand();
     }
+    
+    
 }

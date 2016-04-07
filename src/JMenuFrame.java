@@ -19,7 +19,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 	public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
-        ToolPanel tPane = new ToolPanel();
+        ToolPanel tPane = new ToolPanel(dPane);
         
         JMenuBar menuBar;
         JMenu menu;

@@ -84,45 +84,42 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	case "rectangle":
     		object = new MyRectangle();
     		object.start( mousePoint );
-    		object.drag( mousePoint );
-    		//object.draw();
+    		repaint();
     		objectList.add(object);
     		break;
     	case "circle":
     		object = new MyCircle();
     		object.start( mousePoint );
-    		object.drag( mousePoint );
-    		
+    		repaint();
     		objectList.add(object);
     		break;
     	case "line":
     		object = new MyLine();
     		object.start( mousePoint );
-    		
+    		repaint();
     		objectList.add(object);
     		break;
     	case "arc":
     		object = new MyArc();
     		object.start( mousePoint );
-    		object.drag( mousePoint );
-    		
+    		repaint();
     		objectList.add(object);
     		break;
     	case "star":
     		object = new MyStar();
     		object.start( mousePoint );
-    		object.drag( mousePoint );
-    		
+    		repaint();
     		objectList.add(object);
     		break;
     	case "string":
     		// joptionpane
     		object = new MyString();
     		object.start( mousePoint );
-    		object.drag( mousePoint );
-    		
+    		repaint();
     		objectList.add(object);
     		break;
+    		default:
+    			System.out.println( "NO HAPPINESS HERE" );
     	}
     	
     	
@@ -133,6 +130,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mouseDragged(MouseEvent e) {
     	Point p = e.getPoint();
+    	
+    	object.drag( p );
+    	repaint();
     	// drag to make object real
     	
         System.out.println( "mouseDragged" + p.toString() );
@@ -154,4 +154,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mouseMoved(MouseEvent e) {
     }
+    
+    public void paintComponent( Graphics g ){
+    	super.paintComponent(g);
+    	for( int i = 0; i < objectList.size(); i++ ){
+    		objectList.get(i).draw(g);
+    	}
+    }
+    
+    
 }
