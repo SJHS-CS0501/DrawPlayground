@@ -3,18 +3,28 @@ import java.util.ArrayList;
 
 public class MyStar implements DrawingObject{
 
-    ArrayList<Dimension> xValues = new ArrayList<Dimension>();
-    ArrayList<Dimension> yValues = new ArrayList<Dimension>();
-	int lines;
-    int lastX, lastY;
+	int points = 5;
+	double offset;
+    double angle;
+	int[] xValues = new int[2 * points]; 
+	int[] yValues = new int[2 * points];
+    int originX, originY, sizeX, sizeY;
     Rectangle bounds = new Rectangle();
 	
-	MyStar(){
-		lines = 0;
+	public MyStar(){
+	//	lines = 0;
 		setBounds( bounds );
 	}
 	
-	
+	public MyStar( int oX, int oY, int sX, int sY ){
+		sizeX = sX;
+        sizeY = sY;
+        originX = oX;
+        originY = oY;
+        setBounds( bounds );
+        
+        System.out.println( "Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+	}
 	
 	
 	// use draw polygon
@@ -24,19 +34,38 @@ public class MyStar implements DrawingObject{
 	
 	@Override
 	public void draw(Graphics g) {
-	
+		Graphics2D g2d = (Graphics2D)g;
+        
+        g2d.setColor( Color.BLACK );
+        g2d.drawPolygon( xValues, yValues, xValues.length );
+        
+        
+        // clipRect method? 
+        //need to change points so that they are not all set to 0 **Probably fixed! (for now anyway)
+        
+        
+        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		
 	}
 
 	@Override
 	public void start(Point p) {
 
+		 originX = p.x;
+	        originY = p.y;
+	        lastX = p.x;
+	        lastY = p.y;
 	}
 
 	@Override
 	public void drag(Point p) {
 	
-		
+		for( int i = 0, j = 0; j < xValues.length; i++, j += 2 ){
+			xValues[j] = (int)(originX + sizeX*Math.cos(angle*i));
+			yValues[j] = (int)(originY + sizeY*Math.sin(angle*i));
+			
+			xValues[j+2] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
+		}
 	}
 
 	@Override
