@@ -26,10 +26,7 @@ public class MyCircle implements DrawingObject{
 
 	@Override
 	public void draw(Graphics g) {
-		int r = sizeX /2;
-		int otherR = sizeY / 2;
-		sizeX = sizeX - (r/2);
-		sizeY = sizeY - (otherR/2);
+		
 		
         Graphics2D g2d = (Graphics2D)g;
         

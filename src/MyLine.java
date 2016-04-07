@@ -38,19 +38,26 @@ public class MyLine implements DrawingObject{
 
 	@Override
 	public void start(Point p) {
-		// TODO Auto-generated method stub
+		originX = p.x;
+        originY = p.y;
+        lastX = p.x;
+        lastY = p.y;
 		
 	}
 
 	@Override
 	public void drag(Point p) {
-		// TODO Auto-generated method stub
+		sizeX = p.x - originX;
+        sizeY = p.y - originY;
+        setBounds( bounds );
 		
 	}
 
 	@Override
 	public void move(Point p) {
-		// TODO Auto-generated method stub
+		originX = p.x;
+        originY = p.y;
+        setBounds( bounds );
 		
 	}
 
@@ -63,7 +70,7 @@ public class MyLine implements DrawingObject{
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		return false;
+		return bounds.contains(p);
 	}
 
 
