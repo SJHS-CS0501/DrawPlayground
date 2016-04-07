@@ -8,14 +8,15 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 	
 	private static final long serialVersionUID = 1L;
+	DrawingPane drawingPane = new DrawingPane();
+	DrawingObject drawingObject;
 	ButtonGroup shapeButtons;
 	ButtonGroup colorButtons;
+	JRadioButton radioButton;
+	static String color;
 	JPanel shapePanel;
 	JPanel colorPanel;
-	JRadioButton radioButton;
-	DrawingPane drawingPane = new DrawingPane();
-	static String color;
-	
+		
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
@@ -113,17 +114,18 @@ public class ToolPanel extends JPanel implements ActionListener {
     	
     	switch(e.getActionCommand()){
     	case "Line":
-    		drawingPane.setShape(e.getActionCommand());
+    		drawingPane.shape = (e.getActionCommand());
     		break;
     	case "Rectangle":
-    		drawingPane.setShape(e.getActionCommand());
+    		drawingPane.shape = (e.getActionCommand());
     		break;
     	case "Circle":
-    		drawingPane.setShape(e.getActionCommand());
+    		drawingPane.shape = (e.getActionCommand());
     		break;
     	case "Star":
-    		drawingPane.setShape(e.getActionCommand());
+    		drawingPane.shape = (e.getActionCommand());
     		break;
+    		
     	case "Red":
     		color = e.getActionCommand();
     		break;

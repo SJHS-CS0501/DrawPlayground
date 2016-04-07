@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	
-	static String shape;
+	public static String shape;
 	DrawingObject drawingObject;
 	static int sizeX, sizeY;
 	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
@@ -28,15 +28,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     
     /**
-     * Sets static variable shape to s (ActionCommand received from the
-     * radio buttons) so it can be used in switch statement later
-     * @param s
-     */
-    public void setShape(String s) {
-    	shape = s;
-    }
-    
-    /**
      * actionPerformed is here in case we need it later. Not currently used.
      * @param e 
      */
@@ -47,6 +38,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
                 System.exit(-1);
                 break;
         }
+    }
+    
+    public void paintComponent( Graphics g) {
+    	super.paintComponent(g);
+    	for(int i = 0; i < shapeList.size(); i++) {
+    		shapeList.get(i).draw(g);
+    	}
     }
     
     @Override
@@ -65,29 +63,25 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         case "Line":
         	drawingObject = new MyLine();
         	drawingObject.start(e.getPoint());
-        	drawingObject.drag(e.getPoint());
-        	drawingObject.draw(getGraphics());
         	shapeList.add(drawingObject);
         	break;
         case "Rectangle":
         	drawingObject = new MyRectangle();
         	drawingObject.start(e.getPoint());
-        	drawingObject.drag(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         case "Circle":
         	drawingObject = new MyCircle();
         	drawingObject.start(e.getPoint());
-        	drawingObject.drag(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         case "Star":
         	drawingObject = new MyStar();
         	drawingObject.start(e.getPoint());
-        	drawingObject.drag(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         default:
+        	System.out.print("Bad stuff");
         	break;
         }
     }
@@ -96,8 +90,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
        int x = e.getX();
        int y = e.getY();
-       sizeX = e.getX();
-       sizeY = e.getY();       
+       
+       if(drawingObject != null) {
+    	   drawingObject.drag(e.getPoint());
+       }
+       
+       repaint();
        System.out.println( "mouseDragged(" + x + "," + y + ")" );
     }
 
@@ -105,6 +103,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseReleased(MouseEvent e) {
     	int x = e.getX();
         int y = e.getY();
+        repaint();
+        drawingObject = null; //so it won't remodify the old rectangle
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }
 
