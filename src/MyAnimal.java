@@ -4,17 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import javafx.scene.shape.Circle;
-
-/**
- * 
- */
-
-/**
- * @author SJHSStudent
- *
- */
-public class MyStar implements DrawingObject {
+public class MyAnimal implements DrawingObject {
 
 	int[] xPoints;
 	int[] yPoints;
@@ -26,14 +16,14 @@ public class MyStar implements DrawingObject {
     Rectangle bounds = new Rectangle();
    
     
-    public MyStar(){
+    public MyAnimal(){
     	
     	 // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
     }
     
-    public MyStar(int[] px, int[] py){
+    public MyAnimal(int[] px, int[] py){
     	
     	xPoints =px;
     	yPoints =py;
@@ -72,8 +62,8 @@ public class MyStar implements DrawingObject {
 		//originX = x;
 		//originY = y;
 
-        xPoints = new int[] {x,x,x,x,x,x,x,x,x,x};
-	    yPoints = new int[]{y, y, y, y, y, y, y, y, y, y };
+        xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
+	    yPoints = new int[]{y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 		
 		
 
@@ -82,24 +72,31 @@ public class MyStar implements DrawingObject {
 	@Override
 	public void drag(Point p) {
 		// TODO Auto-generated method stub
+		int x = p.x;
+		int y = p.y;
 		
 		sizeX = p.x - originX;
-	    sizeY = p.y - originY;
-	    
+	    sizeY = p.y  - originY;
+/*
+		for(int i = 0; i< xPoints.length; i+= 2){
+		
+			double l = (360/5) * (Math.PI/180);
+			xPoints[i] = (int)(originX  * Math.cos(l)) ;
+			yPoints[i] = (int)(originY * Math.sin(l));
+		
+		}
+	*/	
 		for(int i = 0, j = 0; j<xPoints.length; i++, j+=2){
 			
 			System.out.println(i +"redraw");
 			
-			double angle = 2*Math.PI/5;
+			double angle = 2*Math.PI/10;
 			
 			double l = (360/5) * (Math.PI/180);
-			
-			
-			xPoints[j] = (int)(originX + sizeX * (Math.cos((l)*(i))));// * //Math.cos(l)) ;
-			yPoints[j] = (int)(originY + sizeY * (Math.sin((l) *(i))));//* Math.sin(l));
-			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos((l)*(i))));//(Math.cos(Math.PI/points)+angle;
-			yPoints[j+1] = (int)(originY + (sizeY/2) * (Math.sin((l)*(i))));
-			
+			xPoints[j] = (int)(originX + sizeX * Math.cos(angle*(i)));// * //Math.cos(l)) ;
+			yPoints[j] = (int)(originY + sizeY * Math.sin(angle *(i)));//* Math.sin(l));
+			xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos(angle*(i)));//(Math.cos(Math.PI/points)+angle;
+			yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin(angle*(i)));
 		}
 			
 		//xPoints = new int[] {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
@@ -152,5 +149,4 @@ public class MyStar implements DrawingObject {
 		
 		return false;
 	}
-
 }
