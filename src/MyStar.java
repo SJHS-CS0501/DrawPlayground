@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 
 public class MyStar implements DrawingObject{
 
@@ -9,7 +8,7 @@ public class MyStar implements DrawingObject{
 	int[] xValues = new int[2 * points]; 
 	int[] yValues = new int[2 * points];
     int originX, originY, sizeX, sizeY;
-    Rectangle bounds = new Rectangle();
+   	Rectangle bounds = new Rectangle();
 	
 	public MyStar(){
 	//	lines = 0;
@@ -51,10 +50,10 @@ public class MyStar implements DrawingObject{
 	@Override
 	public void start(Point p) {
 
-		 originX = p.x;
-	        originY = p.y;
-	        lastX = p.x;
-	        lastY = p.y;
+		originX = p.x;
+	    originY = p.y;
+	    sizeX = p.x;
+	    sizeY = p.y;
 	}
 
 	@Override
@@ -70,20 +69,19 @@ public class MyStar implements DrawingObject{
 
 	@Override
 	public void move(Point p) {
-	
+		originX = p.x;
+	    originY = p.y;
+	    setBounds( bounds );
 		
 	}
 
-	@Override
-	public void setBounds(Rectangle b) {
-
-		
+	public void setBounds( Rectangle bounds) {
+		  bounds.setBounds( originX, originY, sizeX, sizeY );
 	}
 
 	@Override
 	public boolean contains(Point p) {
-	
-		return false;
+        return bounds.contains(p);
 	}
 
 }
