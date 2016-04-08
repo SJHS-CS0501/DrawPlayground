@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * This class is designed to enable a user to
+ * create a star.
  * @author Jack Protivnak
  */
 import java.awt.event.*;
@@ -12,7 +8,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MyStar implements DrawingObject {
-    // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
@@ -23,7 +18,7 @@ public class MyStar implements DrawingObject {
     private int[] xPoints; private int[] yPoints;
     
     /**
-     * Create a new MyRectangle, all params initialized to zero.
+     * Create a new MyStar, all params initialized to zero.
      */
     public MyStar() {
         // NOP
@@ -33,8 +28,7 @@ public class MyStar implements DrawingObject {
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
-     * 
+     * Create a new MyStar with params initialized for origin and size.
      * @param oX
      * @param oY
      * @param sX
@@ -48,19 +42,19 @@ public class MyStar implements DrawingObject {
         setPoints(5);
         setBounds( bounds );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
     /**
      * draw method actually draws the object. Requires Graphics object.
-     * 
      * @param g 
      */
     public void draw( Graphics g ) {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( ToolPanel.chooser.getColor());
+//        g2d.setColor( ToolPanel.chooser.getColor());
+        g2d.setColor(Color.BLACK);
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawPolygon(xPoints, yPoints, xPoints.length);
         
@@ -70,7 +64,6 @@ public class MyStar implements DrawingObject {
     
     /**
      * Called to start drawing a new object when mouse is clicked.
-     * 
      * @param p 
      */
     public void start( Point p ) {
@@ -83,7 +76,6 @@ public class MyStar implements DrawingObject {
     /**
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
-     * 
      * @param p 
      */
     public void drag( Point p ) {
@@ -96,7 +88,6 @@ public class MyStar implements DrawingObject {
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
-     * 
      * @param p 
      */
     public void move( Point p ) {
@@ -108,7 +99,6 @@ public class MyStar implements DrawingObject {
     /**
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
-     * 
      * @param b 
      */
     public void setBounds( Rectangle b ) {
@@ -118,7 +108,6 @@ public class MyStar implements DrawingObject {
     /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
-     * 
      * @param p
      * @return 
      */
@@ -126,6 +115,10 @@ public class MyStar implements DrawingObject {
         return bounds.contains(p);
     }
     
+    /**
+     * Sets values used in the math equations for the different points in the star.
+     * @param p
+     */
     public void setPoints( int p ) {
     	points  = p;
     	angle = 2 * Math.PI / points;
@@ -133,6 +126,9 @@ public class MyStar implements DrawingObject {
     	yPoints = new int[2 * points];
     }
     
+    /**
+     * Uses a for loop to determine the points for the star.
+     */
     public void math() {
     	for(int i = 0, j = 0; j < xPoints.length; i++, j +=2 ) {
     		xPoints[j] = (int)(originX + sizeX * Math.cos(angle * (i)));
@@ -141,5 +137,4 @@ public class MyStar implements DrawingObject {
     		yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin((Math.PI/points) + angle * (i)));
     	}
 	}
-
 }

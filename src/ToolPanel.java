@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * This class is used to create the tool panel that contains
+ * the color options, shape buttons, movement buttons, and 
+ * resources used by other parts of this operation.
  * @author Jack Protivnak
  */
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.sound.sampled.*;
@@ -22,6 +18,7 @@ import java.util.*;
 public class ToolPanel extends JPanel implements ActionListener {
 	// drawingType is updated throughout the ToolPanel and used to determine
 	// what we are doing in DrawingPane
+	// All variables are declared.
 
 	private static final long serialVersionUID = 1;
 	public static final short one = 1;
@@ -44,6 +41,12 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public static JColorChooser chooser;
 	public String command;
 
+	/**
+	 * Constructor to create the frame of the tool panel
+	 * and will contain panels for each aspect:
+	 * shapes, unknown shape, color chooser, and 
+	 * movement options.
+	 */
 	public ToolPanel() {
 		super();
 		this.setSize(50, 200);
@@ -126,6 +129,10 @@ public class ToolPanel extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Action listener for the different buttons.
+	 * @param e
+	 */
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 			case "rectangle":

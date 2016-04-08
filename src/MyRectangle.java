@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * This class is designed to enable a user to
+ * create a rectangle.
  * @author Jack Protivnak
  */
 import java.awt.event.*;
@@ -30,7 +26,6 @@ public class MyRectangle implements DrawingObject {
     
     /**
      * Create a new MyRectangle with params initialized for origin and size.
-     * 
      * @param oX
      * @param oY
      * @param sX
@@ -47,15 +42,15 @@ public class MyRectangle implements DrawingObject {
     }
     
     /**
-     * draw method actually draws the object. Requires Graphics object.
-     * 
+     * Draw method actually draws the object. Requires Graphics object.
      * @param g 
      */
     public void draw( Graphics g ) {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( ToolPanel.chooser.getColor());
+//        g2d.setColor( ToolPanel.chooser.getColor());
+        g2d.setColor(Color.BLACK);
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -65,7 +60,6 @@ public class MyRectangle implements DrawingObject {
     
     /**
      * Called to start drawing a new object when mouse is clicked.
-     * 
      * @param p 
      */
     public void start( Point p ) {
@@ -78,7 +72,6 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
-     * 
      * @param p 
      */
     public void drag( Point p ) {
@@ -90,7 +83,6 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
-     * 
      * @param p 
      */
     public void move( Point p ) {
@@ -102,7 +94,6 @@ public class MyRectangle implements DrawingObject {
     /**
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
-     * 
      * @param b 
      */
     public void setBounds( Rectangle b ) {
@@ -112,14 +103,10 @@ public class MyRectangle implements DrawingObject {
     /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
-     * 
      * @param p
      * @return 
      */
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
-    
-    
-
 }

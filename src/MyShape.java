@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ * This class is designed to enable a user to
+ * create a polymorphic shape.
  * @author Jack Protivnak
  */
 import java.awt.event.*;
@@ -12,7 +9,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MyShape implements DrawingObject {
-    // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
@@ -20,7 +16,7 @@ public class MyShape implements DrawingObject {
     Rectangle bounds = new Rectangle();
     
     /**
-     * Create a new MyRectangle, all params initialized to zero.
+     * Create a new MyShape, all params initialized to zero.
      */
     public MyShape() {
         // NOP
@@ -29,8 +25,7 @@ public class MyShape implements DrawingObject {
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
-     * 
+     * Create a new MyShape with params initialized for origin and size.
      * @param oX
      * @param oY
      * @param sX
@@ -43,29 +38,27 @@ public class MyShape implements DrawingObject {
         originY = oY;
         setBounds( bounds );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made shape: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
     /**
-     * draw method actually draws the object. Requires Graphics object.
-     * 
+     * Draw method actually draws the object. Requires Graphics object.
      * @param g 
      */
     public void draw( Graphics g ) {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( ToolPanel.chooser.getColor());
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        drawStar(g, originX, originY, sizeX, sizeY );
+//        g2d.setColor( ToolPanel.chooser.getColor());
+        g2d.setColor(Color.BLACK);
+        drawShape(g, originX, originY, sizeX, sizeY );
         
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        System.out.println( "Redrawing shape @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
     /**
      * Called to start drawing a new object when mouse is clicked.
-     * 
      * @param p 
      */
     public void start( Point p ) {
@@ -78,7 +71,6 @@ public class MyShape implements DrawingObject {
     /**
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
-     * 
      * @param p 
      */
     public void drag( Point p ) {
@@ -90,7 +82,6 @@ public class MyShape implements DrawingObject {
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
-     * 
      * @param p 
      */
     public void move( Point p ) {
@@ -102,7 +93,6 @@ public class MyShape implements DrawingObject {
     /**
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
-     * 
      * @param b 
      */
     public void setBounds( Rectangle b ) {
@@ -112,7 +102,6 @@ public class MyShape implements DrawingObject {
     /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
-     * 
      * @param p
      * @return 
      */
@@ -120,7 +109,17 @@ public class MyShape implements DrawingObject {
         return bounds.contains(p);
     }
     
-    public void drawStar(Graphics g, int ox, int oy, int hx, int hy) {
+    /**
+     * This will do the math involved in setting 
+     * the points inside the arrays so drawPolygon()
+     * can create a shape.
+     * @param g
+     * @param ox
+     * @param oy
+     * @param hx
+     * @param hy
+     */
+    public void drawShape(Graphics g, int ox, int oy, int hx, int hy) {
 		int x[] = {ox, (ox+hx), (ox+hy), (ox-hx), ox};
 		int y[] = {oy, (oy-hy), oy+hx, (oy-hy), oy};
 		int five = 5;

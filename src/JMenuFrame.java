@@ -1,15 +1,10 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * This class is used to create the menu bar that appears
+ * at the top of the entire frame.
  * @author Jack Protivnak
  */
 public class JMenuFrame extends JFrame implements ActionListener {
@@ -96,6 +91,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setVisible( true );
     }
     
+    /**
+     * Action Listener for the different options within the JMenu.
+     */
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {

@@ -1,12 +1,15 @@
+/**
+ * This class is designed to enable a user to
+ * create a oval.
+ * @author Jack Protivnak
+ */
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.*;
-
 import javafx.scene.shape.Line;
 
 public class MyOval implements DrawingObject {
-	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;
@@ -15,7 +18,7 @@ public class MyOval implements DrawingObject {
 	// Line2D.Float bounds = new Line2D.Float();
 
 	/**
-	 * Create a new MyRectangle, all params initialized to zero.
+	 * Create a new MyOval, all params initialized to zero.
 	 */
 	public MyOval() {
 		// NOP
@@ -24,8 +27,7 @@ public class MyOval implements DrawingObject {
 	}
 
 	/**
-	 * Create a new MyRectangle with params initialized for origin and size.
-	 * 
+	 * Create a new MyOval with params initialized for origin and size.
 	 * @param oX
 	 * @param oY
 	 * @param sX
@@ -40,26 +42,23 @@ public class MyOval implements DrawingObject {
 	}
 
 	/**
-	 * draw method actually draws the object. Requires Graphics object.
-	 * 
+	 * Draw method actually draws the object. Requires Graphics object.
 	 * @param g
 	 */
 	public void draw(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		g2d.setColor( ToolPanel.chooser.getColor());
-		// g2d.clearRect( originX, originY, sizeX, sizeY ); // this is cool to
-		// make a background-filled rectangle!
+//		g2d.setColor( ToolPanel.chooser.getColor());
+		g2d.setColor(Color.BLACK);
 		g2d.drawOval(originX, originY, sizeX, sizeY);
 
-		System.out.println("Redrawing Line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+		System.out.println("Redrawing oval @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
 	}
 
 	/**
 	 * Called to start drawing a new object when mouse is clicked.
-	 * 
 	 * @param p
 	 */
 	public void start(Point p) {
@@ -72,7 +71,6 @@ public class MyOval implements DrawingObject {
 	/**
 	 * Called repeatedly while dragging an object to size (usually in a
 	 * mouseDragged() MouseMotionListener).
-	 * 
 	 * @param p
 	 */
 	public void drag(Point p) {
@@ -84,7 +82,6 @@ public class MyOval implements DrawingObject {
 	/**
 	 * Called repeatedly while moving an object (usually in a mouseDragged()
 	 * MouseMotionListener).
-	 * 
 	 * @param p
 	 */
 	public void move(Point p) {
@@ -96,12 +93,8 @@ public class MyOval implements DrawingObject {
 	/**
 	 * Update the bounding box. The Rectangle argument is typically but not
 	 * always in this object. This is required for @method contains() to work.
-	 * 
 	 * @param b
 	 */
-	// public void setBounds( Line2D.Float b ) {
-	// ((Line2D.Float)b).setBounds( (float) originX, (float) originY, (float)
-	// sizeX, (float) sizeY );
 	public void setBounds(Rectangle b) {
 		b.setBounds(originX, originY, sizeX, sizeY);
 	}
@@ -109,7 +102,6 @@ public class MyOval implements DrawingObject {
 	/**
 	 * Returns true if the point p is in the bounding box for this object. Might
 	 * be used to select and/or move an object.
-	 * 
 	 * @param p
 	 * @return
 	 */
