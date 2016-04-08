@@ -132,7 +132,7 @@ public class MyStar implements DrawingObject {
 			xPoints[j] = (int)(originX + sizeX * (Math.cos((angle)*(i))));// * //Math.cos(l)) ;
 			yPoints[j] = (int)(originY + sizeY * (Math.sin((angle)*(i))));//* Math.sin(l));
 			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+(angle*i))));//(Math.cos(Math.PI/points)+angle;
-			yPoints[j+1] = (int)(originY + (sizeY/2) * (Math.sin(offset+(angle*i))));
+			yPoints[j+1] = (int)(originY+ (sizeY/2) * (Math.sin(offset+(angle*i))));
 		}
 			
 	}

@@ -30,6 +30,9 @@ public class ToolPanel extends JPanel implements ActionListener {
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
+       
+        KeyListener k = new kb();
+        
         JButton button;
         ButtonGroup bg;
         
@@ -37,7 +40,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Rectangle = new JRadioButton( "Rectangle" );
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
-        JRadioButton Star = new JRadioButton( "Star   Sides =" );
+        JRadioButton Star = new JRadioButton( "Star NumPoint=" );
         JRadioButton NoOperation = new JRadioButton( "Edit" );
         points = new JTextField("5");
         NoOperation.setActionCommand("nop");
@@ -50,13 +53,14 @@ public class ToolPanel extends JPanel implements ActionListener {
         Circle.addActionListener( this);
         Line.addActionListener( this );
         Star.addActionListener( this );
-       // points.a (Property change listener/ key listener
+      
+        points.addKeyListener(k);
         
         bg.add( Rectangle );
         bg.add( Circle );
         bg.add( Line );
         bg.add(Star);
-        bg.add(NoOperation);
+        //bg.add(NoOperation);
         
         JPanel unitSelectionPanel = new JPanel();
         unitSelectionPanel.setLayout( new GridLayout( 1,0 ) );
@@ -65,7 +69,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
         unitSelectionPanel.add( points );
-        unitSelectionPanel.add(NoOperation);
+       // unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
         
@@ -117,7 +121,37 @@ public class ToolPanel extends JPanel implements ActionListener {
     
     	String p = points.getText();
     	
+    	
     	return p;
+    }
+    
+    public class kb implements KeyListener{
+    	
+    	
+    	
+		@Override
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+			//(Property change listener/ key listener
+			 
+			
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+			po = points.getText();
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
     }
     
 }
