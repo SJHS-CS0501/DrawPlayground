@@ -14,6 +14,7 @@ public class MySquare implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;
+	Color color;
 	// bounding box (needed for move)
 	Rectangle bounds = new Rectangle();
 	// Line2D.Float bounds = new Line2D.Float();
@@ -47,13 +48,9 @@ public class MySquare implements DrawingObject {
 	 * @param g
 	 */
 	public void draw(Graphics g) {
-
 		Graphics2D g2d = (Graphics2D) g;
-
-//		g2d.setColor( ToolPanel.chooser.getColor());
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(getColor());
 		g2d.drawRect(originX, originY, sizeX, sizeY);
-
 		System.out.println("Redrawing square @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
 	}
@@ -100,6 +97,21 @@ public class MySquare implements DrawingObject {
 		b.setBounds(originX, originY, sizeX, sizeY);
 	}
 
+	/**
+     * Returns color of object.
+     */
+    public Color getColor() {
+    	return color;
+    }
+    
+    /**
+     * Sets color
+     * @param c
+     */
+    public void setColor(Color c) {
+    	color = c;
+    }
+	
 	/**
 	 * Returns true if the point p is in the bounding box for this object. Might
 	 * be used to select and/or move an object.

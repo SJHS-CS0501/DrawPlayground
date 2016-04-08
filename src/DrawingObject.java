@@ -13,12 +13,17 @@ public interface DrawingObject {
      */
     public void draw( Graphics g );
     
-//    /**
-//     * Called to set color of object.
-//     * @param c
-//     */
-//    public void setColor(Color c);
+    /**
+     * Called to set color of object.
+     * @param c
+     */
+    public void setColor(Color c);
     
+    /**
+     * Called to return color of object.
+     * @return color
+     */
+    public Color getColor();
     /**
      * Called to start drawing a new object.
      * @param p 

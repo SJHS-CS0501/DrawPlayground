@@ -109,6 +109,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 		add(theUnknown);
 		
 		chooser = new JColorChooser();
+		chooser.setColor(Color.BLACK);
 		colorChooser.add(chooser);
 		
 		add(colorChooser);

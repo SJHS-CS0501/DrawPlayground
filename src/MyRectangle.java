@@ -12,6 +12,7 @@ public class MyRectangle implements DrawingObject {
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
+    Color color;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
@@ -46,14 +47,9 @@ public class MyRectangle implements DrawingObject {
      * @param g 
      */
     public void draw( Graphics g ) {
-
         Graphics2D g2d = (Graphics2D)g;
-        
-//        g2d.setColor( ToolPanel.chooser.getColor());
-        g2d.setColor(Color.BLACK);
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
+        g2d.setColor(getColor());
         g2d.drawRect( originX, originY, sizeX, sizeY );
-        
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
@@ -98,6 +94,21 @@ public class MyRectangle implements DrawingObject {
      */
     public void setBounds( Rectangle b ) {
         b.setBounds( originX, originY, sizeX, sizeY );
+    }
+    
+    /**
+     * Returns color of object.
+     */
+    public Color getColor() {
+    	return color;
+    }
+    
+    /**
+     * Sets color
+     * @param c
+     */
+    public void setColor(Color c) {
+    	color = c;
     }
     
     /**

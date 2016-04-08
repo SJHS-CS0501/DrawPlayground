@@ -12,6 +12,7 @@ public class MyShape implements DrawingObject {
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
+    Color color;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
@@ -46,13 +47,9 @@ public class MyShape implements DrawingObject {
      * @param g 
      */
     public void draw( Graphics g ) {
-
         Graphics2D g2d = (Graphics2D)g;
-        
-//        g2d.setColor( ToolPanel.chooser.getColor());
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(getColor());
         drawShape(g, originX, originY, sizeX, sizeY );
-        
         System.out.println( "Redrawing shape @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
@@ -107,6 +104,21 @@ public class MyShape implements DrawingObject {
      */
     public boolean contains( Point p ) {
         return bounds.contains(p);
+    }
+    
+    /**
+     * Returns color of object.
+     */
+    public Color getColor() {
+    	return color;
+    }
+    
+    /**
+     * Sets color
+     * @param c
+     */
+    public void setColor(Color c) {
+    	color = c;
     }
     
     /**
