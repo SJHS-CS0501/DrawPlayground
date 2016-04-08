@@ -3,15 +3,14 @@ import java.awt.*;
 public class MyStar implements DrawingObject{
 
 	int points = 5;
-	double offset;
-    double angle;
+	double offset = Math.PI/points;
+    double angle = 2*Math.PI/points;
 	int[] xValues = new int[2 * points]; 
 	int[] yValues = new int[2 * points];
     int originX, originY, sizeX, sizeY;
    	Rectangle bounds = new Rectangle();
 	
 	public MyStar(){
-	//	lines = 0;
 		setBounds( bounds );
 	}
 	
@@ -59,12 +58,18 @@ public class MyStar implements DrawingObject{
 	@Override
 	public void drag(Point p) {
 	
+		sizeX = p.x - originX;
+		sizeY = p.y - originY;
+		
 		for( int i = 0, j = 0; j < xValues.length; i++, j += 2 ){
 			xValues[j] = (int)(originX + sizeX*Math.cos(angle*i));
 			yValues[j] = (int)(originY + sizeY*Math.sin(angle*i));
 			
-			xValues[j+2] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
+			xValues[j+1] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
+			yValues[j+1] = (int)(originY + (sizeY/2)*Math.sin(offset + angle*i));
 		}
+
+		setBounds( bounds );
 	}
 
 	@Override
