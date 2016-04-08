@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,8 +7,10 @@ import javax.swing.*;
  * @author woytek
  */
 public class JMenuFrame extends JFrame implements ActionListener {
-    
-    public JMenuFrame() {
+   
+	private static final long serialVersionUID = 1L;
+
+	public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
@@ -63,14 +64,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add( menuItem );
         
-        /*
         subMenu = new JMenu( "SubMenu" ); //title of submenu
         menuItem = new JMenuItem( "SubFoo" ); //item in submenu
         menuItem.setActionCommand( "MenuSubFoo" );
         menuItem.addActionListener( this );
         subMenu.add( menuItem );
         menu.add(subMenu);
-        */
         
         menuBar.add( menu );
         
