@@ -52,9 +52,9 @@ public class MyStar implements DrawingObject {
      */
     public void draw( Graphics g ) {
         Graphics2D g2d = (Graphics2D)g;
-        g2d.setColor(getColor());
+        g2d.setColor(getColor());        
+        g2d.setBackground(getColor());
         g2d.drawPolygon(xPoints, yPoints, xPoints.length);
-        
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
