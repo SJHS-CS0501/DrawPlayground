@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 public class MyStar implements DrawingObject{
 	
-	int points = 8;
+	int points = 5;
 	int lastX, lastY;
 	double offset = Math.PI/points;
 	double angle = 2*Math.PI/points;
@@ -78,12 +78,12 @@ public class MyStar implements DrawingObject{
         for(int i = 0, j = 0; j < xPoints.length; i++, j += 2) {
         
         //Outer points
-        xPoints[j] = (int)(originX+sizeX*Math.cos(angle*i));
-        xPoints[j] = (int)(originY+sizeY*Math.sin(angle*i));
+        xPoints[j] = (int)(originX + sizeX * Math.cos(angle * i));
+        yPoints[j] = (int)(originY + sizeY * Math.sin(angle * i));
         
         //Inner points
-        xPoints[j+1] = (int)(originX+(sizeX/2)*Math.cos(offset+angle*i));
-        xPoints[j+1] = (int)(originY+(sizeY/2)*Math.sin(offset+angle*i));
+        xPoints[j + 1] = (int)(originX + (sizeX/2) * Math.cos(offset + angle * i));
+        yPoints[j + 1] = (int)(originY + (sizeY/2) * Math.sin(offset + angle * i));
         }
         
         setBounds( bounds );

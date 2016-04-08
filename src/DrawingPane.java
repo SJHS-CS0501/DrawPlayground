@@ -5,11 +5,11 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	
+	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 	private static final long serialVersionUID = 1L;
 	public static String shape;
 	DrawingObject drawingObject;
 	static int sizeX, sizeY;
-	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -96,9 +96,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        int x = e.getX();
        int y = e.getY();
        
-      // if(drawingObject != null) {
+       if(drawingObject != null) {
     	   drawingObject.drag(e.getPoint());
-       //}
+       }
        
        repaint();
        System.out.println( "mouseDragged(" + x + "," + y + ")" );
@@ -108,7 +108,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseReleased(MouseEvent e) {
     	int x = e.getX();
         int y = e.getY();
-        //repaint();
+        repaint();
         drawingObject = null; //so it won't re-modify the old rectangle
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }
