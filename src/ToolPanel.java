@@ -17,19 +17,77 @@ public class ToolPanel extends JPanel implements ActionListener {
 	static String color;
 	JPanel shapePanel;
 	JPanel colorPanel;
+	
+	
+	
+	
+	/*
+	 * move:
+	 * 
+	 * interface class has method 'move'
+	 * 
+	 * first select object
+	 * 
+	 * contains method and bounds come into play
+	 * in the java rectangle class has method called contains..why bounding box we use is in the rectangles class
+	 * 
+	 * in mousepressed
+	 * - add additional logic
+	 * - switch{
+	 *  case ....:
+	 *  break
+	 *  case 'move':
+	 *  	select object (temporary object)
+	 *  
+	 *  	use that reference for the thing in the array list that we want to move
+	 *  	for loop...will iterate through and call contains an see if the point is contained in the shape
+	 *  	(overlapping: nonobvious...decide which way you want them to be selected..move last thing created..make for go back)
+	 *  	if(contains){
+	 * 		temp variable = arraylist.i;
+	 * 		break;
+	 *  	
+	 *  mousedragged
+	 *  - add logic in if statement to check if you're in move or create mode
+	 *  
+	 *  star bounding...call contains on polygon object
+	 *  but bounding rectangle is cool too
+	 *  
+	 *  line
+	 *  - reactangle does not work well
+	 *  - use formula to determine if point is on a line
+	 *  - have some threshold so it expands the points a little
+	 *  
+	 *  color
+	 *  - not too hard
+	 *  - set color, get color
+	 *  	- give yourself ability to set get available all the time
+	 */
+	
+	
+	
+	
 		
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
+      
         
         shapeButtons = new ButtonGroup();
-        colorButtons = new ButtonGroup();
+        //colorButtons = new ButtonGroup();
         shapePanel = new JPanel(new GridLayout(4,1));
         colorPanel = new JPanel(new GridLayout(8,1));
         
-        //shape buttons
+        /*
+        * shape buttons
+        *
+        * - create new button
+        * - set ACtionCommand
+        * - add to ActionListener
+        * - add that button to the the shape button group
+        * - also add that button to the panel 
+        */
         radioButton = new JRadioButton("Line");
 		radioButton.setActionCommand("Line");
 		radioButton.addActionListener(this);
@@ -118,13 +176,13 @@ public class ToolPanel extends JPanel implements ActionListener {
     	
     	switch(e.getActionCommand()){
     	case "Line":
-    		drawingPane.shape = (e.getActionCommand());
+    		DrawingPane.shape = (e.getActionCommand());
     		break;
     	case "Rectangle":
-    		drawingPane.shape = (e.getActionCommand());
+    		DrawingPane.shape = (e.getActionCommand());
     		break;
     	case "Circle":
-    		drawingPane.shape = (e.getActionCommand());
+    		DrawingPane.shape = (e.getActionCommand());
     		break;
     	case "Star":
     		DrawingPane.shape = (e.getActionCommand());

@@ -34,7 +34,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void actionPerformed( ActionEvent e ) {
         switch( e.getActionCommand() ) {
             default:
-                System.out.println( "You messed up if you're here" );
+                System.out.println( "No...bad place" );
                 System.exit(-1);
                 break;
         }
@@ -86,7 +86,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	shapeList.add(drawingObject);
         	break;
         default:
-        	System.out.print("Bad stuff");
+        	// will select top shape
+        	for(int i = shapeList.size(); i > 0; i--) {
+        		if(drawingObject.contains(e.getPoint())){
+        		drawingObject = shapeList.get(i);
+        		}
+        	}
         	break;
         }
     }

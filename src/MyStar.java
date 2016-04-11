@@ -8,10 +8,10 @@ public class MyStar implements DrawingObject{
 	
 	int points = 5;
 	int lastX, lastY;
-	double offset = Math.PI/points;
-	double angle = 2*Math.PI/points;
-	int[] xPoints = new int[2*points];
-	int[] yPoints = new int[2*points];
+	double offset = Math.PI / points; //offset the inner circle
+	double angle = 2 * Math.PI / points;
+	int[] xPoints = new int[2 * points]; // x points for star
+	int[] yPoints = new int[2 * points]; // y points for star
 	int sizeX, sizeY, originX, originY;
 	Rectangle bounds = new Rectangle();
 
@@ -39,7 +39,7 @@ public class MyStar implements DrawingObject{
     }
     
     /**
-     * This will let the user choose how many points their star is
+     * This will let the user choose how many points their star has
      */
     public void setNumPoints() {
     	
