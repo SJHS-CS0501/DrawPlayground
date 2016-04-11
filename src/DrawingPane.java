@@ -93,14 +93,27 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	}else if(ToolPanel.check == s) {
     		//int[] q = {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
     		//int[] w = {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
-    		obj = new MyStar();
+    		obj = new MyStar(Integer.parseInt(ToolPanel.po));
+    	}else if(ToolPanel.check == 0){
+    		for(int i = drob.size(); i>= 0; i--){
+    			if(drob.get(i).contains(e.getPoint())){
+    				obj = drob.get(i);
+    				break;
+    			}else{
+    				obj = null;
+    			}
+    		}
+    		
+    		
     	}
     	
-    	if(obj != null){
-    		//obj.draw(getGraphics());
-    		obj.start(e.getPoint());
-    		drob.add(obj);
-    	}
+    
+    			if(obj != null){
+    				//obj.draw(getGraphics());
+    				obj.start(e.getPoint());
+    				drob.add(obj);
+    			}
+    	
     	
 
         System.out.println( "mousePressed" );
@@ -116,7 +129,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        x = e.getX();
        y = e.getY();
        
-       if(obj!=null){
+       
+       	if(obj!=null){
     	   obj.drag(e.getPoint());
        }
        
