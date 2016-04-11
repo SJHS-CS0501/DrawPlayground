@@ -15,6 +15,28 @@ import javafx.scene.shape.Circle;
 
 public class MyRectangle implements DrawingObject {
 	
+	/*
+	 * Notes for moving
+	 * Write moved 
+	 * mouse pressed 
+	 * add button for moving things that DOES NOT DRAW OBJECT WHEN SCRREN IS PRESSED - check
+	 * move selects object or obj in this case, but of the specific one in the array list - kind of check
+	 * drag has to modified
+	 * released still works the same - check
+	 * have a for loop that iterates through all of the objects that checks to see if the object is contained within the bounds of the shape - check
+	 * set obj to null - check?
+	 * for and if contains - check
+	 * in if set obj to arraylist.get(counter variable) then break - check
+	 * then break for the case - check? maybe? Probably not
+	 * now mouse dragged:
+	 * still want to check if it's not null with if, but added another if
+	 * check to see if in move, obj.getPoint()
+	 * create formula to get the point on the line 
+	 * give lee way afterwards
+	 * use Java color
+	 * create new color array list
+	 * create get color and set color for java
+	 */
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use

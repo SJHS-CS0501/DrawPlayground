@@ -40,22 +40,29 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton star = new JRadioButton("Draw Star");
         star.setMnemonic(KeyEvent.VK_B);
         star.setActionCommand("Draw Star");
+        
+        JRadioButton move = new JRadioButton("Move Shape");
+        line.setMnemonic(KeyEvent.VK_B);
+        move.setActionCommand("Move Shape");
       
         ButtonGroup shapes = new ButtonGroup();
         shapes.add(square);
         shapes.add(line);
         shapes.add(circle);
         shapes.add(star);
+        shapes.add(move);
         
         add(square);
         add(line);
         add(circle);
         add(star);
+        add(move);
         
         square.addActionListener(this);
         line.addActionListener(this);
         circle.addActionListener(this);
         star.addActionListener(this);
+        move.addActionListener(this);
         
         this.setVisible( true );
         
@@ -78,6 +85,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         case("Draw Star"):
         	buttonSelected = 3;
         	break;
+        case("Move Shape"):
+        	buttonSelected = 4;
         default:
              System.out.println( "EVIL EVIL BAD PLACE" );
              System.exit(-1);

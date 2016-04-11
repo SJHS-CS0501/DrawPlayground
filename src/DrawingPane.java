@@ -87,17 +87,34 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	objList.add(obj);
         	obj.start(e.getPoint());
         	break;
+       
+        case(4):
+        	
+        	for(int ctr = objList.size(); ctr > 0; ctr--  ){
+        		if( contains(e.getPoint())){
+        			obj = objList.get(ctr);
+        			obj.drag(e.getPoint());
+        			break;
+        		}
+        		
+        	}
+        	break;
         }
        
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-       int x = e.getX();
+       if( obj != null){
+    	int x = e.getX();
        int y = e.getY();
        obj.drag(e.getPoint());
         System.out.println( "mouseDragged( " + x + ", " + y + " )" );
         repaint();
+       }
+       if(ToolPanel.buttonSelected == 4){
+    	   obj.drag(e.getPoint());
+       }
     }
 
     @Override
