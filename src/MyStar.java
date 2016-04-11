@@ -2,18 +2,21 @@ import java.awt.*;
 
 public class MyStar implements DrawingObject{
 
-	int points = 5;
-	double offset = Math.PI/points;
-    double angle = 2*Math.PI/points;
-	int[] xValues = new int[2 * points]; 
-	int[] yValues = new int[2 * points];
-    int originX, originY, sizeX, sizeY;
-   	Rectangle bounds = new Rectangle();
+	int points = 5; // number of points on the star
+	double offset = Math.PI/points; // to offset the inner points from the outer points so you don't get a sad shape
+    double angle = 2*Math.PI/points; // for all my angle and mathy needs
+	int[] xValues = new int[2 * points]; // for the x values (duh) 
+	int[] yValues = new int[2 * points]; // for the y values (also duh)
+    int originX, originY, sizeX, sizeY; // points for secret things
+   	Rectangle bounds = new Rectangle(); // BOUNDING RECTANGLE!!! for bounding the object
 	
+   	// setBounds constructor
 	public MyStar(){
 		setBounds( bounds );
 	}
 	
+	// also a constructor
+	// this one says where it made a star
 	public MyStar( int oX, int oY, int sX, int sY ){
 		sizeX = sX;
         sizeY = sY;
@@ -25,39 +28,29 @@ public class MyStar implements DrawingObject{
 	}
 	
 	
-	// use draw polygon
-	// use circle as bound, points on inner and outer circle for points on star
-	// math and stuff :'(
-	
-	
 	@Override
-	public void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
+	public void draw(Graphics g) { // actually draws the object
+		Graphics2D g2d = (Graphics2D)g; // making a new graphics
         
-        g2d.setColor( Color.BLACK );
-        g2d.drawPolygon( xValues, yValues, xValues.length );
-        
-        
-        // clipRect method? 
-        //need to change points so that they are not all set to 0 **Probably fixed! (for now anyway)
-        
+        g2d.setColor( Color.BLACK ); // setting color to black right now
+        g2d.drawPolygon( xValues, yValues, xValues.length ); // draw that polygon ( aka a spiff 5-pointed star)!!!       
         
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		
 	}
 
+	// the start point where the user clicks to make the shape
 	@Override
 	public void start(Point p) {
-
 		originX = p.x;
 	    originY = p.y;
 	    sizeX = p.x;
 	    sizeY = p.y;
 	}
 
+	// resizes the star (so neat^^)
 	@Override
 	public void drag(Point p) {
-	
 		sizeX = p.x - originX;
 		sizeY = p.y - originY;
 		
@@ -72,6 +65,7 @@ public class MyStar implements DrawingObject{
 		setBounds( bounds );
 	}
 
+	// for moving the star
 	@Override
 	public void move(Point p) {
 		originX = p.x;
@@ -80,10 +74,12 @@ public class MyStar implements DrawingObject{
 		
 	}
 
+	// setBounds is super important. Trust me.
 	public void setBounds( Rectangle bounds) {
 		  bounds.setBounds( originX, originY, sizeX, sizeY );
 	}
 
+	// contains method will be used for moving stuff later
 	@Override
 	public boolean contains(Point p) {
         return bounds.contains(p);

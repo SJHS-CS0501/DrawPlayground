@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class MyLine implements DrawingObject{
+public class MyLine implements DrawingObject{ // these all implement DrawingObject
 
     int sizeX, sizeY, originX, originY;
     int lastX, lastY;

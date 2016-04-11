@@ -1,5 +1,6 @@
 import java.awt.*;
 
+// this is the spiffest little interface implemented in every single shape (for the methods and such...it's still cool!)
 
 /**
  * Interface class for any drawable object.
