@@ -33,6 +33,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public static short choice;
 	public static boolean move = false;
 	public static boolean delete = false;
+	public static boolean fill = false;
 	private JButton button;
 	private JPanel shapes;
 	private JPanel theUnknown;
@@ -54,7 +55,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 		this.setBorder(BorderFactory.createEmptyBorder());
 
 		shapes = new JPanel();
-		shapes.setLayout(new GridLayout(2, 2));
+		shapes.setLayout(new GridLayout(6, 2));
 		shapes.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Shapes"));
 		
 		theUnknown = new JPanel();
@@ -73,9 +74,19 @@ public class ToolPanel extends JPanel implements ActionListener {
 		button.setActionCommand("rectangle");
 		button.addActionListener(this);
 		shapes.add(button);
+		
+		button = new JButton("Filled Rectangle");
+		button.setActionCommand("fillRectangle");
+		button.addActionListener(this);
+		shapes.add(button);
 
 		button = new JButton("Star");
 		button.setActionCommand("star");
+		button.addActionListener(this);
+		shapes.add(button);
+		
+		button = new JButton("Filled Star");
+		button.setActionCommand("filledStar");
 		button.addActionListener(this);
 		shapes.add(button);
 
@@ -83,9 +94,9 @@ public class ToolPanel extends JPanel implements ActionListener {
 		button.setActionCommand("circle");
 		button.addActionListener(this);
 		shapes.add(button);
-
-		button = new JButton("Line");
-		button.setActionCommand("line");
+		
+		button = new JButton("Fiiled Circle");
+		button.setActionCommand("filledCircle");
 		button.addActionListener(this);
 		shapes.add(button);
 		
@@ -94,8 +105,23 @@ public class ToolPanel extends JPanel implements ActionListener {
 		button.addActionListener(this);
 		shapes.add(button);
 		
+		button = new JButton("Filled Oval");
+		button.setActionCommand("filledOval");
+		button.addActionListener(this);
+		shapes.add(button);
+		
 		button = new JButton("Square");
 		button.setActionCommand("square");
+		button.addActionListener(this);
+		shapes.add(button);
+		
+		button = new JButton("Filled Square");
+		button.setActionCommand("filledSquare");
+		button.addActionListener(this);
+		shapes.add(button);
+		
+		button = new JButton("Line");
+		button.setActionCommand("line");
 		button.addActionListener(this);
 		shapes.add(button);
 
@@ -103,6 +129,11 @@ public class ToolPanel extends JPanel implements ActionListener {
 		
 		button = new JButton("The Polymorpher Button");
 		button.setActionCommand("unknownShape");
+		button.addActionListener(this);
+		theUnknown.add(button);
+		
+		button = new JButton("The Polymorpher Button (Filled)");
+		button.setActionCommand("filledUnknownShape");
 		button.addActionListener(this);
 		theUnknown.add(button);
 		
@@ -138,36 +169,43 @@ public class ToolPanel extends JPanel implements ActionListener {
 		switch (e.getActionCommand()) {
 			case "rectangle":
 				choice = 0;
+				fill = false;
 				choice = one;
 				break;
 				
 			case "star":
 				choice = 0;
+				fill = false;
 				choice = two;
 				break;
 				
 			case "circle":
 				choice = 0;
+				fill = false;
 				choice = three;
 				break;
 				
 			case "line":
 				choice = 0;
+				fill = false;
 				choice = four;
 				break;
 				
 			case "oval":
 				choice = 0;
+				fill = false;
 				choice = five;
 				break;
 				
 			case "square":
 				choice = 0;
+				fill = false;
 				choice = six;
 				break;
 				
 			case "move":
 				choice = 0;
+				
 				choice = seven;
 				break;
 				
@@ -178,6 +216,43 @@ public class ToolPanel extends JPanel implements ActionListener {
 				
 			case "unknownShape":
 				choice = 0;
+				fill = false;
+				choice = nine;
+				break;
+				
+			case "filledRectangle":
+				choice = 0;
+				fill = true;
+				choice = one;
+				break;
+				
+			case "filledStar":
+				choice = 0;
+				fill = true;
+				choice = two;
+				break;
+				
+			case "filledCircle":
+				choice = 0;
+				fill = true;
+				choice = three;
+				break;
+				
+			case "filledOval":
+				choice = 0;
+				fill = true;
+				choice = five;
+				break;
+				
+			case "filledSquare":
+				choice = 0;
+				fill = true;
+				choice = six;
+				break;
+				
+			case "filledUnknownShape":
+				choice = 0;
+				fill = true;
 				choice = nine;
 				break;
 

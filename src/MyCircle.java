@@ -49,6 +49,9 @@ public class MyCircle implements DrawingObject {
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(getColor());
+		if(ToolPanel.fill) {
+        	g2d.fillOval(originX, originY, sizeX, sizeY);
+        }
 		g2d.drawOval(originX, originY, sizeX, sizeY);
 		System.out.println("Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );

@@ -49,7 +49,9 @@ public class MyOval implements DrawingObject {
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(getColor());
-		g2d.fillOval(originX, originY, sizeX, sizeY);
+		if(ToolPanel.fill) {
+        	g2d.fillOval(originX, originY, sizeX, sizeY);
+        }
 		g2d.drawOval(originX, originY, sizeX, sizeY);
 		System.out.println("Redrawing oval @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );

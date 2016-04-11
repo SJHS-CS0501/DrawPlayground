@@ -1,3 +1,4 @@
+
 /**
  * This class is designed to determine where the
  * mouse was pressed within a drawing pane and then
@@ -17,8 +18,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	private boolean draw = false;
 
 	/**
-	 * Constructor for the class. Adds action listeners
-	 * and the actual drawing pane is created.
+	 * Constructor for the class. Adds action listeners and the actual drawing
+	 * pane is created.
 	 */
 	public DrawingPane() {
 		super(); // always call super() in an extended/derived class!
@@ -35,10 +36,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		addMouseMotionListener(this);
 
 	}
-	
+
 	/**
-	 * Method will repaint the pane every time a
-	 * drawing object is created or modified.
+	 * Method will repaint the pane every time a drawing object is created or
+	 * modified.
+	 * 
 	 * @param g
 	 */
 	public void paintComponent(Graphics g) {
@@ -64,6 +66,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	/**
 	 * Detects mouse clicks.
+	 * 
 	 * @param e
 	 */
 	@Override
@@ -73,6 +76,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	/**
 	 * Detects mouse presses. Also determines which shape is going to be drawn
 	 * and then creates a object based on that shape.
+	 * 
 	 * @param e
 	 */
 	@Override
@@ -129,15 +133,23 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
-			
+
 		case 7:
 			System.out.println("move");
+			for (int i = objectList.size(); i <= objectList.size(); i--) {
+				if (contains(e.getPoint())) {
+					obj = objectList.get(i);
+					System.out.println("Coconut");
+					break;
+				}
+			}
+			obj.move(e.getPoint());
 			break;
-			
+
 		case 8:
 			System.out.println("delete");
 			break;
-			
+
 		case 9:
 			System.out.println("unknown shape");
 			obj = new MyShape();
@@ -154,8 +166,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	}
 
 	/**
-	 * Detects mouse drags and repaints screen. Also
-	 * drags the object to be resized.
+	 * Detects mouse drags and repaints screen. Also drags the object to be
+	 * resized.
+	 * 
 	 * @param e
 	 */
 	@Override
@@ -166,16 +179,19 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	/**
 	 * Detects mouse releases. Also repaints pane.
+	 * 
 	 * @param e
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		System.out.println("mouseReleased()");
 		repaint();
+		obj = null;
 	}
 
 	/**
 	 * Detects mouse entered.
+	 * 
 	 * @param e
 	 */
 	@Override
@@ -184,6 +200,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	/**
 	 * Detects mouse exited.
+	 * 
 	 * @param e
 	 */
 	@Override
@@ -192,6 +209,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	/**
 	 * Detects mouse movements.
+	 * 
 	 * @param e
 	 */
 	@Override

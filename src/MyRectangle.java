@@ -49,8 +49,9 @@ public class MyRectangle implements DrawingObject {
     public void draw( Graphics g ) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setColor(getColor());
-        if(filled)
-        g2d.fillRect(originX, originY, sizeX, sizeY);
+        if(ToolPanel.fill) {
+        	g2d.fillRect(originX, originY, sizeX, sizeY);
+        }
         g2d.drawRect( originX, originY, sizeX, sizeY );
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
