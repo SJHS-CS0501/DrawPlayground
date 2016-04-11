@@ -80,4 +80,17 @@ public class MyCircle implements DrawingObject {
         return bounds.contains(p);
     }
     
+    /**
+     * Called to set the color of a shape
+     */
+    public void setColor() {
+    	
+    }
+    
+    /**
+     * Called to get the color of a shape
+     */
+    public void getColor() {
+    	
+    }
 }

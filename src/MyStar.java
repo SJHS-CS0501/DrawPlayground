@@ -108,4 +108,18 @@ public class MyStar implements DrawingObject{
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+    
+    /**
+     * Called to set the color of a shape
+     */
+    public void setColor() {
+    	
+    }
+    
+    /**
+     * Called to get the color of a shape
+     */
+    public void getColor() {
+    	
+    }
 }
