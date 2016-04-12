@@ -85,13 +85,17 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	drawingObject.start(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
-        default:
+        case "Move shape":
         	// will select top shape
         	for(int i = shapeList.size(); i > 0; i--) {
         		if(drawingObject.contains(e.getPoint())){
         		drawingObject = shapeList.get(i);
         		}
         	}
+        	break;
+        default:
+        	System.out.print( "Bad" );
+        	System.exit(-1);
         	break;
         }
     }
@@ -103,6 +107,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        
        if(drawingObject != null) {
     	   drawingObject.drag(e.getPoint());
+       } else {
+    	   drawingObject.move(e.getPoint());
        }
        
        repaint();

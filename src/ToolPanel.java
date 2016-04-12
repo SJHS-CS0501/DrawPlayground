@@ -18,9 +18,6 @@ public class ToolPanel extends JPanel implements ActionListener {
 	JPanel shapePanel;
 	JPanel colorPanel;
 	
-	
-	
-	
 	/*
 	 * move:
 	 * 
@@ -63,10 +60,6 @@ public class ToolPanel extends JPanel implements ActionListener {
 	 *  	- give yourself ability to set get available all the time
 	 */
 	
-	
-	
-	
-		
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
@@ -112,7 +105,11 @@ public class ToolPanel extends JPanel implements ActionListener {
 		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
-		//shapePanel.add(new JSeparator());
+		radioButton = new JRadioButton("Move shape");
+		radioButton.setActionCommand("Move shape");
+		radioButton.addActionListener(this);
+		shapeButtons.add(radioButton);
+		shapePanel.add(radioButton);
 		
 		//color buttons
 		
