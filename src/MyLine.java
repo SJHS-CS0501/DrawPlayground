@@ -64,6 +64,7 @@ public class MyLine implements DrawingObject{
 	@Override
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
+		b.setBounds( originX, originY, sizeX, sizeY );
 		
 	}
 

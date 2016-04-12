@@ -96,7 +96,7 @@ public class MyStar implements DrawingObject{
 	@Override
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
-		
+		b.setBounds( originX, originY, sizeX, sizeY );
 	}
 
 	@Override

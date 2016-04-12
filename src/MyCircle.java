@@ -76,6 +76,7 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
+		b.setBounds( originX, originY, sizeX, sizeY );
 		
 	}
 

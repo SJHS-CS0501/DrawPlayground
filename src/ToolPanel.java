@@ -55,6 +55,24 @@ public class ToolPanel extends JPanel implements ActionListener {
         add(button);
         group.add(button);
         
+        button = new JRadioButton("Move");
+        button.setActionCommand("Move");
+        button.addActionListener(this);
+        add(button);
+        group.add(button);
+        
+        button = new JRadioButton("Programming is FUN!!");
+        add(button);
+        group.add(button);
+        
+        button = new JRadioButton("Yay Java!");
+        add(button);
+        group.add(button);
+        
+        button = new JRadioButton("Do nothing!");
+        add(button);
+        group.add(button);
+        
     
         this.setVisible( true );
     }
@@ -74,6 +92,9 @@ public class ToolPanel extends JPanel implements ActionListener {
         	break;
         case "Star":
         	selection = 4;
+        	break;
+        case "Move":
+        	selection = 5;
         	break;
             default:
                 System.out.println( "You just did absolutely NOTHING!! Congratulations!" );
