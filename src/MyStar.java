@@ -153,7 +153,8 @@ public class MyStar implements DrawingObject{
      * @param p
      * @return 
      */
-    public boolean contains( Point p ) {
+    public boolean contains( Point p, Rectangle b ) {
+    	b.contains(p);
         return bounds.contains(p);
     }
 }

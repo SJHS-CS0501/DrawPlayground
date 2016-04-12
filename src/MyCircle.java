@@ -107,6 +107,4 @@ public class MyCircle implements DrawingObject{
 	/**
 	 * @param args
 	 */
-
-
 }
