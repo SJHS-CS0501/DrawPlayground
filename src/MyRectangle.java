@@ -97,8 +97,8 @@ public class MyRectangle implements DrawingObject {
      * @param p 
      */
     public void move( Point p ) {
-        originX = p.x;
-        originY = p.y;
+        originX = p.x ;
+        originY = p.y ;
         setBounds( bounds );
     }
     
@@ -120,7 +120,7 @@ public class MyRectangle implements DrawingObject {
      * @return 
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+    	return bounds.contains(p);
     }
 
 	

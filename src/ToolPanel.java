@@ -60,7 +60,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         bg.add( Circle );
         bg.add( Line );
         bg.add(Star);
-        //bg.add(NoOperation);
+        bg.add(NoOperation);
         
         JPanel unitSelectionPanel = new JPanel();
         unitSelectionPanel.setLayout( new GridLayout( 1,0 ) );
@@ -69,7 +69,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
         unitSelectionPanel.add( points );
-       // unitSelectionPanel.add(NoOperation);
+        unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
         

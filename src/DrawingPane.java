@@ -18,6 +18,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	int y;
 	int a;
 	int b;
+	int check;
 	DrawingObject obj;
 	private ArrayList<DrawingObject> drob;
 	
@@ -28,6 +29,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     
     public DrawingPane() {
         super(); 
+        
         
         drob = new ArrayList<DrawingObject>();
         
@@ -78,24 +80,24 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-
+    	check = ToolPanel.check;
     	x = e.getX();
     	y = e.getY();
     	//a
     	//b
     	
-    	if(ToolPanel.check == rec){
+    	if(check == rec){
     		obj = new MyRectangle();
-    	}else if(ToolPanel.check == c){
+    	}else if(check == c){
     		obj = new MyCircle();
-    	}else if(ToolPanel.check == l) {
+    	}else if(check == l) {
     		obj = new MyLine(x,y,x,y);
-    	}else if(ToolPanel.check == s) {
+    	}else if(check == s) {
     		//int[] q = {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
     		//int[] w = {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
     		obj = new MyStar(Integer.parseInt(ToolPanel.po));
-    	}else if(ToolPanel.check == 0){
-    		for(int i = drob.size(); i>= 0; i--){
+    	}else if(check == 0){
+    		for(int i = drob.size()-1; i>= 0; i--){
     			if(drob.get(i).contains(e.getPoint())){
     				obj = drob.get(i);
     				break;
@@ -129,11 +131,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        x = e.getX();
        y = e.getY();
        
-       
-       	if(obj!=null){
-    	   obj.drag(e.getPoint());
+       if(check == 0){
+    	   System.out.println("It got here line 135");
+    	   obj.move(e.getPoint());
+       }else{
+       		if(obj!=null){
+       			obj.drag(e.getPoint());
+       		}
        }
-       
        System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
         //paintComponent(getGraphics());
        

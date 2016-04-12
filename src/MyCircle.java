@@ -97,7 +97,7 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		 return false;
+		return bounds.contains(p);
 	}
 
 

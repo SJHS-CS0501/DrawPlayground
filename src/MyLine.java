@@ -93,7 +93,7 @@ public class MyLine implements DrawingObject {
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		return false;
+		return bounds.contains(p);
 	}
 
 }
