@@ -19,7 +19,7 @@ public class MyLine implements DrawingObject{ // these all implement DrawingObje
 	    g2d.setColor( Color.BLACK );
 	    g2d.drawLine( originX, originY, sizeX, sizeY );
 	        
-	    System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);	
+	    System.out.println( "Redrawing line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);	
 	}
 
 	@Override

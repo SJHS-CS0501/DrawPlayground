@@ -114,6 +114,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		repaint();
     		objectList.add(object);
     		break;
+    	case "move":
+    		
+    		// move
+    		// select obj
+    		break;
     		default:
     			System.out.println( "NO HAPPINESS HERE" );
     	}

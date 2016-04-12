@@ -26,7 +26,7 @@ public class MyString implements DrawingObject{
 		 Graphics2D g2d = (Graphics2D)g;
 	        
 	     g2d.setColor( Color.BLACK );
-	     g2d.drawString( string, originX, originY );
+	     g2d.drawString( "Type here", originX, originY );
 	        
 	     System.out.println( "Redrawing String @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	        //this.setSize( this.getPreferredSize() );
@@ -39,6 +39,7 @@ public class MyString implements DrawingObject{
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
+        //string.equals( "type here" );
 		
 	}
 
@@ -69,4 +70,5 @@ public class MyString implements DrawingObject{
 
 		return bounds.contains(p);
 	}
+	
 }

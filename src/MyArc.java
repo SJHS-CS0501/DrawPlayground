@@ -13,6 +13,16 @@ public class MyArc implements DrawingObject{
     	sizeX = sizeY = originX = originY = width = length = 0;
     	setBounds( bounds );
     }
+    
+    MyArc( int oX, int oY, int sX, int sY){
+    	sizeX = sX;
+        sizeY = sY;
+        originX = oX;
+        originY = oY;
+        setBounds( bounds );
+        
+        System.out.println( "Made arc: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+    }
 	
 	@Override
 	public void draw(Graphics g) {
@@ -20,6 +30,8 @@ public class MyArc implements DrawingObject{
 		Graphics2D g2d = (Graphics2D)g;
         g2d.setColor( Color.BLACK );
 		g.drawArc( sizeX, sizeY, originX, originY, width, length );
+		
+		 System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
 
 	@Override
