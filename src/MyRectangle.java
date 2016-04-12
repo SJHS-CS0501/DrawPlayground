@@ -13,16 +13,18 @@ public class MyRectangle implements DrawingObject {
     // future use
     int lastX, lastY;
     Color color;
+    boolean fill;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyRectangle(boolean b) {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        fill = b;
     }
     
     /**
@@ -49,7 +51,7 @@ public class MyRectangle implements DrawingObject {
     public void draw( Graphics g ) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setColor(getColor());
-        if(ToolPanel.fill) {
+        if(fill) {
         	g2d.fillRect(originX, originY, sizeX, sizeY);
         }
         g2d.drawRect( originX, originY, sizeX, sizeY );
@@ -85,8 +87,11 @@ public class MyRectangle implements DrawingObject {
      * @param p 
      */
     public void move( Point p ) {
-        originX = p.x;
-        originY = p.y;
+//        originX = (int) (p.getX() - originX) + (int) p.getX();
+//        originY = (int) (p.getY() - originY) + (int) p.getY();
+    	originX = p.x;
+    	originY = p.y;
+    	
         setBounds( bounds );
     }
     

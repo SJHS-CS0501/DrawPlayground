@@ -14,6 +14,7 @@ public class MyStar implements DrawingObject {
     public static int points;
     double angle;
     Color color;
+    boolean fill;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     private int[] xPoints; private int[] yPoints;
@@ -21,11 +22,12 @@ public class MyStar implements DrawingObject {
     /**
      * Create a new MyStar, all params initialized to zero.
      */
-    public MyStar() {
+    public MyStar(boolean b) {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setPoints(5);
         setBounds( bounds );
+        fill = b;
     }
     
     /**
@@ -53,10 +55,12 @@ public class MyStar implements DrawingObject {
     public void draw( Graphics g ) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setColor(getColor());      
-        if(ToolPanel.fill) {
-        	g2d.setBackground(getColor());
+        if(fill) {
+        	g2d.fillPolygon(xPoints, yPoints, xPoints.length);
         }
-        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
+        else{
+        	g2d.drawPolygon(xPoints, yPoints, xPoints.length);
+        }
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }

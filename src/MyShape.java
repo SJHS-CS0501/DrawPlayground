@@ -13,21 +13,18 @@ public class MyShape implements DrawingObject {
 	// future use
 	int lastX, lastY;
 	Color color;
-	boolean filled;
+	boolean fill;
 	// bounding box (needed for move)
 	Rectangle bounds = new Rectangle();
 
 	/**
 	 * Create a new MyShape, all params initialized to zero.
 	 */
-	public MyShape() {
+	public MyShape(boolean b) {
 		// NOP
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
-	}
-	
-	public MyShape(boolean filling) {
-		filled = filling;
+		fill = b;
 	}
 
 	/**
@@ -149,7 +146,7 @@ public class MyShape implements DrawingObject {
 		int y[] = { oy, (oy - hy), oy + hx, (oy - hy), oy };
 		int five = 5;
 		g.drawPolygon(x, y, five);
-		if(ToolPanel.fill) {
+		if(fill) {
 			g.fillPolygon(x, y, five);
 		}
 

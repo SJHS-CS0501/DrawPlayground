@@ -14,6 +14,7 @@ public class MyCircle implements DrawingObject {
 	// future use
 	int lastX, lastY;
 	Color color;
+	boolean fill;
 	// bounding box (needed for move)
 	Rectangle bounds = new Rectangle();
 	// Line2D.Float bounds = new Line2D.Float();
@@ -21,10 +22,11 @@ public class MyCircle implements DrawingObject {
 	/**
 	 * Create a new MyCircle, all params initialized to zero.
 	 */
-	public MyCircle() {
+	public MyCircle(boolean b) {
 		// NOP
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
+		fill = b;
 	}
 
 	/**
@@ -49,7 +51,7 @@ public class MyCircle implements DrawingObject {
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(getColor());
-		if(ToolPanel.fill) {
+		if(fill) {
         	g2d.fillOval(originX, originY, sizeX, sizeY);
         }
 		g2d.drawOval(originX, originY, sizeX, sizeY);

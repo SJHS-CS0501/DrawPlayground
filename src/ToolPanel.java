@@ -30,10 +30,17 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public final short seven = 7;
 	public final short eight = 8;
 	public final short nine = 9;
+	public final short ten = 10;
+	public final short eleven = 11;
+	public final short tweleve = 12;
+	public final short thirteen = 13;
+	public final short fourteen = 14;
+	public final short fifteen = 15;
+	public final short sixteen = 16;
+	public final short seventeen = 17;
 	public static short choice;
 	public static boolean move = false;
 	public static boolean delete = false;
-	public static boolean fill = false;
 	private JButton button;
 	private JPanel shapes;
 	private JPanel theUnknown;
@@ -76,7 +83,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 		shapes.add(button);
 		
 		button = new JButton("Filled Rectangle");
-		button.setActionCommand("fillRectangle");
+		button.setActionCommand("filledRectangle");
 		button.addActionListener(this);
 		shapes.add(button);
 
@@ -169,43 +176,36 @@ public class ToolPanel extends JPanel implements ActionListener {
 		switch (e.getActionCommand()) {
 			case "rectangle":
 				choice = 0;
-				fill = false;
 				choice = one;
 				break;
 				
 			case "star":
 				choice = 0;
-				fill = false;
 				choice = two;
 				break;
 				
 			case "circle":
 				choice = 0;
-				fill = false;
 				choice = three;
 				break;
 				
 			case "line":
 				choice = 0;
-				fill = false;
 				choice = four;
 				break;
 				
 			case "oval":
 				choice = 0;
-				fill = false;
 				choice = five;
 				break;
 				
 			case "square":
 				choice = 0;
-				fill = false;
 				choice = six;
 				break;
 				
 			case "move":
 				choice = 0;
-				
 				choice = seven;
 				break;
 				
@@ -216,44 +216,37 @@ public class ToolPanel extends JPanel implements ActionListener {
 				
 			case "unknownShape":
 				choice = 0;
-				fill = false;
 				choice = nine;
 				break;
 				
 			case "filledRectangle":
 				choice = 0;
-				fill = true;
-				choice = one;
+				choice = ten;
 				break;
 				
 			case "filledStar":
 				choice = 0;
-				fill = true;
-				choice = two;
+				choice = eleven;
 				break;
 				
 			case "filledCircle":
 				choice = 0;
-				fill = true;
-				choice = three;
+				choice = tweleve;
 				break;
 				
 			case "filledOval":
 				choice = 0;
-				fill = true;
-				choice = five;
+				choice = thirteen;
 				break;
 				
 			case "filledSquare":
 				choice = 0;
-				fill = true;
-				choice = six;
+				choice = fourteen;
 				break;
 				
 			case "filledUnknownShape":
 				choice = 0;
-				fill = true;
-				choice = nine;
+				choice = fifteen;
 				break;
 
 			default:
