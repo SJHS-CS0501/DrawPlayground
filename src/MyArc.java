@@ -3,14 +3,14 @@ import java.awt.*;
 public class MyArc implements DrawingObject{
 
 	// critical vars for a rectangle
-    int sizeX, sizeY, originX, originY, width, length;
+    int sizeX, sizeY, originX, originY, startAngle, arcAngle;
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
 	
     MyArc(){
-    	sizeX = sizeY = originX = originY = width = length = 0;
+    	sizeX = sizeY = originX = originY = startAngle = arcAngle = 0;
     	setBounds( bounds );
     }
     
@@ -24,12 +24,16 @@ public class MyArc implements DrawingObject{
         System.out.println( "Made arc: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
 	
+    /**
+     * The arc is drawn backwards from the end point (where the user clicks) to the start point (the point at the edge of the drawing pane
+     * that is horizontal to the end point)
+     */
 	@Override
 	public void draw(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
         g2d.setColor( Color.BLACK );
-		g.drawArc( sizeX, sizeY, originX, originY, width, length );
+		g.drawArc( sizeX, sizeY, originX, originY * 2, startAngle, arcAngle );
 		
 		System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
@@ -40,6 +44,8 @@ public class MyArc implements DrawingObject{
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
+        startAngle = 0;
+        arcAngle = 180;
 	}
 
 	@Override
@@ -47,6 +53,9 @@ public class MyArc implements DrawingObject{
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
         setBounds( bounds );
+        
+        
+        // for cool dragging stuff, make origin start point and calculate angle to point from start
 		
 	}
 

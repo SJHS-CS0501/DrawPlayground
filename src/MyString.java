@@ -1,10 +1,16 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
+//import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
+
+
+// jptiondialogue for text, place it
 
 public class MyString implements DrawingObject, KeyListener{
 	
+	JOptionPane words;
 	String string;
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
@@ -36,18 +42,15 @@ public class MyString implements DrawingObject, KeyListener{
 
 	@Override
 	public void start(Point p) {
-		
 		originX = p.x;
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
-        //string.equals( "type here" );
-		
+  
 	}
 
 	@Override
-	public void drag(Point p) {
-		
+	public void drag(Point p) {	
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
         setBounds( bounds );
@@ -55,7 +58,6 @@ public class MyString implements DrawingObject, KeyListener{
 
 	@Override
 	public void move(Point p) {
-		
 		originX = p.x;
         originY = p.y;
         setBounds( bounds );
@@ -63,7 +65,6 @@ public class MyString implements DrawingObject, KeyListener{
 
 	@Override
 	public void setBounds(Rectangle b) {
-
 		b.setBounds( originX, originY, sizeX, sizeY );
 	}
 
@@ -72,7 +73,7 @@ public class MyString implements DrawingObject, KeyListener{
 
 		return bounds.contains(p);
 	}
-
+	
 	// I don't think this needs any code since I'm not setting this up with any fancy letters
 	@Override
 	public void keyPressed(KeyEvent arg0) {
@@ -86,13 +87,16 @@ public class MyString implements DrawingObject, KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent k) {
-		displayInfo(k, "");
+		//displayInfo(k, "");
 	}
 
-	private void displayInfo(KeyEvent k, String string) {
-		
-		
-	}
+	
+	
+	//private void displayInfo(KeyEvent k, String string) {	
+	//}
+	
+	
+	
 	
 	// needed to fire keyboard events
 	public boolean isFocusable( boolean f ){
