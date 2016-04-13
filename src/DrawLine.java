@@ -73,9 +73,21 @@ public class DrawLine implements DrawingObject {
         b.setBounds( originX, originY, sizeX, sizeY );
     }
 
-	@Override
+	public int distance( Point a, Point b){
+		
+		Math.sqrt(((a.x - b.x)*(a.x - b.x) + ((a.y - b.y)*(a.y - b.y))));
+		
+		return lastX;
+		
+	}
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		if (distance( , p ) + distance( p ,  ) == distance( , )){
+			 return true; // C is on the line.
+		}
+		   
+		return false;    // C is not on the line.
+		
 	}
 }
