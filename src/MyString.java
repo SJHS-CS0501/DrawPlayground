@@ -1,7 +1,9 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
-public class MyString implements DrawingObject{
+public class MyString implements DrawingObject, KeyListener{
 	
 	String string;
 	int originX, originY, sizeX, sizeY;
@@ -69,6 +71,24 @@ public class MyString implements DrawingObject{
 	public boolean contains(Point p) {
 
 		return bounds.contains(p);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
