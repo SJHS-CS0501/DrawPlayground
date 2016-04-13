@@ -31,7 +31,7 @@ public class MyArc implements DrawingObject{
         g2d.setColor( Color.BLACK );
 		g.drawArc( sizeX, sizeY, originX, originY, width, length );
 		
-		 System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+		System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
 
 	@Override
