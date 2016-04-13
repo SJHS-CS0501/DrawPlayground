@@ -73,22 +73,30 @@ public class MyString implements DrawingObject, KeyListener{
 		return bounds.contains(p);
 	}
 
+	// I don't think this needs any code since I'm not setting this up with any fancy letters
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	// same here. These are part of the interface though.
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	
 	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyTyped(KeyEvent k) {
+		displayInfo(k, "");
+	}
+
+	private void displayInfo(KeyEvent k, String string) {
 		
+		
+	}
+	
+	// needed to fire keyboard events
+	public boolean isFocusable( boolean f ){
+		return f;
 	}
 	
 }
