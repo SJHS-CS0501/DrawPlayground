@@ -107,7 +107,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
  	   int y = e.getY();
        if(object != null) {
     	   if(ToolPanel.selection == 5) {
-    		   
         	   object.move(e.getPoint());
         	   System.out.println("Moving");
            } else {

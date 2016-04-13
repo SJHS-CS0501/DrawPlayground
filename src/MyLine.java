@@ -67,10 +67,17 @@ public class MyLine implements DrawingObject{
 		b.setBounds( originX, originY, sizeX, sizeY );
 		
 	}
+	
+	public int distance(Point a, Point b) {
+		Math.sqrt(((a.x - b.x) * (a.x - b.x)) - ((a.y - b.y) * (a.y - b.y)));
+		
+		return lastX;
+	}
 
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
+		
 		return bounds.contains(p);
 	}
 
