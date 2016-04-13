@@ -89,8 +89,7 @@ public class MyShape implements DrawingObject {
 	 * @param p
 	 */
 	public void move(Point p) {
-		originX = p.x;
-		originY = p.y;
+		movePolygon(p);
 		setBounds(bounds);
 	}
 
