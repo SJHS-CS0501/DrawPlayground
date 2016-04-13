@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 import javafx.scene.shape.Circle;
@@ -25,6 +26,7 @@ public class MyStar implements DrawingObject {
     // bounding box (needed for move)
     int points;
     Rectangle bounds = new Rectangle();
+    Polygon star;
    
     
     public MyStar(int p){
@@ -51,6 +53,7 @@ public class MyStar implements DrawingObject {
 	        g2d.setColor( Color.BLACK );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
+	        star = new Polygon(xPoints, yPoints, xPoints.length);
 	        
 	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 
@@ -132,7 +135,7 @@ public class MyStar implements DrawingObject {
 			
 			xPoints[j] = (int)(originX + sizeX * (Math.cos((angle)*(i))));// * //Math.cos(l)) ;
 			yPoints[j] = (int)(originY + sizeY * (Math.sin((angle)*(i))));//* Math.sin(l));
-			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+(angle*i))));//(Math.cos(Math.PI/points)+angle;
+			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+(angle)*(i))));//(Math.cos(Math.PI/points)+angle;
 			yPoints[j+1] = (int)(originY+ (sizeY/2) * (Math.sin(offset+(angle*i))));
 		}
 			
@@ -145,8 +148,11 @@ public class MyStar implements DrawingObject {
 		int x = p.x;
 		int y = p.y;
 		
-		xPoints = new int[] {x,(x+12),(x+54),(x+18),(x+28),(x),(x-28),(x-18),(x-54),(x-12)};
-		yPoints = new int[]{(y),(y+36),(y+36),(y+54),(y+96),(y+72),(y+96),(y+54),(y+36),(y+36) };
+		
+		
+		double angle = 2*Math.PI/points;
+		double offset = Math.PI/points;
+		
 		
 	}
 
@@ -161,11 +167,8 @@ public class MyStar implements DrawingObject {
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		if(this.contains(p)){
-			return true;
-		}
+		return star.contains(p);
 		
-		return false;
 	}
 
 }

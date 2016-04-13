@@ -99,6 +99,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	}else if(check == 0){
     		for(int i = drob.size()-1; i>= 0; i--){
     			if(drob.get(i).contains(e.getPoint())){
+    				System.out.println("star listen to me");
     				obj = drob.get(i);
     				break;
     			}else{
@@ -131,13 +132,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        x = e.getX();
        y = e.getY();
        
-       if(check == 0){
-    	   System.out.println("It got here line 135");
-    	   obj.move(e.getPoint());
-       }else{
-       		if(obj!=null){
+       if(obj!=null){
+    	   if(check == 0){
+    		   System.out.println("It got here line 135");
+    		   obj.move(e.getPoint());
+    	   }else{
+       		
        			obj.drag(e.getPoint());
        		}
+       
        }
        System.out.println( "mouseDragged " + "(" +x + " " +y+ ")"  );
         //paintComponent(getGraphics());

@@ -19,7 +19,7 @@ public class MyCircle implements DrawingObject{
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
-    Rectangle bounds  = new Rectangle(5, 5, 4, 4);
+    Rectangle bounds  = new Rectangle();
    
     //Graphics g;
     
@@ -77,7 +77,7 @@ public class MyCircle implements DrawingObject{
 		// TODO Auto-generated method stub
 		 widthX = p.x - originX;
 	     heightY = p.y  - originY;
-	    // setBounds( bounds );
+	     setBounds( bounds );
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
-		b.setBounds( originX, originY, widthX, heightY );
+		b.setBounds( originX-5, originY-5, widthX-5, heightY-5 );
 	}
 
 	@Override
