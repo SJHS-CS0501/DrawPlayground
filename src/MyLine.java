@@ -8,16 +8,16 @@ public class MyLine implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	
-	Rectangle bounds = new Rectangle();
+	Rectangle boundingBox = new Rectangle();
 
     public MyLine() {
      
         sizeX = sizeY = originX = originY = 0;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     /**
-     * Bounds for rectangle surrounding circle
+     * Bounds for rectangle surrounding line
      * @param oX
      * @param oY
      * @param sX
@@ -28,7 +28,7 @@ public class MyLine implements DrawingObject {
         sizeY = sY;
         originX = oX;
         originY = oY;
-        setBounds( bounds );
+        setBounds( boundingBox );
         
         System.out.println( "Made Line: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
@@ -56,21 +56,21 @@ public class MyLine implements DrawingObject {
     }
     
     /**
-     * When user selects and moves circle
+     * When user selects and moves line
      */
     public void drag( Point p ) {
         sizeX = p.x;
         sizeY = p.y;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     /**
-     * Translation of circle
+     * Translation of line
      */
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
-        setBounds( bounds );
+        setBounds( boundingBox );
     }
     
     public void setBounds( Rectangle b ) {
@@ -81,7 +81,7 @@ public class MyLine implements DrawingObject {
      * If point is contained then it will be selected
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+        return boundingBox.contains(p);
     }
     
     /**

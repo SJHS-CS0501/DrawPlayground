@@ -10,6 +10,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public static String shape;
 	DrawingObject drawingObject;
 	static int sizeX, sizeY;
+	boolean yes;
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -87,9 +88,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	break;
         case "Move shape":
         	// will select top shape
-        	for(int i = shapeList.size(); i > 0; i--) {
-        		if(drawingObject.contains(e.getPoint())){
-        		drawingObject = shapeList.get(i);
+        	for(int i = shapeList.size()-1; i >= 0; i--) {
+        		if(shapeList.get(i).contains(e.getPoint())){
+        			drawingObject = shapeList.get(i);
+        			yes = true;
+        			break;
         		}
         	}
         	break;
@@ -105,10 +108,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        int x = e.getX();
        int y = e.getY();
        
-       if(drawingObject != null) {
-    	   drawingObject.drag(e.getPoint());
+       if(yes){
+    	  drawingObject.move(e.getPoint());
        } else {
-    	   drawingObject.move(e.getPoint());
+    	  drawingObject.drag(e.getPoint());
        }
        
        repaint();
@@ -120,6 +123,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	int x = e.getX();
         int y = e.getY();
         repaint();
+        yes = false;
         drawingObject = null; //so it won't re-modify the old rectangle
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }

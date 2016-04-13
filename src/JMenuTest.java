@@ -10,7 +10,7 @@ public class JMenuTest {
      */
     public static void main(String[] args) {
         JMenuFrame myFrame = new JMenuFrame();
-        myFrame.setSize( 1000, 1000);
+        myFrame.setSize( 1800, 1000);
     
     }
 }

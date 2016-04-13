@@ -184,6 +184,9 @@ public class ToolPanel extends JPanel implements ActionListener {
     	case "Star":
     		DrawingPane.shape = (e.getActionCommand());
     		break;
+    	case "Move shape":
+    		DrawingPane.shape = (e.getActionCommand());
+    		break;
     		
     	case "Red":
     		color = e.getActionCommand();

@@ -22,7 +22,7 @@ public class MyStar implements DrawingObject{
     }
     
     /**
-     * Bounds for rectangle surrounding circle
+     * Bounds for rectangle surrounding star
      * @param oX
      * @param oY
      * @param sX
@@ -68,7 +68,7 @@ public class MyStar implements DrawingObject{
     }
     
     /**
-     * When user selects and moves circle
+     * When user selects and moves star
      */
     public void drag( Point p ) {
     	
@@ -90,7 +90,7 @@ public class MyStar implements DrawingObject{
     }
     
     /**
-     * Translation of circle
+     * Translation of star
      */
     public void move( Point p ) {
         originX = p.x;
