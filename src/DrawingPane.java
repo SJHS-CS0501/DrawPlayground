@@ -223,13 +223,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(move) {
+		if(obj != null) {
+			if(move) {
 			obj.move(e.getPoint());
 		}
 		else {
 			obj.drag(e.getPoint());
 		}
 		repaint();
+		}
 	}
 
 	/**

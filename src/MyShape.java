@@ -12,8 +12,10 @@ public class MyShape implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;
+	int five = 5;
 	Color color;
 	boolean fill;
+	Polygon poly;
 	// bounding box (needed for move)
 	Rectangle bounds = new Rectangle();
 
@@ -23,6 +25,7 @@ public class MyShape implements DrawingObject {
 	public MyShape(boolean b) {
 		// NOP
 		sizeX = sizeY = originX = originY = 0;
+		poly = new Polygon();
 		setBounds(bounds);
 		fill = b;
 	}
@@ -53,7 +56,10 @@ public class MyShape implements DrawingObject {
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(getColor());
-		drawShape(g, originX, originY, sizeX, sizeY);
+		g2d.drawPolygon(poly);
+		if(fill) {
+			g2d.fillPolygon(poly);
+		}
 		System.out.println("Redrawing shape @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
 	}
@@ -79,6 +85,7 @@ public class MyShape implements DrawingObject {
 	public void drag(Point p) {
 		sizeX = p.x - originX;
 		sizeY = p.y - originY;
+		doMathOrSomething();
 		setBounds(bounds);
 	}
 
@@ -89,7 +96,9 @@ public class MyShape implements DrawingObject {
 	 * @param p
 	 */
 	public void move(Point p) {
-		movePolygon(p);
+		originX = p.x;
+		originY = p.y;
+		doMathOrSomething();
 		setBounds(bounds);
 	}
 
@@ -100,7 +109,7 @@ public class MyShape implements DrawingObject {
 	 * @param b
 	 */
 	public void setBounds(Rectangle b) {
-		b.setBounds(originX, originY, sizeX, sizeY);
+		bounds = poly.getBounds();
 	}
 
 	/**
@@ -111,7 +120,7 @@ public class MyShape implements DrawingObject {
 	 * @return
 	 */
 	public boolean contains(Point p) {
-		return bounds.contains(p);
+		return poly.contains(p);
 	}
 
 	/**
@@ -129,26 +138,14 @@ public class MyShape implements DrawingObject {
 	public void setColor(Color c) {
 		color = c;
 	}
-
-	/**
-	 * This will do the math involved in setting the points inside the arrays so
-	 * drawPolygon() can create a shape.
-	 * 
-	 * @param g
-	 * @param ox
-	 * @param oy
-	 * @param hx
-	 * @param hy
-	 */
-	public void drawShape(Graphics g, int ox, int oy, int hx, int hy) {
-		int x[] = { ox, (ox + hx), (ox + hy), (ox - hx), ox };
-		int y[] = { oy, (oy - hy), oy + hx, (oy - hy), oy };
-		int five = 5;
-		g.drawPolygon(x, y, five);
-		if(fill) {
-			g.fillPolygon(x, y, five);
-		}
-
+	
+	private void doMathOrSomething() {
+		poly.reset();
+		int x[] = { originX, (originX + sizeX), (originX + sizeY), (originX - sizeX), originX };
+		int y[] = { originY, (originY - sizeY), originY + sizeX, (originY - sizeY), originY };
+		poly.xpoints = x;
+		poly.ypoints = y;
+		poly.npoints = five;
 	}
 
 }

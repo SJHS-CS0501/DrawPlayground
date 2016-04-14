@@ -15,6 +15,7 @@ public class MyStar implements DrawingObject {
     double angle;
     Color color;
     boolean fill;
+    Polygon poly;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     private int[] xPoints; private int[] yPoints;
@@ -25,6 +26,7 @@ public class MyStar implements DrawingObject {
     public MyStar(boolean b) {
         // NOP
         sizeX = sizeY = originX = originY = 0;
+        poly = new Polygon();
         setPoints(5);
         setBounds( bounds );
         fill = b;
@@ -96,6 +98,7 @@ public class MyStar implements DrawingObject {
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
+        math();
         setBounds( bounds );
     }
     
@@ -105,7 +108,7 @@ public class MyStar implements DrawingObject {
      * @param b 
      */
     public void setBounds( Rectangle b ) {
-        b.setBounds( originX, originY, sizeX, sizeY );
+        b = poly.getBounds();
     }
     
     /**
@@ -115,7 +118,7 @@ public class MyStar implements DrawingObject {
      * @return 
      */
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+        return poly.contains(p);
     }
     
     /**
@@ -148,11 +151,15 @@ public class MyStar implements DrawingObject {
      * Uses a for loop to determine the points for the star.
      */
     public void math() {
+    	poly.reset();
     	for(int i = 0, j = 0; j < xPoints.length; i++, j +=2 ) {
     		xPoints[j] = (int)(originX + sizeX * Math.cos(angle * (i)));
     		yPoints[j] = (int)(originY + sizeY * Math.sin(angle * (i)));
     		xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos((Math.PI/points) + angle * (i)));
     		yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin((Math.PI/points) + angle * (i)));
     	}
+    	poly.xpoints = xPoints;
+    	poly.ypoints = yPoints;
+    	poly.npoints = points;
 	}
 }
