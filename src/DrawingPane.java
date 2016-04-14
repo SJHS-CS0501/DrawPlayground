@@ -10,6 +10,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public static String shape;
 	DrawingObject drawingObject;
 	static int sizeX, sizeY;
+	JFrame colors;
 	boolean yes;
 
     public DrawingPane() {
@@ -95,6 +96,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         			break;
         		}
         	}
+        	break;
+        case "Choose color":
+        	System.out.print("hi color chooser");
+        	colors = new JFrame( "Color Chooser"  );
+        	colors.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	colors.setSize(200, 300);
+        	colors.setVisible(true);
         	break;
         default:
         	System.out.print( "Bad" );
