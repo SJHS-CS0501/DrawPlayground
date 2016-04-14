@@ -1,17 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
-
-//import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 
-
-// jptiondialogue for text, place it
-
-public class MyString implements DrawingObject, KeyListener{
+public class MyString implements DrawingObject{
 	
-	JOptionPane words;
-	String string;
+	String wordo; // for the user's wordos
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
     Rectangle bounds = new Rectangle();
@@ -28,25 +22,30 @@ public class MyString implements DrawingObject, KeyListener{
         originY = oY;
         setBounds( bounds );
     }
-    
+
 	@Override
 	public void draw(Graphics g) {
-		 Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D)g;
 	        
-	     g2d.setColor( Color.BLACK );
-	     g2d.drawString( "Type here", originX, originY );
-	        
-	     System.out.println( "Redrawing String @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-	        //this.setSize( this.getPreferredSize() );
+	    g2d.setColor( Color.BLACK );
+	   
+	    try{
+	    g2d.drawString( wordo, originX, originY );
+	    }catch(NullPointerException e){
+	    	System.out.println( "Sadness" );
+	    }
+	    
+	    System.out.println( "Redrawing String @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+	    //this.setSize( this.getPreferredSize() );
 	}
-
+    
 	@Override
 	public void start(Point p) {
 		originX = p.x;
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
-  
+        wordo = JOptionPane.showInputDialog( "Wordie Stuff Goes Here" );
 	}
 
 	@Override
@@ -72,35 +71,6 @@ public class MyString implements DrawingObject, KeyListener{
 	public boolean contains(Point p) {
 
 		return bounds.contains(p);
-	}
-	
-	// I don't think this needs any code since I'm not setting this up with any fancy letters
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
-
-	// same here. These are part of the interface though.
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	}
-
-	
-	@Override
-	public void keyTyped(KeyEvent k) {
-		//displayInfo(k, "");
-	}
-
-	
-	
-	//private void displayInfo(KeyEvent k, String string) {	
-	//}
-	
-	
-	
-	
-	// needed to fire keyboard events
-	public boolean isFocusable( boolean f ){
-		return f;
 	}
 	
 }
