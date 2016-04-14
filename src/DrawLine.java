@@ -16,7 +16,6 @@ public class DrawLine implements DrawingObject {
 
     int sizeX, sizeY, originX, originY;
     int lastX, lastY;
-
     Rectangle bounds = new Rectangle();
     
     /**
@@ -64,8 +63,12 @@ public class DrawLine implements DrawingObject {
     }
     
     public void move( Point p ) {
+        int xLength = sizeX - originX;
+        int yLength = sizeY - originY;
         originX = p.x;
         originY = p.y;
+        sizeX = originX + xLength;
+        sizeY = originY + yLength;
         setBounds( bounds );
     }
     
@@ -73,21 +76,25 @@ public class DrawLine implements DrawingObject {
         b.setBounds( originX, originY, sizeX, sizeY );
     }
 
-	public int distance( Point a, Point b){
+	public int distance( Point a, Point b ){
+		int i = 0;
 		
-		Math.sqrt(((a.x - b.x)*(a.x - b.x) + ((a.y - b.y)*(a.y - b.y))));
+		i = (int)Math.sqrt(((a.x - b.x )*( a.x - b.x) + ((a.y - b.y)*(a.y - b.y))));
 		
-		return lastX;
+		return i;
 		
 	}
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		
-		if (distance( , p ) + distance( p ,  ) == distance( , )){
+		Point a = new Point(originX,originY);
+		Point b = new Point(sizeX,sizeY);
+		System.out.println( distance(a,p) + distance(p, b));
+		System.out.println(distance(a,b));
+		if (distance(a, p) + distance(p, b) >= distance( a, b) -1 && distance(a, p) + distance(p, b) <= distance( a, b) + 1 ){
 			 return true; // C is on the line.
+		}else{
+			
+			return false;    // C is not on the line.
 		}
-		   
-		return false;    // C is not on the line.
-		
 	}
 }

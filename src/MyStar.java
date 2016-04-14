@@ -26,10 +26,10 @@ public class MyStar implements DrawingObject{
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
-    public int numPoints = 0;
+    public int numPoints;
     int[] xPoints; 
 	int[] yPoints;
-    static final int NUMPOINTS = 5;
+    static final int NUMPOINTS = 9;
     
     
     
@@ -106,7 +106,11 @@ public class MyStar implements DrawingObject{
      * @param p 
      */
     public void drag( Point p ) {
+    	makeStar( p, numPoints );
     	
+    }
+    
+    public void makeStar(Point p, int numPoints){
     	double angle = ((2 * Math.PI/numPoints));
     	double offset = (Math.PI/numPoints);
     	sizeX = p.x - originX;
@@ -119,11 +123,8 @@ public class MyStar implements DrawingObject{
     		yPoints[ctr + 1] = (int)(originY + (sizeY / 2) * Math.sin(offset + angle * i ));
     		
     	}
-        
-      
         setBounds( bounds );
     }
-    
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
@@ -133,7 +134,10 @@ public class MyStar implements DrawingObject{
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
+        makeStar(p, numPoints);
         setBounds( bounds );
+        
+        
     }
     
     /**

@@ -87,6 +87,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         	break;
         case"Move Shape":
         	buttonSelected = 4;
+        	
         	break;
         default:
              System.out.println( "EVIL EVIL BAD PLACE" );
