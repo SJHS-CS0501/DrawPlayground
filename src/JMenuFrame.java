@@ -15,12 +15,14 @@ import javax.swing.*;
 public class JMenuFrame extends JFrame implements ActionListener {
 	int x = 1;
     int y = 2;
+    JColorChooser color;
     
     public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
-        
+        color = new JColorChooser();
+        JPanel p = new JPanel();
         
         JMenuBar menuBar;
         JMenu menu;
@@ -30,9 +32,10 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        
+        dPane.setPreferredSize(new Dimension(100,200));
         this.add( tPane, BorderLayout.NORTH);
         this.add( dPane, BorderLayout.CENTER );
+        //this.add(color, BorderLayout.NORTH);
 
         menuBar = new JMenuBar();
         
@@ -95,13 +98,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setJMenuBar( menuBar );
         
         //this.setSize( new Dimension(this.getPreferredSize() ) ); 
-        this.setSize( 600, 600 );
+        this.setSize( 900, 900 );
+        //color.setVisible(false);
         this.setVisible( true );
     }
     
     public void actionPerformed( ActionEvent e ) {
     	
-    	 
+    	
     	
         switch( e.getActionCommand() ) {
             case "MenuSomething":
@@ -111,8 +115,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
-                MyCircle cir = new MyCircle();
-                cir.draw(getGraphics());
+                
                 break;
             case "Quit":
                 System.out.println( "quit Pressed" );

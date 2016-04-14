@@ -22,6 +22,8 @@ public class MyLine implements DrawingObject {
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
+    Point on;
+    Point sz;
     Rectangle bounds = new Rectangle();
     
     public MyLine(){
@@ -80,7 +82,13 @@ public class MyLine implements DrawingObject {
 	@Override
 	public void move(Point p) {
 		// TODO Auto-generated method stub
+		int lx = sizeX - originX;
+		int ly = sizeY - originY;
 		
+		originX = p.x;
+	   originY = p.y;
+	    sizeX = originX +lx ;
+	    sizeY = originY +ly;
 	}
 
 	@Override
@@ -89,11 +97,24 @@ public class MyLine implements DrawingObject {
 		
 	}
 
+	public int distance(Point a, Point b){
+		int i;
+		
+		i = (int)Math.sqrt((a.x - b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+		
+		return i;
+	}
 	
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
-		return bounds.contains(p);
+		on =new Point(originX,originY);
+		sz =new Point(sizeX, sizeY);
+		if(distance(on, p)+distance(p,sz) == distance(on,sz)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

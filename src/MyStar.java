@@ -145,13 +145,12 @@ public class MyStar implements DrawingObject {
 	public void move(Point p) {
 		// TODO Auto-generated method stub
 		
-		int x = p.x;
-		int y = p.y;
+		originX =p.x;
+		originY =p.y;
 		
-		
-		
-		double angle = 2*Math.PI/points;
-		double offset = Math.PI/points;
+		genPoints(points);
+		//double angle = 2*Math.PI/points;
+		//double offset = Math.PI/points;
 		
 		
 	}
