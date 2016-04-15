@@ -14,7 +14,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	ButtonGroup shapeButtons;
 	ButtonGroup colorButtons;
 	JRadioButton radioButton;
-	static String color;
+	public static Color color;
 	JPanel shapePanel;
 	JPanel colorPanel;
 	
@@ -25,7 +25,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	 *  but bounding rectangle is cool too
 	 *  
 	 *  line
-	 *  - reactangle does not work well
+	 *  - rectangle does not work well
 	 *  - use formula to determine if point is on a line
 	 *  - have some threshold so it expands the points a little
 	 *  
@@ -37,14 +37,14 @@ public class ToolPanel extends JPanel implements ActionListener {
 	
     public ToolPanel() {
         super();
-        this.setSize( 50, 200 );
+        this.setSize( 50, 500 );
         this.setLayout( new GridLayout( 4, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
       
         shapeButtons = new ButtonGroup();
         //colorButtons = new ButtonGroup();
-        shapePanel = new JPanel(new GridLayout(4,1));
-        colorPanel = new JPanel(new GridLayout(8,1));
+        shapePanel = new JPanel(new GridLayout(5,1));
+        colorPanel = new JPanel(new GridLayout());
         
         /*
         * shape buttons
@@ -85,12 +85,10 @@ public class ToolPanel extends JPanel implements ActionListener {
 		shapeButtons.add(radioButton);
 		shapePanel.add(radioButton);
 		
-		//color buttons
-		radioButton = new JRadioButton("Choose color");
-		radioButton.setActionCommand("Choose color");
-		radioButton.addActionListener(this);
-//		colorButtons.add(radioButton);
-		colorPanel.add(radioButton);
+		//color panel
+		colorChooser.setColor(Color.BLACK);
+		colorPanel.add(colorChooser);
+		color = colorChooser.getColor();
 	
 		add(shapePanel, BorderLayout.WEST);
 		add(colorPanel, BorderLayout.WEST);
@@ -116,27 +114,6 @@ public class ToolPanel extends JPanel implements ActionListener {
     	case "Move shape":
     		DrawingPane.shape = (e.getActionCommand());
     		break;
-    	case "Choose color":
-    		DrawingPane.shape = (e.getActionCommand());
-    		break;
-//    	case "Orange":
-//    		color = e.getActionCommand();
-//    		break;
-//    	case "Yellow":
-//    		color = e.getActionCommand();
-//    		break;
-//    	case "Green":
-//    		color = e.getActionCommand();
-//    		break;
-//    	case "Cyan":
-//    		color = e.getActionCommand();
-//    		break;
-//    	case "Blue":
-//    		color = e.getActionCommand();
-//    		break;
-//    	case "Pink":
-//    		color = e.getActionCommand();
-//    		break;	
     	}
     }
 }

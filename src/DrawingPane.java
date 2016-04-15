@@ -8,10 +8,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 	private static final long serialVersionUID = 1L;
 	public static String shape;
+	public static Color color;
 	DrawingObject drawingObject;
 	static int sizeX, sizeY;
 	JFrame colors;
-	boolean yes;
+	boolean moving;
 
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -69,21 +70,25 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         switch(shape) {
         case "Line":
         	drawingObject = new MyLine();
+        	//drawingObject.setColor(c);
         	drawingObject.start(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         case "Rectangle":
         	drawingObject = new MyRectangle();
+        //	drawingObject.setColor(c);
         	drawingObject.start(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         case "Circle":
         	drawingObject = new MyCircle();
+        	//drawingObject.setColor(c);
         	drawingObject.start(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
         case "Star":
         	drawingObject = new MyStar();
+        	//drawingObject.setColor(c);
         	drawingObject.start(e.getPoint());
         	shapeList.add(drawingObject);
         	break;
@@ -92,17 +97,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         	for(int i = shapeList.size()-1; i >= 0; i--) {
         		if(shapeList.get(i).contains(e.getPoint())){
         			drawingObject = shapeList.get(i);
-        			yes = true;
+        			moving = true;
         			break;
         		}
         	}
-        	break;
-        case "Choose color":
-        	System.out.print("hi color chooser");
-        	colors = new JFrame( "Color Chooser"  );
-        	colors.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	colors.setSize(200, 300);
-        	colors.setVisible(true);
         	break;
         default:
         	System.out.print( "Bad" );
@@ -116,7 +114,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        int x = e.getX();
        int y = e.getY();
        
-       if(yes){
+       if(moving){
     	  drawingObject.move(e.getPoint());
        } else {
     	  drawingObject.drag(e.getPoint());
@@ -131,7 +129,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	int x = e.getX();
         int y = e.getY();
         repaint();
-        yes = false;
+        moving = false;
         drawingObject = null; //so it won't re-modify the old rectangle
         System.out.println( "mouseReleased(" + x + "," + y + ")" );
     }

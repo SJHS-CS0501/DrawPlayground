@@ -3,8 +3,8 @@ import java.awt.*;
 public class MyCircle implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
-	
 	Rectangle bounds = new Rectangle();
+	Color color;
 
     public MyCircle() {
      
@@ -83,14 +83,14 @@ public class MyCircle implements DrawingObject {
     /**
      * Called to set the color of a shape
      */
-    public void setColor() {
-    	
+    public void setColor(Color c) {
+    	color = c;
     }
     
     /**
      * Called to get the color of a shape
      */
-    public void getColor() {
-    	
+    public Color getColor() {
+    	return color;
     }
 }

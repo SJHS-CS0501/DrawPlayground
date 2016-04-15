@@ -48,10 +48,11 @@ public interface DrawingObject {
     /**
      * Called to set the color of a shape
      */
-    public void setColor();
+    public void setColor(Color c);
     
     /**
      * Called to get the color of a shape
+     * @return 
      */
-    public void getColor();
+    public Color getColor();
 }

@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public class MyLine implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
-	
 	Rectangle boundingBox = new Rectangle();
+	Color color;
 
     public MyLine() {
      
@@ -87,14 +87,14 @@ public class MyLine implements DrawingObject {
     /**
      * Called to set the color of a shape
      */
-    public void setColor() {
-    	
+    public void setColor(Color c) {
+    	color = c;
     }
     
     /**
      * Called to get the color of a shape
      */
-    public void getColor() {
-    	
+    public Color getColor() {
+    	return color;
     }
 }

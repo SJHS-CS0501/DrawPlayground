@@ -14,6 +14,7 @@ public class MyStar implements DrawingObject{
 	int[] yPoints = new int[2 * points]; // y points for star
 	int sizeX, sizeY, originX, originY;
 	Rectangle bounds = new Rectangle();
+	Color color;
 
     public MyStar() {
      
@@ -112,14 +113,14 @@ public class MyStar implements DrawingObject{
     /**
      * Called to set the color of a shape
      */
-    public void setColor() {
-    	
+    public void setColor(Color c) {
+    	color = c;
     }
     
     /**
      * Called to get the color of a shape
      */
-    public void getColor() {
-    	
+    public Color getColor() {
+    	return color;
     }
 }
