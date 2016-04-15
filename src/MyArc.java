@@ -1,5 +1,6 @@
 import java.awt.*;
 
+// super spiffy arc
 public class MyArc implements DrawingObject{
 
 	// critical vars for a rectangle
@@ -33,7 +34,7 @@ public class MyArc implements DrawingObject{
 		
 		Graphics2D g2d = (Graphics2D)g;
         g2d.setColor( Color.BLACK );
-		g.drawArc( sizeX, sizeY, originX, originY * 2, startAngle, arcAngle );
+		g.drawArc( sizeX, sizeY, originX, originY * 2, startAngle, arcAngle ); // draw arc!!
 		
 		System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
@@ -54,7 +55,7 @@ public class MyArc implements DrawingObject{
         sizeY = p.y - originY;
         setBounds( bounds );
         
-        
+        // note to Isabelle...just ignore...
         // for cool dragging stuff, make origin start point and calculate angle to point from start
 		
 	}

@@ -1,7 +1,7 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.JOptionPane;
 
+// The bestest button in my opinion:)
 
 public class MyString implements DrawingObject{
 	
@@ -35,6 +35,7 @@ public class MyString implements DrawingObject{
 	    	System.out.println( "Sadness" );
 	    }
 	    
+	    // String, string, string <3
 	    System.out.println( "Redrawing String @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	    //this.setSize( this.getPreferredSize() );
 	}
@@ -45,7 +46,7 @@ public class MyString implements DrawingObject{
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
-        wordo = JOptionPane.showInputDialog( "Wordie Stuff Goes Here" );
+        wordo = JOptionPane.showInputDialog( "Wordie Stuff Goes Here" ); // I rarely talk like a normal human
 	}
 
 	@Override
