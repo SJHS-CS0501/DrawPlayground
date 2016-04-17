@@ -94,6 +94,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    		//int[] q = {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
 	    		//int[] w = {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 	    		obj = new MyStar(Integer.parseInt(ToolPanel.po));
+	    	}else if(check == 6){
+	    		obj = new MyPolygon(Integer.parseInt(ToolPanel.po2));
 	    	}else if(check == 0){
 	    		for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
@@ -125,6 +127,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    			
 	    		}
     			if(obj!=null){
+    				obj.setFill(ColorPanel.fo);
 	    			obj.setColor(JMenuFrame.getColor());
 	    			}
     		}

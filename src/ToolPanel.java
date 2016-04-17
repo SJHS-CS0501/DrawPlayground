@@ -21,8 +21,8 @@ public class ToolPanel extends JPanel implements ActionListener {
 
 	
 	public static int check;
-	public static String po;
-	public JTextField points;
+	public static String po,po2;
+	public JTextField points,points2;
 	
     
     public ToolPanel() {
@@ -41,25 +41,31 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
         JRadioButton Star = new JRadioButton( "Star NumPoint=" );
+        JRadioButton Polygon = new JRadioButton("Custom NumPoint=");
         //JRadioButton NoOperation = new JRadioButton( "Edit" );
         points = new JTextField("5");
+        points2 = new JTextField("5");
        // NoOperation.setActionCommand("nop");
         Rectangle.setActionCommand( "rect" );
         Circle.setActionCommand( "cir" );
         Line.setActionCommand( "line" );
         Star.setActionCommand("star");
+        Polygon.setActionCommand("poly");
        // NoOperation.addActionListener(this);
         Rectangle.addActionListener( this );
         Circle.addActionListener( this);
         Line.addActionListener( this );
         Star.addActionListener( this );
+        Polygon.addActionListener(this);
       
         points.addKeyListener(k);
+        points2.addKeyListener(k);
         
         bg.add( Rectangle );
         bg.add( Circle );
         bg.add( Line );
         bg.add(Star);
+        bg.add(Polygon);
        // bg.add(NoOperation);
         
         JPanel unitSelectionPanel = new JPanel();
@@ -69,6 +75,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
         unitSelectionPanel.add( points );
+        unitSelectionPanel.add(Polygon);
+        unitSelectionPanel.add(points2);
         //unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
@@ -103,6 +111,11 @@ public class ToolPanel extends JPanel implements ActionListener {
         case("star"):
         	check = DrawingPane.s;
         	po = getPoints(points);
+        	break;
+        	
+        case("poly"):
+        	check = 6;
+        	po2 = getPoints(points2);
         	break;
         /*	
         case("nop"):
@@ -144,6 +157,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 			// TODO Auto-generated method stub
 			
 			po = points.getText();
+			po2 = points2.getText();
 		}
 
 		@Override

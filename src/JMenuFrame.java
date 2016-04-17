@@ -17,7 +17,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
     int y = 2;
    
     ToolPanel tPane;
-   static ColorPanel cPane;
+    static JColorChooser color;
+    ColorPanel cPane;
     //static int turnedOn;
     //JPanel p
     
@@ -25,6 +26,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         super();
         DrawingPane dPane = new DrawingPane();
         tPane = new ToolPanel();
+        color = new JColorChooser();
         cPane = new ColorPanel();
         
         
@@ -39,11 +41,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         dPane.setPreferredSize(new Dimension(100,200));
-        this.add(cPane, BorderLayout.SOUTH);
+        this.add(color, BorderLayout.SOUTH);
         this.add( tPane, BorderLayout.NORTH);
         this.add( dPane, BorderLayout.CENTER );
+        this.add(cPane, BorderLayout.WEST);
+        color.setVisible(false);
         cPane.setVisible(false);
-        cPane.color.setColor(Color.BLACK);
+        cPane.fo = 2;
         
         menuBar = new JMenuBar();
         
@@ -154,6 +158,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
                 
             case "colorBox":
+            	color.setVisible(true);
             	cPane.setVisible(true);
             	tPane.setVisible(false);
             	//tPane.setVisible(false);
@@ -163,6 +168,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	
             case "S&P":
             	tPane.setVisible(true);
+            	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check=-1;
             	//tPane.setVisible(false);
@@ -171,6 +177,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 
             case "edit":
             	tPane.setVisible(false);
+            	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check = 0;
            
@@ -196,7 +203,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
      * @return
      */
     public static Color getColor(){
-    	return cPane.color.getColor();
+    	return color.getColor();
     	
     }
 

@@ -170,4 +170,10 @@ public class MyAnimal implements DrawingObject {
 		// TODO Auto-generated method stub
 		return c;
 	}
+
+	@Override
+	public void setFill(int fo) {
+		// TODO Auto-generated method stub
+		
+	}
 }

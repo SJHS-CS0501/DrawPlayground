@@ -19,6 +19,7 @@ public class MyRectangle implements DrawingObject {
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
+    int fillout;
     Rectangle bounds = new Rectangle();
     Color c;
     /**
@@ -28,6 +29,8 @@ public class MyRectangle implements DrawingObject {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        
+        fillout = ColorPanel.fo;
     }
     
     /**
@@ -57,13 +60,19 @@ public class MyRectangle implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
+        //fillout = ColorPanel.fo;
+        
         if(c != null){
 	        g2d.setColor( c );
 		 }else{
 			 g2d.setColor( Color.BLACK );
 		 }
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
+        if(fillout == 2){
+			g.drawRect(originX, originY, sizeX, sizeY );
+		}else if(fillout == 1){
+			g.fillRect(originX, originY, sizeX, sizeY);
+		}
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -137,6 +146,12 @@ public class MyRectangle implements DrawingObject {
 	public Color getColor() {
 		// TODO Auto-generated method stub
 		return c;
+	}
+
+	@Override
+	public void setFill(int fo) {
+		// TODO Auto-generated method stub
+		fillout = fo;
 	}
     
 	//@Override

@@ -22,6 +22,7 @@ public class MyCircle implements DrawingObject{
     Rectangle bounds  = new Rectangle();
     Circle circle;
     //Graphics g;
+    int fillout;
     Color c;
     
     /**
@@ -31,6 +32,8 @@ public class MyCircle implements DrawingObject{
     	// NOP
     	widthX = heightY = originX = originY = 0;
     	setBounds( bounds );
+    	
+    	 fillout = ColorPanel.fo;
     }
     
     /**
@@ -56,6 +59,8 @@ public class MyCircle implements DrawingObject{
 		// TODO Auto-generated method stub
 		Graphics2D g2d = (Graphics2D)g;
 		
+		//fillout =ColorPanel.fo;
+		
 		if(c != null){
 	        g2d.setColor( c );
 		 }else{
@@ -63,7 +68,11 @@ public class MyCircle implements DrawingObject{
 		 }
 		//g.fillOval(originX, originY, widthX, heightY )
 		
-		g.drawOval(originX, originY, widthX, heightY );
+		if(fillout == 2){
+			g.drawOval(originX, originY, widthX, heightY );
+		}else if(fillout == 1){
+			g.fillOval(originX, originY, widthX, heightY);
+		}
 		
 		System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + widthX + " x " + heightY);
 	}
@@ -121,6 +130,10 @@ public class MyCircle implements DrawingObject{
 	public Color getColor() {
 		// TODO Auto-generated method stub
 		return c;
+	}
+	
+	public void setFill(int fo){
+		fillout = fo;
 	}
 
 }

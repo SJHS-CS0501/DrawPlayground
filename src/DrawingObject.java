@@ -61,7 +61,12 @@ public interface DrawingObject {
      * @return
      */
 	public Color getColor();
-		
+	
+	/**
+	 * sets fill or outline when coloring
+	 * @param fo
+	 */
+	public void setFill(int fo);
 	
 	
 }

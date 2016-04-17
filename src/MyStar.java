@@ -16,7 +16,7 @@ import javafx.scene.shape.Circle;
  *
  */
 public class MyStar implements DrawingObject {
-
+	
 	int[] xPoints;
 	int[] yPoints;
 	 // critical vars for a rectangle
@@ -25,6 +25,7 @@ public class MyStar implements DrawingObject {
     int lastX, lastY;
     // bounding box (needed for move)
     int points;
+    int fillout;
     Rectangle bounds = new Rectangle();
     Polygon star;
     Color c;
@@ -35,6 +36,8 @@ public class MyStar implements DrawingObject {
     	 // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        
+        fillout = ColorPanel.fo;
     }
     
     public MyStar(int[] px, int[] py){
@@ -49,14 +52,18 @@ public class MyStar implements DrawingObject {
 		// TODO Auto-generated method stub
 		
 		 Graphics2D g2d = (Graphics2D)g;
-	        
+		 
 		 if(c != null){
 	        g2d.setColor( c );
 		 }else{
 			 g2d.setColor( Color.BLACK );
 		 }
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-	        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
+		 if(fillout == 2){
+				g.drawPolygon(xPoints, yPoints, xPoints.length);
+			}else if(fillout == 1){
+				g.fillPolygon(xPoints, yPoints, xPoints.length);
+			}
 	        star = new Polygon(xPoints, yPoints, xPoints.length);
 	        
 	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -184,6 +191,12 @@ public class MyStar implements DrawingObject {
 	public Color getColor() {
 		// TODO Auto-generated method stub
 		return c;
+	}
+
+	@Override
+	public void setFill(int fo) {
+		// TODO Auto-generated method stub
+		fillout = fo;
 	}
 
 	//@Override
