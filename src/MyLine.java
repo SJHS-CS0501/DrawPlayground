@@ -11,7 +11,7 @@ import javafx.scene.shape.Circle;
  */
 
 /**
- * @author SJHSStudent
+ * @author Ryley Danieslon
  *
  */
 public class MyLine implements DrawingObject {

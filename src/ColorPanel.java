@@ -2,7 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+/**
+ * 
+ * @author Ryley Danielson
+ *
+ */
 public class ColorPanel extends JPanel implements ActionListener {
 	 
 	 static int fo;

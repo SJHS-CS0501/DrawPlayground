@@ -11,7 +11,7 @@ public class MyPolygon implements DrawingObject {
 	 */
 
 	/**
-	 * @author SJHSStudent
+	 * @author Ryley Danielson
 	 *
 	 */
 			

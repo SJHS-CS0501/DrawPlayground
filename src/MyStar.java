@@ -12,7 +12,7 @@ import javafx.scene.shape.Circle;
  */
 
 /**
- * @author SJHSStudent
+ * @author Ryley Danielson
  *
  */
 public class MyStar implements DrawingObject {

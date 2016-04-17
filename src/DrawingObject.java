@@ -11,7 +11,7 @@ import javafx.scene.shape.Circle;
 
 /**
  * Interface class for any drawable object.
- * @author woytek
+ * @author Ryley Danielson
  */
 public interface DrawingObject {
     //private int originX, originY;

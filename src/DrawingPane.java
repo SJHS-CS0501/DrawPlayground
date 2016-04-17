@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author Ryley Danielson
  */
 import java.awt.*;
 import java.awt.event.*;
