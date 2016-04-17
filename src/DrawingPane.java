@@ -84,7 +84,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	y = e.getY();
     	//a
     	//b
-    	if(JMenuFrame.isToolOn()== true){
 	    	if(check == rec){
 	    		obj = new MyRectangle();
 	    	}else if(check == c){
@@ -96,36 +95,20 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    		//int[] w = {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 	    		obj = new MyStar(Integer.parseInt(ToolPanel.po));
 	    	}
-    	}
 	    	
-	    	if(check == 0){
+    	
+    	
+    	if(check == 0){
 	    		for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
 	    				System.out.println("star listen to me");
 	    				obj = drob.get(i);
-	    				//break;
+	    				break;
 	    			}else{
 	    				obj = null;
 	    			}
 	    		}
 	    	}
-	    		
-	    if(JMenuFrame.isColorOn()== true){
-	    		for(int i = drob.size()-1; i>= 0; i--){
-	    			if(drob.get(i).contains(e.getPoint())){
-	    				obj = drob.get(i);
-	    			}else{
-	    				obj = null;
-	    			}
-	    			
-	    			if(obj!=null){
-	    			obj.setColor(JMenuFrame.getColor());
-	    			  repaint();
-	    			}
-	    	}
-    		
-	    	}
-    	
     	
     
     			if(obj != null){

@@ -16,7 +16,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
 	int x = 1;
     int y = 2;
     static JColorChooser color;
-    static ToolPanel tPane;
+    ToolPanel tPane;
+    static int turnedOn;
     //JPanel p
     
     public JMenuFrame() {
@@ -150,27 +151,26 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
                 
             case "colorBox":
-            	if(color.isVisible() == true){
-            		color.setVisible(false);
-            	}else{
             	color.setVisible(true);
+            	tPane.setVisible(false);
             	//tPane.setVisible(false);
-            	}
+            	ToolPanel.check= -1;
+            	
             	break;
             	
             case "S&P":
-            	if(tPane.isVisible() == true){
-            		tPane.setVisible(false);
-            	}else{
             	tPane.setVisible(true);
+            	color.setVisible(false);
+            	ToolPanel.check=-1;
             	//tPane.setVisible(false);
-            	}
+            
                 break;
                 
             case "edit":
-            	ToolPanel.check = 0;
             	tPane.setVisible(false);
             	color.setVisible(false);
+            	ToolPanel.check = 0;
+           
                 break;
                 
             default:
@@ -178,23 +178,36 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.exit(-1);
                 break;
         }
+        isColorOn();
+        isToolOn();
+        bothOn();
     }
     
     /**
      * Checks to see whether or not color frame is on
      * @return boolean
      */
-    public static boolean isColorOn(){
-    	return color.isVisible();
+    public void isColorOn(){
+    	if (color.isVisible()== true){
+    		turnedOn = 5;
+    	}
     }
     
     /**
      * Checks to see whether tool panel is on or not
      * @return
      */
-    public static boolean isToolOn(){
-    	return tPane.isVisible();
+    public void isToolOn(){
+    	if(tPane.isVisible()==true){
+    		turnedOn = 6;
+    	}
     	
+    }
+    
+    public void bothOn(){
+    	if(color.isVisible()==true && tPane.isValid()==true){
+    		turnedOn = 7;
+    	}
     }
     
     /**
