@@ -94,11 +94,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    		//int[] q = {x, x+12, x+54,x+18,x+28,x, x-28, x-18, x-54, x-12};
 	    		//int[] w = {y, y+36, y+36, y+54, y+96, y+72, y+96, y+54, y+36, y+36 };
 	    		obj = new MyStar(Integer.parseInt(ToolPanel.po));
-	    	}
-	    	
-    	
-    	
-    	if(check == 0){
+	    	}else if(check == 0){
 	    		for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
 	    				System.out.println("star listen to me");
@@ -116,6 +112,22 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     				obj.start(e.getPoint());
     				drob.add(obj);
     			}
+    			
+    		if(check == 5){
+    			for(int i = drob.size()-1; i>= 0; i--){
+	    			if(drob.get(i).contains(e.getPoint())){
+	    				System.out.println("star listen to me");
+	    				obj = drob.get(i);
+	    				break;
+	    			}else{
+	    				obj = null;
+	    			}
+	    			
+	    		}
+    			if(obj!=null){
+	    			obj.setColor(JMenuFrame.getColor());
+	    			}
+    		}
     	
     	
 
@@ -136,6 +148,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	   if(check == 0){
     		   System.out.println("It got here line 135");
     		   obj.move(e.getPoint());
+    	   }else if(check == 5){
     	   }else{
        		
        			obj.drag(e.getPoint());
