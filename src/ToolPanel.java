@@ -41,14 +41,14 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
         JRadioButton Star = new JRadioButton( "Star NumPoint=" );
-        JRadioButton NoOperation = new JRadioButton( "Edit" );
+        //JRadioButton NoOperation = new JRadioButton( "Edit" );
         points = new JTextField("5");
-        NoOperation.setActionCommand("nop");
+       // NoOperation.setActionCommand("nop");
         Rectangle.setActionCommand( "rect" );
         Circle.setActionCommand( "cir" );
         Line.setActionCommand( "line" );
         Star.setActionCommand("star");
-        NoOperation.addActionListener(this);
+       // NoOperation.addActionListener(this);
         Rectangle.addActionListener( this );
         Circle.addActionListener( this);
         Line.addActionListener( this );
@@ -60,7 +60,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         bg.add( Circle );
         bg.add( Line );
         bg.add(Star);
-        bg.add(NoOperation);
+       // bg.add(NoOperation);
         
         JPanel unitSelectionPanel = new JPanel();
         unitSelectionPanel.setLayout( new GridLayout( 1,0 ) );
@@ -69,7 +69,7 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Line );
         unitSelectionPanel.add( Star );
         unitSelectionPanel.add( points );
-        unitSelectionPanel.add(NoOperation);
+        //unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
         
@@ -104,11 +104,11 @@ public class ToolPanel extends JPanel implements ActionListener {
         	check = DrawingPane.s;
         	po = getPoints(points);
         	break;
-        	
+        /*	
         case("nop"):
         	check = 0;
         	break;
-
+		*/
             default:
                 System.out.println( "EVIL EVIL BAD PLACE" );
                 System.exit(-1);

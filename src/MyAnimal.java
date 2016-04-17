@@ -14,7 +14,7 @@ public class MyAnimal implements DrawingObject {
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
-   
+   Color c;
     
     public MyAnimal(){
     	
@@ -37,7 +37,11 @@ public class MyAnimal implements DrawingObject {
 		 Graphics2D g2d = (Graphics2D)g;
 	        
 		 
-	        g2d.setColor( Color.BLACK );
+		 if(c != null){
+		        g2d.setColor( c );
+			 }else{
+				 g2d.setColor( Color.BLACK );
+			 }
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawPolygon(xPoints, yPoints, 10);
 	        
@@ -148,5 +152,22 @@ public class MyAnimal implements DrawingObject {
 		}
 		
 		return false;
+	}
+
+	//@Override
+	//public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	//}
+	@Override
+	public void setColor(Color newC) {
+		// TODO Auto-generated method stub
+		c = newC;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return c;
 	}
 }

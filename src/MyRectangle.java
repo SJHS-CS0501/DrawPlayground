@@ -20,7 +20,7 @@ public class MyRectangle implements DrawingObject {
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
-    
+    Color c;
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
@@ -57,7 +57,11 @@ public class MyRectangle implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        if(c != null){
+	        g2d.setColor( c );
+		 }else{
+			 g2d.setColor( Color.BLACK );
+		 }
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -122,6 +126,24 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
     	return bounds.contains(p);
     }
+
+    @Override
+	public void setColor(Color newC) {
+		// TODO Auto-generated method stub
+		c = newC;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return c;
+	}
+    
+	//@Override
+	//public void draw(Graphics g, Color c) {
+		// TODO Auto-generated method stub
+		
+	//}
 
 	
 

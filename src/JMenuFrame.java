@@ -15,12 +15,14 @@ import javax.swing.*;
 public class JMenuFrame extends JFrame implements ActionListener {
 	int x = 1;
     int y = 2;
-    JColorChooser color;
+    static JColorChooser color;
+    static ToolPanel tPane;
+    //JPanel p
     
     public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
-        ToolPanel tPane = new ToolPanel();
+        tPane = new ToolPanel();
         color = new JColorChooser();
         JPanel p = new JPanel();
         
@@ -33,10 +35,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         dPane.setPreferredSize(new Dimension(100,200));
+        this.add(color, BorderLayout.SOUTH);
         this.add( tPane, BorderLayout.NORTH);
         this.add( dPane, BorderLayout.CENTER );
-        //this.add(color, BorderLayout.NORTH);
-
+        color.setVisible(false);
+        color.setColor(Color.BLACK);
+        
         menuBar = new JMenuBar();
         
         menu = new JMenu( "My Menu" );
@@ -84,6 +88,30 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menuBar.add( menu );
         
+        menu = new JMenu( "Colors" );
+        menuItem = new JMenuItem( "Color Pane" );
+        menuItem.setActionCommand("colorBox");
+        menuItem.addActionListener(this);
+        menu.add( menuItem );
+        
+        menuBar.add( menu );
+        
+        menu = new JMenu( "Shapes" );
+        menuItem = new JMenuItem( "Tool Panel" );
+        menuItem.setActionCommand("S&P");
+        menuItem.addActionListener(this);
+        menu.add( menuItem );
+        
+        menuBar.add( menu );
+        
+        menu = new JMenu( "Edit" );
+        menuItem = new JMenuItem( "Move" );
+        menuItem.setActionCommand("edit");
+        menuItem.addActionListener(this);
+        menu.add( menuItem );
+        
+        menuBar.add( menu );
+        
         menuBar.add( Box.createHorizontalGlue() );
         
         menu = new JMenu( "Help" );
@@ -99,8 +127,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         //this.setSize( new Dimension(this.getPreferredSize() ) ); 
         this.setSize( 900, 900 );
-        //color.setVisible(false);
+        
         this.setVisible( true );
+        
     }
     
     public void actionPerformed( ActionEvent e ) {
@@ -110,8 +139,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
         switch( e.getActionCommand() ) {
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
-                MyRectangle rect = new MyRectangle(180, 70, 90, 90);
-                rect.draw(getGraphics());
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
@@ -121,11 +148,62 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+                
+            case "colorBox":
+            	if(color.isVisible() == true){
+            		color.setVisible(false);
+            	}else{
+            	color.setVisible(true);
+            	//tPane.setVisible(false);
+            	}
+            	break;
+            	
+            case "S&P":
+            	if(tPane.isVisible() == true){
+            		tPane.setVisible(false);
+            	}else{
+            	tPane.setVisible(true);
+            	//tPane.setVisible(false);
+            	}
+                break;
+                
+            case "edit":
+            	ToolPanel.check = 0;
+            	tPane.setVisible(false);
+            	color.setVisible(false);
+                break;
+                
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);
                 break;
         }
+    }
+    
+    /**
+     * Checks to see whether or not color frame is on
+     * @return boolean
+     */
+    public static boolean isColorOn(){
+    	return color.isVisible();
+    }
+    
+    /**
+     * Checks to see whether tool panel is on or not
+     * @return
+     */
+    public static boolean isToolOn(){
+    	return tPane.isVisible();
+    	
+    }
+    
+    /**
+     * Returns a color from 
+     * @return
+     */
+    public static Color getColor(){
+    	return color.getColor();
+    	
     }
 
 }

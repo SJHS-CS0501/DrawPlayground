@@ -50,4 +50,18 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
     
+    /**
+     * Set shape color
+     * @param newC
+     */
+    public void setColor(Color newC);
+	
+    /**
+     * return shape color
+     * @return
+     */
+	public Color getColor();
+		
+	
+	
 }

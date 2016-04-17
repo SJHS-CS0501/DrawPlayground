@@ -20,8 +20,9 @@ public class MyCircle implements DrawingObject{
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds  = new Rectangle();
-   
+    Circle circle;
     //Graphics g;
+    Color c;
     
     /**
      * Construct circle
@@ -55,8 +56,12 @@ public class MyCircle implements DrawingObject{
 		// TODO Auto-generated method stub
 		Graphics2D g2d = (Graphics2D)g;
 		
-		g.setColor(Color.BLACK);
-		//g.fillOval(originX, originY, widthX, heightY );
+		if(c != null){
+	        g2d.setColor( c );
+		 }else{
+			 g2d.setColor( Color.BLACK );
+		 }
+		//g.fillOval(originX, originY, widthX, heightY )
 		
 		g.drawOval(originX, originY, widthX, heightY );
 		
@@ -91,7 +96,7 @@ public class MyCircle implements DrawingObject{
 	@Override
 	public void setBounds(Rectangle b) {
 		// TODO Auto-generated method stub
-		b.setBounds( originX-5, originY-5, widthX-5, heightY-5 );
+		b.setBounds( originX, originY, widthX, heightY );
 	}
 
 	@Override
@@ -100,6 +105,22 @@ public class MyCircle implements DrawingObject{
 		return bounds.contains(p);
 	}
 
+	//@Override
+	//public void draw(Graphics g, Color c) {
+		// TODO Auto-generated method stub
+		
+	//}
 
+	@Override
+	public void setColor(Color newC) {
+		// TODO Auto-generated method stub
+		c = newC;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return c;
+	}
 
 }

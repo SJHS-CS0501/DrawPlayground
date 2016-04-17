@@ -27,6 +27,7 @@ public class MyStar implements DrawingObject {
     int points;
     Rectangle bounds = new Rectangle();
     Polygon star;
+    Color c;
    
     
     public MyStar(int p){
@@ -49,8 +50,11 @@ public class MyStar implements DrawingObject {
 		
 		 Graphics2D g2d = (Graphics2D)g;
 	        
-		 
-	        g2d.setColor( Color.BLACK );
+		 if(c != null){
+	        g2d.setColor( c );
+		 }else{
+			 g2d.setColor( Color.BLACK );
+		 }
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawPolygon(xPoints, yPoints, xPoints.length);
 	        star = new Polygon(xPoints, yPoints, xPoints.length);
@@ -170,4 +174,23 @@ public class MyStar implements DrawingObject {
 		
 	}
 
+	@Override
+	public void setColor(Color newC) {
+		// TODO Auto-generated method stub
+		c = newC;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return c;
+	}
+
+	//@Override
+	//public void draw(Graphics g, Color c) {
+		// TODO Auto-generated method stub
+		
+	//}
+
+	
 }

@@ -25,6 +25,7 @@ public class MyLine implements DrawingObject {
     Point on;
     Point sz;
     Rectangle bounds = new Rectangle();
+    Color c;
     
     public MyLine(){
     	
@@ -52,7 +53,11 @@ public class MyLine implements DrawingObject {
 		
 		 Graphics2D g2d = (Graphics2D)g;
 	        
-	        g2d.setColor( Color.BLACK );
+		 if(c != null){
+		        g2d.setColor( c );
+			 }else{
+				 g2d.setColor( Color.BLACK );
+			 }
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawLine( originX, originY, sizeX, sizeY );
 	        
@@ -65,8 +70,8 @@ public class MyLine implements DrawingObject {
 	public void start(Point p) {
 		// TODO Auto-generated method stub
 		
-		 originX = sizeX = p.x;
-	     originY = sizeY = p.y;
+		// originX = sizeX = p.x;
+	    // originY = sizeY = p.y;
 	     lastX = p.x;
 	     lastY = p.y;
 		
@@ -86,9 +91,9 @@ public class MyLine implements DrawingObject {
 		int ly = sizeY - originY;
 		
 		originX = p.x;
-	   originY = p.y;
-	    sizeX = originX +lx ;
-	    sizeY = originY +ly;
+		originY = p.y;
+		sizeX = originX +lx ;
+		sizeY = originY +ly;
 	}
 
 	@Override
@@ -97,6 +102,12 @@ public class MyLine implements DrawingObject {
 		
 	}
 
+	/**
+	 * Distance formula that determines whether a point is on a line
+	 * @param a
+	 * @param b
+	 * @return int
+	 */
 	public int distance(Point a, Point b){
 		int i;
 		
@@ -110,11 +121,28 @@ public class MyLine implements DrawingObject {
 		// TODO Auto-generated method stub
 		on =new Point(originX,originY);
 		sz =new Point(sizeX, sizeY);
-		if(distance(on, p)+distance(p,sz) == distance(on,sz)){
+		if(distance(on, p)+distance(p,sz) <= distance(on,sz)+1 || distance(on, p)+distance(p,sz) <= distance(on,sz)-1){
 			return true;
 		}else{
 			return false;
 		}
 	}
 
+	//@Override
+	//public void draw(Graphics g, Color c) {
+		// TODO Auto-generated method stub
+		
+	//}
+
+	@Override
+	public void setColor(Color newC) {
+		// TODO Auto-generated method stub
+		c = newC;
+	}
+
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return c;
+	}
 }
