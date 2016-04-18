@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 /**
@@ -30,6 +31,7 @@ public class MyStar implements DrawingObject{
     int[] xPoints; 
 	int[] yPoints;
     static final int NUMPOINTS = 9;
+    Polygon star = new Polygon();
     
     
     
@@ -81,8 +83,8 @@ public class MyStar implements DrawingObject{
         
         g2d.setColor( Color.BLACK );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawPolygon( xPoints, yPoints, xPoints.length );
-        
+        //g2d.drawPolygon( xPoints, yPoints, xPoints.length );
+        g2d.draw(star);
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
@@ -106,15 +108,18 @@ public class MyStar implements DrawingObject{
      * @param p 
      */
     public void drag( Point p ) {
-    	makeStar( p, numPoints );
     	
-    }
-    
-    public void makeStar(Point p, int numPoints){
-    	double angle = ((2 * Math.PI/numPoints));
-    	double offset = (Math.PI/numPoints);
+    	
     	sizeX = p.x - originX;
         sizeY = p.y - originY;
+        makeStar();
+    }
+    
+    public void makeStar(){
+    	double angle = ((2 * Math.PI/numPoints));
+    	double offset = (Math.PI/numPoints);
+    	//sizeX = p.x - originX;
+        //sizeY = p.y - originY;
         
     	for( int ctr = 0, i = 0; ctr < xPoints.length; i++, ctr += 2){
     		xPoints[ctr] = (int)(originX + sizeX * Math.cos(angle * i));
@@ -123,6 +128,11 @@ public class MyStar implements DrawingObject{
     		yPoints[ctr + 1] = (int)(originY + (sizeY / 2) * Math.sin(offset + angle * i ));
     		
     	}
+    	star.reset();
+    	star.xpoints = xPoints;
+    	star.ypoints = yPoints;
+    	star.npoints = numPoints*2;
+    	
         setBounds( bounds );
     }
     /**
@@ -134,9 +144,7 @@ public class MyStar implements DrawingObject{
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
-        makeStar(p, numPoints);
-        setBounds( bounds );
-        
+        makeStar();
         
     }
     
@@ -160,6 +168,6 @@ public class MyStar implements DrawingObject{
    
     public boolean contains( Point p ) {
     	
-        return bounds.contains(p);
+        return star.contains(p);
     }
 }
