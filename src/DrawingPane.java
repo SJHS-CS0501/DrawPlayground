@@ -133,8 +133,21 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		}else if(check == 7){
     			for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
-	    				System.out.println("deleting");
+	    				System.out.println("star listen to me");
 	    				obj = drob.get(i);
+	    				obj.drag(e.getPoint());
+	    				break;
+	    			}else{
+	    				obj = null;
+	    			}
+	    			
+	    		}
+    			
+    		}else if(check == 8){
+    			for(int i = drob.size()-1; i>= 0; i--){
+	    			if(drob.get(i).contains(e.getPoint())){
+	    				System.out.println("deleting");
+	    				drob.remove(i);
 	    				break;
 	    			}else{
 	    				obj = null;
@@ -188,7 +201,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     @Override
     public void mouseReleased(MouseEvent e) {
         System.out.println( "mouseReleased()" );
-        
         obj = null;
         
         return;
