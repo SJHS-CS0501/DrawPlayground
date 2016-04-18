@@ -58,13 +58,15 @@ public class MyStar implements DrawingObject {
 		 }else{
 			 g2d.setColor( Color.BLACK );
 		 }
+		 
+		 star = new Polygon(xPoints, yPoints, xPoints.length);
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 		 if(fillout == 2){
-				g.drawPolygon(xPoints, yPoints, xPoints.length);
+				g.drawPolygon(star);
 			}else if(fillout == 1){
-				g.fillPolygon(xPoints, yPoints, xPoints.length);
+				g.fillPolygon(star);
 			}
-	        star = new Polygon(xPoints, yPoints, xPoints.length);
+	        
 	        
 	        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 
