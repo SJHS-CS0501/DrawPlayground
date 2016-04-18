@@ -30,6 +30,7 @@ public class MyStar implements DrawingObject{
 	int[] yArray;
 	double[] numArray = new double[numPoints];
 	Rectangle bounds = new Rectangle();
+	Polygon poly = new Polygon();
 	
 	public MyStar() {
 		sizeX = sizeY = originX = originY = 0;
@@ -64,16 +65,11 @@ public class MyStar implements DrawingObject{
         lastY = p.y;
 		
 	}
-
-	@Override
-	public void drag(Point p) {
-		
-		
-		
+	
+	public void mathStuff() {
 		double foo = ((2 * Math.PI/numPoints));
 		double otherFoo = (Math.PI/numPoints);
-		sizeX = p.x - originX;
-        sizeY = p.y - originY;
+		
         setBounds( bounds );
 		for(int c = 0, i = 0; c < xArray.length; i++, c += 2) {
 			xArray[c] = (int)(originX + sizeX * Math.cos(foo * i));
@@ -81,16 +77,22 @@ public class MyStar implements DrawingObject{
 			xArray[c + 1] = (int)(originX + (sizeX / 2) * Math.cos(otherFoo + foo * i));
 			yArray[c + 1] = (int)(originY + (sizeY / 2) * Math.sin(otherFoo + foo * i));
 		}
-		
-		
+		  
+	}
+
+	@Override
+	public void drag(Point p) {
+		sizeX = p.x;
+        sizeY = p.y;
+		mathStuff();
 	}
 
 	@Override
 	public void move(Point p) {
 		originX = p.x;
         originY = p.y;
-        setBounds( bounds );
-		
+       
+		mathStuff();
 	}
 
 	@Override
