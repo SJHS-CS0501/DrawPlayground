@@ -163,6 +163,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	tPane.setVisible(false);
             	//tPane.setVisible(false);
             	ToolPanel.check= 5;
+            	//cPane.fo = cPane.
             	
             	break;
             	

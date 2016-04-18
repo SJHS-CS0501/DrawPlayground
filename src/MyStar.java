@@ -133,8 +133,8 @@ public class MyStar implements DrawingObject {
 		
 	    
 
-		double angle = 2*Math.PI/points;
-		double offset = Math.PI/points;
+		double angle = (2*Math.PI/points);
+		double offset = (Math.PI/points);
 	    
 		for(int i = 0, j = 0; j<xPoints.length; i++, j+=2){
 			
@@ -144,10 +144,10 @@ public class MyStar implements DrawingObject {
 			//double l = (360/5) * (Math.PI/180);
 			
 			
-			xPoints[j] = (int)(originX + sizeX * (Math.cos((angle)*(i))));// * //Math.cos(l)) ;
-			yPoints[j] = (int)(originY + sizeY * (Math.sin((angle)*(i))));//* Math.sin(l));
-			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+(angle)*(i))));//(Math.cos(Math.PI/points)+angle;
-			yPoints[j+1] = (int)(originY+ (sizeY/2) * (Math.sin(offset+(angle*i))));
+			xPoints[j] = (int)(originX + sizeX * (Math.cos(angle*i-(Math.PI/2))));// * //Math.cos(l)) ;
+			yPoints[j] = (int)(originY + sizeY * (Math.sin(angle*i-(Math.PI/2))));//* Math.sin(l));
+			xPoints[j+1] = (int)(originX+ (sizeX/2) * (Math.cos(offset+angle*i-(Math.PI/2))));//(Math.cos(Math.PI/points)+angle;
+			yPoints[j+1] = (int)(originY+ (sizeY/2) * (Math.sin(offset+angle*i-(Math.PI/2))));
 		}
 			
 	}

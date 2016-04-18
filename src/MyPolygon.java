@@ -142,8 +142,8 @@ public class MyPolygon implements DrawingObject {
 					//double l = (360/5) * (Math.PI/180);
 					
 					
-					xPoints[j] = (int)(originX + sizeX * (Math.cos((angle)*(i))));// * //Math.cos(l)) ;
-					yPoints[j] = (int)(originY + sizeY * (Math.sin((angle)*(i))));//* Math.sin(l));
+					xPoints[j] = (int)(originX + sizeX * (Math.cos(angle*i-(Math.PI/2))));// * //Math.cos(l)) ;
+					yPoints[j] = (int)(originY + sizeY * (Math.sin(angle*i-(Math.PI/2))));//* Math.sin(l));
 					//xPoints[j+1] = (int)(originX+ (sizeX) * (Math.cos(offset+(angle)*(i))));//(Math.cos(Math.PI/points)+angle;
 					//yPoints[j+1] = (int)(originY+ (sizeY) * (Math.sin(offset+(angle*i))));
 				}
