@@ -118,6 +118,20 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener(this);
         menu.add( menuItem );
         
+        menu.addSeparator();
+        
+        menuItem = new JMenuItem( "Resize" );
+        menuItem.setActionCommand("resize");
+        menuItem.addActionListener(this);
+        menu.add( menuItem );
+        
+        menu.addSeparator();
+        
+        menuItem = new JMenuItem( "Delete" );
+        menuItem.setActionCommand("delete");
+        menuItem.addActionListener(this);
+        menu.add( menuItem );
+        
         menuBar.add( menu );
         
         menuBar.add( Box.createHorizontalGlue() );
@@ -183,6 +197,22 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check = 0;
+           
+                break;
+                
+            case "resize":
+            	tPane.setVisible(false);
+            	color.setVisible(false);
+            	cPane.setVisible(false);
+            	ToolPanel.check = 7;
+           
+                break;
+                
+            case "delete":
+            	tPane.setVisible(false);
+            	color.setVisible(false);
+            	cPane.setVisible(false);
+            	ToolPanel.check = 8;
            
                 break;
                 

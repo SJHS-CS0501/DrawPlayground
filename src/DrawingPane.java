@@ -130,6 +130,18 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     				obj.setFill(ColorPanel.fo);
 	    			obj.setColor(JMenuFrame.getColor());
 	    			}
+    		}else if(check == 7){
+    			for(int i = drob.size()-1; i>= 0; i--){
+	    			if(drob.get(i).contains(e.getPoint())){
+	    				System.out.println("deleting");
+	    				obj = drob.get(i);
+	    				break;
+	    			}else{
+	    				obj = null;
+	    			}
+	    			
+	    		}
+    			
     		}
     	
     	
