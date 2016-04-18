@@ -24,12 +24,12 @@ public class ToolPanel extends JPanel implements ActionListener {
         super();
         dPane = d;
         this.setSize( 50, 100 );
-        this.setLayout( new GridLayout( 3, 2 ) );
+        this.setLayout( new GridLayout( 1, 2 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         JPanel againForButtons = new JPanel();
     
-        againForButtons.setLayout( new GridLayout(3,2));
+        againForButtons.setLayout( new GridLayout(4,2));
         
         button = new JButton( "Rectangle" );
         button.setActionCommand( "rectangle" );
@@ -60,6 +60,17 @@ public class ToolPanel extends JPanel implements ActionListener {
         button.setActionCommand( "arc" );
         button.addActionListener( this );
         againForButtons.add( button );
+        
+        button = new JButton( "Move" );
+        button.setActionCommand( "move" );
+        button.addActionListener( this );
+        againForButtons.add( button );
+        
+        button = new JButton( "fake button" );
+        //button.setActionCommand( "move" );
+        //button.addActionListener( this );
+        againForButtons.add( button );
+       
         
         //againForButtons.add( new JSeparator() );
         

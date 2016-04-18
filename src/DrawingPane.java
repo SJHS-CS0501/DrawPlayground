@@ -19,6 +19,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public String coolShape; // make a setter for this
 	ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
 	DrawingObject object;
+	boolean avoidingHazards;
 
 	public DrawingPane() {
     	
@@ -108,16 +109,19 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		objectList.add(object);
     		break;
     	case "string":
-    		// joptionpane
     		object = new MyString();
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "move":
-    		
-    		// move
-    		// select obj
+    		for( int i = objectList.size() - 1; i >= 0; i-- ){
+    			if( objectList.get(i).contains( mousePoint ) ){
+    				avoidingHazards = true;
+    				object = objectList.get(i);
+    			break;
+    			}	
+    		}
     		break;
     		default:
     			System.out.println( "NO HAPPINESS HERE" );
@@ -132,7 +136,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {
     	Point p = e.getPoint();
     	
-    	object.drag( p );
+    	if( avoidingHazards ){
+    		object.move( p );
+    	} else {
+    		object.drag( p );
+    	}
+    	
     	repaint();
     	// drag to make object real
     	
@@ -141,6 +150,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseReleased(MouseEvent e) {
+    	avoidingHazards = false;
+    	object = null;
         System.out.println( "mouseReleased()" );
     }
 

@@ -53,7 +53,7 @@ public class MyLine implements DrawingObject{ // these all implement DrawingObje
 	// bounding rectangle!!!
 	@Override
 	public void setBounds(Rectangle b) {
-		 b.setBounds( originX, originY, sizeX, sizeY );
+		 b.setBounds( originX, originY, sizeX + 5, sizeY + 5);
 	}
 
 	//
