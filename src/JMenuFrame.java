@@ -19,12 +19,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
     ToolPanel tPane;
     static JColorChooser color;
     ColorPanel cPane;
+    DrawingPane dPane;
     //static int turnedOn;
     //JPanel p
     
     public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
+        dPane = new DrawingPane();
         tPane = new ToolPanel();
         color = new JColorChooser();
         cPane = new ColorPanel();
@@ -53,8 +54,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Do Something" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -118,14 +119,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener(this);
         menu.add( menuItem );
         
-        menu.addSeparator();
+        //menu.addSeparator();
         
         menuItem = new JMenuItem( "Resize" );
         menuItem.setActionCommand("resize");
         menuItem.addActionListener(this);
         menu.add( menuItem );
         
-        menu.addSeparator();
+        //menu.addSeparator();
         
         menuItem = new JMenuItem( "Delete" );
         menuItem.setActionCommand("delete");
@@ -159,8 +160,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
     	
     	
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
+            case "Save":
+            	dPane.createImage(100, 200);
+            	
                 System.out.println( "Something Pressed" );
+                
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );

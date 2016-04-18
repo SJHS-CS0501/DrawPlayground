@@ -56,7 +56,7 @@ public class MyStar implements DrawingObject {
 		 if(c != null){
 	        g2d.setColor( c );
 		 }else{
-			 g2d.setColor( Color.BLACK );
+			g2d.setColor( Color.BLACK );
 		 }
 		 
 		 star = new Polygon(xPoints, yPoints, xPoints.length);
