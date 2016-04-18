@@ -82,8 +82,12 @@ public class MyLine implements DrawingObject {
 	 * @param p
 	 */
 	public void move(Point p) {
+		int tX = sizeX - originX;
+		int tY = sizeY - originY;
 		originX = p.x;
 		originY = p.y;
+		sizeX = originX + tX;
+		sizeY = originY + tY;
 		setBounds(bounds);
 	}
 
@@ -118,6 +122,7 @@ public class MyLine implements DrawingObject {
 	 * @return
 	 */
 	public boolean contains(Point p) {
+		
 		return bounds.contains(p);
 	}
 }

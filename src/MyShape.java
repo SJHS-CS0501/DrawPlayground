@@ -109,7 +109,7 @@ public class MyShape implements DrawingObject {
 	 * @param b
 	 */
 	public void setBounds(Rectangle b) {
-		bounds = poly.getBounds();
+		b = poly.getBounds();
 	}
 
 	/**

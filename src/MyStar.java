@@ -59,9 +59,14 @@ public class MyStar implements DrawingObject {
         g2d.setColor(getColor());      
         if(fill) {
         	g2d.fillPolygon(xPoints, yPoints, xPoints.length);
+        	g2d.setColor(Color.YELLOW);
+        	g2d.draw(bounds);
         }
         else{
+        	
         	g2d.drawPolygon(xPoints, yPoints, xPoints.length);
+        	g2d.setColor(Color.YELLOW);
+        	g2d.draw(bounds);
         }
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -108,7 +113,7 @@ public class MyStar implements DrawingObject {
      * @param b 
      */
     public void setBounds( Rectangle b ) {
-        b = poly.getBounds();
+    	b = poly.getBounds();
     }
     
     /**
@@ -151,15 +156,16 @@ public class MyStar implements DrawingObject {
      * Uses a for loop to determine the points for the star.
      */
     public void math() {
-    	poly.reset();
+//    	poly.reset();
     	for(int i = 0, j = 0; j < xPoints.length; i++, j +=2 ) {
     		xPoints[j] = (int)(originX + sizeX * Math.cos(angle * (i)));
     		yPoints[j] = (int)(originY + sizeY * Math.sin(angle * (i)));
     		xPoints[j+1] = (int)(originX + (sizeX/2) * Math.cos((Math.PI/points) + angle * (i)));
     		yPoints[j+1] = (int)(originY + (sizeY/2) * Math.sin((Math.PI/points) + angle * (i)));
     	}
+    	poly.invalidate();
     	poly.xpoints = xPoints;
     	poly.ypoints = yPoints;
-    	poly.npoints = points;
+    	poly.npoints = points * 2;
 	}
 }
