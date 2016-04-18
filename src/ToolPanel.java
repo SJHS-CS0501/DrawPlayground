@@ -40,8 +40,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton Rectangle = new JRadioButton( "Rectangle" );
         JRadioButton Circle = new JRadioButton( "Circle" );
         JRadioButton Line = new JRadioButton( "Line" );
-        JRadioButton Star = new JRadioButton( "Star NumPoint=" );
-        JRadioButton Polygon = new JRadioButton("Custom NumPoint=");
+        JRadioButton Star = new JRadioButton( "= Star Points" );
+        JRadioButton Polygon = new JRadioButton("= Custom Polygon");
         //JRadioButton NoOperation = new JRadioButton( "Edit" );
         points = new JTextField("5");
         points2 = new JTextField("5");
@@ -73,10 +73,11 @@ public class ToolPanel extends JPanel implements ActionListener {
         unitSelectionPanel.add( Rectangle );
         unitSelectionPanel.add( Circle);
         unitSelectionPanel.add( Line );
-        unitSelectionPanel.add( Star );
         unitSelectionPanel.add( points );
-        unitSelectionPanel.add(Polygon);
+        unitSelectionPanel.add( Star );
         unitSelectionPanel.add(points2);
+        unitSelectionPanel.add(Polygon);
+        
         //unitSelectionPanel.add(NoOperation);
         
         add(unitSelectionPanel);
