@@ -74,7 +74,7 @@ public class MyLine implements DrawingObject {
     }
     
     public void setBounds( Rectangle b ) {
-        b.setBounds( originX, originY, sizeX, sizeY );
+        b.setBounds( originX, originY, sizeX + 2, sizeY + 2 );
     }
     
     /**

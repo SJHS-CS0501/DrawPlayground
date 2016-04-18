@@ -117,7 +117,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
        if(moving){
     	  drawingObject.move(e.getPoint());
        } else {
+    	  try{
     	  drawingObject.drag(e.getPoint());
+    	  } catch(Exception b){
+    		  
+    	  }
        }
        
        repaint();
