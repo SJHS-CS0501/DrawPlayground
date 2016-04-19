@@ -33,7 +33,7 @@ public class MyStar implements DrawingObject{
 	int[] yPoints;
     static final int NUMPOINTS = 9;
     Polygon star = new Polygon();
-    
+    Color color;
     
     
     /**
@@ -44,6 +44,7 @@ public class MyStar implements DrawingObject{
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
         numberPoints(NUMPOINTS);
+        color = Color.BLACK;
     }
     
     public void numberPoints( int n ){
@@ -82,7 +83,7 @@ public class MyStar implements DrawingObject{
     	
     	Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( color );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         //g2d.drawPolygon( xPoints, yPoints, xPoints.length );
         g2d.draw(star);
@@ -179,9 +180,10 @@ public class MyStar implements DrawingObject{
 	}
 */
 	@Override
-	public Color setColor(Color color) {
+	public void setColor(Color color) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		this.color = color;
 	}
 	
 }

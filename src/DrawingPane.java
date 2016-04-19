@@ -33,7 +33,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		addMouseMotionListener(this);
 
 	}
-
+/*
+ * Save drawing pane as jpeg
+ * save into file to reopen and use
+ * When it starts it does stuff, like good stuff :)                                                                                                      
+ */
+	
 	/**
 	 * actionPerformed is here in case we need it later. Not currently used.
 	 * 
@@ -100,13 +105,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case (5):
 			Color color = null;
 		System.out.println(objList.size());
-			for( int ctr = 0; ctr < objList.size();){
+			for( int ctr = 0; ctr < objList.size(); ctr++){
 				obj = objList.get(ctr);
 				if(obj.contains(e.getPoint())){
-					color = colorChooser.getColor(getName());
+					System.out.println("FOUND IT");
+					color = ToolPanel.colorChooser.getColor();
 					obj.setColor(color);
 				}
-				 ctr++;
+				 
 			}
 			break;
 		}

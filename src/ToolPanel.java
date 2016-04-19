@@ -18,7 +18,7 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 	
 	public static int buttonSelected = 0;
-	
+	static JColorChooser colorChooser = new JColorChooser();
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
@@ -48,8 +48,6 @@ public class ToolPanel extends JPanel implements ActionListener {
         JRadioButton colorPicker = new JRadioButton("Color Chooser");
         colorPicker.setMnemonic(KeyEvent.VK_B);
         colorPicker.setActionCommand("Change Color");
-        
-        JColorChooser colorChooser = new JColorChooser();
       
         ButtonGroup shapes = new ButtonGroup();
         shapes.add(square);
