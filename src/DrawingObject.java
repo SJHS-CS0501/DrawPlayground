@@ -49,5 +49,9 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
 	
+    //public Color getColor();
+    
+   // public Color setColor();
+    
     
 }

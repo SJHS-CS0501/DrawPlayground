@@ -21,6 +21,7 @@ public class MyStar implements DrawingObject{
  * remember to off set one circle - check
  * 0, 1* 365/5, 
  */
+	Color starColor = null;
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
@@ -170,4 +171,17 @@ public class MyStar implements DrawingObject{
     	
         return star.contains(p);
     }
+/*
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Color setColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
 }

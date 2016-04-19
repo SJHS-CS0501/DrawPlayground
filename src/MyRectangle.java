@@ -37,6 +37,7 @@ public class MyRectangle implements DrawingObject {
 	 * create new color array list
 	 * create get color and set color for java
 	 */
+	Color lineColor = null;
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
@@ -144,6 +145,18 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+/*
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public Color setColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+*/
 
 }

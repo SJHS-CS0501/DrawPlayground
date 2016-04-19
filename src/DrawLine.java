@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  *
  */
 public class DrawLine implements DrawingObject {
-
+	Color lineColor = null;
     int sizeX, sizeY, originX, originY;
     int lastX, lastY;
     Rectangle bounds = new Rectangle();
@@ -97,4 +97,18 @@ public class DrawLine implements DrawingObject {
 			return false;    // C is not on the line.
 		}
 	}
+/*
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		//colorChooser.getColor();
+		return null;
+	}
+
+	@Override
+	public Color setColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
 }

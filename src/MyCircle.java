@@ -12,7 +12,7 @@ import javafx.scene.shape.Circle;
  *
  */
 public class MyCircle implements DrawingObject{
-	
+	Color circleColor = null;
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
@@ -103,7 +103,19 @@ public class MyCircle implements DrawingObject{
 		// TODO Auto-generated method stub
 		  b.setBounds( originX, originY, sizeX, sizeY );
 	}
+/*
+	@Override
+	public Color getColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public Color setColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+*/
 	/**
 	 * @param args
 	 */
