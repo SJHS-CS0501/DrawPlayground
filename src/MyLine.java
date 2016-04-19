@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
 import javafx.scene.shape.Circle;
 
@@ -121,7 +122,9 @@ public class MyLine implements DrawingObject {
 		// TODO Auto-generated method stub
 		on =new Point(originX,originY);
 		sz =new Point(sizeX, sizeY);
+		//double results = Line2D.ptSegDist(originX, originY, sizeX, sizeY, p.x, p.y);
 		if(distance(on, p)+distance(p,sz) <= distance(on,sz)+1 || distance(on, p)+distance(p,sz) <= distance(on,sz)-1){
+		//if(1>=results){
 			return true;
 		}else{
 			return false;

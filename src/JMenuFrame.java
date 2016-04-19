@@ -59,8 +59,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Draw Test Circle" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem( "New" );
+        menuItem.setActionCommand( "New" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -166,8 +166,10 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.out.println( "Something Pressed" );
                 
                 break;
-            case "MenuAnother":
-                System.out.println( "Another Pressed" );
+            case "New":
+            	DrawingPane.drob.clear();
+                System.out.println( "new Pressed" );
+                
                 
                 break;
             case "Quit":

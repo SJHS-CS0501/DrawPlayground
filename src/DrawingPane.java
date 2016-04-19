@@ -20,7 +20,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	int b;
 	int check;
 	DrawingObject obj;
-	private ArrayList<DrawingObject> drob;
+	static ArrayList<DrawingObject> drob;
 	
 	public static final int l = 1;
 	public static final int rec = 2;
