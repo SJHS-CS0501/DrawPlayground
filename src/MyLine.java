@@ -1,14 +1,16 @@
 import java.awt.*;
+import java.awt.geom.Line2D;
+
 
 public class MyLine implements DrawingObject{ // these all implement DrawingObject (all the shapie things)
 
     int sizeX, sizeY, originX, originY;
     int lastX, lastY;
-    Rectangle bounds = new Rectangle(); // bounding rectangle again
+    //Rectangle bounds = new Rectangle(); // bounding rectangle again
 	
     MyLine(){
     	sizeX = sizeY = originX = originY = 0; // initializing stuff and things in the constructor
-    	setBounds( bounds );
+    	//setBounds( bounds );
     }
 	
 	@Override
@@ -37,17 +39,18 @@ public class MyLine implements DrawingObject{ // these all implement DrawingObje
 		
 		sizeX = p.x;
         sizeY = p.y;
-        setBounds( bounds );
+        //setBounds( bounds );
 	}
 
 	//
 	@Override
 	public void move(Point p) {
-	
-		 originX = p.x;
-	     originY = p.y;
-	     setBounds( bounds );
-		
+		sizeX = sizeX - (originX - p.x);
+		sizeY = sizeY - (originY - p.y);
+		originX = p.x;
+	    originY = p.y;
+	    
+	     //setBounds( bounds );
 	}
 
 	// bounding rectangle!!!
@@ -59,7 +62,15 @@ public class MyLine implements DrawingObject{ // these all implement DrawingObje
 	//
 	@Override
 	public boolean contains(Point p) {
-		return bounds.contains(p);
+		double result = Line2D.ptSegDist( originX, originY, sizeX, sizeY, p.x, p.y );
+		
+		if( result <= 5 ){
+			return true;
+		} else {
+			return false;
+		}
+		
+		//return bounds.contains(p);
 	}
 
 }
