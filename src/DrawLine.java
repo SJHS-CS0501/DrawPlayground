@@ -104,11 +104,11 @@ public class DrawLine implements DrawingObject {
 		//colorChooser.getColor();
 		return null;
 	}
-
+*/
 	@Override
-	public Color setColor() {
+	public Color setColor(Color color) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	*/
+	
 }

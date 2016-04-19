@@ -177,11 +177,11 @@ public class MyStar implements DrawingObject{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	@Override
-	public Color setColor() {
+	public Color setColor(Color color) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	*/
+	
 }
