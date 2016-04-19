@@ -139,6 +139,9 @@ public class MyShape implements DrawingObject {
 		color = c;
 	}
 	
+	/**
+	 * Does math involved with the making of the object.
+	 */
 	private void doMathOrSomething() {
 		poly.reset();
 		int x[] = { originX, (originX + sizeX), (originX + sizeY), (originX - sizeX), originX };

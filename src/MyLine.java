@@ -115,6 +115,10 @@ public class MyLine implements DrawingObject {
     	color = c;
     }
 	
+//    public int math(Point s, Point t) {
+//    	return (int)Math.sqrt((t.x - s.x) * (t.x - s.x) + (t.y - s.y) * (t.y - s.y));
+//    }
+    
 	/**
 	 * Returns true if the point p is in the bounding box for this object. Might
 	 * be used to select and/or move an object.
@@ -122,7 +126,9 @@ public class MyLine implements DrawingObject {
 	 * @return
 	 */
 	public boolean contains(Point p) {
-		
+//		Point point1 = new Point(originX, originY);
+//		Point point2 = new Point(sizeX, sizeY);
+//		int calc = math(point1, p)
 		return bounds.contains(p);
 	}
 }
