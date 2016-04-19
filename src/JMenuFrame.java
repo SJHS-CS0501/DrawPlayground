@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileWriter;
+
 import javax.swing.*;
 
 /**
@@ -8,11 +10,14 @@ import javax.swing.*;
  * @author Jack Protivnak
  */
 public class JMenuFrame extends JFrame implements ActionListener {
+	
+	private JFileChooser file;
     
     public JMenuFrame() {
         super();
         DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
+        file =  new JFileChooser();
         
         JMenuBar menuBar;
         JMenu menu;
@@ -29,6 +34,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuBar = new JMenuBar();
         
         menu = new JMenu( "My Menu" );
+        
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "save" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
         
         menuItem = new JMenuItem( "Do Something" );
         menuItem.setActionCommand( "MenuSomething" );
@@ -87,7 +97,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setJMenuBar( menuBar );
         
         //this.setSize( new Dimension(this.getPreferredSize() ) ); 
-        this.setSize( 600, 600 );
+        this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
         this.setVisible( true );
     }
     
@@ -97,6 +107,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
+        	case "save":
+        		String sb = "coconut";
+        		try(FileWriter fw = new FileWriter(file.getSelectedFile()+".txt")) {
+        		    fw.write(sb.toString());
+            		fw.close();
+        		} catch(Exception es) {
+        		}
+        		break;
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
                 break;

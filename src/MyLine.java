@@ -82,13 +82,10 @@ public class MyLine implements DrawingObject {
 	 * @param p
 	 */
 	public void move(Point p) {
-		int tX = sizeX - originX;
-		int tY = sizeY - originY;
+		sizeX = p.x + (sizeX - originX );
+		sizeY = p.y + (sizeY - originY );
 		originX = p.x;
 		originY = p.y;
-		sizeX = originX + tX;
-		sizeY = originY + tY;
-		setBounds(bounds);
 	}
 
 	/**
@@ -97,7 +94,7 @@ public class MyLine implements DrawingObject {
 	 * @param b
 	 */
 	public void setBounds(Rectangle b) {
-		b.setBounds(originX, originY, sizeX, sizeY);
+//		b.setBounds(originX, originY, sizeX, sizeY);
 	}
 
 	/**
@@ -114,10 +111,6 @@ public class MyLine implements DrawingObject {
     public void setColor(Color c) {
     	color = c;
     }
-	
-//    public int math(Point s, Point t) {
-//    	return (int)Math.sqrt((t.x - s.x) * (t.x - s.x) + (t.y - s.y) * (t.y - s.y));
-//    }
     
 	/**
 	 * Returns true if the point p is in the bounding box for this object. Might
@@ -126,9 +119,12 @@ public class MyLine implements DrawingObject {
 	 * @return
 	 */
 	public boolean contains(Point p) {
-//		Point point1 = new Point(originX, originY);
-//		Point point2 = new Point(sizeX, sizeY);
-//		int calc = math(point1, p)
-		return bounds.contains(p);
+		double result = Line2D.ptSegDist(originX,  originY, sizeX, sizeY, p.x, p.y);
+		if(result <= 1.25) {
+			return true;
+		} else {
+			return false;
+		}
+//		return bounds.contains(p);
 	}
 }
