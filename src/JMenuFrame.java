@@ -1,12 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+
 import javax.swing.*;
 
 /**
  *
  * @author woytek
  */
-public class JMenuFrame extends JFrame implements ActionListener {
+public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     
 	private static final long serialVersionUID = 1L;
 
