@@ -3,12 +3,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
 public class MyLine implements DrawingObject {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle boundingBox = new Rectangle();
 	Color color;
+	double contains;
 
     public MyLine() {
      
@@ -68,20 +70,31 @@ public class MyLine implements DrawingObject {
      * Translation of line
      */
     public void move( Point p ) {
+    	sizeX = sizeX - (originX - p.x);
         originX = p.x;
+        sizeY = sizeY - (originY - p.y);
         originY = p.y;
         setBounds( boundingBox );
     }
     
     public void setBounds( Rectangle b ) {
-        b.setBounds( originX, originY, sizeX + 2, sizeY + 2 );
+    	//not using a bounding rectangle
+        //b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
     }
     
     /**
      * If point is contained then it will be selected
      */
     public boolean contains( Point p ) {
-        return boundingBox.contains(p);
+    	contains = Line2D.ptSegDist(originX, originY, sizeX, sizeY, p.x, p.y);
+    	System.out.print("ptSegDis: " + contains);
+    	
+    	if(contains <= 5) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    	
     }
     
     /**

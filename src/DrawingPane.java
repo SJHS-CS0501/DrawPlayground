@@ -13,7 +13,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	static int sizeX, sizeY;
 	JFrame colors;
 	boolean moving;
-
+	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         /*
@@ -129,7 +129,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {    	
     	int x = e.getX();
         int y = e.getY();
         repaint();

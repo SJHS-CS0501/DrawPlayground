@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 /**
  *
  * @author Woytek
@@ -10,7 +12,7 @@ public class JMenuTest {
      */
     public static void main(String[] args) {
         JMenuFrame myFrame = new JMenuFrame();
-        myFrame.setSize( 1600, 1000);
+        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     
     }
 }

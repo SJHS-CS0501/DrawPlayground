@@ -17,7 +17,6 @@ public class MyStar implements DrawingObject{
 	Color color;
 
     public MyStar() {
-     
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
     }

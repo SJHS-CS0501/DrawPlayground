@@ -4,6 +4,7 @@ import javax.swing.*;
 
 /**
  *
+ * @author Julianna Nichols
  * @author woytek
  */
 public class JMenuFrame extends JFrame implements ActionListener {
