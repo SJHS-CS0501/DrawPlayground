@@ -243,6 +243,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
    		Graphics2D g2 = image.createGraphics();
    		paint(g2);
+   		type = "jpg";
    		try{
    			ImageIO.write(image, type, new File(name+"."+type));
    		} catch (Exception e) {

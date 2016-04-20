@@ -20,6 +20,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     static JColorChooser color;
     ColorPanel cPane;
     DrawingPane dPane;
+    SaveImageFrame savI;
     //static int turnedOn;
     //JPanel p
     
