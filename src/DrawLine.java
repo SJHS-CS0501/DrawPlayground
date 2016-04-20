@@ -41,7 +41,7 @@ public class DrawLine implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( lineColor );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawLine( originX, originY, sizeX, sizeY );
         
@@ -106,9 +106,9 @@ public class DrawLine implements DrawingObject {
 	}
 */
 	@Override
-	public Color setColor(Color color) {
+	public void setColor(Color color) {
 		// TODO Auto-generated method stub
-		return null;
+		this.lineColor = color;
 	}
 	
 }

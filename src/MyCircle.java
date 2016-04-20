@@ -12,13 +12,14 @@ import javafx.scene.shape.Circle;
  *
  */
 public class MyCircle implements DrawingObject{
-	Color circleColor = null;
+	Color circleColor;
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;
 	// bounding box (needed for move)
 	Rectangle bounds = new Rectangle();
+	
 
 	 /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -51,7 +52,7 @@ public class MyCircle implements DrawingObject{
 		
 		Graphics2D g2d = (Graphics2D)g;
 	        
-	        g2d.setColor( Color.BLACK );
+	        g2d.setColor( circleColor );
 	        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
 	        g2d.drawOval(originX, originY, sizeX, sizeY);
 	        
@@ -111,9 +112,9 @@ public class MyCircle implements DrawingObject{
 	}
 */
 	@Override
-	public Color setColor(Color color) {
+	public void setColor(Color color) {
 		// TODO Auto-generated method stub
-		return null;
+		this.circleColor = color;
 	}
 
 	/**

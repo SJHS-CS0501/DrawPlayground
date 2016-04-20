@@ -37,7 +37,7 @@ public class MyRectangle implements DrawingObject {
 	 * create new color array list
 	 * create get color and set color for java
 	 */
-	Color lineColor = null;
+	Color rectColor = null;
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
@@ -81,7 +81,7 @@ public class MyRectangle implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( rectColor );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -153,9 +153,9 @@ public class MyRectangle implements DrawingObject {
 	}
 */
 	@Override
-	public Color setColor(Color color) {
+	public void setColor(Color color) {
 		// TODO Auto-generated method stub
-		return null;
+		this.rectColor = color;
 	}
 
 
