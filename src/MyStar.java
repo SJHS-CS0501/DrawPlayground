@@ -65,8 +65,6 @@ public class MyStar implements DrawingObject {
         else{
         	
         	g2d.drawPolygon(xPoints, yPoints, xPoints.length);
-        	g2d.setColor(Color.YELLOW);
-        	g2d.draw(bounds);
         }
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
