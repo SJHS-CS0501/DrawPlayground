@@ -7,7 +7,7 @@ public class ToolPanel extends JPanel implements ActionListener, Serializable {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 	
-	JColorChooser colorChooser = new JColorChooser();
+	static JColorChooser colorChooser = new JColorChooser();
 	private static final long serialVersionUID = 1L;
 	DrawingPane drawingPane = new DrawingPane();
 	DrawingObject drawingObject;

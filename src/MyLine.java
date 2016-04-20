@@ -39,7 +39,7 @@ public class MyLine implements DrawingObject, Serializable {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( getColor() );
         
         g2d.drawLine( originX, originY, sizeX, sizeY );
         

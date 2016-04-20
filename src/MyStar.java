@@ -49,7 +49,7 @@ public class MyStar implements DrawingObject, Serializable {
     	
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( getColor() );
         
         g2d.drawPolygon(xPoints, yPoints, xPoints.length);
         

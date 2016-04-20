@@ -38,7 +38,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menu.add(menuItem);
         
         menuItem = new JMenuItem( "Open File..." ); //item
-        menuItem.setActionCommand( "Open File..." );
+        menuItem.setActionCommand( "Open File" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -58,24 +58,43 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "Color" ); //title
+        menu = new JMenu( "Other Options" ); //title
         menuItem = new JMenuItem( "Red" ); //item
         menuItem.setActionCommand( "Red" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
-        
-        //menu.addSeparator();
         
         menuItem = new JMenuItem( "Orange" ); //item
         menuItem.setActionCommand( "Orange" );
         menuItem.addActionListener( this );
         menu.add( menuItem );
         
-        subMenu = new JMenu( "SubMenu" ); //title of submenu
-        menuItem = new JMenuItem( "SubFoo" ); //item in submenu
-        menuItem.setActionCommand( "MenuSubFoo" );
+        subMenu = new JMenu( "Star Points" ); //title of submenu
+        menuItem = new JMenuItem( "Five (5)" ); //item in submenu
+        menuItem.setActionCommand( "Five" );
         menuItem.addActionListener( this );
         subMenu.add( menuItem );
+        
+        menuItem = new JMenuItem( "Six (6)" ); //item in submenu
+        menuItem.setActionCommand( "Six" );
+        menuItem.addActionListener( this );
+        subMenu.add( menuItem );
+        
+        menuItem = new JMenuItem( "Seven (7)" ); //item in submenu
+        menuItem.setActionCommand( "Seven" );
+        menuItem.addActionListener( this );
+        subMenu.add( menuItem );
+        
+        menuItem = new JMenuItem( "Eight (8)" ); //item in submenu
+        menuItem.setActionCommand( "Eight" );
+        menuItem.addActionListener( this );
+        subMenu.add( menuItem );
+        
+        menuItem = new JMenuItem( "Special" ); //item in submenu
+        menuItem.setActionCommand( "Special" );
+        menuItem.addActionListener( this );
+        subMenu.add( menuItem );
+        
         menu.add(subMenu);
         
         menuBar.add( menu );
@@ -86,7 +105,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menuItem = new JMenuItem( "About" );
         menuItem.setActionCommand( "About" );
         menuItem.addActionListener( this );
+        menu.add( menuItem );
         
+        menuItem = new JMenuItem( "How to..." );
+        menuItem.setActionCommand( "How to" );
+        menuItem.addActionListener( this );
         menu.add( menuItem );
         
         menuBar.add( menu );
@@ -101,18 +124,44 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
-                System.out.println( "Something Pressed" );
+            case "New":
+                System.out.println( "'New' Pressed" );
                 break;
-            case "MenuAnother":
-                System.out.println( "Another Pressed" );
+            case "Open File":
+                System.out.println( "'Open File' Pressed" );
+                break;
+            case "Save":
+                System.out.println( "'Save' Pressed" );
+                break;
+            case "Five":
+                System.out.println( "'Five' Pressed" );
+                break;
+            case "Six":
+                System.out.println( "'Six' Pressed" );
+                break;
+            case "Seven":
+                System.out.println( "'Seven' Pressed" );
+                break;
+            case "Eight":
+                System.out.println( "'Eight' Pressed" );
+                break;
+            case "Special":
+                System.out.println( "'Special' Pressed" );
+                break;
+            case "About":
+                System.out.println( "'About' Pressed" );
+                System.exit(0);
+                break;
+            case "How to":
+                System.out.println( "'How to' Pressed" );
+                System.exit(0);
                 break;
             case "Quit":
-                System.out.println( "quit Pressed" );
+                System.out.println( "'Quit' Pressed" );
                 System.exit(0);
                 break;
             default:
-                System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
+                System.out.println( "You done messed up." );
                 System.exit(-1);
                 break;
         }
