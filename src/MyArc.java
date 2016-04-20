@@ -1,8 +1,13 @@
 import java.awt.*;
+import java.io.Serializable;
 
 // super spiffy arc
-public class MyArc implements DrawingObject{
+public class MyArc implements DrawingObject, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY, startAngle, arcAngle;
     // future use
@@ -62,6 +67,8 @@ public class MyArc implements DrawingObject{
 
 	@Override
 	public void move(Point p) {
+		//originX = originX - (sizeX - p.x);
+		//originY = originY - (sizeY - p.y);
 		originX = p.x;
 	    originY = p.y;
 	    setBounds( bounds );

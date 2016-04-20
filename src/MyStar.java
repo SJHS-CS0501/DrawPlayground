@@ -1,7 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
-public class MyStar implements DrawingObject{
+public class MyStar implements DrawingObject, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int points = 5; // number of points on the star
 	double offset = Math.PI/points; // to offset the inner points from the outer points so you don't get a sad shape
     double angle = 2*Math.PI/points; // for all my angle and mathy needs

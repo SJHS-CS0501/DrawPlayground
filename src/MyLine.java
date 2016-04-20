@@ -1,10 +1,15 @@
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.io.Serializable;
 
 
-public class MyLine implements DrawingObject{ // these all implement DrawingObject (all the shapie things)
+public class MyLine implements DrawingObject, Serializable { // these all implement DrawingObject (all the shapie things)
 
-    int sizeX, sizeY, originX, originY;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int sizeX, sizeY, originX, originY;
     int lastX, lastY;
     //Rectangle bounds = new Rectangle(); // bounding rectangle again
 	

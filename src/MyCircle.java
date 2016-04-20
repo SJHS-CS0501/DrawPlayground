@@ -1,9 +1,14 @@
 import java.awt.*;
+import java.io.Serializable;
 
 // CIRCLES
 // This is the same as the MyRectangle class except the draw has drawOval
-public class MyCircle implements DrawingObject{
+public class MyCircle implements DrawingObject, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
     Rectangle bounds = new Rectangle();

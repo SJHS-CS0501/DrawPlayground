@@ -1,7 +1,12 @@
 import java.awt.*;
+import java.io.Serializable;
 
-public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
+public class MyRectangle implements DrawingObject, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;

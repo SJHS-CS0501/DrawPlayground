@@ -1,10 +1,16 @@
 import java.awt.*;
+import java.io.Serializable;
+
 import javax.swing.JOptionPane;
 
 // The bestest button in my opinion:)
 
-public class MyString implements DrawingObject{
+public class MyString implements DrawingObject, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String wordo; // for the user's wordos
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
