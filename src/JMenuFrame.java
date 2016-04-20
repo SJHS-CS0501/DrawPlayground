@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import javax.swing.*;
 
 /**
@@ -7,7 +8,7 @@ import javax.swing.*;
  * @author Julianna Nichols
  * @author woytek
  */
-public class JMenuFrame extends JFrame implements ActionListener {
+public class JMenuFrame extends JFrame implements ActionListener, Serializable {
    
 	private static final long serialVersionUID = 1L;
 
@@ -15,14 +16,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         super();
         DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
-        
-        
+         
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
         JMenu subMenu;
-          
-                
+             
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
         this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -32,14 +31,21 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         
-        menu = new JMenu( "Shapes" ); //title
-        menuItem = new JMenuItem( "Circle" ); //menu item
-        menuItem.setActionCommand( "Circle" );
+        menu = new JMenu( "File" ); //title
+        menuItem = new JMenuItem( "New" ); //menu item
+        menuItem.setActionCommand( "New" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Rectangle" ); //item
-        menuItem.setActionCommand( "Rectangle" );
+        menuItem = new JMenuItem( "Open File..." ); //item
+        menuItem.setActionCommand( "Open File..." );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menu.addSeparator();
+        
+        menuItem = new JMenuItem( "Save" ); //item
+        menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         

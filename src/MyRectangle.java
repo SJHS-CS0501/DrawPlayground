@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.*;
 
-public class MyRectangle implements DrawingObject {
+public class MyRectangle implements DrawingObject, Serializable {
 	
     // critical variables for a rectangle
     int sizeX, sizeY, originX, originY;

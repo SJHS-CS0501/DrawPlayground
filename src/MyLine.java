@@ -1,11 +1,8 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import java.io.*;
 import java.awt.geom.Line2D;
 
-public class MyLine implements DrawingObject {
+public class MyLine implements DrawingObject, Serializable {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle boundingBox = new Rectangle();

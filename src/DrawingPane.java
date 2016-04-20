@@ -2,15 +2,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.io.*;
 
-public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 	
 	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
 	private static final long serialVersionUID = 1L;
 	public static String shape;
 	public static Color color;
 	DrawingObject drawingObject;
-	static int sizeX, sizeY;
+	int sizeX, sizeY;
 	JFrame colors;
 	boolean moving;
 	
@@ -67,46 +68,51 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	int y = e.getY();
         System.out.println( "mousePressed(" + x + "," + y + ")" );
         
-        switch(shape) {
-        case "Line":
-        	drawingObject = new MyLine();
-        	//drawingObject.setColor(c);
-        	drawingObject.start(e.getPoint());
-        	shapeList.add(drawingObject);
-        	break;
-        case "Rectangle":
-        	drawingObject = new MyRectangle();
-        //	drawingObject.setColor(c);
-        	drawingObject.start(e.getPoint());
-        	shapeList.add(drawingObject);
-        	break;
-        case "Circle":
-        	drawingObject = new MyCircle();
-        	//drawingObject.setColor(c);
-        	drawingObject.start(e.getPoint());
-        	shapeList.add(drawingObject);
-        	break;
-        case "Star":
-        	drawingObject = new MyStar();
-        	//drawingObject.setColor(c);
-        	drawingObject.start(e.getPoint());
-        	shapeList.add(drawingObject);
-        	break;
-        case "Move shape":
-        	// will select top shape
-        	for(int i = shapeList.size()-1; i >= 0; i--) {
-        		if(shapeList.get(i).contains(e.getPoint())){
-        			drawingObject = shapeList.get(i);
-        			moving = true;
-        			break;
-        		}
-        	}
-        	break;
-        default:
-        	System.out.print( "Bad" );
-        	System.exit(-1);
-        	break;
-        }
+        //error is thrown if a button isn't selected and they click the on the drawingPane
+		try {
+			switch (shape) {
+			case "Line":
+				drawingObject = new MyLine();
+				// drawingObject.setColor(c);
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Rectangle":
+				drawingObject = new MyRectangle();
+				// drawingObject.setColor(c);
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Circle":
+				drawingObject = new MyCircle();
+				// drawingObject.setColor(c);
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Star":
+				drawingObject = new MyStar();
+				// drawingObject.setColor(c);
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Move shape":
+				// will select top shape
+				for (int i = shapeList.size() - 1; i >= 0; i--) {
+					if (shapeList.get(i).contains(e.getPoint())) {
+						drawingObject = shapeList.get(i);
+						moving = true;
+						break;
+					}
+				}
+				break;
+			default:
+				System.out.println("Bad");
+				System.exit(-1);
+				break;
+			}
+		} catch (Exception t) {
+			System.out.println("hi");
+		}
     }
 
     @Override

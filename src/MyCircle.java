@@ -1,6 +1,7 @@
 import java.awt.*;
+import java.io.*;
 
-public class MyCircle implements DrawingObject {
+public class MyCircle implements DrawingObject, Serializable {
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle bounds = new Rectangle();

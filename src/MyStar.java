@@ -1,10 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import java.io.*;
 
-public class MyStar implements DrawingObject{
+public class MyStar implements DrawingObject, Serializable {
 	
 	int points = 5;
 	int lastX, lastY;

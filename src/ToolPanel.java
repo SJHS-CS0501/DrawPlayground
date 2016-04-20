@@ -1,9 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-//import javax.swing.border.*;
+import java.io.*;
 
-public class ToolPanel extends JPanel implements ActionListener {
+public class ToolPanel extends JPanel implements ActionListener, Serializable {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
 	
