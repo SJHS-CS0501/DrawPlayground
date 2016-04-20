@@ -57,11 +57,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem = new JMenuItem( "Save" );
         menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
+       
         menu.add(menuItem);
         
         menuItem = new JMenuItem( "New" );
         menuItem.setActionCommand( "New" );
         menuItem.addActionListener( this );
+ 
         menu.add(menuItem);
         
         menu.addSeparator();
@@ -155,23 +157,29 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
     }
     
+
     public void actionPerformed( ActionEvent e ) {
     	
     	
     	
         switch( e.getActionCommand() ) {
             case "Save":
-            	dPane.createImage(100, 200);
-            	
+            	//dPane.createImage(100, 200);
+            	dPane.saveImage("First", "jpg");
                 System.out.println( "Something Pressed" );
-                
                 break;
+                
             case "New":
-            	DrawingPane.drob.clear();
+                tPane.check = -1;
+                dPane.drob.clear();
+            	dPane.setVisible(false);
+            	dPane.setVisible(true);
+            	tPane.setVisible(true);
+               	color.setVisible(false);
+               	cPane.setVisible(false);
                 System.out.println( "new Pressed" );
-                
-                
                 break;
+                
             case "Quit":
                 System.out.println( "quit Pressed" );
                 System.exit(0);
@@ -184,7 +192,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	//tPane.setVisible(false);
             	ToolPanel.check= 5;
             	//cPane.fo = cPane.
-            	
             	break;
             	
             case "S&P":
@@ -195,7 +202,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	ToolPanel.check=-1;
             	
             	//tPane.setVisible(false);
-            
                 break;
                 
             case "edit":
@@ -203,7 +209,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check = 0;
-           
                 break;
                 
             case "resize":
@@ -211,7 +216,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check = 7;
-           
                 break;
                 
             case "delete":
@@ -219,7 +223,6 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	color.setVisible(false);
             	cPane.setVisible(false);
             	ToolPanel.check = 8;
-           
                 break;
                 
             default:
@@ -245,5 +248,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     	return color.getColor();
     	
     }
+    
+   
 
 }

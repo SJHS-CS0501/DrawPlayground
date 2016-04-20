@@ -9,7 +9,11 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
@@ -228,5 +232,22 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		drob.get(i).draw(g);
     	}
     }
+    
+    /**
+   	 * Save the Panel as image with the name and the type in parameters
+   	 * This is not mine
+   	 * @param name name of the file
+   	 * @param type type of the file
+   	 */
+   	public void saveImage(String name,String type) {
+   		BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+   		Graphics2D g2 = image.createGraphics();
+   		paint(g2);
+   		try{
+   			ImageIO.write(image, type, new File(name+"."+type));
+   		} catch (Exception e) {
+   			e.printStackTrace();
+   		}
+   	}
     
 }
