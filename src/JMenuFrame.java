@@ -105,11 +105,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
             case "Save":
             	if( dPane != null) {
             		String fileName = "panel.jpg";
-            		
+            		getFileName(fileName);
             	    BufferedImage img = new BufferedImage(dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
             	    dPane.print(img.getGraphics()); // or: panel.printAll(...);
             	    try {
-            	        ImageIO.write(img, "jpg", new File(fileName));
+            	        ImageIO.write(img, fileName, new File(fileName));
             	    }
             	    catch (IOException e1) {
             	        // TODO Auto-generated catch block
@@ -131,5 +131,15 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.exit(-1);
                 break;
         }
+    }
+    
+    public String getFileName(String fileName){
+    	 JFrame frame = new JFrame();
+    	    String result = JOptionPane.showInputDialog(frame, "Please type what you would like to name your save");
+    	    
+    	    System.out.println(result);
+    	    fileName = result;
+    	return fileName;
+    	
     }
 }
