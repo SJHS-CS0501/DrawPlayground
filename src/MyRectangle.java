@@ -8,12 +8,13 @@
  * @author woytek
  */
 import java.awt.event.*;
+import java.io.Serializable;
 import java.awt.*;
 import javax.swing.*;
 
 import javafx.scene.shape.Circle;
 
-public class MyRectangle implements DrawingObject {
+public class MyRectangle implements DrawingObject, Serializable {
 	
 	/*
 	 * Notes for moving

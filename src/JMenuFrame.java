@@ -1,6 +1,9 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
 import javax.swing.*;
 
 /*
@@ -13,11 +16,11 @@ import javax.swing.*;
  * @author woytek
  */
 public class JMenuFrame extends JFrame implements ActionListener {
-    
-    public JMenuFrame() {
+	 DrawingPane dPane = new DrawingPane();
+     ToolPanel tPane = new ToolPanel();
+   
+	public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
-        ToolPanel tPane = new ToolPanel();
         
         JMenuBar menuBar;
         JMenu menu;
@@ -35,8 +38,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "SomeStuff" );
-        menuItem.setActionCommand( "StuffP2." );
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -99,10 +102,24 @@ public class JMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
-                System.out.println( "Something Pressed" );
+            case "Save":
+            	if( dPane != null) {
+            		String fileName = "panel.jpg";
+            		
+            	    BufferedImage img = new BufferedImage(dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+            	    dPane.print(img.getGraphics()); // or: panel.printAll(...);
+            	    try {
+            	        ImageIO.write(img, "jpg", new File(fileName));
+            	    }
+            	    catch (IOException e1) {
+            	        // TODO Auto-generated catch block
+            	        e1.printStackTrace();
+            	    }
+            	}
+                System.out.println( "Save pressed" );
                 break;
-            case "MenuAnother":
+            case "Open File":
+            	
                 System.out.println( "Another Pressed" );
                 break;
             case "Quit":

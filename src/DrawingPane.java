@@ -10,10 +10,11 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
 	public DrawingObject obj = null;
 	public ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>();

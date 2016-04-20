@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * 
@@ -13,7 +14,7 @@ import java.awt.Rectangle;
  * @author SJHSStudent
  *
  */
-public class MyStar implements DrawingObject{
+public class MyStar implements DrawingObject, Serializable {
 /*
  * x = cos(e.getX);
  * y = sin(e.getY);

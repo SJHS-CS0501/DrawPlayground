@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * 
@@ -12,7 +13,7 @@ import java.awt.Rectangle;
  * @author SJHSStudent
  *
  */
-public class DrawLine implements DrawingObject {
+public class DrawLine implements DrawingObject, Serializable {
 	Color lineColor = null;
     int sizeX, sizeY, originX, originY;
     int lastX, lastY;
