@@ -1,6 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileWriter;
+import java.io.*;
 
 import javax.swing.*;
 
@@ -9,9 +9,12 @@ import javax.swing.*;
  * at the top of the entire frame.
  * @author Jack Protivnak
  */
-public class JMenuFrame extends JFrame implements ActionListener {
+public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	
 	private JFileChooser file;
+	public static final long serialVersionUID = 1;
+	FileOutputStream outStream;
+	ObjectOutputStream outFile;
     
     public JMenuFrame() {
         super();
@@ -108,12 +111,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         switch( e.getActionCommand() ) {
         	case "save":
-        		String sb = "coconut";
-        		try(FileWriter fw = new FileWriter(file.getSelectedFile()+".txt")) {
-        		    fw.write(sb.toString());
-            		fw.close();
-        		} catch(Exception es) {
-        		}
+        		writeFile();
         		break;
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
@@ -131,4 +129,25 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
         }
     }
+    
+    public void writeFile() {
+    	try{
+    		outStream = new FileOutputStream("foo.dat");
+    		outFile = new ObjectOutputStream(outStream);
+    	} catch(Exception eq) {
+    		System.out.println("Exception:" + eq.getMessage());
+    	}
+    	String sb = "TEST CONTENT";
+	    file = new JFileChooser();
+	    file.setCurrentDirectory(new File("Drawings"));
+	    int retrival = file.showSaveDialog(null);
+	    
+	    if (retrival == JFileChooser.APPROVE_OPTION) {
+	    	try(FileWriter fw = new FileWriter(file.getSelectedFile()+".jpg")) {
+	    	    fw.write(sb.toString());
+	    	} catch (Exception es) {
+	    		System.out.println("Exception:" + es.getMessage());
+	    	}
+	    }
+    	}
 }
