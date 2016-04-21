@@ -20,9 +20,11 @@ public class MyLine implements DrawingObject{
 	int lastX, lastY;
 	
 	Rectangle bounds = new Rectangle();
+	Color c;
 	public MyLine() {
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
+		c = Color.BLACK;
 		
 		System.out.println("Made line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
@@ -104,6 +106,14 @@ public class MyLine implements DrawingObject{
 			return false;
 		}
 	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		this.c = c;
+	}
+
+
 
 
 

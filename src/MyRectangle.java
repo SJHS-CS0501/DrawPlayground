@@ -21,6 +21,7 @@ public class MyRectangle implements DrawingObject {
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    Color c;
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -29,6 +30,7 @@ public class MyRectangle implements DrawingObject {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        c = Color.BLACK;
     }
     
     /**
@@ -45,6 +47,7 @@ public class MyRectangle implements DrawingObject {
         originX = oX;
         originY = oY;
         setBounds( bounds );
+        
         
         System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
@@ -122,6 +125,14 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		this.c = c;
+	}
+
+	
 
 
 

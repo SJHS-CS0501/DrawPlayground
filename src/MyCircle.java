@@ -17,9 +17,11 @@ public class MyCircle implements DrawingObject{
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle bounds = new Rectangle();
+	Color c;
 	public MyCircle() {
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(bounds);
+		c = Color.BLACK;
 		
 		System.out.println("Made circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
@@ -79,6 +81,14 @@ public class MyCircle implements DrawingObject{
 		b.setBounds( originX, originY, sizeX, sizeY );
 		
 	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		this.c = c;
+	}
+
+
 
 
 

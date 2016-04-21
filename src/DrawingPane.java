@@ -14,12 +14,17 @@ import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	public DrawingObject object;
-	public ArrayList<DrawingObject> myList = new ArrayList<DrawingObject>(); 
+	public static ArrayList<DrawingObject> myList = new ArrayList<DrawingObject>(); 
 	//MyRectangle r;
 	//MyCircle c;
 	//MyTriangle t;
 	//MyLine l;
 	//MyStar s;
+	
+	/*
+	 * Save image as .jpeg
+	 * save to file so that it can be reopened
+	 */
 	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
@@ -93,6 +98,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     				object = myList.get(ctr);
     				break;
     			}
+    		}
+    		break;
+    	case(6):
+    		Color c = null;
+    		System.out.println(myList.size());
+    		for(int otherCtr = 0; otherCtr < myList.size(); otherCtr++) {
+    			
     		}
     		break;
     	default:

@@ -21,6 +21,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	MyLine l = new MyLine();
 	MyStar s = new MyStar();
 	static int selection;
+	static JColorChooser choose = new JColorChooser();
     
     public ToolPanel() {
         super();
@@ -61,17 +62,14 @@ public class ToolPanel extends JPanel implements ActionListener {
         add(button);
         group.add(button);
         
-        button = new JRadioButton("Programming is FUN!!");
+        button = new JRadioButton("Choose color");
+        button.setActionCommand("Color");
+        button.addActionListener(this);
         add(button);
         group.add(button);
         
-        button = new JRadioButton("Yay Java!");
-        add(button);
-        group.add(button);
         
-        button = new JRadioButton("Do nothing!");
-        add(button);
-        group.add(button);
+        add(choose);
         
     
         this.setVisible( true );
@@ -96,6 +94,8 @@ public class ToolPanel extends JPanel implements ActionListener {
         case "Move":
         	selection = 5;
         	break;
+        case "Color":
+        	selection = 6;
             default:
                 System.out.println( "You just did absolutely NOTHING!! Congratulations!" );
                 System.exit(-1);

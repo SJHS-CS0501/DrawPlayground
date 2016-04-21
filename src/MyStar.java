@@ -31,11 +31,13 @@ public class MyStar implements DrawingObject{
 	double[] numArray = new double[numPoints];
 	Rectangle bounds = new Rectangle();
 	Polygon poly = new Polygon();
+	Color c;
 	
 	public MyStar() {
 		sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
         numberPoints(NUMPOINTS);
+        c = Color.BLACK;
 	}
 	
 	public void numberPoints(int n) {
@@ -105,6 +107,12 @@ public class MyStar implements DrawingObject{
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
 		return bounds.contains(p);
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		this.c = c;
 	}
 
 
