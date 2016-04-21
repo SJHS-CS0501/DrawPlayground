@@ -6,6 +6,7 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,8 +44,8 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem( "Open File" );
+        menuItem.setActionCommand( "Open File" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -57,7 +58,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
+        menu = new JMenu( "Drawing Stuffs" );
         
         menuItem = new JMenuItem( "Foo Thing" );
         menuItem.setActionCommand( "MenuFoo" );
@@ -71,9 +72,13 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add( menuItem );
         
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
+        subMenu = new JMenu( "Delete and Clear" );
+        menuItem = new JMenuItem( "Delete" );
+        menuItem.setActionCommand( "Delete" );
+        menuItem.addActionListener(this);
+        subMenu.add(menuItem);
+        menuItem = new JMenuItem ("Clear All");
+        menuItem.setActionCommand( "Clear All" );
         menuItem.addActionListener( this );
         subMenu.add( menuItem );
         
@@ -88,14 +93,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.setActionCommand( "MenuAbout" );
         menuItem.addActionListener( this );
         
+        setExtendedState((getExtendedState() & MAXIMIZED_BOTH) == MAXIMIZED_BOTH? NORMAL : MAXIMIZED_BOTH);
         menu.add( menuItem );
         
         menuBar.add( menu );
         
         this.setJMenuBar( menuBar );
         
-        //this.setSize( new Dimension(this.getPreferredSize() ) ); 
-        this.setSize( 600, 600 );
+      
         this.setVisible( true );
     }
     
@@ -107,8 +112,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
             		String fileName = "panel.jpg";
             		getFileName(fileName);
             	    BufferedImage img = new BufferedImage(dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	    dPane.print(img.getGraphics()); // or: panel.printAll(...);
+            	    dPane.print(img.getGraphics()); 
+            	  
             	    try {
+            	    	FileOutputStream outStream = new FileOutputStream("foo.dat");
+            	    	
             	        ImageIO.write(img, fileName, new File(fileName));
             	    }
             	    catch (IOException e1) {
@@ -119,13 +127,33 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.out.println( "Save pressed" );
                 break;
             case "Open File":
-            	
+            	final JFileChooser fc = new JFileChooser();
+                    int returnVal = fc.showOpenDialog(JMenuFrame.this);
+                    
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    	fc.setCurrentDirectory(new File (System.getProperty("user.home")));
+                        File file = fc.getSelectedFile();
+                        
+                        //This is where a real application would open the file.
+                        //log.append("Opening: " + file.getName());
+                    }
                 System.out.println( "Another Pressed" );
                 break;
             case "Quit":
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+            case "Clear All":
+            	DrawingPane.objList.clear();
+            	repaint();
+            	break;
+            case"Delete":
+            	for( int ctr = 0; ctr <= DrawingPane.objList.size(); ctr++ ){
+            		if(DrawingPane.objList.get(ctr).contains()){
+            			
+            		}
+            	}
+            	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);

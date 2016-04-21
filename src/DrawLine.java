@@ -24,7 +24,8 @@ public class DrawLine implements DrawingObject, Serializable {
      */
     public DrawLine() {
         // NOP
-        sizeX = sizeY = originX = originY = 0;
+        sizeX = sizeY =  0;
+        originX = originY;
         setBounds( bounds );
     }
     

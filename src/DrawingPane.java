@@ -17,7 +17,7 @@ import javax.swing.*;
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
 	public DrawingObject obj = null;
-	public ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>();
+	public static ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>();
 
 	public DrawingPane() {
 		super(); // always call super() in an extended/derived class!
