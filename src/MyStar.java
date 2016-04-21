@@ -66,13 +66,14 @@ public class MyStar implements DrawingObject, Serializable{
 			xValues[j+1] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
 			yValues[j+1] = (int)(originY + (sizeY/2)*Math.sin(offset + angle*i));
 		}
-
+		
 		setBounds( bounds );
 	}
 
 	// for moving the star
 	@Override
 	public void move(Point p) {
+		
 		originX = p.x;
 	    originY = p.y;
 	    setBounds( bounds );
@@ -81,7 +82,7 @@ public class MyStar implements DrawingObject, Serializable{
 
 	// setBounds is super important. Trust me.
 	public void setBounds( Rectangle bounds) {
-		  bounds.setBounds( originX, originY, sizeX, sizeY );
+		  bounds.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
 	}
 
 	// contains method will be used for moving stuff later

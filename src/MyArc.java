@@ -67,17 +67,17 @@ public class MyArc implements DrawingObject, Serializable{
 
 	@Override
 	public void move(Point p) {
-		//originX = originX - (sizeX - p.x);
-		//originY = originY - (sizeY - p.y);
-		originX = p.x;
-	    originY = p.y;
+		sizeX = sizeX - (originX - p.x);
+		sizeY = sizeY - (originY - p.y);
+		sizeX = p.x;
+	    sizeY = p.y;
 	    setBounds( bounds );
 	
 	}
 
 	@Override
 	public void setBounds(Rectangle b) {
-        b.setBounds( originX, originY, sizeX, sizeY );
+        b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
 	}
 
 	@Override
@@ -85,4 +85,12 @@ public class MyArc implements DrawingObject, Serializable{
         return bounds.contains(p);
 	}
 
+//	public void resizeArc(Point p){
+//		lastX = originX - (sizeX - p.x);
+//		lastY = originY - (sizeY - p.y);
+//		originX = p.x;
+//	    originY = p.y;
+//	    setBounds( bounds );
+//	}
+//	
 }

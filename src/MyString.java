@@ -7,9 +7,6 @@ import javax.swing.JOptionPane;
 
 public class MyString implements DrawingObject, Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	String wordo; // for the user's wordos
 	int originX, originY, sizeX, sizeY;
@@ -59,6 +56,8 @@ public class MyString implements DrawingObject, Serializable{
 	public void drag(Point p) {	
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
+        originX = p.x;
+        originY = p.y;
         setBounds( bounds );
 	}
 
@@ -71,7 +70,7 @@ public class MyString implements DrawingObject, Serializable{
 
 	@Override
 	public void setBounds(Rectangle b) {
-		b.setBounds( originX, originY, sizeX, sizeY );
+		b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
 	}
 
 	@Override
