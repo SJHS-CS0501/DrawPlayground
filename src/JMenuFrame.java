@@ -1,6 +1,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 
 /*
@@ -30,7 +32,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
         tPane = new ToolPanel();
         color = new JColorChooser();
         cPane = new ColorPanel();
-        
+        savI = new SaveImageFrame();
         
         JMenuBar menuBar;
         JMenu menu;
@@ -166,18 +168,29 @@ public class JMenuFrame extends JFrame implements ActionListener {
         switch( e.getActionCommand() ) {
             case "Save":
             	//dPane.createImage(100, 200);
-            	dPane.saveImage("First", "jpg");
+            	//dPane.saveImage("First", "jpg");
+            	//savI.setVisible(true);
+            	JFileChooser s = new JFileChooser();
+            	int retv = s.showSaveDialog(this);
+            	
+            	if(retv == JFileChooser.APPROVE_OPTION){
+            		File name = s.getSelectedFile();
+            		dPane.saveImage(name);
+            	}
+            	
                 System.out.println( "Something Pressed" );
                 break;
                 
             case "New":
+            	
                 tPane.check = -1;
                 dPane.drob.clear();
-            	dPane.setVisible(false);
-            	dPane.setVisible(true);
+                // dPane.setVisible(false);
+            	//dPane.setVisible(true);
             	tPane.setVisible(true);
                	color.setVisible(false);
                	cPane.setVisible(false);
+               	repaint();
                 System.out.println( "new Pressed" );
                 break;
                 

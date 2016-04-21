@@ -1,4 +1,7 @@
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +21,7 @@ public class JMenuTest {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
         //ToolPanel panel = new ToolPanel();
+        
         
         //myFrame.add(panel, BorderLayout.NORTH);
     }
