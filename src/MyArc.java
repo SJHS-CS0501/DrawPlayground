@@ -85,6 +85,12 @@ public class MyArc implements DrawingObject, Serializable{
         return bounds.contains(p);
 	}
 
+	@Override
+	public void resize(Point p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 //	public void resizeArc(Point p){
 //		lastX = originX - (sizeX - p.x);
 //		lastY = originY - (sizeY - p.y);

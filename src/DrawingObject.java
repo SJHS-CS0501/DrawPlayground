@@ -52,4 +52,6 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
     
+    public void resize( Point p );
+    
 }

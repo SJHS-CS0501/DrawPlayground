@@ -91,4 +91,10 @@ public class MyStar implements DrawingObject, Serializable{
         return bounds.contains(p);
 	}
 
+	@Override
+	public void resize(Point p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
