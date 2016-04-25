@@ -61,7 +61,7 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	// bounding rectangle!!!
 	@Override
 	public void setBounds(Rectangle b) {
-		 b.setBounds( originX, originY, sizeX + 5, sizeY + 5);
+		 b.setBounds( originX, originY, sizeX + 2, sizeY + 2);
 	}
 
 	//

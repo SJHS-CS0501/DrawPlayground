@@ -70,7 +70,7 @@ public class MyString implements DrawingObject, Serializable{
 
 	@Override
 	public void setBounds(Rectangle b) {
-		b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
+		b.setBounds( originX, originY, sizeX + 2, sizeY + 2 );
 	}
 
 	@Override

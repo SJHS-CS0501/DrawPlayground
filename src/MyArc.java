@@ -77,7 +77,7 @@ public class MyArc implements DrawingObject, Serializable{
 
 	@Override
 	public void setBounds(Rectangle b) {
-        b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
+        b.setBounds( originX, originY, sizeX, sizeY );
 	}
 
 	@Override

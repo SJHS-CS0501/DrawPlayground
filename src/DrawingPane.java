@@ -140,7 +140,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	if( avoidingHazards ){
     		object.move( p );
     	} else {
-    		object.drag( p );
+    		try{ object.drag( p );
+    		} catch(NullPointerException n){
+    			System.out.println( "You tried to move the string again, didn't you?" );
+    		}	
     	}
     	
     	repaint();
