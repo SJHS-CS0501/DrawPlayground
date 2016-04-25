@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
+import java.io.Serializable;
 
 import javafx.scene.shape.Circle;
 
@@ -15,7 +16,7 @@ import javafx.scene.shape.Circle;
  * @author Ryley Danieslon
  *
  */
-public class MyLine implements DrawingObject {
+public class MyLine implements DrawingObject, Serializable {
 
 	
 	 // critical vars for a rectangle

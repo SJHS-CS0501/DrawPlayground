@@ -3,6 +3,7 @@
  */
 
 import java.awt.event.*;
+import java.io.Serializable;
 import java.awt.*;
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ import javafx.scene.shape.Circle;
  * For making a circle to be used in the main pannel
  *
  */
-public class MyCircle implements DrawingObject{
+public class MyCircle implements DrawingObject, Serializable{
 	 // critical vars for a rectangle
     int widthX, heightY, originX, originY;
     // future use

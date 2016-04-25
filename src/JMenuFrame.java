@@ -57,11 +57,31 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Save" );
-        menuItem.setActionCommand( "Save" );
+        menuItem = new JMenuItem( "Save Image" );
+        menuItem.setActionCommand( "Save Image" );
         menuItem.addActionListener( this );
        
         menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Save All" );
+        menuItem.setActionCommand( "Save All" );
+        menuItem.addActionListener( this );
+       
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Load All" );
+        menuItem.setActionCommand( "Load All" );
+        menuItem.addActionListener( this );
+       
+        menu.add(menuItem);
+        
+        /*
+        menuItem = new JMenuItem( "Load Image" );
+        menuItem.setActionCommand( "Load Image" );
+        menuItem.addActionListener( this );
+       
+        menu.add(menuItem);
+        */
         
         menuItem = new JMenuItem( "New" );
         menuItem.setActionCommand( "New" );
@@ -166,7 +186,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     	
     	
         switch( e.getActionCommand() ) {
-            case "Save":
+            case "Save Image":
             	//dPane.createImage(100, 200);
             	//dPane.saveImage("First", "jpg");
             	//savI.setVisible(true);
@@ -180,6 +200,28 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	
                 System.out.println( "Something Pressed" );
                 break;
+                
+            case "Load Image":
+            	//dPane.createImage(100, 200);
+            	//dPane.saveImage("First", "jpg");
+            	//savI.setVisible(true);
+            	s = new JFileChooser();
+            	//s.setApproveButtonText("Open");
+            	retv = s.showOpenDialog(this);
+            	
+            	if(retv == JFileChooser.APPROVE_OPTION){
+            		File name = s.getSelectedFile();
+            		dPane.loadImage(name);
+            	}
+            	
+                System.out.println( "Something Pressed" );
+                break;
+            
+            case "Load All":
+            	break;
+            	
+            case "Save All":
+            	break;
                 
             case "New":
             	

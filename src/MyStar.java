@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 import javafx.scene.shape.Circle;
 
@@ -15,7 +16,7 @@ import javafx.scene.shape.Circle;
  * @author Ryley Danielson
  *
  */
-public class MyStar implements DrawingObject {
+public class MyStar implements DrawingObject, Serializable{
 	
 	int[] xPoints;
 	int[] yPoints;

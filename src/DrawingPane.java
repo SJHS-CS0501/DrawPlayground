@@ -11,12 +11,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener,Serializable {
 	
 	int x;
 	int y;
@@ -250,5 +256,50 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    			e.printStackTrace();
    		}
    	}
+   	/**
+   	 * Load a .jpg file to be edited in the UI
+   	 * @param f
+   	 */
+   	public void loadImage(File f){
+   		BufferedImage image = new BufferedImage(40,20, BufferedImage.TYPE_INT_RGB);
+   		Graphics2D g2 = image.createGraphics();
+   		paint(g2);
+   		//try{
+   			//ImageIO.read(f);
+   		//} catch (Exception e) {
+   		//	e.printStackTrace();
+   		//}
+   		
+   	}
+   /**
+    * Saves the Drawing Object ArrayList to file
+    * @param f
+    */
+   	public void saveDrob(File f){
+   		try{
+   			FileOutputStream fos = new FileOutputStream(f.getName());
+   			ObjectOutputStream inf = new ObjectOutputStream(fos);
+   		
+   		
+   			inf.writeObject(drob);
+   		}catch(Exception e){
+   			e.printStackTrace();
+   		}
+   	}
+   	
+   	/**
+   	 * Loads a Drawing Object ArrayList from file to be edited
+   	 * @param f
+   	 * @throws IOException 
+   	 */
+   	public void loadDrob(File f) throws IOException{
+   		FileOutputStream fos = new FileOutputStream(f.getName());
+   		ObjectOutputStream inf = new ObjectOutputStream(fos);
+   		drob.clear();
+   		
+   		try{
+   		}catch(Exception e){
+   		}
     
+   	}
 }
