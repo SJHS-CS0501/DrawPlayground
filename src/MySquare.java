@@ -5,12 +5,13 @@
  */
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
 import javafx.scene.shape.Line;
 
-public class MySquare implements DrawingObject {
+public class MySquare implements DrawingObject, Serializable {
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;

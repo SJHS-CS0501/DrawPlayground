@@ -4,10 +4,11 @@
  * @author Jack Protivnak
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyRectangle implements DrawingObject {
+public class MyRectangle implements DrawingObject, Serializable {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use

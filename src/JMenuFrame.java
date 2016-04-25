@@ -11,16 +11,13 @@ import javax.swing.*;
  */
 public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	
-	private JFileChooser file;
 	public static final long serialVersionUID = 1;
-	FileOutputStream outStream;
-	ObjectOutputStream outFile;
+	private DrawingPane dPane;
     
     public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
+        dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
-        file =  new JFileChooser();
         
         JMenuBar menuBar;
         JMenu menu;
@@ -37,6 +34,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menuBar = new JMenuBar();
         
         menu = new JMenu( "My Menu" );
+        
+        menuItem = new JMenuItem( "Open" );
+        menuItem.setActionCommand( "open" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
         
         menuItem = new JMenuItem( "Save" );
         menuItem.setActionCommand( "save" );
@@ -111,7 +113,9 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 
         switch( e.getActionCommand() ) {
         	case "save":
-        		writeFile();
+        		dPane.writeFile();
+        		break;
+        	case "open":
         		break;
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
@@ -129,25 +133,23 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
         }
     }
-    
-    public void writeFile() {
-    	try{
-    		outStream = new FileOutputStream("foo.dat");
-    		outFile = new ObjectOutputStream(outStream);
-    	} catch(Exception eq) {
-    		System.out.println("Exception:" + eq.getMessage());
-    	}
-    	String sb = "TEST CONTENT";
-	    file = new JFileChooser();
-	    file.setCurrentDirectory(new File("Drawings"));
-	    int retrival = file.showSaveDialog(null);
-	    
-	    if (retrival == JFileChooser.APPROVE_OPTION) {
-	    	try(FileWriter fw = new FileWriter(file.getSelectedFile()+".jpg")) {
-	    	    fw.write(sb.toString());
-	    	} catch (Exception es) {
-	    		System.out.println("Exception:" + es.getMessage());
-	    	}
-	    }
-    	}
+//    	String sb = "TEST CONTENT";
+//	    file = new JFileChooser();
+//	    file.setCurrentDirectory(new File("Drawings"));
+//	    int retrival = file.showSaveDialog(null);
+//	    
+//	    if (retrival == JFileChooser.APPROVE_OPTION) {
+//	    	try(FileWriter fw = new FileWriter(file.getSelectedFile()+".jpg")) {
+//	    	    fw.write(sb.toString());
+//	    	} catch (Exception es) {
+//	    		System.out.println("Exception:" + es.getMessage());
+//	    	}
+//	    }
+//	    try{
+//    		outStream = new FileOutputStream(file.getSelectedFile());
+//    		outFile = new ObjectOutputStream(outStream);
+//    	} catch(Exception eq) {
+//    		System.out.println("Exception:" + eq.getMessage());
+//    	}
+//    	}
 }

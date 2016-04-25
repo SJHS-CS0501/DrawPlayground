@@ -4,12 +4,13 @@
  * @author Jack Protivnak
  */
 import java.awt.geom.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javafx.scene.shape.Line;
 
-public class MyLine implements DrawingObject {
+public class MyLine implements DrawingObject, Serializable {
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;

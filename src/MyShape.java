@@ -5,10 +5,11 @@
  * @author Jack Protivnak
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyShape implements DrawingObject {
+public class MyShape implements DrawingObject, Serializable {
 	int sizeX, sizeY, originX, originY;
 	// future use
 	int lastX, lastY;

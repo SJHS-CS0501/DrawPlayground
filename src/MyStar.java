@@ -4,10 +4,11 @@
  * @author Jack Protivnak
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyStar implements DrawingObject {
+public class MyStar implements DrawingObject, Serializable {
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;

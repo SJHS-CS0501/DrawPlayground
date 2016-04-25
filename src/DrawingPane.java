@@ -9,13 +9,18 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
+
+	private JFileChooser file;
+	public static final long serialVersionUID = 1;
+	FileOutputStream outStream;
+	ObjectOutputStream outFile;
 	private DrawingObject obj;
 	private ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
-	private boolean draw = false;
 	private boolean move = false;
 
 	/**
@@ -158,7 +163,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
-			
+
 		case 10:
 			System.out.println("rectangle");
 			obj = new MyRectangle(true);
@@ -198,7 +203,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
-			
+
 		case 15:
 			System.out.println("unknown shape");
 			obj = new MyShape(true);
@@ -223,14 +228,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(obj != null) {
-			if(move) {
-			obj.move(e.getPoint());
-		}
-		else {
-			obj.drag(e.getPoint());
-		}
-		repaint();
+		if (obj != null) {
+			if (move) {
+				obj.move(e.getPoint());
+			} else {
+				obj.drag(e.getPoint());
+			}
+			repaint();
 		}
 	}
 
@@ -272,5 +276,57 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
+	}
+
+	public void writeFile() {
+		String sb = "TEST CONTENT";
+		file = new JFileChooser();
+		file.setCurrentDirectory(new File("Drawings"));
+		int retrival = file.showSaveDialog(null);
+
+		if (retrival == JFileChooser.APPROVE_OPTION) {
+			try (FileWriter fw = new FileWriter(file.getSelectedFile() + ".jpg")) {
+				fw.write(sb.toString());
+			} catch (Exception es) {
+				System.out.println("Exception:" + es.getMessage());
+			}
+		}
+		try {
+			outStream = new FileOutputStream(file.getSelectedFile());
+			outFile = new ObjectOutputStream(outStream);
+			for (int i = objectList.size() - 1; i >= 0; i--) {
+				outFile.writeObject(objectList.get(i));
+				System.out.println("Coconut");
+			}
+		} catch (Exception eq) {
+			System.out.println("Exception: " + eq.getMessage());
+			eq.printStackTrace();
+		}
+	}
+	
+	public void openFile() {
+		String sb = "TEST CONTENT";
+		file = new JFileChooser();
+		file.setCurrentDirectory(new File("Drawings"));
+		int retrival = file.showSaveDialog(null);
+
+		if (retrival == JFileChooser.APPROVE_OPTION) {
+			try (FileWriter fw = new FileWriter(file.getSelectedFile() + ".jpg")) {
+				fw.write(sb.toString());
+			} catch (Exception es) {
+				System.out.println("Exception:" + es.getMessage());
+			}
+		}
+		try {
+			outStream = new FileOutputStream(file.getSelectedFile());
+			outFile = new ObjectOutputStream(outStream);
+			for (int i = objectList.size() - 1; i >= 0; i--) {
+				outFile.writeObject(objectList.get(i));
+				System.out.println("Coconut");
+			}
+		} catch (Exception eq) {
+			System.out.println("Exception: " + eq.getMessage());
+			eq.printStackTrace();
+		}
 	}
 }
