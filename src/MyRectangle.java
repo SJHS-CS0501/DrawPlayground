@@ -3,7 +3,8 @@ import java.io.*;
 
 public class MyRectangle implements DrawingObject, Serializable {
 	
-    // critical variables for a rectangle
+	private static final long serialVersionUID = 1L;
+	// critical variables for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
@@ -90,6 +91,12 @@ public class MyRectangle implements DrawingObject, Serializable {
         originY = p.y;
         setBounds( boundingBox );
     }
+	
+	/**
+	 * Only used in star
+	 */
+	public void setPolyBounds(Polygon p) {		
+	}
     
     /**
      * Update the bounding box. The Rectangle argument is typically but not always

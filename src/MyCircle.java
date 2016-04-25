@@ -2,6 +2,8 @@ import java.awt.*;
 import java.io.*;
 
 public class MyCircle implements DrawingObject, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle bounds = new Rectangle();
@@ -70,6 +72,15 @@ public class MyCircle implements DrawingObject, Serializable {
         setBounds( bounds );
     }
     
+    /**
+     * Only used in star
+     */
+	public void setPolyBounds(Polygon p) {
+	}
+    
+    /**
+     * Bounding box for the circle
+     */
     public void setBounds( Rectangle b ) {
         b.setBounds( originX, originY, sizeX, sizeY );
     }

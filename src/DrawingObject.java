@@ -31,7 +31,12 @@ public interface DrawingObject {
      * @param p 
      */
     public void move( Point p );
-    
+	
+	/**
+	 * Set the polygon bounding box
+	 */
+	public void setPolyBounds(Polygon p);
+	    
     /**
      * Set the bounding rectangle.
      * @param b 

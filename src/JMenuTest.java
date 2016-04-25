@@ -15,6 +15,7 @@ public class JMenuTest {
         myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
  
         /*
+         * probably put in drawing pane bc that is where the array is ...?
          * Contact Reader Writer: 
          * 		- text file
          * 		- used to be called ASCII [asky], 7-bit (store 128 different characters), doesn't really exist anymore

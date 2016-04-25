@@ -12,11 +12,13 @@ public class MyStar implements DrawingObject, Serializable {
 	int[] yPoints = new int[2 * points]; // y points for star
 	int sizeX, sizeY, originX, originY;
 	Rectangle bounds = new Rectangle();
+	Polygon bound = new Polygon();
 	Color color;
 
 	public MyStar() {
 		sizeX = sizeY = originX = originY = 0;
-		setBounds(bounds);
+		//setBounds(bounds);
+		setPolyBounds(bound);
 	}
 
 	/**
@@ -32,8 +34,9 @@ public class MyStar implements DrawingObject, Serializable {
 		sizeY = sY;
 		originX = oX;
 		originY = oY;
-		setBounds(bounds);
-
+		//setBounds(bounds);
+		setPolyBounds(bound);
+		
 		System.out.println("Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY);
 	}
 
@@ -54,7 +57,7 @@ public class MyStar implements DrawingObject, Serializable {
 		
 		g2d.setColor(getColor());
 
-		g2d.draw(bounds);
+		g2d.draw(bound);
 		g2d.drawPolygon(xPoints, yPoints, xPoints.length);
 
 		System.out.println("Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -87,7 +90,8 @@ public class MyStar implements DrawingObject, Serializable {
 			yPoints[j + 1] = (int) (originY + (sizeY / 2) * Math.sin(offset + angle * i));
 		}
 
-		setBounds(bounds);
+		//setBounds(bounds);
+		setPolyBounds(bound);
 	}
 
 	/**
@@ -107,9 +111,20 @@ public class MyStar implements DrawingObject, Serializable {
 		
 		originX = p.x;
 		originY = p.y;
-		setBounds(bounds);
+		//setBounds(bounds);
+		setPolyBounds(bound);
+	}
+	
+	/**
+	 * Set polygon bounds
+	 */
+	public void setPolyBounds(Polygon p) {
+		p.getBounds();
 	}
 
+	/**
+	 * Rectangle bounding box not used with star
+	 */
 	public void setBounds(Rectangle b) {
 		b.setBounds(originX, originY, sizeX, sizeY);
 	}
@@ -118,8 +133,7 @@ public class MyStar implements DrawingObject, Serializable {
 	 * If point is contained then it will be selected
 	 */
 	public boolean contains(Point p) {
-
-		return bounds.contains(p);
+		return bound.contains(p);
 	}
 
 	/**

@@ -3,6 +3,8 @@ import java.io.*;
 import java.awt.geom.Line2D;
 
 public class MyLine implements DrawingObject, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle boundingBox = new Rectangle();
@@ -74,6 +76,16 @@ public class MyLine implements DrawingObject, Serializable {
         setBounds( boundingBox );
     }
     
+	/**
+	 * Only used in star
+	 */
+	public void setPolyBounds(Polygon p) {
+	}
+
+	
+    /**
+     * A bounding box is not used for a line
+     */
     public void setBounds( Rectangle b ) {
     	//not using a bounding rectangle
         //b.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
