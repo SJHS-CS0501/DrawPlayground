@@ -1,4 +1,5 @@
 import java.awt.event.*;
+import java.io.Serializable;
 import java.awt.*;
 import javax.swing.*;
 import javafx.scene.shape.Circle;
@@ -11,7 +12,7 @@ import javafx.scene.shape.Circle;
  * @author SJHSStudent
  *
  */
-public class MyCircle implements DrawingObject{
+public class MyCircle implements DrawingObject, Serializable{
 	Color circleColor;
 	// critical vars for a rectangle
 	int sizeX, sizeY, originX, originY;

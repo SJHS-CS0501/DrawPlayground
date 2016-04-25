@@ -16,7 +16,7 @@ import javax.swing.*;
  *
  * @author woytek
  */
-public class JMenuFrame extends JFrame implements ActionListener {
+public class JMenuFrame extends JFrame implements ActionListener, Serializable{
 	 DrawingPane dPane = new DrawingPane();
      ToolPanel tPane = new ToolPanel();
    
@@ -39,9 +39,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Save" );
-        menuItem.setActionCommand( "Save" );
+        menuItem = new JMenuItem( "Save JPeg" );
+        menuItem.setActionCommand( "Save as JPeg" );
         menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Save File" );
+        menuItem.setActionCommand( "Save File" );
+        menuItem.addActionListener(this);
         menu.add(menuItem);
         
         menuItem = new JMenuItem( "Open File" );
@@ -107,7 +112,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "Save":
+            case "Save as JPeg":
             	if( dPane != null) {
             		String fileName = "panel.jpg";
             		getFileName(fileName);
@@ -126,6 +131,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	}
                 System.out.println( "Save pressed" );
                 break;
+            case "Save File":
+            	dPane.saveFile();
+            	break;
             case "Open File":
             	final JFileChooser fc = new JFileChooser();
                     int returnVal = fc.showOpenDialog(JMenuFrame.this);
@@ -144,15 +152,15 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.exit(0);
                 break;
             case "Clear All":
-            	DrawingPane.objList.clear();
-            	repaint();
+            	dPane.clearAll();
             	break;
             case"Delete":
-            	for( int ctr = 0; ctr <= DrawingPane.objList.size(); ctr++ ){
-            		if(DrawingPane.objList.get(ctr).contains()){
+            	//for( int ctr = 0; ctr <= DrawingPane.objList.size(); ctr++ ){
+            		//
+            		//if(DrawingPane.objList.get(ctr).contains()){
             			
-            		}
-            	}
+            		//}
+            	//}
             	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );

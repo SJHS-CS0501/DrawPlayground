@@ -10,6 +10,10 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -17,7 +21,7 @@ import javax.swing.*;
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
 	public DrawingObject obj = null;
-	public static ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>();
+	public ArrayList<DrawingObject> objList = new ArrayList<DrawingObject>();
 
 	public DrawingPane() {
 		super(); // always call super() in an extended/derived class!
@@ -168,5 +172,28 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		for (int ctr = 0; ctr < objList.size(); ctr++) {
 			objList.get(ctr).draw(g);
 		}
+	}
+	
+	public void clearAll(){
+		objList.clear();
+    	repaint();
+	}
+	
+	public void saveFile(){
+		JFileChooser saveChooser = new JFileChooser();
+			
+		try {
+			FileOutputStream saveStream = new FileOutputStream("save.dat");
+			ObjectOutputStream saveFile = new ObjectOutputStream(saveStream);
+			
+			for( int i = 0; i < objList.size(); i++ ){
+				saveFile.writeObject(objList.get(i) );
+			}
+			saveFile.close();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("File Saved");
 	}
 }
