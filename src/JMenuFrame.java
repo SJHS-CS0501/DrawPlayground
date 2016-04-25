@@ -206,7 +206,7 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	dPane.exportAs();
             	break;
             case "recolor bg":
-            	dPane.setBackground(pFrame.getColor());
+            	dPane.setBGC(pFrame.getColor());
             	break;
             case "MenuAbout":
             	hFrame.setMode(DrawPlaygroundHelpFrame.MODE_ABOUT);

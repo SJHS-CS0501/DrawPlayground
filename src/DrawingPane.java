@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * The drawing surface for DrawPlayground
@@ -27,11 +28,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * A way to save the background color along with the shapes
+	 * A class to save the background color along with the shapes
 	 * @author Ryan Luchs
 	 *
 	 */
-	private class DrawingDisplay implements java.io.Serializable {
+	private class Drawing implements Serializable {
 		/**
 		 * 
 		 */
@@ -41,17 +42,15 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		
 		public Color bg;
 		
-		public DrawingDisplay(DrawingPane d) {
+		public Drawing(DrawingPane d) {
 			shapes = new ArrayList<DrawingObject>();
 			bg = d.getBackground();
 		}
 		
 	}
 	
-	//
-	
-	// list of shapes to draw to the screen
-	private ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
+	// the drawing
+	Drawing drawing;
 	
 	// currently selected shape
 	private DrawingObject select;
@@ -80,6 +79,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         setBorder( BorderFactory.createLineBorder(Color.RED) );
         setVisible( true );
         
+        drawing = new Drawing(this);
+        
         // we need both a mouse listener (for clicks)...
         addMouseListener( this );
         // ... and a mouse motion listener (for drags)!
@@ -99,16 +100,20 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         }
     }
 
-    public void SetBackground( Color bg ) {
-    	super.setBackground(bg);
-    	
+    /**
+     * Sets the background of this component and stores the value in this component's Drawing object
+     * @param bg The background color
+     */
+    public void setBGC( Color bg ) {
+    	setBackground(bg);
+    	drawing.bg = bg;
     }
     
     /**
      * Clears the drawing pane
      */
     public void clear() {
-    	shapes.clear();
+    	drawing.shapes.clear();
     	repaint();
     }
     
@@ -135,70 +140,48 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void paintComponent(Graphics g) {
     	super.paintComponent(g);
     	
-    	for(int i = 0; i < shapes.size(); i++) {
-    		shapes.get(i).draw(g);
+    	for(int i = 0; i < drawing.shapes.size(); i++) {
+    		drawing.shapes.get(i).draw(g);
     	}
     }
     
-    @SuppressWarnings("unchecked")
+    /**
+     * Loads a saved .dpd file
+     */
 	public void load() {
     	
-    	filename = JOptionPane.showInputDialog(this, "Filename:");
-    	
-    	File file = new File("files/" + filename + ".dpim");
-    	
-    	if(file.exists())  {
+    	JFileChooser chooser = new JFileChooser();
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+    	    "DrawPlaygroundDrawing Files", "dpd");
+    	chooser.setFileFilter(filter);
+    	int returnVal = chooser.showOpenDialog(this);
+    	if(returnVal == JFileChooser.APPROVE_OPTION) {
     		try {
-        		ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/" + filename + ".dpim"));
-    			shapes = (ArrayList<DrawingObject>) in.readObject();
+        		ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/" + filename + ".dpd"));
+    			drawing = (Drawing) in.readObject();
     			in.close();
+    			
+    			this.setBackground(drawing.bg);
     		} catch (ClassNotFoundException e) {
-    			// TODO Auto-generated catch block
     			e.printStackTrace();
     		} catch (IOException e) {
-    			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
-    	} else {
-	    	JOptionPane.showMessageDialog(this, "That file does not exist.");
     	}
     	
     	repaint();
     }
     
+    /**
+     * Saves the contents of the DrawingPane as a .dpd file
+     */
     public void save() {
     	if(filename == null) {
     		saveAs();
     	} else {
 	    	try { 
-	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
-	    		out.writeObject(shapes);
-	    		out.close();
-	    	} catch (IOException e) {
-	    	    e.printStackTrace();
-	    	}
-    	}
-    }
-    
-    public void saveAs() {
-    	filename = JOptionPane.showInputDialog(this, "Filename:");
-    	
-    	File file = new File("files/" + filename + ".dpim");
-    	
-    	if(file.exists())  {
-    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    	    	try { 
-    	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
-    	    		out.writeObject(shapes);
-    	    		out.close();
-    	    	} catch (IOException e) {
-    	    	    e.printStackTrace();
-    	    	}
-    		}
-    	} else {
-	    	try { 
-	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
-	    		out.writeObject(shapes);
+	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
+	    		out.writeObject(drawing);
 	    		out.close();
 	    	} catch (IOException e) {
 	    	    e.printStackTrace();
@@ -207,7 +190,36 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     
     /**
-     * Exports the contents of the DrawingPane to a .png file
+     * Saves the contents of this DrawingPane as a .dpd file
+     */
+    public void saveAs() {
+    	filename = JOptionPane.showInputDialog(this, "Filename:");
+    	
+    	File file = new File("files/" + filename + ".dpd");
+    	
+    	if(file.exists())  {
+    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    	    	try { 
+    	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
+    	    		out.writeObject(drawing);
+    	    		out.close();
+    	    	} catch (IOException e) {
+    	    	    e.printStackTrace();
+    	    	}
+    		}
+    	} else {
+	    	try { 
+	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
+	    		out.writeObject(drawing);
+	    		out.close();
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
+    	}
+    }
+    
+    /**
+     * Exports the contents of the DrawingPane to a .jpg file
      */
     public void export() {
     	if(filename == null) {
@@ -226,13 +238,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     }
     
     /**
-     * Exports the contents of the DrawingPane to a .png file named by the user
+     * Exports the contents of the DrawingPane to a .jpg file named by the user
      */
     public void exportAs() {
     	
     	filename = JOptionPane.showInputDialog(this, "Filename:");
     	
-    	File file = new File("pictures/" + filename);
+    	File file = new File("pictures/" + filename + ".jpg");
     	
     	if(file.exists())  {
     		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -293,21 +305,21 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		s.start(mouse);
     		s.setColor(picker.getColor());
     		
-    		shapes.add(s);
-    		select = shapes.get(shapes.size() - 1);
+    		drawing.shapes.add(s);
+    		select = drawing.shapes.get(drawing.shapes.size() - 1);
     		
     		repaint();
     		
     	} else {
-    		for(int i = 0; i < shapes.size(); i++) {
-    			if(shapes.get(i).contains(mouse)) {
-    				select = shapes.get(i);
+    		for(int i = 0; i < drawing.shapes.size(); i++) {
+    			if(drawing.shapes.get(i).contains(mouse)) {
+    				select = drawing.shapes.get(i);
     			}
     		}
     		
     		if(select != null) {
 	    		if(mode.equals("remove")) {
-	    			shapes.remove(select);
+	    			drawing.shapes.remove(select);
 	    			repaint();
 	    		}
 	    		
