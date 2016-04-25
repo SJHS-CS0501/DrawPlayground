@@ -4,12 +4,18 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * An triangle DrawingObject
  * @author Ryan Luchs
  */
-public class MyTriangle implements DrawingObject{
+public class MyTriangle implements DrawingObject, Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1710471621543611877L;
 	
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;

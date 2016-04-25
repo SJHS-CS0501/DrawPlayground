@@ -4,13 +4,19 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * A five pointed star DrawingObject
  * @author Ryan Luchs
  */
-public class MyPentagram implements DrawingObject {
+public class MyPentagram implements DrawingObject, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2023236901273484709L;
+	
 	// critical vars for a star
     int originX, originY;
     // the radii for the outer and inner circles 

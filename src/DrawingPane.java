@@ -10,8 +10,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -27,6 +26,30 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * A way to save the background color along with the shapes
+	 * @author Ryan Luchs
+	 *
+	 */
+	private class DrawingDisplay implements java.io.Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 8248511747396732835L;
+		
+		public ArrayList<DrawingObject> shapes;
+		
+		public Color bg;
+		
+		public DrawingDisplay(DrawingPane d) {
+			shapes = new ArrayList<DrawingObject>();
+			bg = d.getBackground();
+		}
+		
+	}
+	
+	//
+	
 	// list of shapes to draw to the screen
 	private ArrayList<DrawingObject> shapes = new ArrayList<DrawingObject>();
 	
@@ -37,7 +60,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	private Point mouse;
 	
 	// changes how the object reacts to mouse events
-	private String mode = "default";
+	private String mode = "add rectangle";
 	
 	// the filename to save as
 	private String filename;
@@ -61,7 +84,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         addMouseListener( this );
         // ... and a mouse motion listener (for drags)!
         addMouseMotionListener( this );
-        
     }
     
     /**
@@ -75,6 +97,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
                 System.exit(-1);
                 break;
         }
+    }
+
+    public void SetBackground( Color bg ) {
+    	super.setBackground(bg);
+    	
     }
     
     /**
@@ -113,14 +140,78 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	}
     }
     
+    @SuppressWarnings("unchecked")
+	public void load() {
+    	
+    	filename = JOptionPane.showInputDialog(this, "Filename:");
+    	
+    	File file = new File("files/" + filename + ".dpim");
+    	
+    	if(file.exists())  {
+    		try {
+        		ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/" + filename + ".dpim"));
+    			shapes = (ArrayList<DrawingObject>) in.readObject();
+    			in.close();
+    		} catch (ClassNotFoundException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	} else {
+	    	JOptionPane.showMessageDialog(this, "That file does not exist.");
+    	}
+    	
+    	repaint();
+    }
     
+    public void save() {
+    	if(filename == null) {
+    		saveAs();
+    	} else {
+	    	try { 
+	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
+	    		out.writeObject(shapes);
+	    		out.close();
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
+    	}
+    }
+    
+    public void saveAs() {
+    	filename = JOptionPane.showInputDialog(this, "Filename:");
+    	
+    	File file = new File("files/" + filename + ".dpim");
+    	
+    	if(file.exists())  {
+    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    	    	try { 
+    	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
+    	    		out.writeObject(shapes);
+    	    		out.close();
+    	    	} catch (IOException e) {
+    	    	    e.printStackTrace();
+    	    	}
+    		}
+    	} else {
+	    	try { 
+	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpim"));
+	    		out.writeObject(shapes);
+	    		out.close();
+	    	} catch (IOException e) {
+	    	    e.printStackTrace();
+	    	}
+    	}
+    }
     
     /**
      * Exports the contents of the DrawingPane to a .png file
      */
-    public void save() {
+    public void export() {
     	if(filename == null) {
-    		saveAs();
+    		exportAs();
     	} else {
 			BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 	    	Graphics2D g = image.createGraphics();
@@ -137,7 +228,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     /**
      * Exports the contents of the DrawingPane to a .png file named by the user
      */
-    public void saveAs() {
+    public void exportAs() {
     	
     	filename = JOptionPane.showInputDialog(this, "Filename:");
     	
@@ -150,7 +241,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	    	printAll(g);
     	    	g.dispose();
     	    	try { 
-    	    	    ImageIO.write(image, "png", file); 
+    	    	    ImageIO.write(image, "jpg", file); 
     	    	} catch (IOException e) {
     	    	    e.printStackTrace();
     	    	}
@@ -161,7 +252,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    	paintComponent(g);
 	    	g.dispose();
 	    	try { 
-	    	    ImageIO.write(image, "png", file); 
+	    	    ImageIO.write(image, "jpg", file); 
 	    	} catch (IOException e) {
 	    	    e.printStackTrace();
 	    	}
@@ -214,14 +305,16 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     			}
     		}
     		
-    		if(mode.equals("remove")) {
-    			shapes.remove(select);
-    			repaint();
-    		}
-    		
-    		if(mode.equals("recolor")) {
-    			select.setColor(picker.getColor());
-    			repaint();
+    		if(select != null) {
+	    		if(mode.equals("remove")) {
+	    			shapes.remove(select);
+	    			repaint();
+	    		}
+	    		
+	    		if(mode.equals("recolor")) {
+	    			select.setColor(picker.getColor());
+	    			repaint();
+	    		}
     		}
     	}
     }

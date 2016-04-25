@@ -9,11 +9,17 @@
  * @author Ryan Luchs
  */
 import java.awt.event.*;
+import java.io.Serializable;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
+public class MyRectangle implements DrawingObject, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9114564574580271750L;
+	
+	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;

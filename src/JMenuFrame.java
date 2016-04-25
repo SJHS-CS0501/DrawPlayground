@@ -61,6 +61,11 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
+        menuItem = new JMenuItem( "Load" );
+        menuItem.setActionCommand( "load" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
         menuItem = new JMenuItem( "Save" );
         menuItem.setActionCommand( "save" );
         menuItem.addActionListener( this );
@@ -68,6 +73,16 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menuItem = new JMenuItem( "Save As..." );
         menuItem.setActionCommand( "saveas" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Export" );
+        menuItem.setActionCommand( "export" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Export As..." );
+        menuItem.setActionCommand( "exportas" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -175,11 +190,20 @@ public class JMenuFrame extends JFrame implements ActionListener {
             case "clear":
             	dPane.clear();
             	break;
+            case "load":
+            	dPane.load();
+            	break;
             case "save":
             	dPane.save();
             	break;
             case "saveas":
             	dPane.saveAs();
+            	break;
+            case "export":
+            	dPane.export();
+            	break;
+            case "exportas":
+            	dPane.exportAs();
             	break;
             case "recolor bg":
             	dPane.setBackground(pFrame.getColor());

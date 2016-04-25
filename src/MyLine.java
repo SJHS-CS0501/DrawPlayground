@@ -3,12 +3,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * A line DrawingObject
  * @author Ryan Luchs
  */
-public class MyLine implements DrawingObject {
+public class MyLine implements DrawingObject, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 604592687597918614L;
 	
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;

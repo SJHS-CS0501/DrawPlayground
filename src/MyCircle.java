@@ -3,12 +3,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  * An oval DrawingObject
  * @author Ryan Luchs
  */
-public class MyCircle implements DrawingObject{
+public class MyCircle implements DrawingObject, Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6296278863647684274L;
 	
 	// critical vars for a rectangle
     int size, originX, originY;
