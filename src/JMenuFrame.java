@@ -116,6 +116,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         		dPane.writeFile();
         		break;
         	case "open":
+        		dPane.openFile();
         		break;
             case "MenuSomething":
                 System.out.println( "Something Pressed" );

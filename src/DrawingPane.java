@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
@@ -19,6 +21,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public static final long serialVersionUID = 1;
 	FileOutputStream outStream;
 	ObjectOutputStream outFile;
+	FileInputStream inStream;
+	ObjectInputStream inFile;
 	private DrawingObject obj;
 	private ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
 	private boolean move = false;
@@ -281,7 +285,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public void writeFile() {
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
-		file.setCurrentDirectory(new File("Drawings"));
+		file.setCurrentDirectory(new File("Drawing Images"));
 		int retrival = file.showSaveDialog(null);
 
 		if (retrival == JFileChooser.APPROVE_OPTION) {
@@ -291,6 +295,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 				System.out.println("Exception:" + es.getMessage());
 			}
 		}
+		file.setCurrentDirectory(new File("Drawings"));
 		try {
 			outStream = new FileOutputStream(file.getSelectedFile());
 			outFile = new ObjectOutputStream(outStream);
@@ -303,30 +308,31 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			eq.printStackTrace();
 		}
 	}
-	
+
 	public void openFile() {
-		String sb = "TEST CONTENT";
+		DrawingObject object;
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawings"));
-		int retrival = file.showSaveDialog(null);
+		int open = file.showOpenDialog(null);
 
-		if (retrival == JFileChooser.APPROVE_OPTION) {
-			try (FileWriter fw = new FileWriter(file.getSelectedFile() + ".jpg")) {
-				fw.write(sb.toString());
+		if (open == JFileChooser.APPROVE_OPTION) {
+			objectList.clear();
+			repaint();
+			try {
+				inStream = new FileInputStream(file.getSelectedFile());
+				inFile = new ObjectInputStream(inStream);
+				while (inStream.available() > 0) {
+					Scanner input = new Scanner(file.getSelectedFile());
+					while (input.hasNextLine()) {
+						object = (DrawingObject) inFile.readObject();
+						objectList.add(object);
+						System.out.println("Pop");
+						repaint();
+					}
+				}
 			} catch (Exception es) {
-				System.out.println("Exception:" + es.getMessage());
+				System.out.println("Cannot Retrieve File: " + es.getMessage());
 			}
-		}
-		try {
-			outStream = new FileOutputStream(file.getSelectedFile());
-			outFile = new ObjectOutputStream(outStream);
-			for (int i = objectList.size() - 1; i >= 0; i--) {
-				outFile.writeObject(objectList.get(i));
-				System.out.println("Coconut");
-			}
-		} catch (Exception eq) {
-			System.out.println("Exception: " + eq.getMessage());
-			eq.printStackTrace();
 		}
 	}
 }
