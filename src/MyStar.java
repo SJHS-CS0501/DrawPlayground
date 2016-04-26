@@ -12,13 +12,12 @@ public class MyStar implements DrawingObject, Serializable {
 	int[] yPoints = new int[2 * points]; // y points for star
 	int sizeX, sizeY, originX, originY;
 	Rectangle bounds = new Rectangle();
-	Polygon bound = new Polygon();
+	Polygon polygon = new Polygon();
 	Color color;
 
 	public MyStar() {
 		sizeX = sizeY = originX = originY = 0;
-		//setBounds(bounds);
-		setPolyBounds(bound);
+		setBounds(bounds);
 	}
 
 	/**
@@ -30,14 +29,15 @@ public class MyStar implements DrawingObject, Serializable {
 	 * @param sY
 	 */
 	public MyStar(int oX, int oY, int sX, int sY) {
+		setBounds(bounds);
+		
+		/*
 		sizeX = sX;
 		sizeY = sY;
 		originX = oX;
 		originY = oY;
-		//setBounds(bounds);
-		setPolyBounds(bound);
-		
 		System.out.println("Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY);
+		*/
 	}
 
 	/**
@@ -54,13 +54,11 @@ public class MyStar implements DrawingObject, Serializable {
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		
 		g2d.setColor(getColor());
 
-		g2d.draw(bound);
 		g2d.drawPolygon(xPoints, yPoints, xPoints.length);
 
-		System.out.println("Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+		// System.out.println("Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		// this.setSize( this.getPreferredSize() );
 	}
 
@@ -75,29 +73,30 @@ public class MyStar implements DrawingObject, Serializable {
 	 * When user selects and moves star
 	 */
 	public void drag(Point p) {
-
 		sizeX = p.x - originX;
 		sizeY = p.y - originY;
 
-		for (int i = 0, j = 0; j < xPoints.length; i++, j += 2) {
-
-			// Outer points
-			xPoints[j] = (int) (originX + sizeX * Math.cos(angle * i));
-			yPoints[j] = (int) (originY + sizeY * Math.sin(angle * i));
-
-			// Inner points
-			xPoints[j + 1] = (int) (originX + (sizeX / 2) * Math.cos(offset + angle * i));
-			yPoints[j + 1] = (int) (originY + (sizeY / 2) * Math.sin(offset + angle * i));
-		}
-
-		//setBounds(bounds);
-		setPolyBounds(bound);
+		doMath();
+		
+		setBounds(bounds);
 	}
 
 	/**
 	 * Translation of star
 	 */
 	public void move(Point p) {
+		doMath();
+
+		originX = p.x;
+		originY = p.y;
+		
+		setBounds(bounds);
+	}
+
+	/**
+	 * Does math to determine number/position of points of star
+	 */
+	public void doMath() {
 		for (int i = 0, j = 0; j < xPoints.length; i++, j += 2) {
 
 			// Outer points
@@ -108,32 +107,26 @@ public class MyStar implements DrawingObject, Serializable {
 			xPoints[j + 1] = (int) (originX + (sizeX / 2) * Math.cos(offset + angle * i));
 			yPoints[j + 1] = (int) (originY + (sizeY / 2) * Math.sin(offset + angle * i));
 		}
-		
-		originX = p.x;
-		originY = p.y;
-		//setBounds(bounds);
-		setPolyBounds(bound);
-	}
-	
-	/**
-	 * Set polygon bounds
-	 */
-	public void setPolyBounds(Polygon p) {
-		p.getBounds();
+		// to flush any data already in xPoints and yPoints
+		polygon.invalidate();
+		// so the polygon includes all the points
+		polygon.xpoints = xPoints;
+		polygon.ypoints = yPoints;
+		polygon.npoints = points * 2;
 	}
 
 	/**
-	 * Rectangle bounding box not used with star
+	 * Bounding box for star
 	 */
 	public void setBounds(Rectangle b) {
-		b.setBounds(originX, originY, sizeX, sizeY);
+		b.setBounds(polygon.getBounds());
 	}
 
 	/**
 	 * If point is contained then it will be selected
 	 */
 	public boolean contains(Point p) {
-		return bound.contains(p);
+		return bounds.contains(p);
 	}
 
 	/**

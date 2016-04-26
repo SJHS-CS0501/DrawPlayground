@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.io.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
-	
-	ArrayList<DrawingObject> shapeList= new ArrayList<DrawingObject>();
+
+	ArrayList<DrawingObject> shapeList = new ArrayList<DrawingObject>();
 	private static final long serialVersionUID = 1L;
 	public static String shape;
 	public static Color color;
@@ -14,61 +14,66 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	int sizeX, sizeY;
 	JFrame colors;
 	boolean moving;
-	
-    public DrawingPane() {
-        super(); // always call super() in an extended/derived class!
-        /*
-        this.setSize( 500, 500 );
-        setSize( getPreferredSize() );
-        size is handled by parent pane placement in JFrame
-        */
-        
-        setBorder( BorderFactory.createLineBorder(Color.BLACK) ); //border
-        setVisible( true );
-        
-        addMouseListener( this ); //mouse listener (clicks)
-        addMouseMotionListener( this ); //mouse motion listener (drags)
 
-    }
-    
-    /**
-     * actionPerformed is here in case we need it later. Not currently used.
-     * @param e 
-     */
-    public void actionPerformed( ActionEvent e ) {
-        switch( e.getActionCommand() ) {
-            default:
-                System.out.println( "No...bad place" );
-                System.exit(-1);
-                break;
-        }
-    }
-    
-    public void paintComponent( Graphics g) {
-    	super.paintComponent(g);
-    	for(int i = 0; i < shapeList.size(); i++) {
-    		shapeList.get(i).draw(g);
-    	}
-    }
-    
-    /**
-     * Allows the user to change the color of the shape
-     */
-    public void changeColor() {
-    	
-    }
-    
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
+	public DrawingPane() {
+		super(); // always call super() in an extended/derived class!
+		/*
+		 * this.setSize( 500, 500 ); setSize( getPreferredSize() ); size is
+		 * handled by parent pane placement in JFrame
+		 */
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-    	int x = e.getX();
-    	int y = e.getY();
-        System.out.println( "mousePressed(" + x + "," + y + ")" );
-        
-        //error is thrown if a button isn't selected and they click the on the drawingPane
+		setBorder(BorderFactory.createLineBorder(Color.BLACK)); // border
+		setVisible(true);
+
+		addMouseListener(this); // mouse listener (clicks)
+		addMouseMotionListener(this); // mouse motion listener (drags)
+
+	}
+
+	/**
+	 * actionPerformed is here in case we need it later. Not currently used.
+	 * 
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		default:
+			System.out.println("No...bad place");
+			System.exit(-1);
+			break;
+		}
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for (int i = 0; i < shapeList.size(); i++) {
+			shapeList.get(i).draw(g);
+		}
+	}
+
+	/**
+	 * Allows the user to change the color of the shape
+	 */
+	public void changeColor() {
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		/*
+		int x = e.getX();
+		int y = e.getY();
+		System.out.println("mousePressed(" + x + "," + y + ")");
+		*/
+		
+		/*
+		 * error is thrown if a button isn't selected and they click the on the
+		 * drawingPane
+		 */
 		try {
 			switch (shape) {
 			case "Line":
@@ -113,46 +118,47 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		} catch (Exception t) {
 			System.out.println("hi");
 		}
-    }
+	}
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-       int x = e.getX();
-       int y = e.getY();
-       
-       if(moving){
-    	  drawingObject.move(e.getPoint());
-       } else {
-    	  try{
-    	  drawingObject.drag(e.getPoint());
-    	  } catch(Exception b){
-    		  
-    	  }
-       }
-       
-       repaint();
-       System.out.println( "mouseDragged(" + x + "," + y + ")" );
-    }
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (moving) {
+			drawingObject.move(e.getPoint());
+		} else {
+			try {
+				drawingObject.drag(e.getPoint());
+			} catch (Exception b) {
 
-    @Override
-    public void mouseReleased(MouseEvent e) {    	
-    	int x = e.getX();
-        int y = e.getY();
-        repaint();
-        moving = false;
-        drawingObject = null; //so it won't re-modify the old rectangle
-        System.out.println( "mouseReleased(" + x + "," + y + ")" );
-    }
+			}
+		}
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+		repaint();
+		/*
+		int x = e.getX();
+		int y = e.getY();
+		System.out.println("mouseDragged(" + x + "," + y + ")");
+		*/
+	}
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		repaint();
+		moving = false;
+		drawingObject = null; // so it won't re-modify the old rectangle
+		int x = e.getX();
+		int y = e.getY();
+		System.out.println("mouseReleased(" + x + "," + y + ")");
+	}
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-    }
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	}
 }
