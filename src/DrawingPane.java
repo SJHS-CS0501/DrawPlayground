@@ -279,9 +279,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    		try{
    			FileOutputStream fos = new FileOutputStream(f.getName());
    			ObjectOutputStream inf = new ObjectOutputStream(fos);
-   		
-   		
    			inf.writeObject(drob);
+   			System.out.println("flfwejfjdhlk");
+   	
+   			
    		}catch(Exception e){
    			e.printStackTrace();
    		}
@@ -293,12 +294,16 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    	 * @throws IOException 
    	 */
    	public void loadDrob(File f) throws IOException{
-   		FileOutputStream fos = new FileOutputStream(f.getName());
+   		FileOutputStream fos = new FileOutputStream(f.toString());
    		ObjectOutputStream inf = new ObjectOutputStream(fos);
    		drob.clear();
    		
    		try{
+   			
+   			
+   			
    		}catch(Exception e){
+   			e.printStackTrace();
    		}
     
    	}

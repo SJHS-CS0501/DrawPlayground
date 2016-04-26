@@ -214,13 +214,22 @@ public class JMenuFrame extends JFrame implements ActionListener {
             		dPane.loadImage(name);
             	}
             	
-                System.out.println( "Something Pressed" );
+                
                 break;
             
             case "Load All":
             	break;
             	
             case "Save All":
+            	s = new JFileChooser();
+            	//s.setApproveButtonText("Open");
+            	retv = s.showSaveDialog(this);
+            	
+            	if(retv == JFileChooser.APPROVE_OPTION){
+            		File name = s.getSelectedFile();
+            		dPane.saveDrob(name);
+            	}
+            	System.out.print("Save All" );
             	break;
                 
             case "New":
