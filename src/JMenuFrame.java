@@ -155,12 +155,12 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable{
             	dPane.clearAll();
             	break;
             case"Delete":
-            	//for( int ctr = 0; ctr <= DrawingPane.objList.size(); ctr++ ){
-            		//
-            		//if(DrawingPane.objList.get(ctr).contains()){
+            	for( int ctr = 0; ctr <= dPane.objList.size(); ctr++ ){
+            		
+            		//if(dPane.objList.get(ctr).contains(){
             			
             		//}
-            	//}
+            	}
             	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
