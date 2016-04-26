@@ -119,4 +119,16 @@ public class MyRectangle implements DrawingObject, Serializable {
         return bounds.contains(p);
     }
 
+	@Override
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

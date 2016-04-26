@@ -52,4 +52,7 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
     
+    public void getColor();
+    
+    public void setColor( Color c);
 }

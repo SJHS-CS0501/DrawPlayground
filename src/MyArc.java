@@ -38,6 +38,8 @@ public class MyArc implements DrawingObject, Serializable{
 	public void draw(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
+		
+		g2d.draw(bounds);
         g2d.setColor( Color.BLACK );
 		g.drawArc( sizeX, sizeY, originX, originY * 2, startAngle, arcAngle ); // draw arc!!
 		
@@ -58,6 +60,8 @@ public class MyArc implements DrawingObject, Serializable{
 	public void drag(Point p) {
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
+        //originX = p.x;
+        //originY = p.y;
         setBounds( bounds );
         
         // note to Isabelle...just ignore...
@@ -83,6 +87,18 @@ public class MyArc implements DrawingObject, Serializable{
 	@Override
 	public boolean contains(Point p) {
         return bounds.contains(p);
+	}
+
+	@Override
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 //	public void resizeArc(Point p){

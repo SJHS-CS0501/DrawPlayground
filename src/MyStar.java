@@ -38,7 +38,8 @@ public class MyStar implements DrawingObject, Serializable{
 	public void draw(Graphics g) { // actually draws the object
 		Graphics2D g2d = (Graphics2D)g; // making a new graphics
         
-        g2d.setColor( Color.BLACK ); // setting color to black right now
+		g2d.draw(bounds);
+		g2d.setColor( Color.BLACK ); // setting color to black right now
         g2d.drawPolygon( xValues, yValues, xValues.length ); // draw that polygon ( aka a spiff 5-pointed star)!!!       
         
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -91,6 +92,18 @@ public class MyStar implements DrawingObject, Serializable{
 	@Override
 	public boolean contains(Point p) {
         return bounds.contains(p);
+	}
+
+	@Override
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

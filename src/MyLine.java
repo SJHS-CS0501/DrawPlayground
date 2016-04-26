@@ -22,7 +22,7 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	public void draw(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
-	        
+		   
 	    g2d.setColor( Color.BLACK );
 	    g2d.drawLine( originX, originY, sizeX, sizeY ); // Draw the line, Kronk!
 	        
@@ -76,6 +76,18 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 		}
 		
 		//return bounds.contains(p);
+	}
+
+	@Override
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

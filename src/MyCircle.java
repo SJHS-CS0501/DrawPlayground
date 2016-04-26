@@ -22,6 +22,7 @@ public class MyCircle implements DrawingObject, Serializable{
 	public void draw(Graphics g) {
 		 Graphics2D g2d = (Graphics2D)g;
 	        
+		 g2d.draw( bounds );
 	     g2d.setColor( Color.BLACK );
 	     g2d.drawOval( originX, originY, sizeX, sizeY ); // Important stuff right here
 	        
@@ -64,6 +65,18 @@ public class MyCircle implements DrawingObject, Serializable{
 	@Override
 	public boolean contains(Point p) {
 		return bounds.contains(p);
+	}
+
+	@Override
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
