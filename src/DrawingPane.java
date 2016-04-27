@@ -51,13 +51,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 	}
 
-	/**
-	 * Allows the user to change the color of the shape
-	 */
-	public void changeColor() {
-
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
@@ -133,6 +126,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 
 		repaint();
+		
 		/*
 		int x = e.getX();
 		int y = e.getY();
@@ -145,9 +139,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		repaint();
 		moving = false;
 		drawingObject = null; // so it won't re-modify the old rectangle
+		
+		/*
 		int x = e.getX();
 		int y = e.getY();
 		System.out.println("mouseReleased(" + x + "," + y + ")");
+		*/
 	}
 
 	@Override

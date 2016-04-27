@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import javax.imageio.*;
 import javax.swing.*;
 
 /**
@@ -11,11 +13,11 @@ import javax.swing.*;
 public class JMenuFrame extends JFrame implements ActionListener, Serializable {
    
 	private static final long serialVersionUID = 1L;
+	DrawingPane dPane = new DrawingPane();
+    ToolPanel tPane = new ToolPanel();
 
 	public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
-        ToolPanel tPane = new ToolPanel();
          
         JMenuBar menuBar;
         JMenu menu;
@@ -131,7 +133,15 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 System.out.println( "'Open File' Pressed" );
                 break;
             case "Save":
-                System.out.println( "'Save' Pressed" );
+            	BufferedImage img = new BufferedImage(1400, 1000, BufferedImage.TYPE_INT_RGB);
+                dPane.print(img.getGraphics()); // or: panel.printAll(...);
+                try {
+                    ImageIO.write(img, "jpg", new File("panel.jpg"));
+                    System.out.print("Image saved.");
+                }
+                catch (IOException c) {
+                    System.out.print("Image not saved.");
+                }
                 break;
             case "Five":
                 System.out.println( "'Five' Pressed" );
@@ -165,7 +175,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 System.exit(-1);
                 break;
         }
-    }
-    
+    }    
 }
 
