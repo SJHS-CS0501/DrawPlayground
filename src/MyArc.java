@@ -41,7 +41,7 @@ public class MyArc implements DrawingObject, Serializable{
 		
 		g2d.draw(bounds);
         g2d.setColor( Color.BLACK );
-		g.drawArc( sizeX, sizeY, originX, originY * 2, startAngle, arcAngle ); // draw arc!!
+		g.drawArc( originX, originY, sizeX, sizeY * 2, startAngle, arcAngle ); // draw arc!!
 		
 		System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 	}
@@ -60,12 +60,7 @@ public class MyArc implements DrawingObject, Serializable{
 	public void drag(Point p) {
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
-        //originX = p.x;
-        //originY = p.y;
         setBounds( bounds );
-        
-        // note to Isabelle...just ignore...
-        // for cool dragging stuff, make origin start point and calculate angle to point from start
 		
 	}
 

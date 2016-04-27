@@ -15,7 +15,6 @@ public class MyString implements DrawingObject, Serializable{
     
     public MyString(){
     	sizeX = sizeY = originX = originY = 0;
-        setBounds( bounds );
     }
 
     public MyString( int oX, int oY, int sX, int sY ){
@@ -23,15 +22,12 @@ public class MyString implements DrawingObject, Serializable{
         sizeY = sY;
         originX = oX;
         originY = oY;
-        setBounds( bounds );
     }
 
 	@Override
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 	        
-	    g2d.setColor( Color.BLACK );
-	   
 	    try{
 	    g2d.drawString( wordo, originX, originY );
 	    }catch(NullPointerException e){
@@ -50,6 +46,8 @@ public class MyString implements DrawingObject, Serializable{
         lastX = p.x;
         lastY = p.y;
         wordo = JOptionPane.showInputDialog( "Wordie Stuff Goes Here" ); // I rarely talk like a normal human
+        
+        setBounds( bounds );
 	}
 
 	@Override
@@ -65,12 +63,20 @@ public class MyString implements DrawingObject, Serializable{
 	public void move(Point p) {
 		originX = p.x;
         originY = p.y;
+        
         setBounds( bounds );
 	}
 
 	@Override
 	public void setBounds(Rectangle b) {
-		b.setBounds( originX, originY, sizeX + 2, sizeY + 2 );
+		int realX, realY;
+		
+		realX = originX - 2;
+		realY = originY -15;
+		sizeX = wordo.length() * 7;
+		sizeY = 20;
+		
+		b.setBounds( realX, realY, sizeX, sizeY );
 	}
 
 	@Override
