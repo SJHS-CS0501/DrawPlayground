@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -218,6 +219,21 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 break;
             
             case "Load All":
+            	s = new JFileChooser();
+            	//s.setApproveButtonText("Open");
+            	retv = s.showOpenDialog(this);
+            	
+            	if(retv == JFileChooser.APPROVE_OPTION){
+            		File name = s.getSelectedFile();
+            		try {
+						dPane.loadDrob(name);
+						System.out.println("I Loaded");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+            	}
+            	System.out.print("Save All" );
             	break;
             	
             case "Save All":

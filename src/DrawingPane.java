@@ -11,9 +11,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.sun.jndi.cosnaming.IiopUrl.Address;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener,Serializable {
 	
@@ -250,6 +254,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    		Graphics2D g2 = image.createGraphics();
    		paint(g2);
    		String type = "jpg";
+   		
    		try{
    			ImageIO.write(image, type, new File(f.toString() + (".jpg")));
    		} catch (Exception e) {
@@ -277,11 +282,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     */
    	public void saveDrob(File f){
    		try{
-   			FileOutputStream fos = new FileOutputStream(f.getName());
+   			//f = new File(System.getProperty("user.home"));
+   			FileOutputStream fos = new FileOutputStream(f.toString());
    			ObjectOutputStream inf = new ObjectOutputStream(fos);
    			inf.writeObject(drob);
    			System.out.println("flfwejfjdhlk");
-   	
+   			
    			
    		}catch(Exception e){
    			e.printStackTrace();
@@ -294,17 +300,28 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    	 * @throws IOException 
    	 */
    	public void loadDrob(File f) throws IOException{
-   		FileOutputStream fos = new FileOutputStream(f.toString());
-   		ObjectOutputStream inf = new ObjectOutputStream(fos);
+   		//FileOutputStream fos = new FileOutputStream(f.toString());
+   		//ObjectOutputStream inf = new ObjectOutputStream(fos);
+   		
    		drob.clear();
    		
    		try{
    			
-   			
+   			FileInputStream fin = new FileInputStream(f.toString());
+   			ObjectInputStream ois = new ObjectInputStream(fin);
+   			 try {
+   				drob =  (ArrayList<DrawingObject>) ois.readObject();
+   			} catch (ClassNotFoundException e1) {
+   				// TODO Auto-generated catch block
+   				e1.printStackTrace();
+   			}
+   			ois.close();
    			
    		}catch(Exception e){
    			e.printStackTrace();
    		}
+   		
+   		repaint();
     
    	}
 }
