@@ -56,6 +56,8 @@ public class DrawLine implements DrawingObject, Serializable {
         originY = p.y;
         lastX = p.x;
         lastY = p.y;
+        sizeX = p.x;
+        sizeY = p.y;
     }
     
     public void drag( Point p ) {

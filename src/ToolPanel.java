@@ -19,27 +19,27 @@ public class ToolPanel extends JPanel implements ActionListener {
 	
 	public static int buttonSelected = 0;
 	static JColorChooser colorChooser = new JColorChooser();
-	static GridBagLayout layout; // variable for the gridbag layout
+    GridBagLayout layout; // variable for the gridbag layout
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
 
         layout = new GridBagLayout(); // creates a new GridBagLayout
+        
 		setLayout(layout); // sets the layout of myFrame according to GridBagLayout
-		GridBagConstraints c = new GridBagConstraints(); // creates a new GridBagRestraint 
-		GridBagConstraints chooser = new GridBagConstraints();
+		this.setSize( 250, 350);
+		GridBagConstraints c = new GridBagConstraints(); // creates a new GridBagRestraints
+	
 		// general constraints
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.NONE;
 		
 		// label constraints
-		c.weightx = .5; // changes weight of label to receive less space
+		c.weightx = 5; // changes weight of label to receive less space
 		c.weighty = 1;
-		c.gridwidth = GridBagConstraints.NORTHEAST; // sets the label to be in the second to last column
-		c.gridheight = GridBagConstraints.NORTHEAST;
-		chooser.weightx = .5;
-		chooser.weighty = .5;
-		chooser.gridwidth = GridBagConstraints.SOUTHEAST;
-		chooser.gridheight = GridBagConstraints.SOUTHEAST;
+		c.gridwidth = GridBagConstraints.REMAINDER; // sets the label to be in the second to last column
+		c.gridheight = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		
         JRadioButton square = new JRadioButton("Draw Square");
         square.setMnemonic(KeyEvent.VK_B);
         square.setActionCommand("Draw Square");
@@ -71,7 +71,9 @@ public class ToolPanel extends JPanel implements ActionListener {
         colorPicker.setActionCommand("Change Color");
         layout.setConstraints(colorPicker, c); // more button constraints
         
-        layout.setConstraints(colorChooser, chooser);
+        c.anchor = GridBagConstraints.LAST_LINE_START;
+        layout.setConstraints(colorChooser, c);
+        
         ButtonGroup shapes = new ButtonGroup();
         shapes.add(square);
         shapes.add(line);
