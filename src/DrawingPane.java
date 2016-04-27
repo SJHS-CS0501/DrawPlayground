@@ -157,11 +157,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	int returnVal = chooser.showOpenDialog(this);
     	if(returnVal == JFileChooser.APPROVE_OPTION) {
     		try {
-        		ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/" + filename + ".dpd"));
+        		ObjectInputStream in = new ObjectInputStream(new FileInputStream(chooser.getSelectedFile()));
     			drawing = (Drawing) in.readObject();
     			in.close();
     			
     			this.setBackground(drawing.bg);
+    			
+    			filename = chooser.getSelectedFile().getName();
     		} catch (ClassNotFoundException e) {
     			e.printStackTrace();
     		} catch (IOException e) {
@@ -180,8 +182,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		saveAs();
     	} else {
 	    	try { 
-	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
+	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename));
 	    		out.writeObject(drawing);
+	    		out.flush();
 	    		out.close();
 	    	} catch (IOException e) {
 	    	    e.printStackTrace();
@@ -193,28 +196,23 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
      * Saves the contents of this DrawingPane as a .dpd file
      */
     public void saveAs() {
-    	filename = JOptionPane.showInputDialog(this, "Filename:");
     	
-    	File file = new File("files/" + filename + ".dpd");
-    	
-    	if(file.exists())  {
-    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    	    	try { 
-    	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
-    	    		out.writeObject(drawing);
-    	    		out.close();
-    	    	} catch (IOException e) {
-    	    	    e.printStackTrace();
-    	    	}
-    		}
-    	} else {
-	    	try { 
-	    		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("files/" + filename + ".dpd"));
+    	JFileChooser chooser = new JFileChooser();
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+    	    "DrawPlaygroundDrawing Files", "dpd");
+    	chooser.setFileFilter(filter);
+    	int returnVal = chooser.showSaveDialog(this);
+    	if(returnVal == JFileChooser.APPROVE_OPTION) {
+    		try {
+    			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(chooser.getSelectedFile()));
 	    		out.writeObject(drawing);
+	    		out.flush();
 	    		out.close();
-	    	} catch (IOException e) {
-	    	    e.printStackTrace();
-	    	}
+    			
+    			filename = chooser.getSelectedFile().getAbsolutePath();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
     	}
     }
     
@@ -230,10 +228,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    	printAll(g);
 	    	g.dispose();
 	    	try { 
-	    	    ImageIO.write(image, "png", new File("pictures/" + filename)); 
+	    	    ImageIO.write(image, "png", new File(filename));
 	    	} catch (IOException e) {
 	    	    e.printStackTrace();
 	    	}
+
     	}
     }
     
@@ -241,33 +240,22 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
      * Exports the contents of the DrawingPane to a .jpg file named by the user
      */
     public void exportAs() {
-    	
-    	filename = JOptionPane.showInputDialog(this, "Filename:");
-    	
-    	File file = new File("pictures/" + filename + ".jpg");
-    	
-    	if(file.exists())  {
-    		if(JOptionPane.showConfirmDialog(this, "A file with this name already exists. Do you wish to overwrite it?", "Save As", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    			BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-    	    	Graphics2D g = image.createGraphics();
-    	    	printAll(g);
-    	    	g.dispose();
-    	    	try { 
-    	    	    ImageIO.write(image, "jpg", file); 
-    	    	} catch (IOException e) {
-    	    	    e.printStackTrace();
-    	    	}
-    		}
-    	} else {
+    	JFileChooser chooser = new JFileChooser();
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+    	    "JPG image", "jpg");
+    	chooser.setFileFilter(filter);
+    	int returnVal = chooser.showSaveDialog(this);
+    	if(returnVal == JFileChooser.APPROVE_OPTION) {
     		BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-	    	Graphics g = image.createGraphics();
-	    	paintComponent(g);
-	    	g.dispose();
-	    	try { 
-	    	    ImageIO.write(image, "jpg", file); 
-	    	} catch (IOException e) {
-	    	    e.printStackTrace();
-	    	}
+			Graphics2D g = image.createGraphics();
+			printAll(g);
+			g.dispose();
+			try { 
+			    ImageIO.write(image, "jpg", new File(chooser.getSelectedFile().getAbsolutePath()));
+			    filename = chooser.getSelectedFile().getAbsolutePath();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
     	}
     }
 
