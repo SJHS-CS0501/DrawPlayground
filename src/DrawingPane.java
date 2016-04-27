@@ -9,10 +9,12 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
@@ -68,7 +70,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		default:
-			System.out.println("EVIL BAD PLACE TWO");
+			System.out.println("ERROR");
 			System.exit(-1);
 			break;
 		}
@@ -149,7 +151,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			for (int i = objectList.size() - 1; i >= 0; i--) {
 				if (objectList.get(i).contains(e.getPoint())) {
 					obj = objectList.get(i);
-					System.out.println("Coconut");
 					move = true;
 					break;
 				}
@@ -157,7 +158,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			break;
 
 		case 8:
-			System.out.println("delete");
 			break;
 
 		case 9:
@@ -285,17 +285,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public void writeFile() {
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
-		file.setCurrentDirectory(new File("Drawing Images"));
-		int retrival = file.showSaveDialog(null);
-
-		if (retrival == JFileChooser.APPROVE_OPTION) {
-			try (FileWriter fw = new FileWriter(file.getSelectedFile() + ".jpg")) {
-				fw.write(sb.toString());
-			} catch (Exception es) {
-				System.out.println("Exception:" + es.getMessage());
-			}
-		}
 		file.setCurrentDirectory(new File("Drawings"));
+		int retrival = file.showSaveDialog(null);
 		try {
 			outStream = new FileOutputStream(file.getSelectedFile());
 			outFile = new ObjectOutputStream(outStream);
@@ -307,7 +298,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			System.out.println("Exception: " + eq.getMessage());
 			eq.printStackTrace();
 		}
-	}
+		saveImage();
+}
 
 	public void openFile() {
 		DrawingObject object;
@@ -323,15 +315,29 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 				inFile = new ObjectInputStream(inStream);
 				System.out.println("dog");
 				while (inStream.available() > 0) {
-						object = (DrawingObject) inFile.readObject();
-						objectList.add(object);
-						System.out.println("Pop");
-						repaint();
-					}
-				
+					object = (DrawingObject) inFile.readObject();
+					objectList.add(object);
+					System.out.println("Pop");
+					repaint();
+				}
+
 			} catch (Exception es) {
 				System.out.println("Cannot Retrieve File: " + es.getMessage());
 			}
+		}
+	}
+	
+	public void saveImage() {
+		String sb = "TEST CONTENT";
+		file = new JFileChooser();
+		file.setCurrentDirectory(new File("Drawing Images"));
+		try {
+			BufferedImage in = ImageIO.read());
+			BufferedImage newImage = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			File outputFile = new File(file.getSelectedFile() + ".jpg");
+		    ImageIO.write(newImage, "jpg", outputFile);
+		} catch (IOException e) {
+			System.out.println("Exception: " + e.getMessage());
 		}
 	}
 }
