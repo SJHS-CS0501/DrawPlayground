@@ -10,12 +10,16 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.imageio.*;
 import javax.swing.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
@@ -179,11 +183,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	repaint();
 	}
 	
-	public void saveFile(){
-		JFileChooser saveChooser = new JFileChooser();
+	public void saveFile(String fileName){
+		
 			
 		try {
-			FileOutputStream saveStream = new FileOutputStream("save.dat");
+			FileOutputStream saveStream = new FileOutputStream(fileName + ".AWE");
 			ObjectOutputStream saveFile = new ObjectOutputStream(saveStream);
 			
 			for( int i = 0; i < objList.size(); i++ ){
@@ -195,5 +199,18 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			e1.printStackTrace();
 		}
 		System.out.println("File Saved");
+	}
+	
+	public void saveImage( String fileName){
+		
+		BufferedImage img = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		paint(img.getGraphics());
+		try {
+			ImageIO.write(img, "JPG", new File(fileName + ".jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   
 	}
 }
