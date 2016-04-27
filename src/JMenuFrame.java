@@ -44,9 +44,14 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "File" );
         
-        menuItem = new JMenuItem( "Save" );
+        menuItem = new JMenuItem( "Save as JPeg" );
         menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem("Save file");
+        menuItem.setActionCommand("otherSave");
+        menuItem.addActionListener(this);
         menu.add(menuItem);
         
         menuItem = new JMenuItem( "Open" );
@@ -59,10 +64,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
+        /*
         menuItem = new JMenuItem("Delete");
         menuItem.setActionCommand("Delete");
         menuItem.addActionListener( this );
         menu.add(menuItem);
+        */
         
         menu.addSeparator();
         
@@ -116,6 +123,9 @@ public class JMenuFrame extends JFrame implements ActionListener {
             	}
                 System.out.println( "Your file has been saved." );
                 break;
+            case "otherSave":
+            	dPane.save();
+            	break;
             case "Open":
             	final JFileChooser file = new JFileChooser();
             	int retrn = file.showOpenDialog(JMenuFrame.this);

@@ -54,7 +54,7 @@ public class MyStar implements DrawingObject{
 		
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( c );
         g2d.drawPolygon(xArray, yArray, xArray.length);
 		
 	}

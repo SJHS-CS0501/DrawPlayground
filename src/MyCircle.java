@@ -34,7 +34,7 @@ public class MyCircle implements DrawingObject{
         
         g2d.drawOval(originX, originY, sizeX, sizeY);
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( c );
         
         System.out.println( "Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
 		

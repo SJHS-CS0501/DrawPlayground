@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.io.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	public DrawingObject object;
@@ -103,7 +104,13 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	case(6):
     		Color c = null;
     		System.out.println(myList.size());
-    		for(int otherCtr = 0; otherCtr < myList.size(); otherCtr++) {
+    		for(int otherCtr = 0; otherCtr < myList.size() - 1; otherCtr++) {
+    			object = myList.get(otherCtr);
+    			if(object.contains(e.getPoint())) {
+    				c = ToolPanel.choose.getColor();
+        			object.setColor(c);
+    			}
+    			
     			
     		}
     		break;
@@ -155,5 +162,20 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	for(int counter = 0; counter < myList.size(); counter++) {
     		myList.get(counter).draw(g);
     	}
+    }
+    public void save() {
+    	 try {
+    		 FileOutputStream otherStream = new FileOutputStream("foobar.dat");
+    		 ObjectOutputStream objStream = new ObjectOutputStream(otherStream);
+    		 
+    		 for(int inc = 0; inc < myList.size(); inc++) {
+    			 objStream.writeObject(myList.get(inc));
+    		 }
+    		 objStream.close();
+    	 }
+    	 catch(Exception e1) {
+    		 e1.printStackTrace();
+    	 }
+    		 
     }
 }
