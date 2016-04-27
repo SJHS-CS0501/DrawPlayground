@@ -269,9 +269,23 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
    	 * @param f
    	 */
    	public void loadImage(File f){
-   		BufferedImage image = new BufferedImage(40,20, BufferedImage.TYPE_INT_RGB);
-   		Graphics2D g2 = image.createGraphics();
-   		paint(g2);
+   		BufferedImage image = null; //new BufferedImage(40,20, BufferedImage.TYPE_INT_RGB);
+   		//Graphics2D g2 = image.createGraphics();
+   		//paint(g2);
+   		
+   		try {
+			image = ImageIO.read(f);
+			//image.getScaledInstance(30, 40, 1);
+			//image.set
+			Graphics2D g2 = image.createGraphics();
+	   		paint(g2);
+			System.out.println("I loaded an image");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   		
+   		repaint();
    		//try{
    			//ImageIO.read(f);
    		//} catch (Exception e) {
