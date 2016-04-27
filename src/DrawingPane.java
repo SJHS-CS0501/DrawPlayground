@@ -321,15 +321,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			try {
 				inStream = new FileInputStream(file.getSelectedFile());
 				inFile = new ObjectInputStream(inStream);
+				System.out.println("dog");
 				while (inStream.available() > 0) {
-					Scanner input = new Scanner(file.getSelectedFile());
-					while (input.hasNextLine()) {
 						object = (DrawingObject) inFile.readObject();
 						objectList.add(object);
 						System.out.println("Pop");
 						repaint();
 					}
-				}
+				
 			} catch (Exception es) {
 				System.out.println("Cannot Retrieve File: " + es.getMessage());
 			}
