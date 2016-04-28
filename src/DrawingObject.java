@@ -52,12 +52,10 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
     
-<<<<<<< HEAD
     public void resize( Point p );
     
-=======
     public void getColor();
     
     public void setColor( Color c);
->>>>>>> origin/master
+
 }
