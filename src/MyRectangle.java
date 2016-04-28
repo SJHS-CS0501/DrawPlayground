@@ -120,7 +120,17 @@ public class MyRectangle implements DrawingObject, Serializable {
     }
 
 	@Override
+<<<<<<< HEAD
 	public void resize(Point p) {
+=======
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+>>>>>>> origin/master
 		// TODO Auto-generated method stub
 		
 	}

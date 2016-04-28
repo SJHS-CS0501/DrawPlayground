@@ -10,6 +10,14 @@ import javax.swing.*;
  */
 public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     
+	
+	// JFile user....just go with this
+	// file filter..add ending on file name
+	// better layout
+	// make things happy
+	// so happy
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	public JMenuFrame() {

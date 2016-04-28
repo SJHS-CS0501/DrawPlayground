@@ -14,6 +14,7 @@ public class MyStar implements DrawingObject, Serializable{
 	int[] yValues = new int[2 * points]; // for the y values (also duh)
     int originX, originY, sizeX, sizeY; // points for secret things
    	Rectangle bounds = new Rectangle(); // BOUNDING RECTANGLE!!! for bounding the object
+   	Polygon poly = new Polygon(); // for moving purposes
 	
    	// setBounds constructor
 	public MyStar(){
@@ -37,7 +38,8 @@ public class MyStar implements DrawingObject, Serializable{
 	public void draw(Graphics g) { // actually draws the object
 		Graphics2D g2d = (Graphics2D)g; // making a new graphics
         
-        g2d.setColor( Color.BLACK ); // setting color to black right now
+		g2d.draw(bounds);
+		g2d.setColor( Color.BLACK ); // setting color to black right now
         g2d.drawPolygon( xValues, yValues, xValues.length ); // draw that polygon ( aka a spiff 5-pointed star)!!!       
         
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -74,6 +76,7 @@ public class MyStar implements DrawingObject, Serializable{
 	@Override
 	public void move(Point p) {
 		
+		poly.translate( p.x, p.y );
 		originX = p.x;
 	    originY = p.y;
 	    setBounds( bounds );
@@ -82,7 +85,7 @@ public class MyStar implements DrawingObject, Serializable{
 
 	// setBounds is super important. Trust me.
 	public void setBounds( Rectangle bounds) {
-		  bounds.setBounds( originX, originY, sizeX + 5, sizeY + 5 );
+		  bounds.setBounds( originX, originY, sizeX, sizeY );
 	}
 
 	// contains method will be used for moving stuff later
@@ -92,7 +95,17 @@ public class MyStar implements DrawingObject, Serializable{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void resize(Point p) {
+=======
+	public void getColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColor(Color c) {
+>>>>>>> origin/master
 		// TODO Auto-generated method stub
 		
 	}
