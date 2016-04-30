@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Scanner;
 import javax.imageio.*;
 import javax.swing.*;
 
@@ -15,6 +16,9 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	private static final long serialVersionUID = 1L;
 	DrawingPane dPane = new DrawingPane();
     ToolPanel tPane = new ToolPanel();
+    Scanner keyboard = new Scanner( System.in );
+    String fileName;
+    int reply;
 
 	public JMenuFrame() {
         super();
@@ -131,16 +135,49 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
             case "Open File":
                 System.out.println( "'Open File' Pressed" );
+                dPane.reading();
                 break;
             case "Save":
+            	//pretty sure I'm saving it all
+            	fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
+            						"File name");
+            	
+            	//getting null pointer exception if the cancel button was clicked on the input dialog box
+            	try {
+            	while(fileName.equals("")){
+            		JOptionPane.showMessageDialog(dPane, "You must enter a file name!",
+            			    "File name not entered!",
+            			    JOptionPane.ERROR_MESSAGE);
+            		fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
+            							"File name");
+            		}
+            	} catch(Exception t){
+            		
+            	}
+            	
+            	/*
+            	while(fileName.equals("")){
+            		reply = JOptionPane.showConfirmDialog(dPane, "This file exists already!\nDo"
+            				+ " you want to over-write this file?",
+            				"File Exists",
+            			    JOptionPane.ERROR_MESSAGE, JOptionPane.YES_NO_OPTION);
+            		
+            		if(reply == JOptionPane.YES_OPTION){
+            			fileName = JOptionPane.showInputDialog("What do you want this file to be named?");
+            		} else {
+            			//delete old file and save the new one
+            		}
+            	}
+            	*/
+            	
             	BufferedImage img = new BufferedImage(1400, 1000, BufferedImage.TYPE_INT_RGB);
-                dPane.print(img.getGraphics()); // or: panel.printAll(...);
+                dPane.print(img.getGraphics());
                 try {
-                    ImageIO.write(img, "jpg", new File("panel.jpg"));
-                    System.out.print("Image saved.");
+                    ImageIO.write(img, "jpg", new File(fileName + ".jpg"));
+                    System.out.println("Image saved as " + fileName + ".jpg");
                 }
                 catch (IOException c) {
-                    System.out.print("Image not saved.");
+                    System.out.println("Image not saved.");
                 }
                 break;
             case "Five":
