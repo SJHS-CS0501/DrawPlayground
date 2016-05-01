@@ -21,8 +21,7 @@ public class MyCircle implements DrawingObject, Serializable{
 	@Override
 	public void draw(Graphics g) {
 		 Graphics2D g2d = (Graphics2D)g;
-	        
-		 g2d.draw( bounds );
+	     
 	     g2d.setColor( Color.BLACK );
 	     g2d.drawOval( originX, originY, sizeX, sizeY ); // Important stuff right here
 	        
