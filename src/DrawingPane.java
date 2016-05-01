@@ -12,9 +12,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -213,4 +215,23 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 	   
 	}
+	public void openFile( String fileName){
+		try {
+			FileInputStream openStream = new FileInputStream(fileName + ".AWE");
+			ObjectInputStream openFile = new ObjectInputStream(openStream);
+			
+			for( int i = 0; i < objList.size(); i++ ){
+				openFile.available();
+				obj = (DrawingObject)openFile.readObject();
+				objList.add(obj);
+				}
+			repaint();
+			openFile.close();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("File Opened");
+	}
 }
+

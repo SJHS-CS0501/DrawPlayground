@@ -144,18 +144,22 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
             	}
             	break;
             case "Open File":
+
+            	if( dPane != null) {
+            		String fileName = null; 
             		JFileChooser fc = new JFileChooser();
-                    int returnVal = fc.showOpenDialog(JMenuFrame.this);
-                    
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    	fc.setCurrentDirectory(new File (System.getProperty("user.home")));
-                        File file = fc.getSelectedFile();
-                        
-                        //This is where a real application would open the file.
-                        //log.append("Opening: " + file.getName());
-                    }
-                System.out.println( "Another Pressed" );
-                break;
+            		fc.setCurrentDirectory(new File (System.getProperty("user.home")));
+            		int returnVal = fc.showOpenDialog(JMenuFrame.this);
+                
+            		if (returnVal == JFileChooser.APPROVE_OPTION) {
+                	
+            			File file = fc.getSelectedFile();
+            			fileName = file.toString();
+            			System.out.println(fileName);
+            			dPane.openFile(fileName);
+            		
+            		}
+            	}                break;
             case "Quit":
                 System.out.println( "quit Pressed" );
                 System.exit(0);
