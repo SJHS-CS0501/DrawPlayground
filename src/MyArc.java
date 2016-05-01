@@ -39,7 +39,6 @@ public class MyArc implements DrawingObject, Serializable{
 		
 		Graphics2D g2d = (Graphics2D)g;
 		
-		g2d.draw(bounds);
         g2d.setColor( Color.BLACK );
 		g.drawArc( originX, originY, sizeX, sizeY * 2, startAngle, arcAngle ); // draw arc!!
 		
@@ -85,18 +84,14 @@ public class MyArc implements DrawingObject, Serializable{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void resize(Point p) {
-=======
-	public void getColor() {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void getColor() {		
 	}
 
 	@Override
 	public void setColor(Color c) {
->>>>>>> origin/master
-		// TODO Auto-generated method stub
 		
 	}
 

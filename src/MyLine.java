@@ -79,9 +79,9 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void resize(Point p) {
-=======
+	}
+	
 	public void getColor() {
 		// TODO Auto-generated method stub
 		
@@ -89,9 +89,6 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 
 	@Override
 	public void setColor(Color c) {
->>>>>>> origin/master
-		// TODO Auto-generated method stub
-		
 	}
 
 }
