@@ -215,7 +215,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 	   
 	}
-	public void openFile( String fileName){
+	public void openFile(String fileName){
 		try {
 			FileInputStream openStream = new FileInputStream(fileName + ".AWE");
 			ObjectInputStream openFile = new ObjectInputStream(openStream);
