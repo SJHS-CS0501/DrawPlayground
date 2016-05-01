@@ -110,6 +110,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    		obj = new MyStar(Integer.parseInt(ToolPanel.po));
 	    	}else if(check == 6){
 	    		obj = new MyPolygon(Integer.parseInt(ToolPanel.po2));
+	    	}else if(check == 10){
+	    		obj = new MyImage(ToolPanel.nameI);
+	    		System.out.println("dfbdjbshgdfj,gbs");
 	    	}else if(check == 0){
 	    		for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
