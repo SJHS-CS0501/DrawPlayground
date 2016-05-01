@@ -89,7 +89,7 @@ public class MyImage implements DrawingObject, Serializable{
 			g.fillRect(originX, originY, sizeX, sizeY);
 		}
         */
-        //R = new Rectangle(originX, originY);
+       //R = new Rectangle(originX, originY, sizeX, sizeY);
        g.drawImage(img, originX, originY, sizeX, sizeY, null);
         
         
