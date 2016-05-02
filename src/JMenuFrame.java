@@ -45,6 +45,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
+        menuItem = new JMenuItem( "Save Image" );
+        menuItem.setActionCommand("saveImage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        
         menuItem = new JMenuItem( "Do Something" );
         menuItem.setActionCommand( "MenuSomething" );
         menuItem.addActionListener( this );
@@ -115,6 +120,8 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         	case "save":
         		dPane.writeFile();
         		break;
+        	case "saveImage":
+        		dPane.saveImage();
         	case "open":
         		dPane.openFile();
         		break;
@@ -134,23 +141,4 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
         }
     }
-//    	String sb = "TEST CONTENT";
-//	    file = new JFileChooser();
-//	    file.setCurrentDirectory(new File("Drawings"));
-//	    int retrival = file.showSaveDialog(null);
-//	    
-//	    if (retrival == JFileChooser.APPROVE_OPTION) {
-//	    	try(FileWriter fw = new FileWriter(file.getSelectedFile()+".jpg")) {
-//	    	    fw.write(sb.toString());
-//	    	} catch (Exception es) {
-//	    		System.out.println("Exception:" + es.getMessage());
-//	    	}
-//	    }
-//	    try{
-//    		outStream = new FileOutputStream(file.getSelectedFile());
-//    		outFile = new ObjectOutputStream(outStream);
-//    	} catch(Exception eq) {
-//    		System.out.println("Exception:" + eq.getMessage());
-//    	}
-//    	}
 }

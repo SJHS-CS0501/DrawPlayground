@@ -286,26 +286,27 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawings"));
-		int retrival = file.showSaveDialog(null);
-		try {
-			outStream = new FileOutputStream(file.getSelectedFile());
-			outFile = new ObjectOutputStream(outStream);
-			for (int i = objectList.size() - 1; i >= 0; i--) {
-				outFile.writeObject(objectList.get(i));
-				System.out.println("Coconut");
+		int retrival = file.showSaveDialog(this);
+		if (retrival == JFileChooser.APPROVE_OPTION) {
+			try {
+				outStream = new FileOutputStream(file.getSelectedFile());
+				outFile = new ObjectOutputStream(outStream);
+				for (int i = objectList.size() - 1; i >= 0; i--) {
+					outFile.writeObject(objectList.get(i));
+					System.out.println("Coconut");
+				}
+			} catch (Exception eq) {
+				System.out.println("Exception: " + eq.getMessage());
+				eq.printStackTrace();
 			}
-		} catch (Exception eq) {
-			System.out.println("Exception: " + eq.getMessage());
-			eq.printStackTrace();
 		}
-		saveImage();
-}
+	}
 
 	public void openFile() {
 		DrawingObject object;
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawings"));
-		int open = file.showOpenDialog(null);
+		int open = file.showOpenDialog(this);
 
 		if (open == JFileChooser.APPROVE_OPTION) {
 			objectList.clear();
@@ -326,18 +327,21 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			}
 		}
 	}
-	
+
 	public void saveImage() {
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawing Images"));
-		try {
-			BufferedImage in = ImageIO.read());
-			BufferedImage newImage = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
-			File outputFile = new File(file.getSelectedFile() + ".jpg");
-		    ImageIO.write(newImage, "jpg", outputFile);
-		} catch (IOException e) {
-			System.out.println("Exception: " + e.getMessage());
+		int retrieval = file.showSaveDialog(this);
+		if (retrieval == JFileChooser.APPROVE_OPTION) {
+			try {
+				BufferedImage newImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+				paint(newImage.getGraphics());
+				File outputFile = new File(file.getSelectedFile() + ".jpg");
+				ImageIO.write(newImage, "jpg", outputFile);
+			} catch (IOException e) {
+				System.out.println("Exception: " + e.getMessage());
+			}
 		}
 	}
 }
