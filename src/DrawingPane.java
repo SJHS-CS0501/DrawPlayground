@@ -50,13 +50,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			shapeList.get(i).draw(g);
 		}
 	}
-	
-	public void reading(){
-		//not sure how to write to disk at all
-		for(int i = 0; i < shapeList.size(); i++){
-			
-		}
-	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.Scanner;
 import javax.imageio.*;
 import javax.swing.*;
+import javax.swing.filechooser.*;
 
 /**
  *
@@ -135,10 +136,9 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
             case "Open File":
                 System.out.println( "'Open File' Pressed" );
-                dPane.reading();
+                
                 break;
             case "Save":
-            	//pretty sure I'm saving it all
             	fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
             						"File name");
             	
@@ -174,7 +174,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 dPane.print(img.getGraphics());
                 try {
                     ImageIO.write(img, "jpg", new File(fileName + ".jpg"));
-                    System.out.println("Image saved as " + fileName + ".jpg");
+                    JOptionPane.showMessageDialog(dPane, "Image saved as " + fileName + ".jpg");
                 }
                 catch (IOException c) {
                     System.out.println("Image not saved.");
