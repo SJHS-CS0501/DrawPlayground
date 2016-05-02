@@ -81,36 +81,42 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	switch( coolShape ){
     	case "rectangle":
     		object = new MyRectangle();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "circle":
     		object = new MyCircle();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "line":
     		object = new MyLine();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "arc":
     		object = new MyArc();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "star":
     		object = new MyStar();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);
     		break;
     	case "string":
     		object = new MyString();
+    		object.setColor(ToolPanel.soManyColors.getColor());
     		object.start( mousePoint );
     		repaint();
     		objectList.add(object);

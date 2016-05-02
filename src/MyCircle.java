@@ -5,13 +5,11 @@ import java.io.Serializable;
 // This is the same as the MyRectangle class except the draw has drawOval
 public class MyCircle implements DrawingObject, Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
     Rectangle bounds = new Rectangle();
+    Color color;
     
     public MyCircle(){
     	sizeX = sizeY = originX = originY = 0;
@@ -22,7 +20,7 @@ public class MyCircle implements DrawingObject, Serializable{
 	public void draw(Graphics g) {
 		 Graphics2D g2d = (Graphics2D)g;
 
-	     g2d.setColor( Color.BLACK );
+	     g2d.setColor( getColor() );
 	     g2d.drawOval( originX, originY, sizeX, sizeY ); // Important stuff right here
 	        
 	     // Ok, so I also had to change it to say Redrawing circle instead of rectangle because that would just be weird
@@ -70,12 +68,13 @@ public class MyCircle implements DrawingObject, Serializable{
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {
-		
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {
+		color = c;
 	}
 
 }

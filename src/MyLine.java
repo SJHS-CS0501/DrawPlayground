@@ -5,13 +5,11 @@ import java.io.Serializable;
 
 public class MyLine implements DrawingObject, Serializable { // these all implement DrawingObject (all the shapie things)
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	int sizeX, sizeY, originX, originY;
     int lastX, lastY;
     //Rectangle bounds = new Rectangle(); // bounding rectangle again
+    Color color;
 	
     MyLine(){
     	sizeX = sizeY = originX = originY = 0; // initializing stuff and things in the constructor
@@ -23,7 +21,7 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 		
 		Graphics2D g2d = (Graphics2D)g;
 		   
-	    g2d.setColor( Color.BLACK );
+	    g2d.setColor( getColor());
 	    g2d.drawLine( originX, originY, sizeX, sizeY ); // Draw the line, Kronk!
 	        
 	    System.out.println( "Redrawing line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);	
@@ -82,13 +80,13 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {
-		// TODO Auto-generated method stub
-		
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {
+		color = c;
 	}
 
 }

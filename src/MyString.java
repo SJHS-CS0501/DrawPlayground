@@ -12,6 +12,7 @@ public class MyString implements DrawingObject, Serializable{
 	int originX, originY, sizeX, sizeY;
 	int lastX, lastY;
     Rectangle bounds = new Rectangle();
+    Color color;
     
     public MyString(){
     	sizeX = sizeY = originX = originY = 0;
@@ -28,6 +29,7 @@ public class MyString implements DrawingObject, Serializable{
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 	        
+		g2d.setColor( getColor());
 	    try{
 	    g2d.drawString( wordo, originX, originY );
 	    }catch(NullPointerException e){
@@ -89,13 +91,13 @@ public class MyString implements DrawingObject, Serializable{
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {
-		// TODO Auto-generated method stub
-		
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {
+		color = c;
 	}
 	
 }

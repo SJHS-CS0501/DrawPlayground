@@ -14,22 +14,20 @@ public class ToolPanel extends JPanel implements ActionListener {
     // what we are doing in DrawingPane
 
     
-    /**
-	 * 
-	 */
+    static JColorChooser soManyColors = new JColorChooser();
 	private static final long serialVersionUID = 1L;
 	DrawingPane dPane = new DrawingPane();
 	
 	public ToolPanel( DrawingPane d ) {
         super();
         dPane = d;
-        this.setSize( 50, 100 );
-        this.setLayout( new GridLayout( 1, 3 ) );
+        this.setSize( 500, 10000 );
+        this.setLayout( new GridLayout( 2, 10 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
-        JPanel againForButtons = new JPanel();
-    
-        againForButtons.setLayout( new GridLayout(4,2));
+        JPanel againForButtons = new JPanel( new GridLayout(4,2) );
+        JPanel colors = new JPanel( new GridLayout());
+        Color color;
         
         button = new JButton( "Rectangle" );
         button.setActionCommand( "rectangle" );
@@ -71,14 +69,12 @@ public class ToolPanel extends JPanel implements ActionListener {
         //button.addActionListener( this );
         againForButtons.add( button );
        
-        //JColorChooser colors = new JColorChooser();
-        //againForButtons.add( colors );
-        
-        
-        //againForButtons.add( new JSeparator() );
+        soManyColors.setColor( Color.BLACK );
+        colors.add( soManyColors );
+        color = soManyColors.getColor();
         
         this.add( againForButtons, BorderLayout.WEST );
-        
+        this.add( colors, BorderLayout.WEST );
         
         this.setVisible( true );
     }

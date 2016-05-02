@@ -14,6 +14,7 @@ public class MyArc implements DrawingObject, Serializable{
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    Color color;
 	
     MyArc(){
     	sizeX = sizeY = originX = originY = startAngle = arcAngle = 0;
@@ -31,15 +32,14 @@ public class MyArc implements DrawingObject, Serializable{
     }
 	
     /**
-     * The arc is drawn backwards from the end point (where the user clicks) to the start point (the point at the edge of the drawing pane
-     * that is horizontal to the end point)
+     * The arc is drawn backwards from the end point (where the user clicks) to the start point 
+     * (the point at the edge of the drawing pane that is horizontal to the end point)
      */
 	@Override
 	public void draw(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
-		
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( getColor() );
 		g.drawArc( originX, originY, sizeX, sizeY * 2, startAngle, arcAngle ); // draw arc!!
 		
 		System.out.println( "Redrawing arc @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -87,12 +87,13 @@ public class MyArc implements DrawingObject, Serializable{
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {		
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {
-		
+		color = c;
 	}
 
 //	public void resizeArc(Point p){

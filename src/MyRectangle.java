@@ -6,12 +6,10 @@ public class MyRectangle implements DrawingObject, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
-    // future use
     int lastX, lastY;
-    // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    Color color;
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -49,7 +47,7 @@ public class MyRectangle implements DrawingObject, Serializable {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( getColor());
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -123,11 +121,13 @@ public class MyRectangle implements DrawingObject, Serializable {
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {	
+		color = c;
 	}
 
 }

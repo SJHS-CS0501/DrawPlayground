@@ -54,7 +54,7 @@ public interface DrawingObject {
     
     public void resize( Point p );
 
-    public void getColor();
+    public Color getColor();
     
     public void setColor( Color c);
 }

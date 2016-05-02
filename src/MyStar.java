@@ -15,7 +15,8 @@ public class MyStar implements DrawingObject, Serializable{
     int originX, originY, sizeX, sizeY; // points for secret things
    	Rectangle bounds = new Rectangle(); // BOUNDING RECTANGLE!!! for bounding the object
    	Polygon poly = new Polygon(); // for moving purposes
-	
+	Color color;
+   	
    	// setBounds constructor
 	public MyStar(){
 		setBounds( bounds );
@@ -39,7 +40,7 @@ public class MyStar implements DrawingObject, Serializable{
 		Graphics2D g2d = (Graphics2D)g; // making a new graphics
         
 		g2d.draw(bounds);
-		g2d.setColor( Color.BLACK ); // setting color to black right now
+		g2d.setColor( getColor() ); // setting color to black right now
         g2d.drawPolygon( xValues, yValues, xValues.length ); // draw that polygon ( aka a spiff 5-pointed star)!!!       
         
         System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
@@ -98,11 +99,13 @@ public class MyStar implements DrawingObject, Serializable{
 	public void resize(Point p) {
 	}
 	
-	public void getColor() {
+	public Color getColor() {
+		return color;
 	}
 
 	@Override
 	public void setColor(Color c) {
+		color = c;
 	}
 
 }
