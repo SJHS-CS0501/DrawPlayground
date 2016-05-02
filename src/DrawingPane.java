@@ -98,6 +98,8 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	y = e.getY();
     	//a
     	//b
+    	
+    	if(check !=0 || check !=1 ||check !=2||check !=3||check !=4||check !=6||check !=10){
 	    	if(check == rec){
 	    		obj = new MyRectangle();
 	    	}else if(check == c){
@@ -113,25 +115,16 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    	}else if(check == 10){
 	    		obj = new MyImage(ToolPanel.nameI);
 	    		System.out.println("dfbdjbshgdfj,gbs");
-	    	}else if(check == 0){
-	    		for(int i = drob.size()-1; i>= 0; i--){
-	    			if(drob.get(i).contains(e.getPoint())){
-	    				//System.out.println("star listen to me");
-	    				obj = drob.get(i);
-	    				break;
-	    			}else{
-	    				obj = null;
-	    			}
-	    		}
 	    	}
     	
-    
-    			if(obj != null){
-    				//obj.draw(getGraphics());
-    				obj.start(e.getPoint());
-    				drob.add(obj);
-    			}
-    			
+	    	if(obj != null){
+				//obj.draw(getGraphics());
+				obj.start(e.getPoint());
+				drob.add(obj);
+				System.out.println("Added obj");
+	    	}
+	    }
+	    	
     		if(check == 5){
     			for(int i = drob.size()-1; i>= 0; i--){
 	    			if(drob.get(i).contains(e.getPoint())){
@@ -172,7 +165,17 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	    			
 	    		}
     			
-    		}
+    		}else if(check == 0){
+	    		for(int i = drob.size()-1; i>= 0; i--){
+	    			if(drob.get(i).contains(e.getPoint())){
+	    				//System.out.println("star listen to me");
+	    				obj = drob.get(i);
+	    				break;
+	    			}else{
+	    				obj = null;
+	    			}
+	    		}
+	    	}
     	
     	
 
