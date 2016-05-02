@@ -152,28 +152,21 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
             		int returnVal = fc.showOpenDialog(JMenuFrame.this);
                 
             		if (returnVal == JFileChooser.APPROVE_OPTION) {
-                	
+            			dPane.clearAll();
             			File file = fc.getSelectedFile();
             			fileName = file.toString();
             			System.out.println(fileName);
             			dPane.openFile(fileName);
             		
             		}
-            	}                break;
+            	}                
+            	break;
             case "Quit":
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
             case "Clear All":
             	dPane.clearAll();
-            	break;
-            case"Delete":
-            	for( int ctr = 0; ctr <= dPane.objList.size(); ctr++ ){
-            		
-            		//if(dPane.objList.get(ctr).contains(){
-            			
-            		//}
-            	}
             	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
