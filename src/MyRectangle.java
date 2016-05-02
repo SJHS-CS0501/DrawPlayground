@@ -8,13 +8,14 @@
  * @author woytek/Ryan Smith
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-public class MyRectangle implements DrawingObject {
+public class MyRectangle implements DrawingObject, Serializable {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use

@@ -9,7 +9,10 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.*;
 
@@ -163,9 +166,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		myList.get(counter).draw(g);
     	}
     }
-    public void save() {
+    public void save(String file) {
     	 try {
-    		 FileOutputStream otherStream = new FileOutputStream("foobar.dat");
+    		 FileOutputStream otherStream = new FileOutputStream(file);
     		 ObjectOutputStream objStream = new ObjectOutputStream(otherStream);
     		 
     		 for(int inc = 0; inc < myList.size(); inc++) {
@@ -177,5 +180,33 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		 e1.printStackTrace();
     	 }
     		 
+    }
+    
+    public void image(String file) {
+    	BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+    	paint(image.getGraphics());
+    	try {
+			ImageIO.write(image, "JPG", new File(file));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void open(String file) {
+    	try {
+    		FileInputStream stream = new FileInputStream(file);
+    		ObjectInputStream objectStream = new ObjectInputStream(stream);
+    		
+    		while(stream.available() > 0) {
+    			object = (DrawingObject)objectStream.readObject();
+    			myList.add(object);
+    		}
+    		repaint();
+    		objectStream.close();
+    	}
+    	catch(Exception e1) {
+    		e1.printStackTrace();
+    	}
     }
 }

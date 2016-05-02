@@ -5,6 +5,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.awt.event.*;
+import java.io.*;
 /**
  * 
  */
@@ -13,7 +14,7 @@ import java.awt.event.*;
  * @author Ryan Smith
  *
  */
-public class MyCircle implements DrawingObject{
+public class MyCircle implements DrawingObject, Serializable{
 	int sizeX, sizeY, originX, originY;
 	int lastX, lastY;
 	Rectangle bounds = new Rectangle();

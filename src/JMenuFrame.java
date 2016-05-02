@@ -108,30 +108,53 @@ public class JMenuFrame extends JFrame implements ActionListener {
         switch( e.getActionCommand() ) {
             case "Save":
             	if(dPane != null) {
-            		String myFile = "myFile.jpg";
-            		accessFile(myFile);
-            		BufferedImage image = new BufferedImage(dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-            		dPane.print(image.getGraphics());
-            		try {
-            			FileOutputStream stream = new FileOutputStream("bar.dat");
-            			ImageIO.write(image, myFile, new File(myFile));
-            		}
-            		catch(IOException e1) {
-            			e1.printStackTrace();
+            		String file;
+            		JFileChooser foo = new JFileChooser();
+            		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+            		int ret = foo.showSaveDialog(JMenuFrame.this);
+            		
+            		if(ret == JFileChooser.APPROVE_OPTION) {
+            			
+            			File fileName = foo.getSelectedFile();
+            			file = fileName.toString();
+            			dPane.save(file);
             		}
             		
             	}
                 System.out.println( "Your file has been saved." );
                 break;
             case "otherSave":
-            	dPane.save();
+            	if(dPane != null) {
+            		String file;
+            		JFileChooser foo = new JFileChooser();
+            		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+            		int ret = foo.showSaveDialog(JMenuFrame.this);
+            		
+            		if(ret == JFileChooser.APPROVE_OPTION) {
+            			
+            			File fileName = foo.getSelectedFile();
+            			file = fileName.toString();
+            			dPane.save(file);
+            		}
+            		
+            	}
             	break;
             case "Open":
-            	final JFileChooser file = new JFileChooser();
+            	String otherFile = null;
+        		JFileChooser foo = new JFileChooser();
+        		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+        		int ret = foo.showSaveDialog(JMenuFrame.this);
+        		
+            	JFileChooser file = new JFileChooser();
             	int retrn = file.showOpenDialog(JMenuFrame.this);
+            	
             	if(retrn == JFileChooser.APPROVE_OPTION) {
+            		DrawingPane.myList.clear();
+            		repaint();
             		file.setCurrentDirectory(new File(System.getProperty("user.home")));
             		File fileName = file.getSelectedFile();
+            		dPane.open(otherFile);
+            		
             		
             	}
                 System.out.println( "File opened" );
