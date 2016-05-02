@@ -21,8 +21,8 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public ToolPanel( DrawingPane d ) {
         super();
         dPane = d;
-        this.setSize( 500, 10000 );
-        this.setLayout( new GridLayout( 2, 10 ) );
+        this.setSize( 200, 1000 );
+        this.setLayout( new GridLayout( 2, 5 ) );
         this.setBorder( BorderFactory.createEtchedBorder() );
         JButton button;
         JPanel againForButtons = new JPanel( new GridLayout(4,2) );

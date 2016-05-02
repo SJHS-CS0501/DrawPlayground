@@ -29,9 +29,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         //setSize( getPreferredSize() );
         // size is handled by parent pane placement in JFrame
         // make a border
-        setBorder( BorderFactory.createLineBorder(Color.RED) );
-        
-        
+        setBorder( BorderFactory.createLineBorder(Color.BLUE) );
         
         
         setVisible( true );
