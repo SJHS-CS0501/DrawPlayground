@@ -16,29 +16,121 @@ import javax.swing.*;
 public class ToolPanel extends JPanel implements ActionListener {
     // drawingType is updated throughout the ToolPanel and used to determine
     // what we are doing in DrawingPane
-
-    
+	
+	public static int buttonSelected = 0;
+	static JColorChooser colorChooser = new JColorChooser();
+    GridBagLayout layout; // variable for the gridbag layout
     public ToolPanel() {
         super();
         this.setSize( 50, 200 );
-        this.setLayout( new GridLayout( 4, 2 ) );
-        this.setBorder( BorderFactory.createEtchedBorder() );
-        JButton button;
-        
 
-    
+        layout = new GridBagLayout(); // creates a new GridBagLayout
+        
+		setLayout(layout); // sets the layout of myFrame according to GridBagLayout
+		this.setSize( 250, 350);
+		GridBagConstraints c = new GridBagConstraints(); // creates a new GridBagRestraints
+	
+		// general constraints
+		c.fill = GridBagConstraints.NONE;
+		
+		// label constraints
+		c.weightx = 5; // changes weight of label to receive less space
+		c.weighty = 1;
+		c.gridwidth = GridBagConstraints.REMAINDER; // sets the label to be in the second to last column
+		c.gridheight = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
+		
+        JRadioButton square = new JRadioButton("Draw Square");
+        square.setMnemonic(KeyEvent.VK_B);
+        square.setActionCommand("Draw Square");
+        layout.setConstraints(square, c); // more button constraints
+		
+        
+        JRadioButton line = new JRadioButton("Draw Line");
+        line.setMnemonic(KeyEvent.VK_B);
+        line.setActionCommand("Draw Line");
+        layout.setConstraints(line, c); // more button constraints
+        
+        JRadioButton circle = new JRadioButton("Draw Circle");
+        circle.setMnemonic(KeyEvent.VK_B);
+        circle.setActionCommand("Draw Circle");
+        layout.setConstraints(circle, c); // more button constraints
+        
+        JRadioButton star = new JRadioButton("Draw Star");
+        star.setMnemonic(KeyEvent.VK_B);
+        star.setActionCommand("Draw Star");
+        layout.setConstraints(star, c); // more button constraints
+        
+        JRadioButton move = new JRadioButton("Move Shape");
+        move.setMnemonic(KeyEvent.VK_B);
+        move.setActionCommand("Move Shape");
+        layout.setConstraints(move, c); // more button constraints
+        
+        JRadioButton colorPicker = new JRadioButton("Color Chooser");
+        colorPicker.setMnemonic(KeyEvent.VK_B);
+        colorPicker.setActionCommand("Change Color");
+        layout.setConstraints(colorPicker, c); // more button constraints
+        
+        c.anchor = GridBagConstraints.LAST_LINE_START;
+        layout.setConstraints(colorChooser, c);
+        
+        ButtonGroup shapes = new ButtonGroup();
+        shapes.add(square);
+        shapes.add(line);
+        shapes.add(circle);
+        shapes.add(star);
+        shapes.add(move);
+        shapes.add(colorPicker);
+        
+        add(square);
+        add(line);
+        add(circle);
+        add(star);
+        add(move);
+        add(colorChooser);
+        add(colorPicker);
+        
+        square.addActionListener(this);
+        line.addActionListener(this);
+        circle.addActionListener(this);
+        star.addActionListener(this);
+        move.addActionListener(this);
+        colorPicker.addActionListener(this);
+        
         this.setVisible( true );
+        
     }
     
 
     
-    public void actionPerformed( ActionEvent e ) {
+    public void actionPerformed( ActionEvent e) {
+    	
         switch( e.getActionCommand() ) {
-
-            default:
-                System.out.println( "EVIL EVIL BAD PLACE" );
-                System.exit(-1);
-                break;
+        case"Draw Square":
+        	buttonSelected = 0;
+        	break;
+        case"Draw Circle":
+        	buttonSelected = 1;
+        	break;
+        case"Draw Line":
+        	buttonSelected = 2;
+        	break;
+        case"Draw Star":
+        	buttonSelected = 3;
+        	break;
+        case"Move Shape":
+        	buttonSelected = 4;
+        	break;
+        case"Change Color":
+        	buttonSelected = 5;
+        	break;
+        default:
+             System.out.println( "EVIL EVIL BAD PLACE" );
+             System.exit(-1);
+             break;
         }
     }
 }
+
+
+

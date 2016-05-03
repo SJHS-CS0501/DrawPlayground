@@ -1,59 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- */
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.io.Serializable;
-import java.awt.*;
-import javax.swing.*;
 
-import javafx.scene.shape.Circle;
+/**
+ * 
+ */
 
-public class MyRectangle implements DrawingObject, Serializable {
-	
-	/*
-	 * Notes for moving
-	 * Write moved 
-	 * mouse pressed 
-	 * add button for moving things that DOES NOT DRAW OBJECT WHEN SCRREN IS PRESSED - check
-	 * move selects object or obj in this case, but of the specific one in the array list - kind of check
-	 * drag has to modified
-	 * released still works the same - check
-	 * have a for loop that iterates through all of the objects that checks to see if the object is contained within the bounds of the shape - check
-	 * set obj to null - check?
-	 * for and if contains - check
-	 * in if set obj to arraylist.get(counter variable) then break - check
-	 * then break for the case - check? maybe? Probably not
-	 * now mouse dragged:
-	 * still want to check if it's not null with if, but added another if
-	 * check to see if in move, obj.getPoint()
-	 * create formula to get the point on the line 
-	 * give lee way afterwards
-	 * use Java color
-	 * create new color array list
-	 * create get color and set color for java
-	 */
-	Color rectColor = null;
+/**
+ * @author SJHSStudent
+ *
+ */
+public class MyStar implements DrawingObject, Serializable {
+/*
+ * x = cos(e.getX);
+ * y = sin(e.getY);
+ * write method to go through the points and feed them to draw polygon
+ * remember to off set one circle - check
+ * 0, 1* 365/5, 
+ */
+	Color starColor = null;
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    public int numPoints;
+    int[] xPoints; 
+	int[] yPoints;
+    static final int NUMPOINTS = 9;
+    Polygon star = new Polygon();
+    Color color;
+    
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyStar() {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        numberPoints(NUMPOINTS);
+        color = Color.BLACK;
     }
+    
+    public void numberPoints( int n ){
+		numPoints = n;
+		xPoints = new int[numPoints * 2];
+		yPoints = new int[numPoints * 2];
+    	
+    }
+    
     
     /**
      * Create a new MyRectangle with params initialized for origin and size.
@@ -63,12 +64,13 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param sX
      * @param sY 
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
+    public MyStar( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
         sizeY = sY;
         originX = oX;
         originY = oY;
         setBounds( bounds );
+        numberPoints(NUMPOINTS);
         
         System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
@@ -79,14 +81,14 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param g 
      */
     public void draw( Graphics g ) {
-
-        Graphics2D g2d = (Graphics2D)g;
+    	
+    	Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( rectColor );
+        g2d.setColor( color );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
-        
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        //g2d.drawPolygon( xPoints, yPoints, xPoints.length );
+        g2d.draw(star);
+        System.out.println( "Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
@@ -109,11 +111,33 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param p 
      */
     public void drag( Point p ) {
-        sizeX = p.x - originX;
+    	
+    	
+    	sizeX = p.x - originX;
         sizeY = p.y - originY;
-        setBounds( bounds );
+        makeStar();
     }
     
+    public void makeStar(){
+    	double angle = ((2 * Math.PI/numPoints));
+    	double offset = (Math.PI/numPoints);
+    	//sizeX = p.x - originX;
+        //sizeY = p.y - originY;
+        
+    	for( int ctr = 0, i = 0; ctr < xPoints.length; i++, ctr += 2){
+    		xPoints[ctr] = (int)(originX + sizeX * Math.cos(angle * i));
+    		yPoints[ctr] = (int)(originY + sizeY * Math.sin(angle * i));
+    		xPoints[ctr + 1] = (int)(originX + (sizeX / 2) * Math.cos(offset + angle * i));
+    		yPoints[ctr + 1] = (int)(originY + (sizeY / 2) * Math.sin(offset + angle * i ));
+    		
+    	}
+    	star.reset();
+    	star.xpoints = xPoints;
+    	star.ypoints = yPoints;
+    	star.npoints = numPoints*2;
+    	
+        setBounds( bounds );
+    }
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
@@ -123,7 +147,8 @@ public class MyRectangle implements DrawingObject, Serializable {
     public void move( Point p ) {
         originX = p.x;
         originY = p.y;
-        setBounds( bounds );
+        makeStar();
+        
     }
     
     /**
@@ -143,8 +168,10 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param p
      * @return 
      */
+   
     public boolean contains( Point p ) {
-        return bounds.contains(p);
+    	
+        return star.contains(p);
     }
 /*
 	@Override
@@ -156,8 +183,8 @@ public class MyRectangle implements DrawingObject, Serializable {
 	@Override
 	public void setColor(Color color) {
 		// TODO Auto-generated method stub
-		this.rectColor = color;
+		
+		this.color = color;
 	}
-
-
+	
 }
