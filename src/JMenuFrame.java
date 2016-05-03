@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.imageio.*;
 import javax.swing.*;
@@ -18,6 +19,8 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	DrawingPane dPane = new DrawingPane();
     ToolPanel tPane = new ToolPanel();
     Scanner keyboard = new Scanner( System.in );
+    File selectedFile  = new File("Drawings");
+    FileInputStream fop = new FileInputStream(selectedFile);
     String fileName;
     int reply;
 
@@ -136,12 +139,31 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
             case "Open File":
                 System.out.println( "'Open File' Pressed" );
+                JFileChooser fileChooser = new JFileChooser();
+                int option = fileChooser.showOpenDialog(this);
                 
+                try {
+                	if (!selectedFile.exists()) {
+                		selectedFile.createNewFile();
+                	}
+                } catch (Exception t) {
+                	
+                }
+                
+                if (option == JFileChooser.APPROVE_OPTION) {
+                	selectedFile = fileChooser.getSelectedFile();
+                	try {
+						Desktop.getDesktop().open(selectedFile);
+					} catch (IOException c) {
+						
+					}
+                }
                 break;
             case "Save":
+            	//ask if they want it saved here as a jpg
+            	
             	fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
             						"File name");
-            	
             	//getting null pointer exception if the cancel button was clicked on the input dialog box
             	try {
             	while(fileName.equals("")){
@@ -175,6 +197,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 try {
                     ImageIO.write(img, "jpg", new File(fileName + ".jpg"));
                     JOptionPane.showMessageDialog(dPane, "Image saved as " + fileName + ".jpg");
+                    
                 }
                 catch (IOException c) {
                     System.out.println("Image not saved.");
