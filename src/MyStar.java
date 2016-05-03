@@ -25,10 +25,10 @@ public class MyStar implements DrawingObject, Serializable{
 	// also a constructor
 	// this one says where it made a star
 	public MyStar( int oX, int oY, int sX, int sY ){
-		sizeX = sX;
-        sizeY = sY;
-        originX = oX;
-        originY = oY;
+//		sizeX = sX;
+//        sizeY = sY;
+//        originX = oX;
+//        originY = oY;
         setBounds( bounds );
         
         System.out.println( "Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY );
@@ -39,7 +39,6 @@ public class MyStar implements DrawingObject, Serializable{
 	public void draw(Graphics g) { // actually draws the object
 		Graphics2D g2d = (Graphics2D)g; // making a new graphics
         
-		g2d.draw(bounds);
 		g2d.setColor( getColor() ); // setting color to black right now
         g2d.drawPolygon( xValues, yValues, xValues.length ); // draw that polygon ( aka a spiff 5-pointed star)!!!       
         
@@ -61,7 +60,22 @@ public class MyStar implements DrawingObject, Serializable{
 	public void drag(Point p) {
 		sizeX = p.x - originX;
 		sizeY = p.y - originY;
+		points(p);
+
+		setBounds( bounds );
+	}
+
+	// for moving the star
+	@Override
+	public void move(Point p) {
+		originX = p.x;
+	    originY = p.y;
+	    points(p);
+	    setBounds( bounds );
 		
+	}
+
+	public void points( Point p ){
 		for( int i = 0, j = 0; j < xValues.length; i++, j += 2 ){
 			xValues[j] = (int)(originX + sizeX*Math.cos(angle*i));
 			yValues[j] = (int)(originY + sizeY*Math.sin(angle*i));
@@ -69,24 +83,16 @@ public class MyStar implements DrawingObject, Serializable{
 			xValues[j+1] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
 			yValues[j+1] = (int)(originY + (sizeY/2)*Math.sin(offset + angle*i));
 		}
+		poly.invalidate();
 		
-		setBounds( bounds );
+		poly.xpoints = xValues;
+		poly.ypoints = yValues;
+		poly.npoints = points *2;
 	}
-
-	// for moving the star
-	@Override
-	public void move(Point p) {
-		
-		poly.translate( p.x, p.y );
-		originX = p.x;
-	    originY = p.y;
-	    setBounds( bounds );
-		
-	}
-
+	
 	// setBounds is super important. Trust me.
 	public void setBounds( Rectangle bounds) {
-		  bounds.setBounds( originX, originY, sizeX, sizeY );
+		  bounds.setBounds( poly.getBounds() );
 	}
 
 	// contains method will be used for moving stuff later
