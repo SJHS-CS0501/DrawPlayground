@@ -13,9 +13,6 @@ import javax.swing.*;
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
     
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public String coolShape; // make a setter for this
 	ArrayList<DrawingObject> objectList = new ArrayList<DrawingObject>();
@@ -37,9 +34,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
         // we need both a mouse listener (for clicks)...
         addMouseListener( this );
         // ... and a mouse motion listener (for drags)!
-        addMouseMotionListener( this );
-
-        
+        addMouseMotionListener( this );   
     }
     
     /**
@@ -54,17 +49,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
                 break;
         }
     }
-    
-
-    
+   
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    
     	//had a switch here at some point
-    	
-    		
-    	
     }
 
     @Override

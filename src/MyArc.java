@@ -60,17 +60,13 @@ public class MyArc implements DrawingObject, Serializable{
 		sizeX = p.x - originX;
         sizeY = p.y - originY;
         setBounds( bounds );
-		
 	}
 
 	@Override
 	public void move(Point p) {
-		sizeX = sizeX - (originX - p.x);
-		sizeY = sizeY - (originY - p.y);
-		sizeX = p.x;
-	    sizeY = p.y;
+		originX = p.x;
+	    originY = p.y;
 	    setBounds( bounds );
-	
 	}
 
 	@Override
@@ -103,5 +99,5 @@ public class MyArc implements DrawingObject, Serializable{
 //	    originY = p.y;
 //	    setBounds( bounds );
 //	}
-//	
+	
 }
