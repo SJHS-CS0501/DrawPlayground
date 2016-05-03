@@ -73,6 +73,12 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menu.add( menuItem );
         
+        menuItem = new JMenuItem( "License Agreement" );
+        menuItem.setActionCommand( "license" );
+        menuItem.addActionListener( this );
+        
+        menu.add( menuItem );
+        
         menuBar.add( menu );
         
         this.setJMenuBar( menuBar );
@@ -111,7 +117,10 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 System.exit(0);
                 break;
             case "about":
-            	JOptionPane.showMessageDialog(null, "DRAWING PROGRAM\n™ and © 2016 Pro Inc. All Rights Reserved ®. License Agreement");
+            	JOptionPane.showMessageDialog(null, "DRAWING PROGRAM\u2122\nCopyright \u00A92016 Pro Inc. All Rights Reserved \u00AE. License Agreement");
+            	break;
+            case "license":
+            	JOptionPane.showMessageDialog(null, "Copyright (\u00A9) 2016, 1998 Pro Inc.\n800 Montana Ave., Natrona Heights, PA  15065, USA\nEveryone is permitted to copy and distribute verbatim copies\nof this license document, but changing it is not allowed.");
             	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
