@@ -40,7 +40,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 	public final short seventeen = 17;
 	public static short choice;
 	public static boolean move = false;
-	public static boolean delete = false;
+	public static Color color;
 	private JButton button;
 	private JPanel shapes;
 	private JPanel theUnknown;
@@ -74,7 +74,7 @@ public class ToolPanel extends JPanel implements ActionListener {
 		colorChooser.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED), "Color Changer"));
 
 		movements = new JPanel();
-		movements.setLayout(new GridLayout(2, 2));
+		movements.setLayout(new GridLayout(1, 1));
 		movements.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED),"Movement Options"));
 
 		button = new JButton("Rectangle");
@@ -148,17 +148,15 @@ public class ToolPanel extends JPanel implements ActionListener {
 		
 		chooser = new JColorChooser();
 		chooser.setColor(Color.BLACK);
-		colorChooser.add(chooser);
+		button = new JButton("Color Chooser");
+		button.setActionCommand("colorChooser");
+		button.addActionListener(this);
+		colorChooser.add(button);
 		
 		add(colorChooser);
 
 		button = new JButton("Move");
 		button.setActionCommand("move");
-		button.addActionListener(this);
-		movements.add(button);
-
-		button = new JButton("Delete");
-		button.setActionCommand("delete");
 		button.addActionListener(this);
 		movements.add(button);
 
@@ -247,6 +245,10 @@ public class ToolPanel extends JPanel implements ActionListener {
 			case "filledUnknownShape":
 				choice = 0;
 				choice = fifteen;
+				break;
+				
+			case "colorChooser":
+				color = chooser.showDialog(chooser, "Choose a color", Color.BLACK);
 				break;
 
 			default:

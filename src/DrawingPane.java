@@ -101,7 +101,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 1:
 			System.out.println("rectangle");
 			obj = new MyRectangle(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -109,7 +109,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 2:
 			System.out.println("star");
 			obj = new MyStar(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -117,7 +117,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 3:
 			System.out.println("circle");
 			obj = new MyCircle(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -125,7 +125,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 4:
 			System.out.println("line");
 			obj = new MyLine();
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -133,7 +133,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 5:
 			System.out.println("oval");
 			obj = new MyOval(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -141,7 +141,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 6:
 			System.out.println("square");
 			obj = new MySquare(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -163,7 +163,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 9:
 			System.out.println("unknown shape");
 			obj = new MyShape(false);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -171,7 +171,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 10:
 			System.out.println("rectangle");
 			obj = new MyRectangle(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -179,7 +179,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 11:
 			System.out.println("star");
 			obj = new MyStar(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -187,7 +187,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 12:
 			System.out.println("circle");
 			obj = new MyCircle(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -195,7 +195,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 13:
 			System.out.println("oval");
 			obj = new MyOval(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -203,7 +203,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 14:
 			System.out.println("square");
 			obj = new MySquare(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -211,7 +211,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		case 15:
 			System.out.println("unknown shape");
 			obj = new MyShape(true);
-			obj.setColor(ToolPanel.chooser.getColor());
+			obj.setColor(ToolPanel.color);
 			obj.start(e.getPoint());
 			objectList.add(obj);
 			break;
@@ -282,6 +282,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 	public void mouseMoved(MouseEvent e) {
 	}
 
+	/**
+	 * Writes drawing pane to file.
+	 */
 	public void writeFile() {
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
@@ -302,12 +305,14 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 	}
 
+	/**
+	 * Opens binary file.
+	 */
 	public void openFile() {
 		DrawingObject object;
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawings"));
 		int open = file.showOpenDialog(this);
-
 		if (open == JFileChooser.APPROVE_OPTION) {
 			objectList.clear();
 			repaint();
@@ -328,14 +333,17 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		}
 	}
 
+	/**
+	 * Saves drawing pane in form of JPG.
+	 */
 	public void saveImage() {
 		String sb = "TEST CONTENT";
 		file = new JFileChooser();
 		file.setCurrentDirectory(new File("Drawing Images"));
-		int retrieval = file.showSaveDialog(this);
-		if (retrieval == JFileChooser.APPROVE_OPTION) {
+		int retrival = file.showSaveDialog(this);
+		if (retrival == JFileChooser.APPROVE_OPTION) {
 			try {
-				BufferedImage newImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+				BufferedImage newImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 				paint(newImage.getGraphics());
 				File outputFile = new File(file.getSelectedFile() + ".jpg");
 				ImageIO.write(newImage, "jpg", outputFile);
@@ -343,5 +351,10 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 				System.out.println("Exception: " + e.getMessage());
 			}
 		}
+	}
+	
+	public void clear() {
+		objectList.clear();
+		repaint();
 	}
 }

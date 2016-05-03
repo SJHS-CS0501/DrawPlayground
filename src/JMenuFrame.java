@@ -35,6 +35,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menu = new JMenu( "My Menu" );
         
+        menuItem = new JMenuItem( "New" );
+        menuItem.setActionCommand( "new" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
         menuItem = new JMenuItem( "Open" );
         menuItem.setActionCommand( "open" );
         menuItem.addActionListener( this );
@@ -49,17 +54,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menuItem.setActionCommand("saveImage");
         menuItem.addActionListener(this);
         menu.add(menuItem);
-        
-        menuItem = new JMenuItem( "Do Something" );
-        menuItem.setActionCommand( "MenuSomething" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menuItem = new JMenuItem( "Do Another Thing" );
-        menuItem.setActionCommand( "MenuAnother" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
+       
         menu.addSeparator();
         
         menuItem = new JMenuItem( "Exit" );
@@ -69,35 +64,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
-        
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
-        menuItem.addActionListener( this );
-        menu.add( menuItem );
-        
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
-        menuItem.addActionListener( this );
-        subMenu.add( menuItem );
-        
-        menu.add(subMenu);
-        
-        menuBar.add( menu );
-        
         menuBar.add( Box.createHorizontalGlue() );
         
         menu = new JMenu( "Help" );
         menuItem = new JMenuItem( "About" );
-        menuItem.setActionCommand( "MenuAbout" );
+        menuItem.setActionCommand( "about" );
         menuItem.addActionListener( this );
         
         menu.add( menuItem );
@@ -117,11 +88,15 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
+        	case "new":
+        		dPane.clear();
+        		break;
         	case "save":
         		dPane.writeFile();
         		break;
         	case "saveImage":
         		dPane.saveImage();
+        		break;
         	case "open":
         		dPane.openFile();
         		break;
@@ -135,6 +110,9 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+            case "about":
+            	JOptionPane.showMessageDialog(null, "DRAWING PROGRAM\n™ and © 2016 Pro Inc. All Rights Reserved ®. License Agreement");
+            	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);
