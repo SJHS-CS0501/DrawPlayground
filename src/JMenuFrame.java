@@ -1,8 +1,10 @@
-import java.awt.*;
+ import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -10,7 +12,7 @@ import javax.swing.*;
  */
 public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     
-	
+	// More notes from Isabelle....
 	// JFile user....just go with this
 	// file filter..add ending on file name
 	// better layout
@@ -19,11 +21,15 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
+	DrawingPane dPane = new DrawingPane();
 
 	public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel(dPane);
+        JFileChooser filinStuff = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
+        filinStuff.setFileFilter(filter);
+            
         
         JMenuBar menuBar;
         JMenu menu;
@@ -41,7 +47,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Do Something" );
+        menuItem = new JMenuItem( "Save" );
         menuItem.setActionCommand( "MenuSomething" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
@@ -108,7 +114,17 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 
         switch( e.getActionCommand() ) {
             case "MenuSomething":
-                System.out.println( "Something Pressed" );
+            	BufferedImage image = new BufferedImage( dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
+            	File f = new File("MyFile.jpg");
+            	try{
+            		ImageIO.write(image, "JPEG", f);
+            	} catch( Exception x ){
+            		x.printStackTrace();
+            		System.out.println( "Sadness:'(" );
+            	}
+            	
+            	
+            	System.out.println( "Something Pressed" );
                 break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
