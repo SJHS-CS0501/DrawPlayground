@@ -6,7 +6,7 @@ import java.io.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
-	ArrayList<DrawingObject> shapeList = new ArrayList<DrawingObject>();
+	public static ArrayList<DrawingObject> shapeList = new ArrayList<DrawingObject>();
 	private static final long serialVersionUID = 1L;
 	public static String shape;
 	public static Color color;
