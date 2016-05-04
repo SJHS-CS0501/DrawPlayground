@@ -296,7 +296,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 				outFile = new ObjectOutputStream(outStream);
 				for (int i = objectList.size() - 1; i >= 0; i--) {
 					outFile.writeObject(objectList.get(i));
-					System.out.println("Coconut");
 				}
 			} catch (Exception eq) {
 				System.out.println("Exception: " + eq.getMessage());
@@ -319,11 +318,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			try {
 				inStream = new FileInputStream(file.getSelectedFile());
 				inFile = new ObjectInputStream(inStream);
-				System.out.println("dog");
 				while (inStream.available() > 0) {
 					object = (DrawingObject) inFile.readObject();
 					objectList.add(object);
-					System.out.println("Pop");
 					repaint();
 				}
 
