@@ -26,15 +26,25 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	public JMenuFrame() {
         super();
         ToolPanel tPane = new ToolPanel(dPane);
+        JPanel panel;
+        
+        
+        
+        
+        
+        
+        
+        
         JFileChooser filinStuff = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
-        filinStuff.setFileFilter(filter);
+        //FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
+        //filinStuff.setFileFilter(filter);
             
         
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
         JMenu subMenu;
+        
                 
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
@@ -48,7 +58,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         menu = new JMenu( "My Menu" );
         
         menuItem = new JMenuItem( "Save" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem.setActionCommand( "save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -113,11 +123,12 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
+            case "save":
             	BufferedImage image = new BufferedImage( dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	File f = new File("MyFile.jpg");
+            	File file = new File("MyFile.jpg");
+            	
             	try{
-            		ImageIO.write(image, "JPEG", f);
+            		ImageIO.write(image, "JPEG", file);
             	} catch( Exception x ){
             		x.printStackTrace();
             		System.out.println( "Sadness:'(" );
