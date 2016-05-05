@@ -141,7 +141,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			System.out.println("'Open File' Pressed");
 			JFileChooser fileChooser = new JFileChooser();
 			int option = fileChooser.showOpenDialog(this);
-			FileInputStream in;
+			FileInputStream in = null;
 			ObjectInputStream input;
 			
 			dPane.shapeList.clear();
@@ -153,12 +153,12 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 				try {
 					in = new FileInputStream(selectedFile); //file ready to be read back into the pane
 					input = new ObjectInputStream(in); //objects ready to be ready back into the pane
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
 				
-				while(.available()) {
-					
+					while(in.available() > 0) {
+						
+					}
+				} catch (Exception z) {
+					z.printStackTrace();
 				}
 				
 			}
@@ -177,7 +177,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 							"File name");
 				}
 			} catch (Exception t) {
-
+				t.printStackTrace();
 			}
 
 			/*
@@ -199,7 +199,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 				ImageIO.write(img, "jpg", new File(fileName + ".jpg"));
 				JOptionPane.showMessageDialog(dPane, "Image saved as " + fileName + ".jpg");
 
-			} catch (IOException c) {
+			} catch (Exception c) {
 				System.out.println("Image not saved.");
 			}
 			break;
