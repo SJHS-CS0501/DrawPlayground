@@ -1,37 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- */
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import javafx.scene.shape.Circle;
-
-public class MyRectangle implements DrawingObject, Serializable {
-    // critical vars for a rectangle
+/**
+ * 
+ * @author Ryley Danielson
+ *
+ */
+public class MyImage implements DrawingObject, Serializable{
+	
+	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
-    int fillout;
+   // int fillout;
+    File imageFill;
+    BufferedImage img;
+    Rectangle R;
     Rectangle bounds = new Rectangle();
     Color c;
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyImage(File fileName) {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
         
-        fillout = ColorPanel.fo;
+        imageFill = fileName;
+        
+        //fillout = ColorPanel.fo;
+        
+        try {
+            img = ImageIO.read(imageFill );//+ ".jpg"));
+        } catch (IOException e) {
+        	JOptionPane.showMessageDialog(null,"File Not Found" + imageFill);
+        	e.printStackTrace();
+        }
     }
     
     /**
@@ -42,14 +54,14 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param sX
      * @param sY 
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
+    public MyImage( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
         sizeY = sY;
         originX = oX;
         originY = oY;
         setBounds( bounds );
         
-        System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made Editable Image: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
     /**
@@ -62,20 +74,26 @@ public class MyRectangle implements DrawingObject, Serializable {
         Graphics2D g2d = (Graphics2D)g;
         
         //fillout = ColorPanel.fo;
-        
+        /*
         if(c != null){
 	        g2d.setColor( c );
 		 }else{
 			 g2d.setColor( Color.BLACK );
 		 }
+		 */
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
+        /*
         if(fillout == 2){
 			g.drawRect(originX, originY, sizeX, sizeY );
 		}else if(fillout == 1){
 			g.fillRect(originX, originY, sizeX, sizeY);
 		}
+        */
+       //R = new Rectangle(originX, originY, sizeX, sizeY);
+       g.drawImage(img, originX, originY, sizeX, sizeY, null);
         
-        System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
+        
+        System.out.println( "Redrawing Image @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
@@ -152,8 +170,11 @@ public class MyRectangle implements DrawingObject, Serializable {
 	@Override
 	public void setFill(int fo) {
 		// TODO Auto-generated method stub
-		fillout = fo;
+		//fillout = fo;
+		
 	}
+	
+	
     
 	//@Override
 	//public void draw(Graphics g, Color c) {
@@ -164,3 +185,6 @@ public class MyRectangle implements DrawingObject, Serializable {
 	
 
 }
+	
+
+

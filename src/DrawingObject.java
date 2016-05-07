@@ -1,6 +1,8 @@
 
 import java.awt.*;
 
+import javafx.scene.shape.Circle;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +11,7 @@ import java.awt.*;
 
 /**
  * Interface class for any drawable object.
- * @author woytek
+ * @author Ryley Danielson
  */
 public interface DrawingObject {
     //private int originX, originY;
@@ -40,6 +42,7 @@ public interface DrawingObject {
      * @param b 
      */
     public void setBounds( Rectangle b );
+   
     /**
      * Determines if the point clicked is contained by the object.
      * @param p
@@ -47,4 +50,23 @@ public interface DrawingObject {
      */
     public boolean contains( Point p );
     
+    /**
+     * Set shape color
+     * @param newC
+     */
+    public void setColor(Color newC);
+	
+    /**
+     * return shape color
+     * @return
+     */
+	public Color getColor();
+	
+	/**
+	 * sets fill or outline when coloring
+	 * @param fo
+	 */
+	public void setFill(int fo);
+	
+	
 }

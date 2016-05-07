@@ -1,3 +1,8 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +20,10 @@ public class JMenuTest {
     public static void main(String[] args) {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
+        //ToolPanel panel = new ToolPanel();
         
+        
+        //myFrame.add(panel, BorderLayout.NORTH);
     }
     
 }
