@@ -54,15 +54,20 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 
 		menu.addSeparator();
 
-		menuItem = new JMenuItem("Save"); // item
-		menuItem.setActionCommand("Save");
+		menuItem = new JMenuItem("Save Image"); // item
+		menuItem.setActionCommand("Save Image");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
 		menu.addSeparator();
 
+		menuItem = new JMenuItem("Save"); // item
+		menuItem.setActionCommand("Save");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
 		menuItem = new JMenuItem("Exit"); // item
-		menuItem.setActionCommand("Quit");
+		menuItem.setActionCommand("Exit");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
@@ -137,7 +142,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 		case "New":
 			System.out.println("'New' Pressed");
 			break;
-		case "Open File":
+		case "Open file":
 			System.out.println("'Open File' Pressed");
 			JFileChooser fileChooser = new JFileChooser();
 			int option = fileChooser.showOpenDialog(this);
@@ -147,20 +152,19 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			dPane.shapeList.clear();
 
 			if (option == JFileChooser.APPROVE_OPTION) {
-				
 				selectedFile = fileChooser.getSelectedFile();
-				
 				try {
 					in = new FileInputStream(selectedFile); //file ready to be read back into the pane
 					input = new ObjectInputStream(in); //objects ready to be ready back into the pane
-				
 					while(in.available() > 0) {
-						
+						DrawingObject object;
+						object = (DrawingObject)input.readObject(); //getting the object
+						dPane.shapeList.add(object);
+						repaint();
 					}
 				} catch (Exception z) {
 					z.printStackTrace();
 				}
-				
 			}
 			break;
 		case "Save Image":
@@ -173,14 +177,15 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 				while (fileName.equals("")) {
 					JOptionPane.showMessageDialog(dPane, "You must enter a file name!", "File name not entered!",
 							JOptionPane.ERROR_MESSAGE);
-					fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
-							"File name");
+					fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?");
 				}
 			} catch (Exception t) {
 				t.printStackTrace();
 			}
 
 			/*
+			 * check if the file already exists
+			 * 
 			 * while(fileName.equals("")){ reply =
 			 * JOptionPane.showConfirmDialog(dPane,
 			 * "This file exists already!\nDo" +
@@ -211,8 +216,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 				while (fileName.equals("")) {
 					JOptionPane.showMessageDialog(dPane, "You must enter a file name!", "File name not entered!",
 							JOptionPane.ERROR_MESSAGE);
-					fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?",
-							"File name");
+					fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?");
 				}
 			} catch (Exception t) {
 				t.printStackTrace();
@@ -233,8 +237,8 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			}
 
 			break;
-		case "Six":
-			System.out.println("'Six' Pressed");
+		case "Exit":
+			System.out.println("'Exit' Pressed");
 			break;
 		case "Seven":
 			System.out.println("'Seven' Pressed");
