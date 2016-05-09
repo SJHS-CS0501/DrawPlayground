@@ -22,6 +22,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	DrawingPane dPane = new DrawingPane();
+	String input;
 
 	public JMenuFrame() {
         super();
@@ -34,7 +35,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         
         
-        
+         
         JFileChooser filinStuff = new JFileChooser();
         //FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
         //filinStuff.setFileFilter(filter);
@@ -43,7 +44,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
-        JMenu subMenu;
+     //   JMenu subMenu;
         
                 
         this.setLayout( new BorderLayout() );
@@ -57,12 +58,12 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Save" );
+        menuItem = new JMenuItem( "Save as JPEG" );
         menuItem.setActionCommand( "save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
+        menuItem = new JMenuItem( "Save as image" );
         menuItem.setActionCommand( "MenuAnother" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
@@ -76,30 +77,30 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
-        
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
-        menuItem.addActionListener( this );
-        menu.add( menuItem );
-        
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
-        menuItem.addActionListener( this );
-        subMenu.add( menuItem );
-        
-        menu.add(subMenu);
-        
-        menuBar.add( menu );
-        
+//        menu = new JMenu( "FOO" );
+//        
+//        menuItem = new JMenuItem( "Foo Thing" );
+//        menuItem.setActionCommand( "MenuFoo" );
+//        menuItem.addActionListener( this );
+//        menu.add(menuItem);
+//        
+//        menu.addSeparator();
+//        
+//        menuItem = new JMenuItem( "Foo 2" );
+//        menuItem.setActionCommand( "MenuFoo2" );
+//        menuItem.addActionListener( this );
+//        menu.add( menuItem );
+//        
+//        subMenu = new JMenu( "SubMenu" );
+//        menuItem = new JMenuItem( "SubFoo" );
+//        menuItem.setActionCommand( "MenuSubFoo" );
+//        menuItem.addActionListener( this );
+//        subMenu.add( menuItem );
+//        
+//        menu.add(subMenu);
+//        
+//        menuBar.add( menu );
+//        
         menuBar.add( Box.createHorizontalGlue() );
         
         menu = new JMenu( "Help" );
@@ -125,18 +126,24 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         switch( e.getActionCommand() ) {
             case "save":
             	BufferedImage image = new BufferedImage( dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	File file = new File("MyFile.jpg");
             	
+            	
+            	File file = new File( "MyFile.jpg" );
+            	
+            	dPane.print(image.getGraphics());
             	try{
             		ImageIO.write(image, "JPEG", file);
-            	} catch( Exception x ){
+            	} catch( IOException x ){
             		x.printStackTrace();
-            		System.out.println( "Sadness:'(" );
+            		System.out.println( "IO Sadness:'(" );
             	}
             	
             	
             	System.out.println( "Something Pressed" );
                 break;
+            case "MenuSubFoo":
+            	
+            	break;
             case "MenuAnother":
                 System.out.println( "Another Pressed" );
                 break;
