@@ -54,17 +54,17 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 
 		menu.addSeparator();
 
+		menuItem = new JMenuItem("Save"); // item
+		menuItem.setActionCommand("Save");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
 		menuItem = new JMenuItem("Save Image"); // item
 		menuItem.setActionCommand("Save Image");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
 
 		menu.addSeparator();
-
-		menuItem = new JMenuItem("Save"); // item
-		menuItem.setActionCommand("Save");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
 		
 		menuItem = new JMenuItem("Exit"); // item
 		menuItem.setActionCommand("Exit");
@@ -74,17 +74,8 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 		menuBar.add(menu);
 
 		menu = new JMenu("Other Options"); // title
-		menuItem = new JMenuItem("Red"); // item
-		menuItem.setActionCommand("Red");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Orange"); // item
-		menuItem.setActionCommand("Orange");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
-
-		subMenu = new JMenu("Star Points"); // title of submenu
+		subMenu = new JMenu("# of Star Points"); // title of submenu
 		menuItem = new JMenuItem("Five (5)"); // item in submenu
 		menuItem.setActionCommand("Five");
 		menuItem.addActionListener(this);
@@ -142,8 +133,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 		case "New":
 			System.out.println("'New' Pressed");
 			break;
-		case "Open file":
-			System.out.println("'Open File' Pressed");
+		case "Open File":
 			JFileChooser fileChooser = new JFileChooser();
 			int option = fileChooser.showOpenDialog(this);
 			FileInputStream in = null;
@@ -168,8 +158,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			}
 			break;
 		case "Save Image":
-			// ask if they want it saved here as a jpg
-
 			fileName = JOptionPane.showInputDialog(dPane, "What do you want this file to be named?", "File name");
 			// getting null pointer exception if the cancel button was clicked
 			// on the input dialog box
@@ -185,6 +173,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 
 			/*
 			 * check if the file already exists
+			 * - was going to do this later
 			 * 
 			 * while(fileName.equals("")){ reply =
 			 * JOptionPane.showConfirmDialog(dPane,
@@ -240,14 +229,25 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 		case "Exit":
 			System.out.println("'Exit' Pressed");
 			break;
+		case "Five":
+			MyStar.points = 5;
+			break;
+		case "Six":
+			MyStar.points = 6;
+			break;
 		case "Seven":
-			System.out.println("'Seven' Pressed");
+			MyStar.points = 7;
 			break;
 		case "Eight":
-			System.out.println("'Eight' Pressed");
+			MyStar.points = 8;
 			break;
 		case "Special":
-			System.out.println("'Special' Pressed");
+			String h;
+			do {
+				h = JOptionPane.showInputDialog(dPane, "How many points do you want your star to have?\n"
+						+ " (Counting numbers such 1, 2, 3...no decimals)");
+				} while(!h.matches( "^[0-9-]"));
+			MyStar.points = Integer.parseInt(h);
 			break;
 		case "About":
 			System.out.println("'About' Pressed");

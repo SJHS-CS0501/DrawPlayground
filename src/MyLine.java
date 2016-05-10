@@ -12,7 +12,6 @@ public class MyLine implements DrawingObject, Serializable {
 	double contains;
 
 	public MyLine() {
-
 		sizeX = sizeY = originX = originY = 0;
 		setBounds(boundingBox);
 	}
@@ -27,29 +26,17 @@ public class MyLine implements DrawingObject, Serializable {
 	 */
 	public MyLine(int oX, int oY, int sX, int sY) {
 		setBounds(boundingBox);
-
-		/*
-		sizeX = sX;
-		sizeY = sY;
-		originX = oX;
-		originY = oY;
-		System.out.println("Made Line: @" + oX + ", " + oY + "; " + sX + " x " + sY);
-		*/
 	}
 
 	/**
 	 * Actually drawing the shape
 	 */
 	public void draw(Graphics g) {
-
 		Graphics2D g2d = (Graphics2D) g;
 
 		g2d.setColor(getColor());
 
 		g2d.drawLine(originX, originY, sizeX, sizeY);
-
-		// System.out.println("Redrawing line @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-		// this.setSize( this.getPreferredSize() );
 	}
 
 	public void start(Point p) {

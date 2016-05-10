@@ -17,11 +17,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	public DrawingPane() {
 		super(); // always call super() in an extended/derived class!
-		/*
-		 * this.setSize( 500, 500 ); setSize( getPreferredSize() ); size is
-		 * handled by parent pane placement in JFrame
-		 */
-
 		setBorder(BorderFactory.createLineBorder(Color.BLACK)); // border
 		setVisible(true);
 
@@ -57,11 +52,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		/*
-		int x = e.getX();
-		int y = e.getY();
-		System.out.println("mousePressed(" + x + "," + y + ")");
-		*/
 		
 		/*
 		 * error is thrown if a button isn't selected and they click the on the
@@ -109,7 +99,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 				break;
 			}
 		} catch (Exception t) {
-			System.out.println("hi");
+			t.printStackTrace();
 		}
 	}
 
@@ -121,17 +111,11 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			try {
 				drawingObject.drag(e.getPoint());
 			} catch (Exception b) {
-
+				b.printStackTrace();
 			}
 		}
 
 		repaint();
-		
-		/*
-		int x = e.getX();
-		int y = e.getY();
-		System.out.println("mouseDragged(" + x + "," + y + ")");
-		*/
 	}
 
 	@Override
@@ -139,12 +123,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 		repaint();
 		moving = false;
 		drawingObject = null; // so it won't re-modify the old rectangle
-		
-		/*
-		int x = e.getX();
-		int y = e.getY();
-		System.out.println("mouseReleased(" + x + "," + y + ")");
-		*/
 	}
 
 	@Override

@@ -25,29 +25,17 @@ public class MyCircle implements DrawingObject, Serializable {
 	 */
 	public MyCircle(int oX, int oY, int sX, int sY) {
 		setBounds(bounds);
-
-		/*
-		sizeX = sX;
-		sizeY = sY;
-		originX = oX;
-		originY = oY;
-		System.out.println("Made Circle: @" + oX + ", " + oY + "; " + sX + " x " + sY);
-		*/
 	}
 
 	/**
 	 * Actually drawing the shape
 	 */
 	public void draw(Graphics g) {
-
 		Graphics2D g2d = (Graphics2D) g;
 
 		g2d.setColor(getColor());
 
 		g2d.drawOval(originX, originY, sizeX, sizeY);
-
-		// System.out.println("Redrawing circle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-		// this.setSize( this.getPreferredSize() );
 	}
 
 	public void start(Point p) {

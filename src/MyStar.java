@@ -4,7 +4,7 @@ import java.io.*;
 public class MyStar implements DrawingObject, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	int points = 5;
+	static int points;
 	int lastX, lastY;
 	double offset = Math.PI / points; // offset the inner circle
 	double angle = 2 * Math.PI / points;
@@ -30,14 +30,6 @@ public class MyStar implements DrawingObject, Serializable {
 	 */
 	public MyStar(int oX, int oY, int sX, int sY) {
 		setBounds(bounds);
-		
-		/*
-		sizeX = sX;
-		sizeY = sY;
-		originX = oX;
-		originY = oY;
-		System.out.println("Made star: @" + oX + ", " + oY + "; " + sX + " x " + sY);
-		*/
 	}
 
 	/**
@@ -57,9 +49,6 @@ public class MyStar implements DrawingObject, Serializable {
 		g2d.setColor(getColor());
 
 		g2d.drawPolygon(xPoints, yPoints, xPoints.length);
-
-		// System.out.println("Redrawing star @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-		// this.setSize( this.getPreferredSize() );
 	}
 
 	public void start(Point p) {

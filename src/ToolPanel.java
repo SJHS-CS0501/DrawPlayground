@@ -18,19 +18,6 @@ public class ToolPanel extends JPanel implements ActionListener, Serializable {
 	JPanel shapePanel;
 	JPanel colorPanel;
 
-	/*
-	 * move:
-	 * 
-	 * star bounding...call contains on polygon object but bounding rectangle is
-	 * cool too
-	 * 
-	 * line - rectangle does not work well - use formula to determine if point
-	 * is on a line - have some threshold so it expands the points a little
-	 * 
-	 * color - not too hard - set color, get color - give yourself ability to
-	 * set get available all the time
-	 */
-
 	public ToolPanel() {
 		super();
 		this.setSize(50, 500);

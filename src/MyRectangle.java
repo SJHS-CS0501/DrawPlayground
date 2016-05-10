@@ -31,14 +31,6 @@ public class MyRectangle implements DrawingObject, Serializable {
 	 */
 	public MyRectangle(int sX, int sY, int oX, int oY) {
 		setBounds(boundingBox);
-
-		/*
-		sizeX = sX;
-		sizeY = sY;
-		originX = oX;
-		originY = oY;
-		System.out.println("Made rectangle: @ (" + oX + ", " + oY + "); " + sX + " x " + sY);
-		*/
 	}
 
 	/**
@@ -47,20 +39,11 @@ public class MyRectangle implements DrawingObject, Serializable {
 	 * @param g
 	 */
 	public void draw(Graphics g) {
-
 		Graphics2D graphics = (Graphics2D) g;
 
 		graphics.setColor(getColor());
 		
-		/*
-		this is cool to make a background-filled rectangle!
-		g2d.clearRect( originX, originY, sizeX, sizeY );
-		*/
-		
 		graphics.drawRect(originX, originY, sizeX, sizeY);
-
-		// System.out.println("Redrawing rectangle @ (" + originX + ", " + originY + "); " + sizeX + " x " + sizeY);
-		// this.setSize( this.getPreferredSize() );
 	}
 
 	/**
