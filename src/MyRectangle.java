@@ -40,9 +40,7 @@ public class MyRectangle implements DrawingObject, Serializable {
 	 */
 	public void draw(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
-
 		graphics.setColor(getColor());
-		
 		graphics.drawRect(originX, originY, sizeX, sizeY);
 	}
 

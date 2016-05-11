@@ -27,7 +27,6 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	/**
 	 * actionPerformed is here in case we need it later. Not currently used.
-	 * 
 	 * @param e
 	 */
 	public void actionPerformed(ActionEvent e) {
@@ -61,9 +60,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			switch (shape) {
 			case "Line":
 				drawingObject = new MyLine();
-				drawingObject.setColor(ToolPanel.colorChooser.getColor());
-				drawingObject.start(e.getPoint());
-				shapeList.add(drawingObject);
+				drawingObject.setColor(ToolPanel.colorChooser.getColor()); //gets color
+				drawingObject.start(e.getPoint()); //knows where to start drawing
+				shapeList.add(drawingObject); //adding to shapelist
 				break;
 			case "Rectangle":
 				drawingObject = new MyRectangle();
@@ -86,6 +85,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 			case "Move shape":
 				// will select top shape
 				for (int i = shapeList.size() - 1; i >= 0; i--) {
+					//checking if point is contained, if yes the shape is picked up
 					if (shapeList.get(i).contains(e.getPoint())) {
 						drawingObject = shapeList.get(i);
 						moving = true;
@@ -105,9 +105,9 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (moving) {
+		if (moving) { //if moving is true...
 			drawingObject.move(e.getPoint());
-		} else {
+		} else { //if user is creating a new shape
 			try {
 				drawingObject.drag(e.getPoint());
 			} catch (Exception b) {

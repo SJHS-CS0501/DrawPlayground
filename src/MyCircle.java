@@ -32,9 +32,7 @@ public class MyCircle implements DrawingObject, Serializable {
 	 */
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-
 		g2d.setColor(getColor());
-
 		g2d.drawOval(originX, originY, sizeX, sizeY);
 	}
 

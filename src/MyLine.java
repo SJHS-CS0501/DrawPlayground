@@ -33,9 +33,7 @@ public class MyLine implements DrawingObject, Serializable {
 	 */
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-
 		g2d.setColor(getColor());
-
 		g2d.drawLine(originX, originY, sizeX, sizeY);
 	}
 
@@ -85,14 +83,11 @@ public class MyLine implements DrawingObject, Serializable {
 	 */
 	public boolean contains(Point p) {
 		contains = Line2D.ptSegDist(originX, originY, sizeX, sizeY, p.x, p.y);
-		System.out.print("ptSegDis: " + contains);
-
 		if (contains <= 5) {
 			return true;
 		} else {
 			return false;
 		}
-
 	}
 
 	/**

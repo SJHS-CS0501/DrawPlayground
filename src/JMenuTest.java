@@ -12,6 +12,6 @@ public class JMenuTest {
      */
     public static void main(String[] args) {
         JMenuFrame myFrame = new JMenuFrame();
-        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); //so it fills whole screen
     }
 }

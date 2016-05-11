@@ -20,7 +20,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 	ToolPanel tPane = new ToolPanel();
 	Scanner keyboard = new Scanner(System.in);
 	File selectedFile = new File("Drawings");
-	// FileInputStream fop = new FileInputStream(selectedFile);
 	String fileName;
 	int reply;
 
@@ -96,7 +95,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 		menuItem.addActionListener(this);
 		subMenu.add(menuItem);
 
-		menuItem = new JMenuItem("Special"); // item in submenu
+		menuItem = new JMenuItem("Special Number"); // item in submenu
 		menuItem.setActionCommand("Special");
 		menuItem.addActionListener(this);
 		subMenu.add(menuItem);
@@ -138,9 +137,11 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			int option = fileChooser.showOpenDialog(this);
 			FileInputStream in = null;
 			ObjectInputStream input;
-			
+
+			//clearing anything already in the array
 			dPane.shapeList.clear();
 
+			//checking if okay/yes was clicked
 			if (option == JFileChooser.APPROVE_OPTION) {
 				selectedFile = fileChooser.getSelectedFile();
 				try {
@@ -149,7 +150,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 					while(in.available() > 0) {
 						DrawingObject object;
 						object = (DrawingObject)input.readObject(); //getting the object
-						dPane.shapeList.add(object);
+						dPane.shapeList.add(object); //adding object to array
 						repaint();
 					}
 				} catch (Exception z) {
@@ -162,6 +163,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			// getting null pointer exception if the cancel button was clicked
 			// on the input dialog box
 			try {
+				//if they user leaves a blank box...
 				while (fileName.equals("")) {
 					JOptionPane.showMessageDialog(dPane, "You must enter a file name!", "File name not entered!",
 							JOptionPane.ERROR_MESSAGE);
@@ -192,7 +194,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			try {
 				ImageIO.write(img, "jpg", new File(fileName + ".jpg"));
 				JOptionPane.showMessageDialog(dPane, "Image saved as " + fileName + ".jpg");
-
 			} catch (Exception c) {
 				System.out.println("Image not saved.");
 			}
@@ -220,14 +221,15 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 				for (int i = 0; i < dPane.shapeList.size(); i++) {
 					output.writeObject(dPane.shapeList.get(i));
 				}
-
+				output.close();
 			} catch (Exception f) {
 				f.printStackTrace();
 			}
 
 			break;
 		case "Exit":
-			System.out.println("'Exit' Pressed");
+			JOptionPane.showMessageDialog(dPane, "Goodbye! :)");
+			System.exit(0);
 			break;
 		case "Five":
 			MyStar.points = 5;
@@ -242,12 +244,9 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
 			MyStar.points = 8;
 			break;
 		case "Special":
-			String h;
-			do {
-				h = JOptionPane.showInputDialog(dPane, "How many points do you want your star to have?\n"
-						+ " (Counting numbers such 1, 2, 3...no decimals)");
-				} while(!h.matches( "^[0-9-]"));
-			MyStar.points = Integer.parseInt(h);
+			String h = JOptionPane.showInputDialog(dPane, "How many points do you want your star to have?\n"
+					+ " (Counting numbers such 1, 2, 3...no decimals)");
+			MyStar.points = Integer.parseInt(h); //parse because h is a string but needed it to be an int
 			break;
 		case "About":
 			System.out.println("'About' Pressed");
