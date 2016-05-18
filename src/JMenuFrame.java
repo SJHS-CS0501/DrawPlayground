@@ -29,12 +29,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         ToolPanel tPane = new ToolPanel(dPane);
         JPanel panel;
         
-        
-        
-        
-        
-        
-        
          
         JFileChooser filinStuff = new JFileChooser();
         //FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
@@ -58,13 +52,18 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Save as JPEG" );
-        menuItem.setActionCommand( "save" );
+        menuItem = new JMenuItem( "Save as JPG" );
+        menuItem.setActionCommand( "saveJPG" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Save as image" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "Save" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Open" );
+        menuItem.setActionCommand( "Open" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
@@ -114,7 +113,6 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         this.setJMenuBar( menuBar );
         
-        //this.setSize( new Dimension(this.getPreferredSize() ) ); 
         this.setSize( 600, 600 );
         
         
@@ -124,7 +122,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "save":
+            case "saveJPG":
             	BufferedImage image = new BufferedImage( dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
             	
             	
@@ -137,15 +135,49 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
             		x.printStackTrace();
             		System.out.println( "IO Sadness:'(" );
             	}
-            	
-            	
             	System.out.println( "Something Pressed" );
                 break;
-            case "MenuSubFoo":
+            case "Save":
+            	input = JOptionPane.showInputDialog(dPane, "File name:", "File file file");            	
             	
+            	try{
+            		FileOutputStream streamie = new FileOutputStream( input );
+            		ObjectOutputStream otherStreamie = new ObjectOutputStream( streamie );
+            		
+            		for( int i = 0; i < dPane.objectList.size(); i++ ){
+            			otherStreamie.writeObject(dPane.objectList.get(i));
+            		}
+            	otherStreamie.close();
+            	} catch( Exception q ){
+            		
+            	}
             	break;
-            case "MenuAnother":
-                System.out.println( "Another Pressed" );
+          //  case "MenuSubFoo":	
+          // 	break;
+            case "Open":
+                JFileChooser chooser = new JFileChooser();
+                FileInputStream lastStreamie = null;
+                ObjectInputStream iLied;
+                int number = chooser.showOpenDialog(this);
+                
+                dPane.objectList.clear();
+                
+                try{
+                	if( number == JFileChooser.APPROVE_OPTION){
+                }
+                	lastStreamie = new FileInputStream( chooser.getSelectedFile());
+                	iLied = new ObjectInputStream(lastStreamie);
+                	
+                	while( lastStreamie.available() != 0 ){
+                		DrawingObject object;
+                		object = (DrawingObject)iLied.readObject();// casting!
+                		dPane.objectList.add(object);
+                		repaint();
+                	}
+                } catch( Exception f ){
+                
+                }
+                
                 break;
             case "Quit":
                 System.out.println( "quit Pressed" );
