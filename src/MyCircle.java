@@ -45,6 +45,7 @@ public class MyCircle implements DrawingObject, Serializable{
 	}
 
 	// doesn't work yet
+	// falsehoods, this works perfectly fine.
 	@Override
 	public void move(Point p) {
         originX = p.x;
@@ -58,14 +59,10 @@ public class MyCircle implements DrawingObject, Serializable{
 		 b.setBounds( originX, originY, sizeX, sizeY );
 	}
 
-	// not used yet
+	// to see if user clicks within the circle's bounding box
 	@Override
 	public boolean contains(Point p) {
 		return bounds.contains(p);
-	}
-
-	@Override
-	public void resize(Point p) {
 	}
 	
 	public Color getColor() {

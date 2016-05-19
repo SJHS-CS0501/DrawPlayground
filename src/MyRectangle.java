@@ -117,10 +117,7 @@ public class MyRectangle implements DrawingObject, Serializable {
         return bounds.contains(p);
     }
 
-	@Override
-	public void resize(Point p) {
-	}
-	
+    // color things
 	public Color getColor() {
 		return color;
 	}

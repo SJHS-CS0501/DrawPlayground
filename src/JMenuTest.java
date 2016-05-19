@@ -6,6 +6,7 @@
 /**
  *
  * @author woytek
+ * @author Isabelle Schroeder
  */
 public class JMenuTest {
 
@@ -15,6 +16,6 @@ public class JMenuTest {
     public static void main(String[] args) {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
-        myFrame.setSize( 1200, 800 );
+        myFrame.setSize( 1200, 800 ); // Setting frame size. The user can choose to make it full screen or not.
    } 
 }

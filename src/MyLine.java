@@ -8,7 +8,6 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	private static final long serialVersionUID = 1L;
 	int sizeX, sizeY, originX, originY;
     int lastX, lastY;
-    //Rectangle bounds = new Rectangle(); // bounding rectangle again
     Color color;
 	
     MyLine(){
@@ -39,21 +38,17 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	// resizing line when first made, swivels on start point above
 	@Override
 	public void drag(Point p) {
-		
 		sizeX = p.x;
         sizeY = p.y;
-        //setBounds( bounds );
 	}
 
-	//
+	// for moving said line
 	@Override
 	public void move(Point p) {
 		sizeX = sizeX - (originX - p.x);
 		sizeY = sizeY - (originY - p.y);
 		originX = p.x;
 	    originY = p.y;
-	    
-	     //setBounds( bounds );
 	}
 
 	// bounding rectangle!!!
@@ -67,19 +62,15 @@ public class MyLine implements DrawingObject, Serializable { // these all implem
 	public boolean contains(Point p) {
 		double result = Line2D.ptSegDist( originX, originY, sizeX, sizeY, p.x, p.y );
 		
+		// If user clicks within 5 pixels, magic can happen!
 		if( result <= 5 ){
 			return true;
 		} else {
 			return false;
 		}
-		
-		//return bounds.contains(p);
-	}
-
-	@Override
-	public void resize(Point p) {
 	}
 	
+	// everyone loves colors
 	public Color getColor() {
 		return color;
 	}

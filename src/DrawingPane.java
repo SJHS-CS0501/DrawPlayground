@@ -65,6 +65,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	
     	Point mousePoint = e.getPoint();
     	
+    	// sends for selected object to be drawn in selected color and repaints the whole shebang
     	switch( coolShape ){
     	case "rectangle":
     		object = new MyRectangle();
@@ -108,6 +109,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		repaint();
     		objectList.add(object);
     		break;
+    	// moves the most recently made object if silly user clicks in several bounding boxes
     	case "move":
     		for( int i = objectList.size() - 1; i >= 0; i-- ){
     			if( objectList.get(i).contains( mousePoint ) ){
@@ -118,14 +120,12 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     		}
     		break;
     		default:
-    			System.out.println( "NO HAPPINESS HERE" );
+    			System.out.println( "NO HAPPINESS HERE" ); // :(
     	}
-    	
-    	
-        System.out.println( "mousePressed" );
-  
     }
 
+    // allows for moving shape when clicked in said shape's bounding box.
+    // otherwise, you get left over sass from when string didn't move properly :P
     @Override
     public void mouseDragged(MouseEvent e) {
     	Point p = e.getPoint();
@@ -135,7 +135,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     	} else {
     		try{ object.drag( p );
     		} catch(NullPointerException n){
-    			System.out.println( "You tried to move the string again, didn't you?" );
+    			System.out.println( "You tried to move the string again, didn't you?" );// sass, sass, sass
     		}	
     	}
     	
@@ -164,6 +164,7 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mouseMoved(MouseEvent e) {
     }
     
+    // paints objects
     public void paintComponent( Graphics g ){
     	super.paintComponent(g);
     	for( int i = 0; i < objectList.size(); i++ ){

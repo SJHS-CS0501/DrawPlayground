@@ -3,9 +3,6 @@ import java.io.Serializable;
 
 public class MyStar implements DrawingObject, Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	int points = 5; // number of points on the star
 	double offset = Math.PI/points; // to offset the inner points from the outer points so you don't get a sad shape
@@ -72,9 +69,9 @@ public class MyStar implements DrawingObject, Serializable{
 	    originY = p.y;
 	    points(p);
 	    setBounds( bounds );
-		
 	}
-
+	
+	// for methods that mess with the points
 	public void points( Point p ){
 		for( int i = 0, j = 0; j < xValues.length; i++, j += 2 ){
 			xValues[j] = (int)(originX + sizeX*Math.cos(angle*i));
@@ -83,7 +80,7 @@ public class MyStar implements DrawingObject, Serializable{
 			xValues[j+1] = (int)(originX + (sizeX/2)*Math.cos(offset + angle*i));
 			yValues[j+1] = (int)(originY + (sizeY/2)*Math.sin(offset + angle*i));
 		}
-		poly.invalidate();
+		poly.invalidate(); // so the old polygon points are flushed
 		
 		poly.xpoints = xValues;
 		poly.ypoints = yValues;
@@ -101,14 +98,12 @@ public class MyStar implements DrawingObject, Serializable{
         return bounds.contains(p);
 	}
 
-	@Override
-	public void resize(Point p) {
-	}
-	
+	// color getter
 	public Color getColor() {
 		return color;
 	}
 
+	// color setter
 	@Override
 	public void setColor(Color c) {
 		color = c;

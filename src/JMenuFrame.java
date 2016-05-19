@@ -4,42 +4,31 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author woytek
+ * @author Isabelle Schroeder
  */
 public class JMenuFrame extends JFrame implements ActionListener, Serializable {
     
 	// More notes from Isabelle....
-	// JFile user....just go with this
-	// file filter..add ending on file name
 	// better layout
 	// make things happy
 	// so happy
-	
 	
 	private static final long serialVersionUID = 1L;
 	DrawingPane dPane = new DrawingPane();
 	String input;
 
 	public JMenuFrame() {
-        super();
+        super(); // super frame!! buh buh buh bump
         ToolPanel tPane = new ToolPanel(dPane);
-        JPanel panel;
         
-         
-        JFileChooser filinStuff = new JFileChooser();
-        //FileNameExtensionFilter filter = new FileNameExtensionFilter( "JPEG Images", "jpg" );
-        //filinStuff.setFileFilter(filter);
-            
-        
+        // all the different menus
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
-     //   JMenu subMenu;
-        
                 
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
@@ -76,55 +65,31 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
         
         menuBar.add( menu );
         
-//        menu = new JMenu( "FOO" );
-//        
-//        menuItem = new JMenuItem( "Foo Thing" );
-//        menuItem.setActionCommand( "MenuFoo" );
-//        menuItem.addActionListener( this );
-//        menu.add(menuItem);
-//        
-//        menu.addSeparator();
-//        
-//        menuItem = new JMenuItem( "Foo 2" );
-//        menuItem.setActionCommand( "MenuFoo2" );
-//        menuItem.addActionListener( this );
-//        menu.add( menuItem );
-//        
-//        subMenu = new JMenu( "SubMenu" );
-//        menuItem = new JMenuItem( "SubFoo" );
-//        menuItem.setActionCommand( "MenuSubFoo" );
-//        menuItem.addActionListener( this );
-//        subMenu.add( menuItem );
-//        
-//        menu.add(subMenu);
-//        
-//        menuBar.add( menu );
-//        
         menuBar.add( Box.createHorizontalGlue() );
         
+        // help menu does nothing but give false hope to a poor, confused soul
+        // update, gives basic instructions. The soul may be less confused now?
         menu = new JMenu( "Help" );
         menuItem = new JMenuItem( "About" );
         menuItem.setActionCommand( "MenuAbout" );
         menuItem.addActionListener( this );
+        menu.add( menuItem ); // add button
         
-        menu.add( menuItem );
-        
-        menuBar.add( menu );
+        menuBar.add( menu ); // add the whole menu
         
         this.setJMenuBar( menuBar );
         
-        this.setSize( 600, 600 );
+        this.setSize( 600, 600 ); // set size
         
         
-        this.setVisible( true );
+        this.setVisible( true ); // set visible
     }
     
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
-            case "saveJPG":
+            case "saveJPG": // save as JPG
             	BufferedImage image = new BufferedImage( dPane.getWidth(), dPane.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	
             	
             	File file = new File( "MyFile.jpg" );
             	
@@ -137,7 +102,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
             	}
             	System.out.println( "Something Pressed" );
                 break;
-            case "Save":
+            case "Save": // other save option
             	input = JOptionPane.showInputDialog(dPane, "File name:", "File file file");            	
             	
             	try{
@@ -152,16 +117,20 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
             		
             	}
             	break;
-          //  case "MenuSubFoo":	
-          // 	break;
-            case "Open":
-                JFileChooser chooser = new JFileChooser();
+            case "MenuAbout": // help menu
+            	JOptionPane.showMessageDialog( this, "Choose a color and shape and start making pretty, pretty pictures!"
+            			+ " Don't forget to save your artwork!" );
+            	break;
+            case "Open": // open function to load old picture
+                JFileChooser chooser = new JFileChooser(); 
                 FileInputStream lastStreamie = null;
                 ObjectInputStream iLied;
                 int number = chooser.showOpenDialog(this);
                 
                 dPane.objectList.clear();
-                
+               
+                // use file chooser to pick the old project you want
+                // gets file and array list of objects
                 try{
                 	if( number == JFileChooser.APPROVE_OPTION){
                 }
@@ -175,7 +144,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 		repaint();
                 	}
                 } catch( Exception f ){
-                
+                	System.out.println( "WHAT DID YOU DO??" );
                 }
                 
                 break;
@@ -185,7 +154,7 @@ public class JMenuFrame extends JFrame implements ActionListener, Serializable {
                 break;
            
             default:
-                System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
+                System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" ); // seriosly, how??
                 System.exit(-1);
                 break;
         }

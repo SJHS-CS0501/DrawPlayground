@@ -14,10 +14,12 @@ public class MyString implements DrawingObject, Serializable{
     Rectangle bounds = new Rectangle();
     Color color;
     
+    // constructor 1
     public MyString(){
     	sizeX = sizeY = originX = originY = 0;
     }
 
+    // constructor 2
     public MyString( int oX, int oY, int sX, int sY ){
     	sizeX = sX;
         sizeY = sY;
@@ -41,6 +43,7 @@ public class MyString implements DrawingObject, Serializable{
 	    //this.setSize( this.getPreferredSize() );
 	}
     
+	// makes string appear where user clicked
 	@Override
 	public void start(Point p) {
 		originX = p.x;
@@ -52,6 +55,7 @@ public class MyString implements DrawingObject, Serializable{
         setBounds( bounds );
 	}
 
+	// for dragging. Not to be confused with moving...
 	@Override
 	public void drag(Point p) {	
 		sizeX = p.x - originX;
@@ -61,6 +65,7 @@ public class MyString implements DrawingObject, Serializable{
         setBounds( bounds );
 	}
 
+	// for moving
 	@Override
 	public void move(Point p) {
 		originX = p.x;
@@ -69,32 +74,31 @@ public class MyString implements DrawingObject, Serializable{
         setBounds( bounds );
 	}
 
+	// BOUNDS!
 	@Override
 	public void setBounds(Rectangle b) {
 		int realX, realY;
 		
-		realX = originX - 2;
-		realY = originY -15;
-		sizeX = wordo.length() * 7;
+		realX = originX - 2; // stretches bounding box down by 2 pixels
+		realY = originY - 15; // moves bounding box left by 15 pixels
+		sizeX = wordo.length() * 7; // multiplies number of bits of letters by 7
 		sizeY = 20;
 		
 		b.setBounds( realX, realY, sizeX, sizeY );
 	}
 
+	// shows if user clicked within the string's bounds
 	@Override
 	public boolean contains(Point p) {
-
 		return bounds.contains(p);
 	}
-
-	@Override
-	public void resize(Point p) {
-	}
 	
+	// get color
 	public Color getColor() {
 		return color;
 	}
 
+	// set color
 	@Override
 	public void setColor(Color c) {
 		color = c;
