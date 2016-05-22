@@ -1,86 +1,139 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- */
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.io.*;
 
-public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
+public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener, Serializable {
 
-    
-    public DrawingPane() {
-        super(); // always call super() in an extended/derived class!
-        //this.setSize( 500, 500 );
-        //setSize( getPreferredSize() );
-        // size is handled by parent pane placement in JFrame
-        // make a border
-        setBorder( BorderFactory.createLineBorder(Color.RED) );
-        setVisible( true );
-        
-        // we need both a mouse listener (for clicks)...
-        addMouseListener( this );
-        // ... and a mouse motion listener (for drags)!
-        addMouseMotionListener( this );
+	public static ArrayList<DrawingObject> shapeList = new ArrayList<DrawingObject>();
+	private static final long serialVersionUID = 1L;
+	public static String shape;
+	public static Color color;
+	DrawingObject drawingObject;
+	int sizeX, sizeY;
+	JFrame colors;
+	boolean moving;
 
-        
-    }
-    
-    /**
-     * actionPerformed is here in case we need it later. Not currently used.
-     * @param e 
-     */
-    public void actionPerformed( ActionEvent e ) {
-        switch( e.getActionCommand() ) {
-            default:
-                System.out.println( "EVIL BAD PLACE TWO" );
-                System.exit(-1);
-                break;
-        }
-    }
-    
+	public DrawingPane() {
+		super(); // always call super() in an extended/derived class!
+		setBorder(BorderFactory.createLineBorder(Color.BLACK)); // border
+		setVisible(true);
 
-    
+		addMouseListener(this); // mouse listener (clicks)
+		addMouseMotionListener(this); // mouse motion listener (drags)
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
+	}
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // handle what happens when the mouse is clicked. This will hinge upon
-        // the mode the user has selected in the tool panel.
+	/**
+	 * actionPerformed is here in case we need it later. Not currently used.
+	 * @param e
+	 */
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		default:
+			System.out.println("No...bad place");
+			System.exit(-1);
+			break;
+		}
+	}
 
-        System.out.println( "mousePressed" );
-  
-    }
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for (int i = 0; i < shapeList.size(); i++) {
+			shapeList.get(i).draw(g);
+		}
+	}
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-       
-        System.out.println( "mouseDragged" );
-    }
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        System.out.println( "mouseReleased()" );
-    }
+	@Override
+	public void mousePressed(MouseEvent e) {
+		
+		/*
+		 * error is thrown if a button isn't selected and they click the on the
+		 * drawingPane
+		 */
+		try {
+			switch (shape) {
+			case "Line":
+				drawingObject = new MyLine();
+				drawingObject.setColor(ToolPanel.colorChooser.getColor()); //gets color
+				drawingObject.start(e.getPoint()); //knows where to start drawing
+				shapeList.add(drawingObject); //adding to shapelist
+				break;
+			case "Rectangle":
+				drawingObject = new MyRectangle();
+				drawingObject.setColor(ToolPanel.colorChooser.getColor());
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Circle":
+				drawingObject = new MyCircle();
+				drawingObject.setColor(ToolPanel.colorChooser.getColor());
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Star":
+				drawingObject = new MyStar();
+				drawingObject.setColor(ToolPanel.colorChooser.getColor());
+				drawingObject.start(e.getPoint());
+				shapeList.add(drawingObject);
+				break;
+			case "Move shape":
+				// will select top shape
+				for (int i = shapeList.size() - 1; i >= 0; i--) {
+					//checking if point is contained, if yes the shape is picked up
+					if (shapeList.get(i).contains(e.getPoint())) {
+						drawingObject = shapeList.get(i);
+						moving = true;
+						break;
+					}
+				}
+				break;
+			default:
+				System.out.println("Bad");
+				System.exit(-1);
+				break;
+			}
+		} catch (Exception t) {
+			t.printStackTrace();
+		}
+	}
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (moving) { //if moving is true...
+			drawingObject.move(e.getPoint());
+		} else { //if user is creating a new shape
+			try {
+				drawingObject.drag(e.getPoint());
+			} catch (Exception b) {
+				b.printStackTrace();
+			}
+		}
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
+		repaint();
+	}
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-    }
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		repaint();
+		moving = false;
+		drawingObject = null; // so it won't re-modify the old rectangle
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+	}
 }
