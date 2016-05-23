@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.io.Serializable;
+
 /**
- *A rectangle DrawingObject
- * @author woytek
+ * An triangle DrawingObject
  * @author Ryan Luchs
  */
-import java.awt.event.*;
-import java.io.Serializable;
-import java.awt.*;
-import javax.swing.*;
-
-public class MyRectangle implements DrawingObject, Serializable {
-    /**
+public class MyTriangle implements DrawingObject, Serializable{
+	
+	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -9114564574580271750L;
+	private static final long serialVersionUID = -1710471621543611877L;
 	
 	// critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
@@ -27,52 +25,70 @@ public class MyRectangle implements DrawingObject, Serializable {
     Rectangle bounds = new Rectangle();
     // color of shape
     Color color = Color.BLACK;
-    
+    // the coordinates (x, y) of each point on the star
+    int[] xPoints = new int[3];
+    int[] yPoints = new int[3];
+	
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyTriangle() {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
     }
     
     /**
-     * Create a new MyRectangle with params initialized for origin and size.
+     * Create a new MyTriangle with params initialized for origin and size.
      * 
      * @param oX x-coordinate of the origin (left side)
      * @param oY y-coordinate of the origin (top)
      * @param sX length
      * @param sY height
      */
-    public MyRectangle( int oX, int oY, int sX, int sY ) {
+    public MyTriangle( int oX, int oY, int sX, int sY ) {
         sizeX = sX;
         sizeY = sY;
         originX = oX;
         originY = oY;
         setBounds( bounds );
         
-        //System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
+        System.out.println( "Made oval: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
-    
+
     /**
      * draw method actually draws the object. Requires Graphics object.
      * 
      * @param g The graphics
      */
-    public void draw( Graphics g ) {
+	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		
+		g2d.setColor(color);
+		
+		/*     p: a
+		 *      /\
+		 *     /  \
+		 *    /____\
+		 *  p: b   p: c
+		 */
+		
+		// point a
+		xPoints[0] = originX + sizeX/2;
+		yPoints[0] = originY;
+		
+		// point b
+		xPoints[1] = originX;
+		yPoints[1] = originY + sizeY;
+		
+		// point c
+		xPoints[2] = originX + sizeX;
+		yPoints[2] = originY + sizeY;
+		
+		g2d.drawPolygon(xPoints, yPoints, 3);
+	}
 
-        Graphics2D g2d = (Graphics2D)g;
-        
-        g2d.setColor(color);
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
-        g2d.drawRect( originX, originY, sizeX, sizeY );
-        
-        //System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
-        //this.setSize( this.getPreferredSize() );
-    }
-    
-    /**
+	/**
      * Called to start drawing a new object when mouse is clicked.
      * 
      * @param p The point
@@ -115,7 +131,7 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @param b The bounding box
      */
     public void setBounds( Rectangle b ) {
-        b.setBounds( originX, originY, sizeX, sizeY );
+        b.setBounds( originX - sizeX/2, originY, sizeX, sizeY );
     }
     
     /**
@@ -155,10 +171,7 @@ public class MyRectangle implements DrawingObject, Serializable {
      * @return True if p is within the bounding box
      */
     public boolean contains( Point p ) {
-
-    	int nPoints = 4;
-    	int[] xPoints = {originX, originX + sizeX, originX + sizeX, originX};
-    	int[] yPoints = {originY, originY, originY + sizeY, originY + sizeY};
+    	int nPoints = 3;
     	
     	for(int i = 1; i < nPoints; i++) {
     		if(within(xPoints[i - 1], yPoints[i - 1], xPoints[i], yPoints[i], p.x, p.y)) {
