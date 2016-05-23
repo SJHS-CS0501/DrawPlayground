@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author woytek
- */
-import java.awt.event.*;
 import java.awt.*;
-import javax.swing.*;
+import java.io.Serializable;
 
-public class MyRectangle implements DrawingObject {
-    // critical vars for a rectangle
+public class MyRectangle implements DrawingObject, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
     int sizeX, sizeY, originX, originY;
-    // future use
     int lastX, lastY;
-    // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    Color color;
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -55,9 +47,14 @@ public class MyRectangle implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( getColor());
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
+        
+        
+        // clipRect method? 
+        //need to change points so that they are not all set to 0 **Probably fixed! (for now anyway)
+        
         
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
@@ -119,5 +116,15 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
+    // color things
+	public Color getColor() {
+		return color;
+	}
+
+	@Override
+	public void setColor(Color c) {	
+		color = c;
+	}
 
 }
