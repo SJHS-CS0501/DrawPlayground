@@ -1,6 +1,9 @@
 
 import java.awt.*;
 
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +12,7 @@ import java.awt.*;
 
 /**
  * Interface class for any drawable object.
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 public interface DrawingObject {
     //private int originX, originY;
@@ -46,5 +49,7 @@ public interface DrawingObject {
      * @return 
      */
     public boolean contains( Point p );
+    
+    public void setColor(Color c);
     
 }

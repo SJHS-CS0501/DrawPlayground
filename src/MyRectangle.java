@@ -5,19 +5,24 @@
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyRectangle implements DrawingObject {
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
+public class MyRectangle implements DrawingObject, Serializable {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
+    Color c;
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
@@ -26,6 +31,7 @@ public class MyRectangle implements DrawingObject {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        c = Color.BLACK;
     }
     
     /**
@@ -43,6 +49,7 @@ public class MyRectangle implements DrawingObject {
         originY = oY;
         setBounds( bounds );
         
+        
         System.out.println( "Made rectangle: @" + oX + ", " + oY + "; " + sX + " x " + sY );
     }
     
@@ -55,7 +62,7 @@ public class MyRectangle implements DrawingObject {
 
         Graphics2D g2d = (Graphics2D)g;
         
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( c );
         //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
         g2d.drawRect( originX, originY, sizeX, sizeY );
         
@@ -119,5 +126,17 @@ public class MyRectangle implements DrawingObject {
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
+
+	@Override
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		this.c = c;
+	}
+
+	
+
+
+
+	
 
 }

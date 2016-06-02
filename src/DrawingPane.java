@@ -5,16 +5,31 @@
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.*;
 
 public class DrawingPane extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
-
-    
+	public DrawingObject object;
+	public static ArrayList<DrawingObject> myList = new ArrayList<DrawingObject>(); 
+	//MyRectangle r;
+	//MyCircle c;
+	//MyTriangle t;
+	//MyLine l;
+	//MyStar s;
+	
+	/*
+	 * Save image as .jpeg
+	 * save to file so that it can be reopened
+	 */
+	
     public DrawingPane() {
         super(); // always call super() in an extended/derived class!
         //this.setSize( 500, 500 );
@@ -56,20 +71,81 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
     public void mousePressed(MouseEvent e) {
         // handle what happens when the mouse is clicked. This will hinge upon
         // the mode the user has selected in the tool panel.
-
-        System.out.println( "mousePressed" );
+    	switch(ToolPanel.selection) {
+    	case(0):
+    		object = new MyRectangle();
+    		myList.add(object);
+			object.start(e.getPoint());
+			
+    		break;
+    	case(1):
+    		object = new MyCircle();
+    		myList.add(object);
+			object.start(e.getPoint());
+			
+    		break;
+    	case(3):
+    		object = new MyLine();
+    		myList.add(object);
+			object.start(e.getPoint());
+			
+    		break;
+    	case(4):
+    		object = new MyStar();
+    		myList.add(object);
+    		object.start(e.getPoint());
+    		
+    		break;
+    	case(5):
+    		for(int ctr = myList.size() - 1; ctr >= 0; ctr--) {
+    			if(myList.get(ctr).contains(e.getPoint())) {
+    				object = myList.get(ctr);
+    				break;
+    			}
+    		}
+    		break;
+    	case(6):
+    		Color c = null;
+    		System.out.println(myList.size());
+    		for(int otherCtr = 0; otherCtr < myList.size() - 1; otherCtr++) {
+    			object = myList.get(otherCtr);
+    			if(object.contains(e.getPoint())) {
+    				c = ToolPanel.choose.getColor();
+        			object.setColor(c);
+    			}
+    			
+    			
+    		}
+    		break;
+    	default:
+    		break;
+    	}
   
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
+       int x = e.getX();
+ 	   int y = e.getY();
+       if(object != null) {
+    	   if(ToolPanel.selection == 5) {
+        	   object.move(e.getPoint());
+        	   System.out.println("Moving");
+           } else {
+        	   object.drag(e.getPoint());
+           }
+    	   repaint();
+    	   
+       }
        
-        System.out.println( "mouseDragged" );
+       
+       
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println( "mouseReleased()" );
+    	object = null;
+        repaint();
     }
 
     @Override
@@ -82,5 +158,55 @@ public class DrawingPane extends JPanel implements ActionListener, MouseMotionLi
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+    
+    public void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    	for(int counter = 0; counter < myList.size(); counter++) {
+    		myList.get(counter).draw(g);
+    	}
+    }
+    public void save(String file) {
+    	 try {
+    		 FileOutputStream otherStream = new FileOutputStream(file);
+    		 ObjectOutputStream objStream = new ObjectOutputStream(otherStream);
+    		 
+    		 for(int inc = 0; inc < myList.size(); inc++) {
+    			 objStream.writeObject(myList.get(inc));
+    		 }
+    		 objStream.close();
+    	 }
+    	 catch(Exception e1) {
+    		 e1.printStackTrace();
+    	 }
+    		 
+    }
+    
+    public void image(String file) {
+    	BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+    	paint(image.getGraphics());
+    	try {
+			ImageIO.write(image, "JPG", new File(file));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void open(String file) {
+    	try {
+    		FileInputStream stream = new FileInputStream(file);
+    		ObjectInputStream objectStream = new ObjectInputStream(stream);
+    		
+    		while(stream.available() > 0) {
+    			object = (DrawingObject)objectStream.readObject();
+    			myList.add(object);
+    		}
+    		repaint();
+    		objectStream.close();
+    	}
+    	catch(Exception e1) {
+    		e1.printStackTrace();
+    	}
     }
 }

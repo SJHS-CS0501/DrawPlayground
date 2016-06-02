@@ -1,6 +1,11 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
+import java.io.File;
+import java.io.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /*
@@ -10,19 +15,23 @@ import javax.swing.*;
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 public class JMenuFrame extends JFrame implements ActionListener {
+    JPanel panel = new JPanel();
     
+    DrawingPane dPane = new DrawingPane();
+    ToolPanel tPane = new ToolPanel();
     public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
-        ToolPanel tPane = new ToolPanel();
+        
+        setExtendedState((getExtendedState() & MAXIMIZED_BOTH) == MAXIMIZED_BOTH ? NORMAL : MAXIMIZED_BOTH); //This maximizes the window when it opens.  StackOverflow ftw!!
         
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
         JMenu subMenu;
+        File DrawFile = new File("DrawFile");
                 
         this.setLayout( new BorderLayout() );
         this.setName( "Jay Manue Teeest Frum");
@@ -33,17 +42,34 @@ public class JMenuFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         
-        menu = new JMenu( "My Menu" );
+        menu = new JMenu( "File" );
         
-        menuItem = new JMenuItem( "Do Something" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem = new JMenuItem( "Save as JPeg" );
+        menuItem.setActionCommand( "Save" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem("Save file");
+        menuItem.setActionCommand("otherSave");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Open" );
+        menuItem.setActionCommand( "Open" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
+        
+        menuItem = new JMenuItem("Clear");
+        menuItem.setActionCommand("Clear");
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        /*
+        menuItem = new JMenuItem("Delete");
+        menuItem.setActionCommand("Delete");
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        */
         
         menu.addSeparator();
         
@@ -52,31 +78,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
         
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
-        menuItem.addActionListener( this );
-        menu.add( menuItem );
-        
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
-        menuItem.addActionListener( this );
-        subMenu.add( menuItem );
-        
-        menu.add(subMenu);
         
         menuBar.add( menu );
+        
+        
         
         menuBar.add( Box.createHorizontalGlue() );
         
@@ -97,22 +104,83 @@ public class JMenuFrame extends JFrame implements ActionListener {
     }
     
     public void actionPerformed( ActionEvent e ) {
-
+    	
         switch( e.getActionCommand() ) {
-            case "MenuSomething":
-                System.out.println( "Something Pressed" );
+            case "Save":
+            	if(dPane != null) {
+            		String file;
+            		JFileChooser foo = new JFileChooser();
+            		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+            		int ret = foo.showSaveDialog(JMenuFrame.this);
+            		
+            		if(ret == JFileChooser.APPROVE_OPTION) {
+            			
+            			File fileName = foo.getSelectedFile();
+            			file = fileName.toString();
+            			dPane.save(file);
+            		}
+            		
+            	}
+                System.out.println( "Your file has been saved." );
                 break;
-            case "MenuAnother":
-                System.out.println( "Another Pressed" );
+            case "otherSave":
+            	if(dPane != null) {
+            		String file;
+            		JFileChooser foo = new JFileChooser();
+            		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+            		int ret = foo.showSaveDialog(JMenuFrame.this);
+            		
+            		if(ret == JFileChooser.APPROVE_OPTION) {
+            			
+            			File fileName = foo.getSelectedFile();
+            			file = fileName.toString();
+            			dPane.save(file);
+            		}
+            		
+            	}
+            	break;
+            case "Open":
+            	String otherFile = null;
+        		JFileChooser foo = new JFileChooser();
+        		foo.setCurrentDirectory(new File(System.getProperty("user.home")));
+        		int ret = foo.showSaveDialog(JMenuFrame.this);
+        		
+            	JFileChooser file = new JFileChooser();
+            	int retrn = file.showOpenDialog(JMenuFrame.this);
+            	
+            	if(retrn == JFileChooser.APPROVE_OPTION) {
+            		DrawingPane.myList.clear();
+            		repaint();
+            		file.setCurrentDirectory(new File(System.getProperty("user.home")));
+            		File fileName = file.getSelectedFile();
+            		dPane.open(otherFile);
+            		
+            		
+            	}
+                System.out.println( "File opened" );
                 break;
+            case "Clear":
+            	DrawingPane.myList.clear();
+            	repaint();
+            	break;
             case "Quit":
-                System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+            case "MenuAbout":
+            	JOptionPane.showMessageDialog(null, "This program allows the user to draw four different types of shapes on the screen and change the color of those shapes. \n It also allows the user to save their creation as a jpeg image and load it from the disk.");
+            	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);
                 break;
         }
+    }
+    
+    public String accessFile(String myFile) {
+    	JFrame frame = new JFrame();
+    	String obj = JOptionPane.showInputDialog("Please enter name for file");
+    	System.out.println(obj);
+    	myFile = obj;
+    	return myFile;
     }
 }

@@ -5,7 +5,7 @@
  */
 /**
  *
- * @author woytek
+ * @author woytek/Ryan Smith
  */
 public class JMenuTest {
 
