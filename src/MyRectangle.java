@@ -1,36 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author woytek
+ * This class is designed to enable a user to
+ * create a rectangle.
+ * @author Jack Protivnak
  */
 import java.awt.event.*;
+import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class MyRectangle implements DrawingObject {
+public class MyRectangle implements DrawingObject, Serializable {
     // critical vars for a rectangle
     int sizeX, sizeY, originX, originY;
     // future use
     int lastX, lastY;
+    Color color;
+    boolean fill;
     // bounding box (needed for move)
     Rectangle bounds = new Rectangle();
     
     /**
      * Create a new MyRectangle, all params initialized to zero.
      */
-    public MyRectangle() {
+    public MyRectangle(boolean b) {
         // NOP
         sizeX = sizeY = originX = originY = 0;
         setBounds( bounds );
+        fill = b;
     }
     
     /**
      * Create a new MyRectangle with params initialized for origin and size.
-     * 
      * @param oX
      * @param oY
      * @param sX
@@ -47,25 +46,22 @@ public class MyRectangle implements DrawingObject {
     }
     
     /**
-     * draw method actually draws the object. Requires Graphics object.
-     * 
+     * Draw method actually draws the object. Requires Graphics object.
      * @param g 
      */
     public void draw( Graphics g ) {
-
         Graphics2D g2d = (Graphics2D)g;
-        
-        g2d.setColor( Color.BLACK );
-        //g2d.clearRect( originX, originY, sizeX, sizeY );  // this is cool to make a background-filled rectangle!
+        g2d.setColor(getColor());
+        if(fill) {
+        	g2d.fillRect(originX, originY, sizeX, sizeY);
+        }
         g2d.drawRect( originX, originY, sizeX, sizeY );
-        
         System.out.println( "Redrawing rectangle @" + originX + ", " + originY + "; " + sizeX + " x " + sizeY);
         //this.setSize( this.getPreferredSize() );
     }
     
     /**
      * Called to start drawing a new object when mouse is clicked.
-     * 
      * @param p 
      */
     public void start( Point p ) {
@@ -78,7 +74,6 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called repeatedly while dragging an object to size (usually in a 
      * mouseDragged() MouseMotionListener).
-     * 
      * @param p 
      */
     public void drag( Point p ) {
@@ -90,19 +85,20 @@ public class MyRectangle implements DrawingObject {
     /**
      * Called repeatedly while moving an object (usually in a mouseDragged()
      * MouseMotionListener).
-     * 
      * @param p 
      */
     public void move( Point p ) {
-        originX = p.x;
-        originY = p.y;
+//        originX = (int) (p.getX() - originX) + (int) p.getX();
+//        originY = (int) (p.getY() - originY) + (int) p.getY();
+    	originX = p.x;
+    	originY = p.y;
+    	
         setBounds( bounds );
     }
     
     /**
      * Update the bounding box. The Rectangle argument is typically but not always
      * in this object. This is required for @method contains() to work.
-     * 
      * @param b 
      */
     public void setBounds( Rectangle b ) {
@@ -110,14 +106,27 @@ public class MyRectangle implements DrawingObject {
     }
     
     /**
+     * Returns color of object.
+     */
+    public Color getColor() {
+    	return color;
+    }
+    
+    /**
+     * Sets color
+     * @param c
+     */
+    public void setColor(Color c) {
+    	color = c;
+    }
+    
+    /**
      * Returns true if the point p is in the bounding box for this object. Might
      * be used to select and/or move an object.
-     * 
      * @param p
      * @return 
      */
     public boolean contains( Point p ) {
         return bounds.contains(p);
     }
-
 }

@@ -1,22 +1,22 @@
-
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+
 import javax.swing.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author woytek
+ * This class is used to create the menu bar that appears
+ * at the top of the entire frame.
+ * @author Jack Protivnak
  */
-public class JMenuFrame extends JFrame implements ActionListener {
+public class JMenuFrame extends JFrame implements ActionListener, Serializable {
+	
+	public static final long serialVersionUID = 1;
+	private DrawingPane dPane;
     
     public JMenuFrame() {
         super();
-        DrawingPane dPane = new DrawingPane();
+        dPane = new DrawingPane();
         ToolPanel tPane = new ToolPanel();
         
         JMenuBar menuBar;
@@ -35,16 +35,26 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menu = new JMenu( "My Menu" );
         
-        menuItem = new JMenuItem( "Do Something" );
-        menuItem.setActionCommand( "MenuSomething" );
+        menuItem = new JMenuItem( "New" );
+        menuItem.setActionCommand( "new" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
-        menuItem = new JMenuItem( "Do Another Thing" );
-        menuItem.setActionCommand( "MenuAnother" );
+        menuItem = new JMenuItem( "Open" );
+        menuItem.setActionCommand( "open" );
         menuItem.addActionListener( this );
         menu.add(menuItem);
         
+        menuItem = new JMenuItem( "Save" );
+        menuItem.setActionCommand( "save" );
+        menuItem.addActionListener( this );
+        menu.add(menuItem);
+        
+        menuItem = new JMenuItem( "Save Image" );
+        menuItem.setActionCommand("saveImage");
+        menuItem.addActionListener(this);
+        menu.add(menuItem);
+       
         menu.addSeparator();
         
         menuItem = new JMenuItem( "Exit" );
@@ -54,35 +64,17 @@ public class JMenuFrame extends JFrame implements ActionListener {
         
         menuBar.add( menu );
         
-        menu = new JMenu( "FOO" );
-        
-        menuItem = new JMenuItem( "Foo Thing" );
-        menuItem.setActionCommand( "MenuFoo" );
-        menuItem.addActionListener( this );
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-        
-        menuItem = new JMenuItem( "Foo 2" );
-        menuItem.setActionCommand( "MenuFoo2" );
-        menuItem.addActionListener( this );
-        menu.add( menuItem );
-        
-        subMenu = new JMenu( "SubMenu" );
-        menuItem = new JMenuItem( "SubFoo" );
-        menuItem.setActionCommand( "MenuSubFoo" );
-        menuItem.addActionListener( this );
-        subMenu.add( menuItem );
-        
-        menu.add(subMenu);
-        
-        menuBar.add( menu );
-        
         menuBar.add( Box.createHorizontalGlue() );
         
         menu = new JMenu( "Help" );
         menuItem = new JMenuItem( "About" );
-        menuItem.setActionCommand( "MenuAbout" );
+        menuItem.setActionCommand( "about" );
+        menuItem.addActionListener( this );
+        
+        menu.add( menuItem );
+        
+        menuItem = new JMenuItem( "License Agreement" );
+        menuItem.setActionCommand( "license" );
         menuItem.addActionListener( this );
         
         menu.add( menuItem );
@@ -92,13 +84,28 @@ public class JMenuFrame extends JFrame implements ActionListener {
         this.setJMenuBar( menuBar );
         
         //this.setSize( new Dimension(this.getPreferredSize() ) ); 
-        this.setSize( 600, 600 );
+        this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
         this.setVisible( true );
     }
     
+    /**
+     * Action Listener for the different options within the JMenu.
+     */
     public void actionPerformed( ActionEvent e ) {
 
         switch( e.getActionCommand() ) {
+        	case "new":
+        		dPane.clear();
+        		break;
+        	case "save":
+        		dPane.writeFile();
+        		break;
+        	case "saveImage":
+        		dPane.saveImage();
+        		break;
+        	case "open":
+        		dPane.openFile();
+        		break;
             case "MenuSomething":
                 System.out.println( "Something Pressed" );
                 break;
@@ -109,6 +116,12 @@ public class JMenuFrame extends JFrame implements ActionListener {
                 System.out.println( "quit Pressed" );
                 System.exit(0);
                 break;
+            case "about":
+            	JOptionPane.showMessageDialog(null, "DRAWING PROGRAM\u2122\nCopyright \u00A92016 Pro Inc. All Rights Reserved \u00AE. License Agreement");
+            	break;
+            case "license":
+            	JOptionPane.showMessageDialog(null, "Copyright (\u00A9) 2016, 1998 Pro Inc.\n800 Montana Ave., Natrona Heights, PA  15065, USA\nEveryone is permitted to copy and distribute verbatim copies\nof this license document, but changing it is not allowed.");
+            	break;
             default:
                 System.out.println( "I DON'T KNOW HOW YOU GOT HERE!!!!" );
                 System.exit(-1);

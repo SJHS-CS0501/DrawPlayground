@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author woytek
+ * Class containing the main which runs the menu.
+ * @author Jack Protivnak
  */
 public class JMenuTest {
 
@@ -15,7 +10,5 @@ public class JMenuTest {
     public static void main(String[] args) {
         // TODO code application logic here
         JMenuFrame myFrame = new JMenuFrame();
-        
     }
-    
 }
